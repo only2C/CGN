@@ -1,6 +1,9 @@
 body{
     font-size: 14px;
 }
+.um-header{
+    background: #ff9500;
+}
 .fl{
     float: left;
 }
@@ -18,10 +21,33 @@ body{
     height: 30px;
     padding: 0 10px;
 }
+.order-header-left{
+    color: rgb(151,151,151);
+}
+.order-header-right{
+    color: rgb(252,85,109);
+}
+.order-content-tag{
+    color: #ff9500;
+    font-size: 12px;
+}
+.order-content-detail{
+    max-width: 180px;
+    overflow: hidden;
+}
+.order-icon{
+    width: 25px;
+    height: 25px;
+    background: url(../../img/icon_order.png) no-repeat;
+    -webkit-background-size: 80%;
+    background-size: 80%;
+    float: left;
+}
+
 .order-content{
     width: 100%;
     overflow: hidden;
-    background: #efeff5;
+    background: rgb(242,242,242);
     padding:10px;
 }
 .order-footer{
@@ -33,7 +59,7 @@ body{
     height: 40px;
     line-height: 40px;
     border-bottom: 1px solid #cfcfcf;
-    color: #555;
+    color: rgb(151,151,151);
     margin-bottom: 10px;
     padding-right: 10px;
 }
@@ -50,10 +76,25 @@ body{
     border-radius: 5px;
 }
 .btn-1{
-    border: 1px solid #555;
-    color: #555;
+    border: 1px solid rgb(151,151,151);
+    color: rgb(151,151,151);
 }
 .btn-2{
     border: 1px solid #ff9500;
     color: #ff9500
+}
+.order-content-img img {
+    width: 100px;
+    margin-right: 10px;
+}
+.order-content-detail h4{
+}
+
+.order-content-detail p{
+    color: rgb(151,151,151);
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
 }
