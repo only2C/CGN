@@ -167,13 +167,6 @@ summerready = function () {
 
         var callback = 'getcgnmaterial';
         var url = '/ieop_base_mobile/mfrontmallcgnsolr/getcgnmaterial';
-        if (summer.pageParam.flag == 1) {  // 0 去采购  1 去调拨
-            url = '/ieop_base_mobile/mfrontsusolr/getsumaterial';
-            callback  = 'getsumaterial';
-            $(".cg-list").remove();
-        }else{
-            $(".db-list").remove();
-        }
 
 
         var enc_conditions = p_page_params_con_dataj_enc(summer.pageParam.options, {
@@ -237,7 +230,7 @@ function getcgnmaterial(responseJSON) {
         $('#thirdMenu').css('transform', 'translate(0, 0)')
     }
     //window.updateFilter = false;
-    viewModel.totalPage(responseJSON.pageParams.pageCount);
+    viewModel.totalPage(responseJSON.pageParams.totalPage);
     var cgnMCodes = "";
     var cgnFCodes = "";
     var mCodeM = {};

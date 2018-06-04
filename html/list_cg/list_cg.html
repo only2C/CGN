@@ -6,7 +6,7 @@
 		<title></title>
 		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
 		<link rel="stylesheet" href="../../css/font-icons.css">
-		<link rel="stylesheet" href="./list_db.css" />
+		<link rel="stylesheet" href="./list_cg.css" />
 		<script>window.PointerEvent = undefined</script>
 		<script src="../../js/summer.js" ></script>		
 		<script src="../../js/jquery.min.js" ></script>
@@ -17,10 +17,10 @@
 		<script src="../../js/jroll.min.js"></script>
 		<!--<script src="../../js/iscroll5.js"></script>-->
 		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
-		<script src="./list_db.js"></script>
+		<script src="./list_cg.js"></script>
 	</head>
 	<body>
-		<div class="um-win" id="index">
+		<div class="um-win" id="list_cg">
 			<div class="um-header solid" id="header">
 				<div class="head um-box">
 					<a onclick="closeWin()" class="w50 back um-box-center"></a>
@@ -109,17 +109,18 @@
 
 							<li data-bind="">
 								<div class="img-wp">
-									<img onerror="nofind(this,1)" data-bind="" alt="" />
+									<img onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
 								</div>
 								<div class="right-cont">
-									<div data-bind="text:cgnMName" class="title"></div>
-									<div class="brand">供应商：<span data-bind="text:cgnMBrandName"></span></div>
-									<div class="brand">仓库：<span data-bind="text:cgnMBrandName"></span></div>
+									<div data-bind="text:suMName" class="title"></div>
+									<div class="brand">供应商：<span data-bind="text:ieopEnterpriseName"></span></div>
+									<div class="brand">仓库：<span data-bind="text:suStoreName"></span></div>
 									<div class="btns">
-										<div class="last-btn">库存：<span data-bind="text:stock"></span></div>
+										<div class="last-btn">库存：<span data-bind="text:suMarStock"></span></div>
+										<div class="last-btn">价格：<span data-bind="text:suPrice"></span></div>
 									</div>
 									<div class="company-name">
-										<font data-bind="text:cgnFName"></font><span>详情<span>&gt;</span></span>
+										<span>详情<span>&gt;</span></span>
 									</div>
 								</div>
 								<div class=" w um-gray"  style="height: 1px;"></div>

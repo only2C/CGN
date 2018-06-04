@@ -17,8 +17,8 @@ function keyBack() {
 
 function openWin(winId, options) {
     var flag = window.viewModel.systemFlag() ;
-    if(flag == 1 ){
-        winId = 'list_db'
+    if(flag === 0 ){
+        winId = 'list_cg'
     }
     summer.openWin({
         "id": winId,
@@ -90,9 +90,9 @@ summerready = function () {
         organizationArr: ko.observableArray([]),
         defaultOrg: ko.observable(summer.getStorage("ufn")),
         isAndriod: ko.observable($summer.os == 'android'),
-        systemType: ko.observable(systemList[0]["name"]),
+        systemType: ko.observable(summer.getStorage("stype")),
         systemArr: ko.observableArray([]),
-        systemFlag:ko.observable(systemList[0]["code"]),
+        systemFlag:ko.observable(summer.getStorage("stype")),
         chooseOrg: function (item) {
             var p_conditions = {
                 fcode: item.cgnFCode
@@ -109,6 +109,7 @@ summerready = function () {
         chooseSystemArr:function(item){
             viewModel.systemType(item.name);
             viewModel.systemFlag(item.code);
+            summer.setStorage('stype',item.code);
             $('.system-list').slideUp();
             $('.drop2').hide();
         }

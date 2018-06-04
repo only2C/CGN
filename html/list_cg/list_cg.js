@@ -165,15 +165,8 @@ summerready = function () {
             viewModel.cgnFNameItem(category.mgCName);
         }
 
-        var callback = 'getcgnmaterial';
-        var url = '/ieop_base_mobile/mfrontmallcgnsolr/getcgnmaterial';
-        if (summer.pageParam.flag == 1) {  // 0 去采购  1 去调拨
-            url = '/ieop_base_mobile/mfrontsusolr/getsumaterial';
-            callback  = 'getsumaterial';
-            $(".cg-list").remove();
-        }else{
-            $(".db-list").remove();
-        }
+        url = '/ieop_base_mobile/mfrontsusolr/getsumaterial';
+        callback  = 'getsumaterial';
 
 
         var enc_conditions = p_page_params_con_dataj_enc(summer.pageParam.options, {
@@ -209,16 +202,11 @@ summerready = function () {
 }
 var myScrollMenu;
 
-function getcgnmaterial(responseJSON) {
+
+function getsumaterial(responseJSON) {
     window.data = responseJSON.retData.data;
     var navigation = responseJSON.retData.navigation;
-    viewModel.cgnFName(navigation.cgnFName);
-    viewModel.cgnMApplyModelName(navigation.cgnMApplyModelName);
-    viewModel.cgnMApplyPositionName(navigation.cgnMApplyPositionName);
-    viewModel.cgnMBrandName(navigation.cgnMBrandName);
-    viewModel.cgnMFieldsName(navigation.cgnMFieldsName);
-    viewModel.cgnMProductName(navigation.cgnMProductName);
-    viewModel.mgCName(navigation.mgCName);
+    
     var tmpArr = [];
     for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
         if (navigation.mgCName[i] != '') {
@@ -226,61 +214,13 @@ function getcgnmaterial(responseJSON) {
         }
     }
     viewModel.thirdMenu(tmpArr);
-    viewModel.cgnSuName(navigation.cgnSuName);
-    if (!myScrollMenu) {
-        myScrollMenu = new JRoll('#menu', {
-            scrollX: true,
-            click: true
-        });
-    } else {
-        //myScrollMenu.refresh();
-        $('#thirdMenu').css('transform', 'translate(0, 0)')
-    }
-    //window.updateFilter = false;
-    viewModel.totalPage(responseJSON.pageParams.pageCount);
-    var cgnMCodes = "";
-    var cgnFCodes = "";
-    var mCodeM = {};
-    var fCodeM = {};
-    for (var i = 0; i < data.length; i++) {
-        mCodeM[data[i].cgnMCode] = data[i].cgnMCode;
-        fCodeM[data[i].cgnFCode] = data[i].cgnFCode;
-        // codes = codes + data[i].cgnMCode +"#";
-    }
-    for (var i in mCodeM) {
-        cgnMCodes = cgnMCodes + i + "#";
-    }
-    for (var i in fCodeM) {
-        cgnFCodes = cgnFCodes + i + "#";
-    }
-    var p_conditions = {"fCodes": cgnFCodes.substring(0, cgnFCodes.length - 1)};
-    p_conditions["mCodes"] = cgnMCodes.substring(0, cgnMCodes.length - 1);
-
-    var page_params = {"pageIndex": 1, "pageSize": 20};  //分页
-    var sortItem = {};
-    var data1 = p_page_params_con_dataj_enc(p_conditions, page_params, sortItem);
-    var ret = p_async_post(ip + '/ieop_base_mobile/mfrontmalltransferorder/getpriceandstock', data1, 'getpriceandstock');
-
-}
-
-
-function getsumaterial(responseJSON) {
-    window.data = responseJSON.retData.data;
-    var navigation = responseJSON.retData.navigation;
-    viewModel.cgnFName(navigation.mgCName);
+    viewModel.cgnFName(navigation.ieopEnterpriseName);
     viewModel.cgnMApplyModelName(navigation.suMApplyModelName);
     viewModel.cgnMApplyPositionName(navigation.suMApplyPositionName);
     viewModel.cgnMBrandName(navigation.suMBrandName);
     viewModel.cgnMFieldsName(navigation.suMFieldsName);
     viewModel.cgnMProductName(navigation.suMProductName);
     viewModel.mgCName(navigation.mgCName);
-    var tmpArr = [];
-    for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
-        if (navigation.mgCName[i] != '') {
-            tmpArr.push({mgCName: navigation.mgCName[i]});
-        }
-    }
-    viewModel.thirdMenu(tmpArr);
     viewModel.cgnSuName(navigation.mgCName);
     if (!myScrollMenu) {
         myScrollMenu = new JRoll('#menu', {
@@ -292,73 +232,56 @@ function getsumaterial(responseJSON) {
         $('#thirdMenu').css('transform', 'translate(0, 0)')
     }
     //window.updateFilter = false;
-    viewModel.totalPage(responseJSON.pageParams.pageCount);
-    var cgnMCodes = "";
-    var cgnFCodes = "";
-    var mCodeM = {};
-    var fCodeM = {};
-    for (var i = 0; i < data.length; i++) {
-        mCodeM[data[i].cgnMCode] = data[i].cgnMCode;
-        fCodeM[data[i].cgnFCode] = data[i].cgnFCode;
-        // codes = codes + data[i].cgnMCode +"#";
+    viewModel.totalPage(responseJSON.pageParams.totalPage);
+   	var ids="";
+    for(var i= 0;i<data.length;i++){
+    	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?data[i]['suMSmallimgs'][0]:'../static/mall/images/default_small.png';
+    	var id = data[i].id;//物料id
+		ids += id + "#";
     }
-    for (var i in mCodeM) {
-        cgnMCodes = cgnMCodes + i + "#";
-    }
-    for (var i in fCodeM) {
-        cgnFCodes = cgnFCodes + i + "#";
-    }
-    var p_conditions = {"fCodes": cgnFCodes.substring(0, cgnFCodes.length - 1)};
-    p_conditions["mCodes"] = cgnMCodes.substring(0, cgnMCodes.length - 1);
-
-    var page_params = {"pageIndex": 1, "pageSize": 20};  //分页
-    var sortItem = {};
-    var data1 = p_page_params_con_dataj_enc(p_conditions, page_params, sortItem);
-    var ret = p_async_post(ip + '/ieop_base_mobile/mfrontmalltransferorder/getpriceandstock', data1, 'getpriceandstock');
+	ids = ids.substring(0,ids.length-1);
+	var info = {};
+    info['ids'] = ids;
+    var bb = p_params_con_dataj_enc(info);
+    var ret = p_async_post(ip + '/ieop_base_mobile/mfrontsustorematerial/querybyids', bb, 'querybyids');
 
 }
-
-
-
-function getpriceandstock(ret) {
-    var retData = ret.retData.ents;
-    var mlen = retData.length;
-    var mds = {};
-    var key = "";
-    for (var i = 0; i < mlen; i++) {
-        key = retData[i].cgnFCode + ',' + retData[i].cgnMCode;
-        mds[key] = retData[i];
-    }
-    for (var i = 0, len = data.length; i < len; i++) {
-        var stock = 0;
-        var key = data[i].cgnFCode + ',' + data[i].cgnMCode;
-        if (null != mds[key] && mds[key] != undefined) {
-            md = mds[key];
-            stock = parseInt(md.labst);
-        }
-        data[i]['stock'] = stock;
-        if (data[i]['cgnMIcon']) {
-            data[i]['cgnMIcon'] = summer.getStorage("imgBaseUrl") + data[i]['cgnMIcon'];
-        }
-    }
-    if (pageSize == 1) {
-        viewModel.listArr(data);
-        if (myScroll) {
-            myScroll.refresh();
-        }
-        if (data.length <= 0) {
-            summer.toast({
-                "msg": "暂无内容"
-            })
-        }
-
-        $('#smallPic').removeClass('noshow');
-
-    } else {
-        viewModel.listArr(viewModel.listArr().concat(data));
-        myScroll.refresh();
-    }
-    if (!myScroll) {
-        mycall();
+function querybyids(res){
+	if(res.status==1){
+		var ents = res.retData.ents;
+    	for(var i =0;i<data.length;i++){
+    		for(var k =0;k<ents.length;k++){
+    			if(data[i].id==ents[k].id){
+    				data[i]['suPrice'] = ents[k]['suPrice'];
+    				data[i]['suMarStock'] = ents[k]['suMarStock'];
+    			}
+    		}
+    		data[i]['suPrice'] = data[i]['suPrice']?data[i]['suPrice']:'';
+    		data[i]['suMarStock'] = data[i]['suMarStock']?data[i]['suMarStock']:'';
+    	}
+    	if (pageSize == 1) {
+	        viewModel.listArr(data);
+	        if (myScroll) {
+	            myScroll.refresh();
+	        }
+	        if (data.length <= 0) {
+	            summer.toast({
+	                "msg": "暂无内容"
+	            })
+	        }
+	
+	        $('#smallPic').removeClass('noshow');
+	
+	    } else {
+	        viewModel.listArr(viewModel.listArr().concat(data));
+	        myScroll.refresh();
+	    }
+	    if (!myScroll) {
+	        mycall();
+	    }
+    }else{
+        summer.toast({
+             "msg" : "请求失败" 
+        })
     }
 }
