@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./order_success.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="order_success">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>下单成功</h3>
+			</div>
+
+			<div class="um-content">
+				<div class="container">
+					<div class="nav-bar">
+						<div class="line">
+							<div class="flex1">
+								<div class="step first">
+									<i class="arrive on"></i>
+									下单成功
+								</div>
+								<div class="step">
+									<i class="arrive"></i>
+									备货中
+								</div>
+							</div>
+							<div class="flex1">
+								<div class="step">
+									<i class="arrive"></i>
+									已发货
+								</div>
+							</div>
+							<div class="flex1">
+								<div class="step">
+									<i class="arrive"></i>
+									已签收
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="big-success">
+						<img src="../../img/success-icon.png" alt="" />
+						<div data-bind="click:openWin" class="text">下单成功!</div>
+					</div>
+				</div>
+			</div>
+
+			<div data-bind="click:openList.bind($data,'inallocate')" class="um-footer">
+				查看订单
+			</div>
+		</div>
+		<script src="./order_success.js"></script>
+	</body>
+</html>

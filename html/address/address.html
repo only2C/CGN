@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./address.css" />
+		<script src="../../js/summer.js"></script>		
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/base64.js"></script>
+		<script src="../../js/pub.js"></script>
+		<script src="../../js/pub1.js"></script>
+		<script src="../../js/city.js"></script>
+		<script src="../../js/picker.min.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="address">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>收货地址</h3>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+			</div>
+			
+			<div class="um-content">
+				<div data-bind="foreach:addressList" class="box">
+					<div data-bind="css:{on:evaluationStatus=='1'}" class="address-item">
+						<i class="checked"><i class="checked-icon"></i></i>
+						<div data-bind="click:$root.setDefaultAdd.bind($data,id)" class="main-info">
+							<div class="receive-name"><span data-bind="text:receiveName"></span><font data-bind="text:receivePhone"></font></div>
+							<div data-bind="text:receiveArea+'&nbsp;'+receiveAddr" class="detail-address"></div>
+						</div>
+						<i data-bind="click:$root.editAddress.bind($data,$data)" class="edit">
+							<i class="edit-cion"></i>
+							<div class="edit-line"></div>
+						</i>
+					</div>
+					<div data-bind="visible:($index+1)!=$root.addressList().length" class=" w um-gray "  style="height: 1px;"></div>
+				</div>
+				
+				
+			</div>
+			<div class="um-footer">
+				<div data-bind="click:openWin.bind($data,'add_address')" class="save-btn"><span>+</span>新建地址</div>
+			</div>
+		</div>
+		<script src="./address.js"></script>
+	</body>
+</html>

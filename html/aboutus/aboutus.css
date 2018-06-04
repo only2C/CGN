@@ -1,0 +1,104 @@
+.header {
+	position:relative;
+	padding-top:22px;
+	height:162px;
+	background:url(../../img/aboutus.png) no-repeat;
+}
+.bars {
+	position: absolute;
+    background-color: #fff;
+    width: 90%;
+    left: 5%;
+    border-radius: 3px;
+    bottom: -30px;
+    font-size:14px;
+    box-shadow: 1px 4px 7px 1px rgba(0,0,0,0.5);
+}
+.app-name {
+	padding:10px 18px;
+	font-size:15px;
+}
+.um-gray {
+	background-color:#e4e4e4
+}
+.tag {
+	display: inline;
+    padding: 3px 14px;
+    border-radius: 14px;
+    background-color: #ee9531;
+    color: #fff;
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    font-size: 12px;
+}
+.app-name-cn {
+	margin-bottom: 5px;
+}
+.app-name-en {
+	color:#666;
+}
+.tabs {
+	display: flex;
+    line-height: 40px;
+}
+.tab-item {
+	flex:1;
+	text-align:center;
+}
+.tab-item.on span {
+	display:inline-block;
+    border-bottom: 3px solid #ee9531;
+    color:#ee9531;
+}
+.content {
+	padding: 60px 14px 0;
+	font-size:14px;
+}
+.um-content {
+	background-color:#fff;
+}
+#container.map {
+	width:98%;
+	margin:20px auto;
+	position:static;
+	height:160px;
+}
+.hotline,.hotline a{
+	color:#666;
+}
+.hotline span {
+	color:#333;
+}
+.opacity0 {
+	opacity:0;
+}
+.address {
+	color:#999;
+}
+.address {
+	margin-top:8px;
+}
+.time-item,.email {
+	color:#666;
+}
+.work-time {
+	margin-bottom:5px;
+}
+.email {
+	margin-top:5px;
+}
+.link {
+	margin: 10px 0 20px;
+	color:#0593d3;
+}
+.title {
+	color:#444;
+	font-size:14px;
+	margin-bottom:5px;
+}
+.content-text {
+	font-size:14px;
+	color:#666;
+	line-height:24px;
+}

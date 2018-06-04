@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./edit_address.css" />
+		<script src="../../js/summer.js"></script>		
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/base64.js"></script>
+		<script src="../../js/pub.js"></script>
+		<script src="../../js/pub1.js"></script>
+		<script src="../../js/city.js"></script>
+		<script src="../../js/picker.min.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="edit_address">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>编辑收货地址</h3>
+				<div data-bind="click:deleteAddr" class="um-header-right">删除</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+			</div>
+			
+			<div class="um-content">
+				<div class="item">收货人：<input data-bind="value:receiveName" type="text" /></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="item">联系方式：<input data-bind="value:receivePhone" type="text" /></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="item">所在地区：<input readonly="readonly" data-bind="value:receiveArea" type="text" id="sel_city"></input><i class="arrow-right"></i></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="item">详细地址：<input data-bind="value:receiveAddr" type="text" /></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="setdefault">
+					<div class="fl">
+						<div>设置为默认地址</div>
+						<div class="text">注：每次下单时会使用该地址</div>
+					</div>
+					<div class="fr">
+						
+                        <label class="um-switch1">
+                        	<input type="checkbox" value="on" data-bind="checked:setDefault">
+                        	<div class="um-track">
+                        		<div class="um-handle">
+                        		</div>
+                        	</div>
+                        </label>
+
+					</div>
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div data-bind="click:saveEdit" class="save-btn">保存并使用</div>
+			</div>
+		</div>
+		<script src="./edit_address.js"></script>
+	</body>
+</html>

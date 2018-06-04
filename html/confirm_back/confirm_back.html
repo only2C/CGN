@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./confirm_back.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="confirm_back">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>归还订单</h3>
+			</div>
+
+			<div class="um-content">
+				 <ul class="back-list" data-bind="foreach:item">
+				 	<li>
+						<div class="img-wp">
+							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="" src="../../img/default_small.png">
+						</div>
+						<div class="fl">
+							<div data-bind="text:materialName" class="item-title">压力表</div>
+							<div class="left-num">已归还数量：<span data-bind="text:returnNum">2</span></div>
+							
+							<span class="back-num-wp"><span>*</span><input class="back-num" data-bind="value:$root.retnum" placeholder="请输入归还数量" type="text" /></span>
+						</div>
+						<span class="num">x <span data-bind="text:mallTAmount"></span></span>
+					</li>
+				 </ul>
+			</div>
+
+			<div class="um-footer">
+				<div data-bind="click:confirmBack" class="back-btn">归还</div>
+			</div>
+		</div>
+		<script src="./confirm_back.js"></script>
+	</body>
+</html>

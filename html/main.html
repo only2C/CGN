@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../css/font-icons.css">
+		<link rel="stylesheet" href="../css/main.css">
+		<script src="../js/summer.js" ></script>
+		<script src="../js/jquery.min.js" ></script>
+		<script src="../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../js/main.js" ></script>
+		<style>
+			/* 设置背景图片 */
+			.icon-home, .icon-attention, .icon-categroy, .icon-warehouse, .icon-my {
+				height: 19px;
+				background: url(../img/icon-home.png) center no-repeat;
+				background-size:auto 100%;
+			}
+			.um-footerbar-item.active {
+				color:#ee9430;
+			}
+			.icon-attention {
+				background-image: url(../img/icon-attention.png);
+			}
+			.icon-categroy {
+				background-image: url(../img/icon-categroy.png);
+			}
+			.icon-warehouse {
+				background-image: url(../img/icon-warehouse.png);
+			}
+			.icon-my {
+				background-image: url(../img/icon-my.png);
+			}
+			/* 设置激活状态 */
+			.um-footerbar-item.active .icon-home {
+				background-image: url(../img/icon-home-active.png);
+			}
+			.um-footerbar-item.active .icon-attention {
+				background-image: url(../img/icon-attention-active.png);
+			}
+			.um-footerbar-item.active .icon-categroy {
+				background-image: url(../img/icon-categroy-active.png);
+			}
+			.um-footerbar-item.active .icon-warehouse {
+				background-image: url(../img/icon-warehouse-active.png);
+			}
+			.um-footerbar-item.active .icon-my {
+				background-image: url(../img/icon-my-active.png);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="um-win" id="main">
+			<div id="header" class="um-header">
+				<div class="um-box">
+					<div class="w50 um-box-center">
+						<a href="#" class="um-tabbar-item active">
+							<img src="../img/home_qrscan.png" width=18 alt="" class="um-img-responsive" >
+							<div>扫描</div>
+						</a>
+					</div>
+					<div class="um-bf1">
+                        <div id="searchBtn" class="pr um-input-search">
+                        	<input type="text" class="form-control" placeholder="搜索商品">
+                        	<span class="um-input-clear ti-close"></span>
+                        </div>
+					</div>
+					<div class="w50 um-box-center" id="changeOrgBtn">
+						<a href="#" class="um-tabbar-item active"> 
+							<img src="../img/home_change.png" width=18 alt="" class="um-img-responsive" >
+							<div>切换</div>
+						</a>
+					</div>
+					<ul class="org-list">
+						<li class="on">
+							<i class="org"></i>
+							<div class="org-name um-border-bottom"><span>中广核能源工厂</span><span class="has-choosen"></span></div>
+						</li>
+						<li>
+							<i class="org"></i>
+							<div class="org-name um-border-bottom"><span>吉林中广核风电厂</span><span class="has-choosen"></span></div>
+						</li>
+						<li>
+							<i class="org"></i>
+							<div class="org-name um-border-bottom"><span>中广核（乌兰察布）风电场</span><span class="has-choosen"></span></div>
+						</li>
+						<li>
+							<i class="org"></i>
+							<div class="org-name"><span>中广核阿巴嘎旗风电场</span><span class="has-choosen"></span></div>
+						</li>
+					</ul>
+				</div>
+				<div class="menu">
+					<div class="menu-wrapper">
+						<div class="item on"><div>材料</div></div>
+						<div class="item"><div>专业耗材</div></div>
+						<div class="item"><div>电器设备</div></div>
+						<div class="item"><div>仪控设备</div></div>
+						<div class="item"><div>仪控设备</div></div>
+					</div>
+					<div class="more-btn">
+						<i class="arrow-bottom"></i>
+					</div>
+				</div>
+			</div>
+			<div class="um-content"></div>
+			<div class="um-footer"  id='footer'>
+				<div class="um-footerbar h45"  id='nav'>
+					<a href="#" id="home" class="um-footerbar-item home active" onclick="openTab('home')">
+					 <div class="icon-home mb5"></div>
+					<div class="f12 lh1">
+						首页
+					</div> </a>
+					<a href="#" id="attention" class="um-footerbar-item attention" onclick="openTab('attention')"> 
+					<div class="icon-attention mb5"></div>
+					<div class="f12 lh1">
+						关注
+					</div> </a>
+					<a href="#" id="categroy" class="um-footerbar-item categroy" onclick="openTab('categroy')"> 
+					<div class="icon-categroy mb5"></div>
+					<div class="f12 lh1">
+						分类
+					</div> </a>
+					<a href="#" id="warehouse" class="um-footerbar-item warehouse" onclick="openTab('warehouse')"> 
+					<div class="icon-warehouse mb5"></div>
+					<div class="f12 lh1">
+						仓库
+					</div> </a>
+					<a href="#" id="my" class="um-footerbar-item my" onclick="openTab('my')"> 
+					<div class="icon-my mb5"></div>
+					<div class="f12 lh1">
+						我
+					</div> </a>
+				</div>
+			</div>
+		</div>
+		<div class="drop"></div>
+	</body>
+</html>

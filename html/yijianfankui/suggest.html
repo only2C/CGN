@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="menudown.css">
+		<style>
+		.um-header-light .um-back:before {
+		    border-left: 2px solid #000000;
+		    border-bottom: 2px solid #000000;
+		}
+		</style>
+		<script src="../../js/summer.js" ></script>		
+		<script src="font.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="menudown.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="suggest">
+			
+            <div id="header" class="um-header-light" style="text-align:center;background-color: #FAFAFA">
+                <a onClick="back()" class="um-back"></a>
+                <h3 style="color: #000000">意见反馈</h3>
+                <a style="color: #000000" href="#" class="um-header-right ">提交</a>
+            </div>
+
+			<div class="um-content">
+			<!-- 下拉-->
+				<dl class="topmenu" id="menudown2">
+ 					<dt style="top: 0.3rem;position: relative;width:90%">
+						<div class="selectlist">
+							<div class="select_textdiv" id="select_textdiv2">
+								<input id="inputbilltype" class="input"  type="hidden" value=""/>
+								<p id="billtype" class="s_text">请选择反馈类型</p><span class="down"><img src="../../img/down (1).png"></span>
+							</div>
+							<div class="select_textul" id="xiala2">
+								<ul class="select_first_ul" id="ul2">
+									<li class="focus">
+										<p>反馈1</p>
+									</li>
+									<li class="focus">
+										<p>反馈1</p>
+									</li>
+									<li class="focus">
+										<p>反馈1</p>
+									</li>
+								</ul>
+							</div>
+						</div>	
+					</dt>
+				</dl>	
+				<!-- 下拉end-->	
+				<div style="position: relative;top: 0.8rem;width: 90%;left: 5%;height: 1rem;">
+                	<input style="height: 100%;" type="text" class="form-control" placeholder="请输入文字...">
+				</div>
+				
+				<div style="position: relative;top: 1.1rem;width: 90%;left: 5%;">
+                	<textarea style="height: 150px;" name="" id="" cols="30" rows="10" class="form-control" placeholder="对我们网站、商品、服务，你还有什么建议吗？你还希望在严选上买到什么？请告诉我们......"></textarea>
+				</div>
+				
+				<div style="position: relative;top: 1.2rem;width: 90%;left: 5%;">
+					<label>上传照片(最多4张)</label>
+					
+					<!--img start-->
+	                 <div id='slider' class='swipe' style="margin-bottom: 5px;">
+	                    <div class='swipe-wrap' ><!--data-bind="foreach:menu"-->
+	                        <div class="swipe-box">
+	                            <div class="sliderow">
+	                            	<ul style="background: #EFEFF4;" >
+            							<li >
+			                                <div class="slidecol" tapmode="" >
+			                                    <img src="addimg.png"   alt="">
+			                                    
+			                                </div>
+			                           	</li>
+			                        </ul>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+					<!--img end-->
+					
+				</div>
+				
+			</div>
+
+			<div class="um-footer">
+				
+			</div>
+		</div>
+	</body>
+</html>

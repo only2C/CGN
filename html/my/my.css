@@ -1,0 +1,75 @@
+.mb10{
+    margin-bottom: 10px;
+}
+.mt10{
+    margin-top: 10px;
+}
+.my-um-label {
+    font-weight: normal;
+    background-color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 10px;
+    max-width: none;
+    height: 44px;
+    overflow: hidden;
+}
+#header>div {
+    position: relative;
+    top:10px !important;
+}
+.um-content {
+    background-color:#f4f4f4;
+}
+.um-content>div {
+    background-color:#fff;
+}
+.um-header {
+    padding-top:22px;
+    height:162px;
+}
+.um-content>div.um-gray {
+    background-color:#f4f4f4
+}
+/* 设置背景图片 */
+.icon-home, .icon-attention, .icon-categroy, .icon-warehouse, .icon-my {
+    height: 19px;
+    background: url(../../img/icon-home.png) center no-repeat;
+    background-size:auto 100%;
+}
+.um-footerbar-item.active {
+    color:#ee9430;
+}
+.icon-attention {
+    background-image: url(../../img/icon-attention.png);
+}
+.icon-categroy {
+    background-image: url(../../img/icon-categroy.png);
+}
+.icon-warehouse {
+    background-image: url(../../img/icon-warehouse.png);
+}
+.icon-my {
+    background-image: url(../../img/icon-my.png);
+}
+/* 设置激活状态 */
+.um-footerbar-item.active .icon-home {
+    background-image: url(../../img/icon-home-active.png);
+}
+.um-footerbar-item.active .icon-attention {
+    background-image: url(../../img/icon-attention-active.png);
+}
+.um-footerbar-item.active .icon-categroy {
+    background-image: url(../../img/icon-categroy-active.png);
+}
+.um-footerbar-item.active .icon-warehouse {
+    background-image: url(../../img/icon-warehouse-active.png);
+}
+.um-footerbar-item.active .icon-my {
+    background-image: url(../../img/icon-my-active.png);
+}
+.open_store{
+    width:140px;
+    height: 45px;
+    background: url(../../img/store-icon.png) no-repeat;
+    background-size: 80%;
+}

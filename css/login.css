@@ -1,0 +1,73 @@
+html,body {
+	background-color:#fff;
+}
+.um-content {
+	position:absolute;
+	top: 0;
+	bottom:0;
+}
+#usernameBox {
+	margin-top:30px;
+}
+#usernameBox img,#passwordBox img {
+	position: relative;
+    left: 8px;
+}
+.form-control + .um-input-clear {
+	right:11px;
+}
+.pass-type {
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin-right:10px;
+}
+.form-control {
+	padding-top:0;
+}
+.pass {
+	background:url(../img/login_no_visible.png) no-repeat;
+	background-size:100%;
+	background-position: 0px 7px;
+}
+.pass.show-pass {
+	background:url(../img/login_visible.png) no-repeat;
+	background-size:100%;
+	background-position: 0px 3px;
+}
+
+.login-span {
+	display: inline-block;
+	width: 135px;
+	height: 40px;
+	background-color: #F19940;
+	color: #ffffff;
+	border-radius: 20px;
+	padding-top: 8px;
+	font-size: 15px;
+	text-align: center;
+}
+.login_forget_pass {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	color: #627178;
+	padding-top: 8px;
+	font-size: 15px;
+	text-align: center;
+}
+.choose_version{
+	height: 30px;
+}
+.choose_version span{
+	float: left;
+	margin-top: 10px;
+}
+.choose_version select{
+	float:left;
+	width: 100px;
+	border: 0;
+	padding-top: 13px;
+	appearance:none;
+	outline: none;
+}

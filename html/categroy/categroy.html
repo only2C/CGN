@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.um-border-bottom{
+				border-style:solid;
+				border-width: 0 0 1px 0;
+			}
+		</style>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="./categroy.css">
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="../../js/iscroll-infinite.js" ></script>
+		<script src="http://www.lalala123.cn/ieop_base/fileupload/js/menu_value.js?dh=2018_2_5_14&_=1520229788716"></script>
+		<script src="./categroy.js" ></script>
+	</head>
+	<body>
+		<div class="um-win categroy" >
+			<div id="header" class="um-header um-border-bottom solid">
+				<div class="um-box">
+					<!--<div class="w50 um-box-center">
+						<a href="#" class="um-tabbar-item active">
+							<img src="../../img/home_qrscan.png" width=18 alt="" class="um-img-responsive" >
+						</a>
+					</div>-->
+					<div style="margin-left:50px;" class="um-bf1">
+                        <div data-bind="click:openSearch" id="searchBtn" class="pr um-input-search">
+                        	<input type="text" disabled class="form-control" placeholder="请输入关键词">
+                        	<span class="um-input-clear ti-close"></span>
+                        </div>
+					</div>
+					<div class="w50 um-box-center" id="changeOrgBtn">
+						<a href="#" class="um-tabbar-item active"> 
+							<img src="../../img/home_change.png" width=18 alt="" class="um-img-responsive" >
+						</a>
+					</div>
+					<ul data-bind="foreach:organizationArr" class="org-list">
+						<li data-bind="css:{'on':cgnFName==$root.defaultOrg()},click:$root.chooseOrg.bind($data,$data)">
+							<i class="org"></i>
+							<div data-bind="attr:{cgnFCode:cgnFCode}" class="org-name"><span data-bind="text:cgnFName"></span><span class="has-choosen"></span></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="um-content">
+				<div id="wrapper" class="um-border-right um-border-right solid">
+					<div>
+						<ul class="categroy-list">
+							<li><div>分类</div></li>
+						</ul>
+						<ul id="categroyList" data-bind="foreach:menu" class="categroy-list">
+							<li data-bind="css:{on:$index()==0}"><div data-bind="text:mgCName"></div></li>
+						</ul>
+					</div>
+				</div>	
+				<div data-bind="foreach:menu" id="mainRight">
+					<div data-bind="css:{on:$index()==0}" class="iscroll-box">
+						<div>
+							<div class="img-wp">
+							<img src="../../img/category.png" alt="" />
+						</div>
+						<div class="sug">
+							<div class="title"><span>智能推荐</span></div>
+								<ul class="pro-list" data-bind="foreach:child">
+									<li data-bind="click:$root.openWin.bind($data,child)">
+										<img src="../../img/tu.png" alt="" />
+										<div data-bind="text:mgCName" class="desc-text">传感器</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="um-footer"  id='footer'>
+				<div class="um-footerbar h45"  id='nav'>
+					<a href="../home/home.html" id="home" class="um-footerbar-item home">
+					 <div class="icon-home mb5"></div>
+					<div class="f12 lh1">
+						首页
+					</div> </a>
+					<a  data-bind="attr:{href:isAndriod()?'javascript:void(0);':'../attention/attention.html'}" id="attention" onclick="openWin1('attention')" class="um-footerbar-item attention"> 
+					<div class="icon-attention mb5"></div>
+					<div class="f12 lh1">
+						关注
+					</div> </a>
+					<a href="../categroy/categroy.html" id="categroy" class="um-footerbar-item categroy active"> 
+					<div class="icon-categroy mb5"></div>
+					<div class="f12 lh1">
+						分类
+					</div> </a>
+					<a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse"> 
+					<div class="icon-warehouse mb5"></div>
+					<div class="f12 lh1">
+						仓库
+					</div> </a>
+					<a href="../my/my.html" id="my" class="um-footerbar-item my"> 
+					<div class="icon-my mb5"></div>
+					<div class="f12 lh1">
+						我
+					</div> </a>
+				</div>
+			</div>
+		</div>
+		<div class="drop"></div>
+		<script>
+			
+		</script>
+	</body>
+</html>

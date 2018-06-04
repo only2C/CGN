@@ -1,0 +1,81 @@
+
+.um-content {
+	overflow: hidden;
+}
+.um-list-item-after {
+	margin-right: -10px;
+}
+.sort-heading {
+    font-size:16px;
+	color: #555;
+	padding-left: 10px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+.item-title {
+   font-size:14px;
+}
+.um-list {
+	margin: 0;
+}
+.left-list,
+.right-list {
+	height: 500px;
+	overflow: auto;
+	padding-bottom: 30px;
+	-webkit-overflow-scrolling: touch;
+}
+.left-list {
+	padding-left: 0;
+	padding-right: 0;
+}
+.left-list li {
+	border: none;
+}
+.left-list li .btn,
+.left-list li .btn:focus {
+	background-color: #ececec;
+	text-align: center;
+	font-size: 13px;
+	-webkit-transition: none;
+	transition: none;
+}
+.left-list li.active .btn,
+.left-list li .btn:active {
+	color: red;
+	background-color: #fff;
+	border-left: 3px solid;
+}
+.right-list {
+	background-color: #fff;
+	overflow: auto;
+}
+.um-header .um-input-search {
+	padding: 6px 10px;
+}
+
+.right-list .title {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.right-list-item {
+	display: none;
+}
+.right-list-item .item-row {
+	margin: 15px 0;
+}
+
+.items .item {
+	width: 33.25%;
+	text-align: center;
+	display: block;
+	float: left;
+}
+.item img {
+	margin: 0 auto;
+}
+.right-list-item.active {
+	display: block;
+}
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<style>
+		html,body{font-size:14px;}
+		.um-header-light .um-back:before {
+		    border-left: 2px solid #000000;
+		    border-bottom: 2px solid #000000;
+		}
+		.um-header {
+			background-color:#fff;
+			color:#333;
+		}
+		.um-header h3 {
+			font-size:15px;
+			font-weight: normal;
+			color:#333;
+		}
+		.um-back::before {
+			position:relative;
+			left:10px;
+			width: 10px;
+		    height: 10px;
+		    border-left: 2px solid #333;
+		    border-bottom: 2px solid #333;
+		}
+		.btn {
+			font-size:14px;
+		}
+		</style>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header" style="background-color: #FAFAFA">
+                <a onClick="closeWin()" class="um-back"></a>
+				<h3>个人信息</h3>
+            </div>
+
+			<div class="um-content">
+				
+                <ul class="um-list um-list-static" style="position: relative;top: 10px;">
+                    <li style="    display: -webkit-inline-box;">清除缓存</li>
+                    <label style="float: right;position: relative;top: 8px;right: 2%;">0.00M</label>
+                </ul>
+				
+                <ul class="um-list" style="position: relative;top: 8px;">
+                    <li>
+                        <a href="#" data-bind="click:openWin.bind($data,'suggest')" class="btn">意见反馈</a>
+                    </li>
+                    <li>
+                        <a href="#" data-bind="click:openWin.bind($data,'aboutus')" class="btn">关于我们</a>
+                    </li>
+                    <li>
+                        <a href="#" data-bind="click:changePass" class="btn">密码修改</a>
+                    </li>
+                </ul>
+				<ul data-bind="click:logOut" class="um-list um-list-static" style="position: relative;top: 10px;">
+                    <li style="display: block;text-align: center;">退出登录</li>
+                </ul>
+			</div>
+
+			
+		</div>
+		<script src="./setting.js"></script>
+	</body>
+</html>

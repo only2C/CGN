@@ -1,0 +1,24 @@
+.um-header-light .um-back:before {
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+.um-header{
+    background:#ee9531;
+    color:#fff;
+}
+.um-content{
+    font-size:14px;
+}
+.phone_icon{
+    width: 30px;
+    height: 30px;
+    background: url("../../img/phone-icon.png") no-repeat;
+    background-size:60%;
+    position:absolute;
+    margin:-21px ;
+}
+.save-info{
+    float: right;
+    margin: -35px 5px 0 0;
+}

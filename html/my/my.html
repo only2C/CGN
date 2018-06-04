@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="../../css/my.css">
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./my.js" ></script>
+		<link rel="stylesheet" href="./my.css">
+	</head>
+	<body bgcolor="#ffffff">
+		<div class="um-win my" >
+			<div class="um-content">
+				<div id="header"  class="um-header um-header-personal um-box-vc " style="background-image: url(../../img/my_tx_bg.png);border-bottom:none;border-image: none;" >
+
+					<div class="um-media-left  ml20  " data-bind="click:toPersonInfo" >
+						<img class="um-circle" height=72 width=72 src="../../img/person.png" alt="...">
+					</div>
+					<div class="um-media-body ml30 um-white   ">
+						<p data-bind="text:userName" class="f17 "></p>
+						<p data-bind="text:ufn" class="f12 "></p>
+					</div>
+					<!---->
+					<div class="open_store" data-bind="click:openStore"></div>
+				</div>
+
+				<!-- 采购部分 start -->
+				<div data-bind="click:openIframeCode" class="my-um-label um-box-justify mb10">
+					<div class="f15" style="color: #666666">
+						框架协议
+					</div>
+					<img src="../../img/my_right_arrow.png" height="16" alt="" class="mr10">
+
+				</div>
+
+				<div class="my-um-label  um-box-justify">
+					<div class="f15" style="color: #666666">
+						我的采购订单
+					</div>
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc">
+						<div data-bind="click:openList.bind($data,'outallocate')">
+							<a href="#" > <img src="../../img/my_icon-1.png"  height="22" alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待审核
+								<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'inallocate')">
+							<a href="#"> <img src="../../img/my_icon-1.png"  height="22" alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待发货
+								<p></a>
+						</div>
+
+						<div data-bind="click:openList.bind($data,'prev_audit')">
+							<a href="#"> <img src="../../img/my_icon-3.png"   height="22"alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待验收
+								<p></a>
+						</div>
+					</div>
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc">
+						<div data-bind="click:openList.bind($data,'send_back')">
+							<a href="#"> <img src="../../img/my_icon-4.png"   height="22"alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待评价
+								<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'borrow_back')">
+							<a href="#"> <img src="../../img/my_icon-5.png"  height="22"alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待结算
+								<p></a>
+						</div>
+						<div></div>
+					</div>
+				</div>
+
+				<div data-bind="click:openList.bind($data,'prev_audit')" class="my-um-label um-box-justify mt10">
+					<div class="f15" style="color: #666666">
+						订单提醒
+					</div>
+					<img src="../../img/my_right_arrow.png" height="16" alt="" class="mr10">
+
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc ">
+						<div data-bind="click:openList.bind($data,'outallocate','hasSend')" class="tc">
+							<a href="#" > <img src="../../img/my_yifahuo.png" height="23" alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									已发货
+								<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'outallocate','prevSend')">
+							<a href="#"> <img src="../../img/my_daifahuo.png"  height="23" alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待发货
+								<p></a>
+						</div>
+						<!--<div>
+							<a href="#"> <img src="../../img/my_daipingjia.png"  height="23" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								待评价
+							<p></a>
+						</div>-->
+						<div data-bind="click:openList.bind($data,'','back')">
+							<a href="#"> <img src="../../img/my_yituihui.png" height="23" alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									已退回
+								<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'','signIn')">
+							<a href="#"> <img src="../../img/my_daiqianshou.png"  height="23" alt="">
+								<p class="f13 mt10 " style="color: #666666">
+									待签收
+								<p></a>
+						</div>
+					</div>
+				</div>
+
+
+				<!--采购 end -->
+
+				<!--去调拨 start  -->
+				<div data-bind="click:openList.bind($data,'prev_audit')" class="my-um-label um-box-justify mt10">
+					<div class="f15" style="color: #666666">
+						待审核调拨单
+					</div>
+					<img src="../../img/my_right_arrow.png" height="16" alt="" class="mr10">
+
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc ">
+						<div data-bind="click:openList.bind($data,'outallocate','hasSend')" class="tc">
+							<a href="#" > <img src="../../img/my_yifahuo.png" height="23" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								已发货
+							<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'outallocate','prevSend')">
+							<a href="#"> <img src="../../img/my_daifahuo.png"  height="23" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								待发货
+							<p></a>
+						</div>
+						<!--<div>
+							<a href="#"> <img src="../../img/my_daipingjia.png"  height="23" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								待评价
+							<p></a>
+						</div>-->
+						<div data-bind="click:openList.bind($data,'','back')">
+							<a href="#"> <img src="../../img/my_yituihui.png" height="23" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								已退回
+							<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'','signIn')">
+							<a href="#"> <img src="../../img/my_daiqianshou.png"  height="23" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								待签收
+							<p></a>
+						</div>
+					</div>
+				</div>
+				<div class="h10 w um-gray" ></div>
+				<div class="my-um-label  um-box-justify mt10">
+					<div class="f15" style="color: #666666">
+						订单管理
+					</div>
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc">
+						<div data-bind="click:openList.bind($data,'outallocate')">
+							<a href="#" > <img src="../../img/my_order_m3.png"  height="22" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								发货方调拨订单
+							<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'inallocate')">
+							<a href="#"> <img src="../../img/my_order_m4.png"  height="22" alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								借用方调拨订单
+							<p></a>
+						</div>
+						
+						<div data-bind="click:openList.bind($data,'prev_audit')">
+							<a href="#"> <img src="../../img/my_order_m5.png"   height="22"alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								待审核调拨订单
+							<p></a>
+						</div>
+					</div>
+				</div>
+
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc">
+						<div data-bind="click:openList.bind($data,'send_back')">
+							<a href="#"> <img src="../../img/my_order_m6.png"   height="22"alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								发货方归还单
+							<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'borrow_back')">
+							<a href="#"> <img src="../../img/my_order_m7.png"  height="22"alt="">
+							<p class="f13 mt10 " style="color: #666666">
+								借用方归还订单
+							<p></a>
+						</div>
+						<div></div>
+					</div>
+				</div>
+				<!--去调拨  end -->
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="um-grid um-row " style="background-color: #FFFFFF">
+					<div class="um-grid-row tc">
+						<div onClick="openWin('address')">
+							<a href="#"> <img src="../../img/my_loc.png"  height="24" alt="">
+							<p class="f14 mt10 " style="color: #666666">
+								地址
+							<p></a>
+						</div>
+						<div data-bind="click:openList.bind($data,'comment')">
+							<a href="#"> <img src="../../img/my_comment.png"   height="24"alt="">
+							<p class="f14 mt10 " style="color: #666666">
+								评价
+							<p></a>
+						</div>
+						<div data-bind="click:openWin.bind($data,'setting')">
+							<a href="#"> <img src="../../img/my_sett.png"   height="24"alt="">
+							<p class="f14 mt10 " style="color: #666666">
+								设置
+							<p></a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="um-footer"  id='footer'>
+				<div class="um-footerbar h45"  id='nav'>
+					<a href="../home/home.html" id="home" class="um-footerbar-item home">
+					 <div class="icon-home mb5"></div>
+					<div class="f12 lh1">
+						首页
+					</div> </a>
+					<a data-bind="attr:{href:isAndriod()?'javascript:void(0);':'../attention/attention.html'}" id="attention" onclick="openWin1('attention')" class="um-footerbar-item attention"> 
+					<div class="icon-attention mb5"></div>
+					<div class="f12 lh1">
+						关注
+					</div> </a>
+					<a href="../categroy/categroy.html" id="categroy" class="um-footerbar-item categroy"> 
+					<div class="icon-categroy mb5"></div>
+					<div class="f12 lh1">
+						分类
+					</div> </a>
+					<a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse"> 
+					<div class="icon-warehouse mb5"></div>
+					<div class="f12 lh1">
+						仓库
+					</div> </a>
+					<a href="../my/my.html" id="my" class="um-footerbar-item my active"> 
+					<div class="icon-my mb5"></div>
+					<div class="f12 lh1">
+						我
+					</div> </a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

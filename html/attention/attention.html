@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="./attention.css">
+		<script src="../../js/summer.js" ></script>
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./attention.js" ></script>
+	</head>
+	<body>
+		<div class="um-win attention" id="attention" >
+			<div class="um-header" id="header">
+				<div class="title">
+					<span>我的关注</span>
+					<div class="um-header-right" id="changeOrgBtn"><i class="white-change"></i></div>
+					<ul data-bind="foreach:organizationArr" class="org-list">
+						<li data-bind="css:{'on':cgnFName==$root.defaultOrg()},click:$root.chooseOrg.bind($data,$data)">
+							<i class="org"></i>
+							<div data-bind="attr:{cgnFCode:cgnFCode}" class="org-name"><span data-bind="text:cgnFName"></span><span class="has-choosen"></span></div>
+						</li>
+					</ul>
+				</div>
+				<div id="searchBtn" class="pr um-input-search">
+					<input id="searchInput" data-bind="value:searchWord" type="search" class="form-control" placeholder="请输入关键词">
+                    <span class="um-input-clear ti-close"></span>
+                </div>
+			</div>
+			<div class="um-content">
+				<ul data-bind="foreach:attentionList" class="attention-list">
+					<li data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:factoryCode?factoryCode:'',cgnFName:factoryName?factoryName:'',fromPage:'attention'})">
+						<div class="img-wp">
+							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="" />
+						</div>
+						<div class="fl">
+							<div data-bind="text:materialName" class="item-title"></div>
+							<div class="location">位置：<span data-bind="text:factoryName"></span></div>
+							<div class="left-num">库存：<span data-bind="text:stock"></span></div>
+							<div data-bind="click:$root.addToCart.bind($data,{mCode:materialCode,fCode:factoryCode,fName:factoryName,stock:stock}),css:{'no-left':stock=='-'}" class="join-in">加入仓库</div>
+							<div id="nelsonATCAContainer" class="nelsonATCAContainer">1</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="um-footer"  id='footer'>
+				<div class="um-footerbar h45"  id='nav'>
+					<a href="../home/home.html" id="home" class="um-footerbar-item home">
+					 <div class="icon-home mb5"></div>
+					<div class="f12 lh1">
+						首页
+					</div> </a>
+					<a data-bind="attr:{href:isAndriod()?'javascript:void(0);':'../attention/attention.html'}" id="attention" onclick="openWin1('attention')" class="um-footerbar-item attention active"> 
+					<div class="icon-attention mb5"></div>
+					<div class="f12 lh1">
+						关注
+					</div> </a>
+					<a href="../categroy/categroy.html" id="categroy" class="um-footerbar-item categroy"> 
+					<div class="icon-categroy mb5"></div>
+					<div class="f12 lh1">
+						分类
+					</div> </a>
+					<a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse"> 
+					<div class="icon-warehouse mb5"></div>
+					<div class="f12 lh1">
+						仓库
+					</div> </a>
+					<a href="../my/my.html" id="my" class="um-footerbar-item my"> 
+					<div class="icon-my mb5"></div>
+					<div class="f12 lh1">
+						我
+					</div> </a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

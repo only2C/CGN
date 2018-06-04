@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="./order_list.css" />	
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./order_list.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="order_list">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3 data-bind="text:title"></h3>
+				<!--<div class="operate fr"><span class="small-radius"></span><span class="big-radius"></span><span class="small-radius"></span></div>-->
+				<div class="search-wp">
+					<div id="searchBtn" class="pr um-input-search">
+	                     <form action="javascript:return true;"><input type="search" id="searchInput" class="form-control" placeholder="请输入商品标题或订单号"></form>
+	                </div>
+	                <div class="cancel">取消</div>
+				</div>
+			</div>
+
+			<div class="um-content">
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div data-bind="css:{show:type()=='borrow_back'}" class="status-bar">
+					<div data-bind="click:queryByStatus.bind($data,'')" class="flex1 on">
+						<i class="all"></i>
+						<div>全部</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div data-bind="click:queryByStatus.bind($data,2)" class="flex1">
+						<i class="has-back"></i>
+						<div>已归还</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div data-bind="click:queryByStatus.bind($data,0)" class="flex1">
+						<i class="prev-back"></i>
+						<div>待归还</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div data-bind="click:queryByStatus.bind($data,1)" class="flex1">
+						<i class="part-back"></i>
+						<div>部分归还</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+				</div>
+				<div data-bind="css:{show:type()=='inallocate'}" class="status-bar">
+					<div data-bind="click:queryByStatus.bind($data,'')" class="flex1 on">
+						<i class="all"></i>
+						<div>全部</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div data-bind="click:queryByStatus.bind($data,1)" class="flex1">
+						<i class="has-shenhe"></i>
+						<div>已审核</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div  data-bind="click:queryByStatus.bind($data,0)" class="flex1">
+						<i class="prev-shenhe"></i>
+						<div>待审核</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+				</div>
+				<div data-bind="css:{show:type()=='outallocate'}" class="status-bar">
+					<div data-bind="click:queryByStatus.bind($data,'')" class="flex1 on">
+						<i class="all"></i>
+						<div>全部</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div id="hasSend" data-bind="click:queryByStatus.bind($data,'6,7,8')" class="flex1">
+						<i class="has-shenhe"></i>
+						<div>已 发货</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div id="prevSend" data-bind="click:queryByStatus.bind($data,1)" class="flex1">
+						<i class="prev-shenhe"></i>
+						<div>待发货</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+				</div>
+				<div data-bind="css:{show:type()=='send_back'}" class="status-bar">
+					<div data-bind="click:queryByStatus.bind($data,'')" class="flex1 on">
+						<i class="all"></i>
+						<div>全部</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div data-bind="click:queryByStatus.bind($data,3)" class="flex1">
+						<i class="has-shenhe"></i>
+						<div>已 确认</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+					<div data-bind="click:queryByStatus.bind($data,1)" class="flex1">
+						<i class="prev-shenhe"></i>
+						<div>待确认</div>
+						<div class="line"></div>
+						<div class="active-line"></div>
+					</div>
+				</div>
+				<div data-bind="css:{show:orderList().length>0},foreach:orderList" class="order-list">
+					<div data-bind="click:$root.openDetail.bind($data,id,$root.type())" class="item">
+						<div class="order-id">订单号：<span data-bind="text:id"></span> <span data-bind="text:mallTDt" class="fr"></span></div>
+						<div class="list-item">
+							<div class="img-wp">
+								<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="">
+							</div>
+							<div class="fl">
+								<div data-bind="text:materialName" class="item-title"></div>
+								<div class="factory">借货工厂：<span data-bind="text:borrowFactoryName"></span></div>
+								<div class="factory">发货工厂：<span data-bind="text:supplyCompanyName"></span></div>
+								<div class="left-num">数量：<span data-bind="text:mallTAmount"></span></div>
+							</div>
+							<i class="arrow-right"></i>
+						</div>
+					</div>
+				</div>
+				<div data-bind="css:{show:orderList().length==0}" class="no-order-list">
+					<img class="no-order" src="../../img/no-order.png" alt="" />
+					没有最新的订单
+				</div>
+			</div>
+
+			
+		</div>
+	</body>
+</html>

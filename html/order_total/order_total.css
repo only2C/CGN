@@ -1,0 +1,166 @@
+.um-header {
+    background-color: #fff;
+    color: #333;
+}
+.um-back::before {
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+}
+.um-header h3 {
+    font-size: 15px;
+    font-weight: normal;
+    color: #333;
+}
+.um-content {
+	position:relative;
+}
+.operate{
+	position: absolute;
+    right: 10px;
+    top: 6px;
+}
+.um-input-search {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-align: center;
+  box-align: center;
+  width:90%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 9px 0;
+  background-color: #ffffff;
+}
+.um-input-search input {
+	background-color:#f1f1f2 !important;
+}
+.um-input-search .form-control:focus {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+}
+.cancel {
+	position: absolute;
+    right: 0;
+    top: 0;
+    color: #ff5d00;
+    font-size: 13px;
+    margin-top: 15px;
+    margin-right: 2%;
+}
+.search-wp {
+	padding: 0 10px;
+    position: relative;
+    top:0 !important;
+}
+.status-bar.show {
+	display:flex;
+	display:-webkit-flex;
+}
+.status-bar {
+	display:none;
+	background-color:#fff;
+}
+#swrapper {
+    position: absolute;
+    top:0;
+    width: 100%;
+    bottom: 0;
+}
+#item-head{
+	padding:10px;
+	background-color: #FFFFFF;
+	position: relative;
+}
+#img-weizhi{
+	width:30px;
+	height:30px;
+	float:left;
+}
+#place{
+	line-height: 30px;
+	font-size: 14px;
+	width: 60%;
+	position: relative;
+}
+#state{
+	float: right;
+	font-size: 14px;
+	color: #FDA4AD;
+	line-height: 30px;
+}
+#item-content{
+	padding:20px 10px 20px 10px;
+	background-color: #F5F5F5;
+	position: relative;
+	overflow: hidden;
+}
+#con-state p{
+	font-size: 8px;
+    border: 1px solid #FDA4AD;
+    color: #FDA4AD;
+    float: right;
+    margin: auto;
+    position: absolute;
+    right: 15px;
+}
+#code-item{
+	overflow: hidden;
+	padding-right: 10px;
+}
+#icon{
+	float:left;
+	width:100px;
+	height: 100px;
+	border-radius:5px;
+}
+#desc{
+	position: relative;
+	left: 10px;
+	width: 45%;
+	float: left;
+	word-break: break-all; word-wrap:break-word;
+}
+#desc p:first-of-type{
+	color:#636363;
+}
+#item-bottom{
+	line-height: 50px;
+	height: 50px;
+	border-top: 1px solid #F8F8F8;
+	
+}
+#bottom-btn{
+	float:right;
+	padding-right:10px;
+	
+}
+#logistics{
+	border:1px solid #B9B9B9;
+	margin-right: 10px;
+	color:#808080;
+}
+#confirm{
+	border:1px solid #EAA646;
+	color: #EAA646;
+}
+.item-li{
+	background-color: #FFFFFF;
+}
+.btn-con{
+	border-radius:2px;
+	width:100px;
+	height: 30px;
+}
+#code{
+	float: right;
+	line-height: 30px;
+	height: 30px;
+	padding: 0px;
+}
+p{
+	color:#B9B9B9;
+}

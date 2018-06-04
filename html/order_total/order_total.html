@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./order_total.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/iscroll2.js"></script>
+		<script src="../../js/pub.js"></script>
+		<script src="../../js/pub1.js"></script>
+		<script src="../../js/base64.js"></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./order_total.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" >
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3 data-bind="text:title"></h3>
+				<div class="search-wp">
+					<div id="searchBtn" class="pr um-input-search">
+	                     <input type="text" class="form-control" placeholder="搜索商品">
+	                     <span class="um-input-clear ti-close"></span>
+	                </div>
+	                <div class="cancel">取消</div>
+				</div>
+			</div>
+
+			<div class="um-content">
+				<div id="swrapper">
+					<div class="scroller">
+						<ul id="list-item">
+							<li class="item-li">
+								<div id="item-head">
+										<div id="state">供货方已发货</div>
+										<img id="img-weizhi" src="../../img/icon_weizhi.png" />
+										<div id="place">甘肃中广核工厂</div>
+								</div>
+								<div id="item-content">
+									<div>
+										<div id="con-state">
+											<p>张坤已审核</p>
+										</div>
+										<img id="icon" onerror="nofind(this,1)" src="../../img/tu.png" />
+										<div id="desc">
+											<p class="f16">压力表ACC.1-9237492398239847239847压力系统</p>
+											<p class="f12">借用方：中广核青海</p>
+											<p class="f12">数量：2</p>
+										</div>
+									</div>
+								</div>
+								<div id="code-item">
+									<div id="code">
+										<p class="f14">发货凭证编码：2398472387</p>
+									</div>
+								</div>
+								<div id="item-bottom">
+									<div id="bottom-btn">
+										<botton id="logistics" class="f16 btn-con">查看物流</botton>
+										<botton id="confirm" class="f16 btn-con">确认收货</botton>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>

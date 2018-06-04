@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./modifypwd.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>修改密码</h3>
+				<div onClick="changePass()" class="um-header-right">完成</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+			</div>
+
+			<div class="um-content">
+				<div class="item">旧密码：<input id="oldPass" type="text" /></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="item">新密码：<input id="newPass" type="text" /></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div class="item">再输入：<input type="text" id="repeatPass"></input></div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+			</div>
+
+		</div>
+		<script src="./modifypwd.js"></script>
+	</body>
+</html>

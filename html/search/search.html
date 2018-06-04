@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="./search.css" />
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="search">
+            <div class="um-search um-border-bottom" id="header">
+            	<form action="javascript:return true;"><input id="kwds" type="search" class="form-control" placeholder="搜索物料"></form>
+            	<span onClick="closeWin()" class="um-input-cancle">取消</span>
+            </div>
+			<div class="header um-border-bottom">搜索记录</div>
+			<ul id="historyList" class="history-list">
+				
+			</ul>
+			<div id="clearBtn" class="clear-history um-border-v">
+				<div class="um-border-h">
+					<i class="clear-icon"></i>
+					清空搜索记录
+				</div>
+			</div>
+		</div>
+		<script src="./search.js"></script>
+	</body>
+</html>
