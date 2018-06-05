@@ -10,6 +10,54 @@ body{
 .fr{
     float: right;
 }
+.order-status{
+    overflow: hidden;
+    margin: 10px 0;
+    background: #fff;
+}
+.order-status-icon{
+    width: 20%;
+    float: left;
+}
+.order-status-icon div{
+    width: 35px;
+    height: 35px;
+    margin: 15px auto 0 auto;
+}
+.order-status-icon p{
+    text-align: center;
+    color: rgb(143,143,143);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.order-icon-1{
+    background: url("../../img/my_icon-1.png") no-repeat 5px 0px;
+    background-size: 70%;
+}
+.order-icon-2{
+    background: url("../../img/my_icon-2.png") no-repeat;
+    background-size: 100%;
+}
+.order-icon-3{
+    background: url("../../img/my_icon-4.png") no-repeat 0px 2px;
+    background-size: 100%;
+}
+.order-icon-4{
+    background: url("../../img/my_icon-6.png") no-repeat;
+    background-size: 80%;
+}
+.order-icon-5{
+    background: url("../../img/my_icon-5.png") no-repeat;
+    background-size: 70%;
+}
+.order-icon-6{
+    background: url("../../img/my_order_m1.png") no-repeat 2px 0px;
+    background-size: 65%;
+}
+.order-icon-7{
+    background: url("../../img/my_order_m3.png") no-repeat;
+    background-size: 70%;
+}
 .order-list {
     background: #fff;
     width: 100%;
@@ -88,6 +136,7 @@ body{
     margin-right: 10px;
 }
 .order-content-detail h4{
+    color:rgb(105,105,105);
 }
 
 .order-content-detail p{
