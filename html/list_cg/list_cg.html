@@ -117,7 +117,7 @@
 					<div class="scroller">
 						<ul id="smallPic" data-bind="foreach:listArr" class="list noshow little-pic um-border-top">
 
-							<li>
+							<li data-bind="click:$root.openWin.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:suMCode,suStoreCode:suStoreCode})">
 								<div class="img-wp">
 									<img onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
 								</div>
@@ -137,7 +137,7 @@
 							</li>
 						</ul>
 						<ul id="bigPic" data-bind="foreach:listArr" class="big-pic">
-							<li class="cg-list"> 
+							<li data-bind="click:$root.openWin.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:suMCode,suStoreCode:suStoreCode})" class="cg-list"> 
 								<div class="big-img">
 									<img  onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
 									<div class="com-name"><span data-bind="text:ieopEnterpriseName"></span><span data-bind="text:suStoreName"></span></div>
@@ -145,7 +145,7 @@
 								<div class="under-pic">
 									<div class="btns">
 										<div class="last-btn">库存：<span data-bind="text:suMarStock"></span></div>
-										&lt;!&ndash;<div class="last-btn">价格：<span data-bind="text:suPrice"></span></div>&ndash;&gt;
+										<div class="last-btn">价格：<span data-bind="text:suPrice"></span></div>
 									</div>
 									<div data-bind="text:suMName" class="two-row">
 

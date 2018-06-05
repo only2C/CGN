@@ -40,9 +40,10 @@ summerready = function () {
         isDBVisible:ko.observable(true),
         isCGVisible:ko.observable(false),
         openWin: function (options, data) {
+        	console.log(options);
             summer.openWin({
                 "id": "detail",
-                "url": "html/detail/detail.html",
+                "url": "html/detail_cg/detail_cg.html",
                 "pageParam": {
                     options: options
                 }

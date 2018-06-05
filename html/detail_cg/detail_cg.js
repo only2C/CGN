@@ -55,6 +55,7 @@ summerready = function(){
 		ufn:ko.observable(ufn),
 		mId:ko.observable(),
 		stock:ko.observable(),
+		suPrice:ko.observable(),
 		cgnFName:ko.observable(),
 		cgnFCodes:ko.observable(),
 		cgnMName:ko.observable(),
@@ -131,13 +132,13 @@ summerready = function(){
 	ko.applyBindings(viewModel);
 	//初始化页面
 	var p_conditions = {};
-    p_conditions['id'] = params.cgnMCode;
-    p_conditions['cgnmcode'] = params.cgnMCode;
-    p_conditions['fcode'] = params.cgnFCode;
+    p_conditions['ieopEnterpriseCode'] = params.ieopEnterpriseCode;
+    p_conditions['materialCode'] = params.suMCode;
+    p_conditions['suStoreCode'] = params.suStoreCode;
     var page_params={"pageIndex":1,"pageSize":20};
     var sortItem = {};
     var data1 = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-    p_async_post(ip+'/ieop_base_mobile/mfrontmallcgnmaterial/querysingle', data1,'querysingle');
+    p_async_post(ip+'/ieop_base_mobile/mfrontsumaterial/queryaggmdetial', data1,'querysingle');
     
 	$('#changeOrgBtn').on('click',function(){
           var $this = $(this);
@@ -163,36 +164,36 @@ function querysingle (ret){
         });
         return;
     }
-    var retData = ret.retData.ent;
+    var retData = ret.retData.aggEnt.mainEnt;
     var materialTds = ret.retData.materialTds;
     var materialReplaceables = ret.retData.materialReplaceables;
     viewModel.mId(retData.id);
-    viewModel.cgnMName(retData.cgnMName);
-    viewModel.cgnBrandName(retData.cgnMBrandName);
-    viewModel.cgnMCode(retData.cgnMCode);
-    var cgnMUnit = retData.cgnMUnit;
-    var cgnMDesc = retData.maktx;
-    var matnr = retData.matnr;
+    viewModel.cgnMName(retData.suMName);
+    viewModel.cgnBrandName(retData.suMBrandName);
+    viewModel.cgnMCode(retData.suMCode);
+    var cgnMUnit = retData.suMUnit;
+    var cgnMDesc = retData.suMDesc;
+    //var matnr = retData.matnr;
     var mgCName = retData.mgCName;
     var dataid = retData.id;
-    var cgnMFieldsName = retData.cgnMFieldsName;
+    var cgnMFieldsName = retData.suMFieldsName;
     if(cgnMFieldsName!=null){
-        cgnMFieldsName = retData.cgnMFieldsName.replace(/#/g," ");
+        cgnMFieldsName = retData.suMFieldsName.replace(/#/g," ");
     }else{
         cgnMFieldsName = "";
     }
-    var matkl = retData.matkl;
-    var bismt = retData.matnr;
+    //var matkl = retData.matkl;
+    //var bismt = retData.matnr;
     var cgnMCodes = retData.cgnMCode;
     viewModel.cgnFName(params.cgnFName);
     var cgnMId = retData.id;
     var cgnFCodes = params.cgnFCode;
     viewModel.cgnFCodes(cgnFCodes);
     //返回图片为空设为默认图片
-    if(retData.cgnMSmallimgs==null || retData.cgnMSmallimgs==""){
-        retData.cgnMSmallimgs = "../../img/default_small.png";
+    if(retData.suMSmallimgs==null || retData.suMSmallimgs==""){
+        retData.suMSmallimgs = "../../img/default_small.png";
     }
-    var picArr = retData.cgnMSmallimgs.split("#");
+    var picArr = retData.suMSmallimgs.split("#");
     viewModel.picArr(picArr);
     //tupian
     var list = [
@@ -215,29 +216,29 @@ function querysingle (ret){
 	// islider.addDot();
 
     //获取库存和价格   价格暂时去掉
-    var p_conditions = {"cgnFCode":cgnFCodes,"cgnMCode":cgnMCodes};
+    var p_conditions = {"suMCode":params.suMCode,"suStoreCode":params.suStoreCode,"ieopEnterpriseCode":params.ieopEnterpriseCode};
     set_context_info("p_material_factory_info",{'fcode':cgnFCodes,'mcode':cgnMCodes});
     var page_params={"pageIndex":1,"pageSize":20};
     var sortItem = {};
     var storeData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-    p_async_post(ip+'/ieop_base_mobile/mfrontmalltransferorder/getsinglepriceandstock', storeData,'getsinglepriceandstock');
+    p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescode', storeData,'getsinglepriceandstock');
     //获取关注
-    var p_conditions = {"fCodes":cgnFCodes};  //条件
-    p_conditions["mCodes"] = cgnMCodes;
+    var p_conditions = {"sCodes":params.suStoreCode};  //条件
+    p_conditions["mCodes"] = params.suMCodes;
     var page_params={"pageIndex":1,"pageSize":20};  //分页
     var sortItem = {};
     var data1 = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-    p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialfavorites/querymutiple', data1,'materialFavorites');
+    p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/querymutiple', data1,'materialFavorites');
     //评论
     var p_conditions = {
-       mcode:viewModel.cgnMCode(),
-       fcode:params.cgnFCode,
-       elvs:''
+       sCode:params.suStoreCode,
+       mCode:params.suMCode,
+       ieopEnterpriseCode:params.ieopEnterpriseCode
     }
     var page_params={"pageIndex":1,"pageSize":20};  //分页
     var sortItem = {};
     var paramData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-    p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialevaluation/querymalevallist', paramData,'querymalevallist');
+    p_async_post(ip+'/ieop_base_mobile/mfrontsumaterialevaluation/querymaevallist', paramData,'querymalevallist');
     
    
     $('#star').score({
@@ -267,9 +268,10 @@ function getsinglepriceandstock(storeRet){
     var stock;
     if(storeRetData.length!=0){
         var storeInfo = storeRetData[0];
-        $(".secure_stock .info .secure_num span").html(parseInt(storeInfo.cgnMSstock));
-        if(parseInt(storeInfo.labst)){
-        	viewModel.stock(parseInt(storeInfo.labst));
+        $(".secure_stock .info .secure_num span").html(parseInt(storeInfo.suMarStock));
+        viewModel.suPrice(Number(storeInfo.suPrice).toFix(2));
+        if(parseInt(storeInfo.suMarStock)){
+        	viewModel.stock(parseInt(storeInfo.suMarStock));
         }else{
         	viewModel.stock('-'); 
         }
@@ -288,6 +290,12 @@ function materialFavorites(retFavorites){
     viewModel.materialFSta(fds[key]?fds[key].materialFSta:0);
 }
 function querymalevallist (commentList){
+	if(commentList.status==0){
+		summer.toast({
+             "msg" : commentList.msg
+        })
+        return;
+	}
 	var commentArr = commentList.retData.ents;
 	var goodComment = 0;
 	for(i=0;i<commentArr.length;i++){
