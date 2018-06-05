@@ -25,9 +25,8 @@
 					<span>我的仓库</span>
 					<div data-bind="click:edit,text:operateText" class="um-header-right">编辑</div>
 				</div>
-				<div class="cart-type-list" id="cart-type-list" data-bind="event:{mouseout:disableCartType}">
-					<p data-bind="click:setCartType.bind($data,0,'采购库')">采购库</p>
-					<p data-bind="click:setCartType.bind($data,1,'预约库')">预约库</p>
+				<div class="cart-type-list" id="cart-type-list" data-bind="foreach:cartTypeArr,event:{mouseout:disableCartType}">
+					<p data-bind="text:name,click:setCartType.bind($data,id,name)"></p>
 				</div>
 				<div class="org">
 					<i class="factory"></i>

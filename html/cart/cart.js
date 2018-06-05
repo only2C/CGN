@@ -50,13 +50,16 @@ function openWin1 (winId){
         "addBackListener":"true"
     });
 }
+
+var cartTypeList = [{id:0,name:'预约库'},{id:1,name:'采购库'}]
+
 summerready = function(){
 	$summer.fixStatusBar($summer.byId('header'));
 	window.ip = summer.getStorage("ip");
 	var viewModel = {
 		operateText:ko.observable('编辑'),
 		deleteOrChange:ko.observable('调拨'),
-        cartType:ko.observable('采购库'),
+        cartType:ko.observable(),
 		checkedAll:ko.observable(false),
 		defaultOrg:ko.observable(summer.getStorage("ufn")),
 		chooseNum:ko.observable(0),
@@ -67,6 +70,7 @@ summerready = function(){
 		organizationArr:ko.observableArray([]),
 		cartList:ko.observableArray([]),
 		isAndriod:ko.observable($summer.os=='android'),
+        cartTypeArr:ko.observableArray([]),
 		edit:function(){
 			this.deleteOrChange()=='调拨'?this.deleteOrChange('删除'):this.deleteOrChange('调拨');
 			this.operateText()=='完成'?this.operateText('编辑'):this.operateText('完成');
@@ -207,11 +211,10 @@ summerready = function(){
 			$("#cart-type-list").fadeToggle();
 		},
         setCartType:function(id,type){
-			this.cartType(type);
+			viewModel.cartType(type);
+			summer.setStorage("cartType",id);
             $("#cart-type-list").fadeToggle();
             query_action();
-
-
         },
         disableCartType:function(){
             $("#cart-type-list").fadeIn();
@@ -219,6 +222,11 @@ summerready = function(){
 	}
 	window.viewModel = viewModel;
 	ko.applyBindings(viewModel);
+	viewModel.cartTypeArr(cartTypeList);
+    if(summer.getStorage("cartType")){
+    	viewModel.cartType(cartTypeList[summer.getStorage("cartType")]["name"]);
+	}
+
 	query_action();
 	
 	$('#changeOrgBtn').on('click',function(){
@@ -253,6 +261,10 @@ function query_action(){
 	      
 }
 function queryCarts (data){
+
+		 var cartType = summer.getStorage("cartType");   //0  预约库 ， 1 采购库
+
+
 		if(data.status==1){
 	    	var ents = data.retData.ents;
 	    	viewModel.ents(ents);

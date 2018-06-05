@@ -16,14 +16,10 @@
   <statusBarStyle>dark</statusBarStyle>  
   <fullScreen>true</fullScreen>  
   <windowSoftInputMode>stateHidden</windowSoftInputMode>  
-  <import id="cordova-plugin-wechat" type="web" ref="cordova">
-    <parameter>WECHATAPPID=value</parameter>
-  </import>
-  <import id="cordova-plugin-scancard" type="web" ref="cordova"/>
-  <import id="cordova-plugin-compat" type="web" ref="cordova"/>
-  <import id="cordova-plugin-http" type="web" ref="cordova"/>
-  <import id="cordova-plugin-camera" type="web" ref="cordova"/>
-  <import id="cordova-plugin-file" type="web" ref="cordova"/>
+  <import id="cordova-plugin-compat" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-http" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-camera" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-file" type="web" ref="cordova"/> 
 </application>
 <!--
 【屏幕显示方向】
