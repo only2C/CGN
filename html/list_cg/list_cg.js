@@ -204,7 +204,21 @@ var myScrollMenu;
 
 
 function getsumaterial(responseJSON) {
+	if(responseJSON.status==0){
+		summer.toast({
+             "msg" : responseJSON.msg
+        })
+		return;
+	}
     window.data = responseJSON.retData.data;
+    if(data.length==0){
+    	summer.toast({
+             "msg" : "无数据"
+        })
+        $('.pull_icon').hide();
+    	$('.more span').text('无数据');
+        return;
+    }
     var navigation = responseJSON.retData.navigation;
     
     var tmpArr = [];
@@ -281,7 +295,7 @@ function querybyids(res){
 	    }
     }else{
         summer.toast({
-             "msg" : "请求失败" 
+             "msg" : res.msg
         })
     }
 }

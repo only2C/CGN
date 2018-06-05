@@ -86,13 +86,15 @@ summerready = function () {
     if (platform == 'ios') {
         $('#iSlider-wrapper').css('height', '215px');
     }
+    var stype = summer.getStorage("stype")?summer.getStorage("stype"):0;
+    var stypeText = stype==1?'去调拨':'去采购';
     var viewModel = {
         organizationArr: ko.observableArray([]),
         defaultOrg: ko.observable(summer.getStorage("ufn")),
         isAndriod: ko.observable($summer.os == 'android'),
-        systemType: ko.observable(summer.getStorage("stype")),
+        systemType: ko.observable(stypeText),
         systemArr: ko.observableArray([]),
-        systemFlag:ko.observable(summer.getStorage("stype")),
+        systemFlag:ko.observable(stype),
         chooseOrg: function (item) {
             var p_conditions = {
                 fcode: item.cgnFCode
