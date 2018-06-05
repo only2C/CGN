@@ -182,7 +182,7 @@ summerready = function () {
         $('#smallPic').toggle();
         $('#bigPic').toggle();
         mycall();
-        myScroll.scrollTo(0, 0, 200, easing);
+        myScroll.scrollTo(0, 0, 200, 'easing');
 
     })
     $('#thirdMenu').on('click', '.item', function () {
@@ -235,7 +235,7 @@ function getsumaterial(responseJSON) {
     viewModel.cgnMFieldsName(navigation.suMFieldsName);
     viewModel.cgnMProductName(navigation.suMProductName);
     viewModel.mgCName(navigation.mgCName);
-    viewModel.cgnSuName(navigation.mgCName);
+    //viewModel.cgnSuName(navigation.mgCName);
     if (!myScrollMenu) {
         myScrollMenu = new JRoll('#menu', {
             scrollX: true,

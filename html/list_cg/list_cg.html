@@ -7,7 +7,6 @@
 		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
 		<link rel="stylesheet" href="../../css/font-icons.css">
 		<link rel="stylesheet" href="./list_cg.css" />
-		<script>window.PointerEvent = undefined</script>
 		<script src="../../js/summer.js" ></script>		
 		<script src="../../js/jquery.min.js" ></script>
 		<script src="../../js/pub.js"></script>
@@ -48,40 +47,16 @@
 			</div>
 			<div class="filter-wp">
 				<div class="fixedbar"></div>
+				<!--<div data-bind="visible:cgnSuName().length" class="filter-item">
+					<div class="title">供应商<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnSuName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnSuName:$data})"></li>
+					</ul>
+				</div>-->
 				<div data-bind="visible:cgnFName().length" class="filter-item">
-					<div class="title">工厂<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<div class="title">供应商<span class="fr">全部<i class="arrow-down"></i></span></div>
 					<ul class="filter-list" data-bind="foreach:cgnFName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnFName:$data})"></li>
-					</ul>
-				</div>
-				<div data-bind="visible:cgnMApplyPositionName().length" class="filter-item">
-					<div class="title">应用位置<span class="fr">全部<i class="arrow-down"></i></span></div>
-					<ul class="filter-list" data-bind="foreach:cgnMApplyPositionName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnMApplyPositionName:$data})"></li>
-					</ul>
-				</div>
-				<div data-bind="visible:cgnMBrandName().length" class="filter-item">
-					<div class="title">品牌<span class="fr">全部<i class="arrow-down"></i></span></div>
-					<ul class="filter-list" data-bind="foreach:cgnMBrandName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnMBrandName:$data})"></li>
-					</ul>
-				</div>
-				<div data-bind="visible:cgnMApplyModelName().length" class="filter-item">
-					<div class="title">应用机型<span class="fr">全部<i class="arrow-down"></i></span></div>
-					<ul class="filter-list" data-bind="foreach:cgnMApplyModelName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnMApplyModelName:$data})"></li>
-					</ul>
-				</div>
-				<div data-bind="visible:cgnMFieldsName().length" class="filter-item">
-					<div class="title">领域<span class="fr">全部<i class="arrow-down"></i></span></div>
-					<ul class="filter-list" data-bind="foreach:cgnMFieldsName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnMFieldsName:$data})"></li>
-					</ul>
-				</div>
-				<div data-bind="visible:cgnMProductName().length" class="filter-item">
-					<div class="title">产品<span class="fr">全部<i class="arrow-down"></i></span></div>
-					<ul class="filter-list" data-bind="foreach:cgnMProductName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnMProductName:$data})"></li>
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{ieopEnterpriseName:$data})"></li>
 					</ul>
 				</div>
 				<div data-bind="visible:mgCName().length" class="filter-item">
@@ -90,13 +65,48 @@
 						<li data-bind="text:$data,css:{on:$data==$root.cgnFNameItem()},click:$root.changeFilters.bind($data,{mgCName:$data})"></li>
 					</ul>
 				</div>
-				<div data-bind="visible:cgnSuName().length" class="filter-item">
-					<div class="title">供应商<span class="fr">全部<i class="arrow-down"></i></span></div>
-					<ul class="filter-list" data-bind="foreach:cgnSuName">
-						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnSuName:$data})"></li>
+				<div data-bind="visible:cgnMApplyPositionName().length" class="filter-item">
+					<div class="title">应用位置<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnMApplyPositionName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{suMApplyPositionName:$data})"></li>
 					</ul>
 				</div>
+				<div data-bind="visible:cgnMBrandName().length" class="filter-item">
+					<div class="title">品牌<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnMBrandName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{suMBrandName:$data})"></li>
+					</ul>
+				</div>
+				<div data-bind="visible:cgnMApplyModelName().length" class="filter-item">
+					<div class="title">应用机型<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnMApplyModelName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{suMApplyModelName:$data})"></li>
+					</ul>
+				</div>
+				<div data-bind="visible:cgnMFieldsName().length" class="filter-item">
+					<div class="title">领域<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnMFieldsName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{suMFieldsName:$data})"></li>
+					</ul>
+				</div>
+				<div data-bind="visible:cgnMProductName().length" class="filter-item">
+					<div class="title">产品<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnMProductName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{suMProductName:$data})"></li>
+					</ul>
+				</div>
+				<div class="filter-zero">
+					过滤零库存
+                    <label class="um-switch1 fr">
+                        <input type="checkbox" value="on" checked="checked">
+                        <div class="um-track">
+                            <div class="um-handle">
+                            </div>
+                        </div>
+                    </label>
+				</div>
 				<div class="filter-btns um-border-top">
+					
 					<div data-bind="click:clearChoosen" class="flex1">重置</div>
 					<div data-bind="click:filterSearch" class="flex1 confirm">确定</div>
 				</div>
@@ -107,7 +117,7 @@
 					<div class="scroller">
 						<ul id="smallPic" data-bind="foreach:listArr" class="list noshow little-pic um-border-top">
 
-							<li data-bind="">
+							<li>
 								<div class="img-wp">
 									<img onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
 								</div>
@@ -127,22 +137,21 @@
 							</li>
 						</ul>
 						<ul id="bigPic" data-bind="foreach:listArr" class="big-pic">
-							<!--<li data-bind="click:$root.openWin.bind($data,{cgnMCode:cgnMCode,cgnFCode:cgnFCode?cgnFCode:'',cgnFName:cgnFName?cgnFName:''}) class="cg-list"">
+							<li class="cg-list"> 
 								<div class="big-img">
-									<img  onerror="nofind(this,1)" data-bind="attr:{src:cgnMIcon?cgnMIcon:'../../img/default_small.png'}" alt="" />
-									<div data-bind="text:cgnFName" class="com-name"></div>
+									<img  onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
+									<div class="com-name"><span data-bind="text:ieopEnterpriseName"></span><span data-bind="text:suStoreName"></span></div>
 								</div>
 								<div class="under-pic">
 									<div class="btns">
-										<div class="last-btn">库存：<span data-bind="text:stock"></span></div>
-										&lt;!&ndash;<div class="com-send">顺丰快递</div>&ndash;&gt;
-										<div data-bind="text:cgnMBrandName,visible:cgnMBrandName" class="com-send"></div>
+										<div class="last-btn">库存：<span data-bind="text:suMarStock"></span></div>
+										&lt;!&ndash;<div class="last-btn">价格：<span data-bind="text:suPrice"></span></div>&ndash;&gt;
 									</div>
-									<div data-bind="text:cgnMName" class="two-row">
+									<div data-bind="text:suMName" class="two-row">
 
 									</div>
 								</div>
-							</li>-->
+							</li>
 						</ul>
 						<div class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
 					</div>
