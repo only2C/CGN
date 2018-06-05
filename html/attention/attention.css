@@ -66,6 +66,10 @@
 	font-size:11px;
 	color:#666;
 	margin: 5px 0 10px;
+	max-width:240px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 .left-num {
 	font-size:11px;
