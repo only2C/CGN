@@ -72,8 +72,9 @@ body{
     background-position: 15px 11px;
 }
 .um-header{
-    background:#ee9531;
+    background:#ff8000;
     color:#fff;
+    padding-top: 25px;
 }
 .um-box{
     height:40px;

@@ -1,5 +1,5 @@
 var turn = 0;
-
+var systemList =[{name: "去采购", code: 0}, {name: "去调拨", code: 1}];
 function keyBack(){
     turn++;
     if(turn==2){
@@ -44,6 +44,11 @@ function openWin1 (winId){
         "addBackListener":"true"
     });
 }
+
+
+var stype = summer.getStorage("stype")?summer.getStorage("stype"):0;
+var stypeText = stype==1?'去调拨':'去采购';
+
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var userInfo = JSON.parse(summer.getStorage("userInfo"));
@@ -57,6 +62,11 @@ summerready = function(){
         userName:ko.observable(userInfo.username),
         ufn:ko.observable(summer.getStorage('ufn')),
         isAndriod:ko.observable($summer.os=='android'),
+        systemType: ko.observable(stypeText),
+        systemArr: ko.observableArray([]),
+        systemFlag:ko.observable(stype),
+        isCG:ko.observable(true),    //采购
+        isDB:ko.observable(false),  // 调拨
         openList:function(type,enter){
             summer.openWin({
                 "id" :"order_list",
@@ -121,7 +131,40 @@ summerready = function(){
                     duration:0 //动画过渡时间，默认300毫秒
                 }
             });
+        },
+        chooseSystem:function(){
+            viewModel.systemArr(systemList);
+            $('.system-list').fadeIn();
+        },
+        chooseSystemArr:function (item) {
+            viewModel.systemType(item.name);
+            $('.system-list').fadeOut();
+            summer.setStorage('stype',item.code);
+            if(item.code == 0){
+                viewModel.isCG(true);
+                viewModel.isDB(false);
+            }else{
+                viewModel.isCG(false);
+                viewModel.isDB(true);
+            }
         }
+
+
     }
     ko.applyBindings(viewModel);
+
+    if(stype == 0){
+        viewModel.isCG(true);
+        viewModel.isDB(false);
+    }else{
+        viewModel.isCG(false);
+        viewModel.isDB(true);
+    }
+
+
+    var  $drop2 = $(".drop2");
+    $drop2.on('click', function () {
+       // $('.system-list').slideToggle();
+       // $drop2.fadeToggle();
+    })
 }
