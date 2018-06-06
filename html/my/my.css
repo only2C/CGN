@@ -8,14 +8,69 @@
     background-color: rgba(0, 0, 0, 0.45);
     z-index: 99;
 }
-.my-cart{
+.my-header{
+    width: 100%;
+    height: 140px;
+    background-image: url(../../img/my_tx_bg.png);
+    border-bottom:none;
+    border-image: none;
+    padding-top:25px;
+}
+.my-header-content{
+    
+}
+
+.my-header-sys{
+     height:30px;
+    line-height: 30px;
+ }
+
+.my-header-systype {
+    float:right;
+    font-size: 12px;
+    overflow:hidden;
+    margin-right:15px;
+}
+.my-header-img {
+    margin:0 10px
+}
+.my-header-user{
+    color:#fff;
+}
+.my-header-userName{
+    margin:15px 0 3px 0;
+}
+.system-title{
+    color: #fff;
+    width: 60px;
+    text-align: right;
     float: right;
 }
+.system-list{
+     background: #fff;
+     border: 1px solid #f0a30a;
+     position:absolute;
+     border-radius:5px;
+     margin-top: 20px;
+ }
+.system-list li{
+    width:60px;
+    line-height:25px;
+    text-align:center;
+    border-bottom:1px solid #f0a30a;
+}
+
 .mb10{
     margin-bottom: 10px;
 }
 .mt10{
     margin-top: 10px;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
 }
 .my-um-label {
     font-weight: normal;
@@ -27,14 +82,14 @@
     overflow: hidden;
 }
 #header>div {
-    position: relative;
-    top:10px !important;
+    /*position: relative;*/
+    /*top:10px !important;*/
 }
 .um-content {
     background-color:#f4f4f4;
 }
 .um-content>div {
-    background-color:#fff;
+    /*background-color:#fff;*/
 }
 .um-header {
     padding-top:22px;
@@ -81,8 +136,11 @@
     background-image: url(../../img/icon-my-active.png);
 }
 .open_store{
-    width:140px;
-    height: 45px;
+    width: 120px;
+    height: 40px;
     background: url(../../img/store-icon.png) no-repeat;
-    background-size: 80%;
+    background-size: 100%;
+}
+.isDB,.isCG{
+    background: none;
 }

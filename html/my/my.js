@@ -65,6 +65,8 @@ summerready = function(){
         systemType: ko.observable(stypeText),
         systemArr: ko.observableArray([]),
         systemFlag:ko.observable(stype),
+        isCG:ko.observable(true),    //采购
+        isDB:ko.observable(false),  // 调拨
         openList:function(type,enter){
             summer.openWin({
                 "id" :"order_list",
@@ -138,13 +140,29 @@ summerready = function(){
             viewModel.systemType(item.name);
             $('.system-list').fadeOut();
             summer.setStorage('stype',item.code);
+            if(item.code == 0){
+                viewModel.isCG(true);
+                viewModel.isDB(false);
+            }else{
+                viewModel.isCG(false);
+                viewModel.isDB(true);
+            }
         }
 
 
     }
     ko.applyBindings(viewModel);
-    var  $drop2 = $(".drop2");
 
+    if(stype == 0){
+        viewModel.isCG(true);
+        viewModel.isDB(false);
+    }else{
+        viewModel.isCG(false);
+        viewModel.isDB(true);
+    }
+
+
+    var  $drop2 = $(".drop2");
     $drop2.on('click', function () {
        // $('.system-list').slideToggle();
        // $drop2.fadeToggle();
