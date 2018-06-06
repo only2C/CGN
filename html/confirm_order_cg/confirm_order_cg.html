@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+        <link rel="stylesheet" href="../../css/iscroll.css" /> 
+        <link rel="stylesheet" href="./confirm_order_cg.css" />
+        <link rel="stylesheet" href="../../css/iscroll.css" /> 
+        <style>
+        .um-time{
+            background:#ffffff;
+            border-top:1px solid #dddddd;
+            border-bottom:1px solid #dddddd;
+        }
+        .um-time-list{
+            height:46px;
+            line-height: 46px;
+        }
+        .um-time-list:first-child{
+            border-bottom:1px solid #dddddd;
+        }
+        .um-time-txt{
+            float: left;
+            color:#8c8d8e;
+        }
+        .um-time-list .fr{
+            position:relative;
+            float: right;
+            margin-right:30px;
+        }
+        .um-time-list .fr:after{
+            content: "";
+            position:absolute;
+            right:-15px;
+            top:15px;
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-right: 2px solid #8c8d8e;
+            border-top: 2px solid #8c8d8e;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .um-time-list input{
+            display:block;
+            width: 180px;
+            height: 45px;
+            line-height:45px;
+            border: none;
+            outline: none;
+            text-align: right;
+            background: #fff;
+        }
+        </style>
+
+ 
+        <style>
+          #select1_dummy{
+        	border:none;
+        	padding-left:10px;
+        	color:#555;
+        	font-size:17px;
+          }
+          #select1_dummy:disabled{
+        	background:#fff;
+          }
+        </style>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+        <script src="../../js/iscroll.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="confirm_order">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>确认订单</h3>
+			</div>
+			<div class="um-content">
+				<div class="container">
+					<div data-bind="click:openWin.bind($data,'address')" class="address">
+						<i class="address-icon fl"></i>
+						<div data-bind="foreach:addressList,click:openWin.bind($data,'address')" class="fl detail-wp">
+							<div class="name">收货人：<span data-bind="text:receiveName"></span><span data-bind="text:receivePhone" class="phone-number fr"></span></div>
+							<div class="address-text">收获地址：<span data-bind="text:receiveArea+'&nbsp;'+receiveAddr"></span></div>
+						</div>
+						<i class="arrow-right fr"></i>
+					</div>
+					<div class="img-line"></div>
+					<div class="order-list-wp">
+						<div class="head">
+							<i class="location3"></i>
+							<span data-bind="text:ufn"></span>
+						</div>
+						<ul data-bind="foreach:mList" class="order-list">
+							<li>
+								<div class="img-wp">
+									<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="">
+								</div>
+								<div class="fl">
+									<div data-bind="text:materialName" class="item-title">压力表ACC.1 6 0-1.6MPa</div>
+									<div class="location">位置：<span data-bind="text:supplyFactoryName"></span></div>
+									<div class="left-num">数量：<span data-bind="text:parseInt(mallTAmount)"></span></div>
+								</div>
+							</li>
+						</ul>
+						<div class="item">
+							<div>
+								紧急程度<i class="arrow-right"></i>
+								<input type="text" data-bind="value:pLevel" id='select1_dummy' />
+                                	<select id='select1' data-bind="value:pLevel">
+                                		<option value="0">低</option>
+                                		<option value="1">中</option>
+                                		<option value="2">高</option>
+                                	</select>
+							</div>
+							<div class=" w um-gray "  style="height: 1px;"></div>
+						</div>
+						<div class="item">
+							<div>
+								预计归还日期<input type="text" class="scroller-date" data-bind="value:backDate" readonly=""/><i class="arrow-right"></i>
+							</div>
+							<div class=" w um-gray "  style="height: 1px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="um-footer">
+				<div class="flex2"><span class="fr">共<span data-bind="text:mList().length"></span>件产品</span></div>
+				<div data-bind="click:sendOrder" class="flex1">提交订单</div>
+			</div>
+		</div>
+		<script src="./confirm_order_cg.js"></script>
+
+        <script>
+        	$(function () {
+        		$('.scroller-date').scroller('destroy').scroller({
+        			preset: 'time',
+        			theme: "ios7",
+        			mode: "scroller",
+        			display: "bottom",
+        			animate: ""
+        		});	
+        	});
+        </script>
+
+        <script>
+        	 $(function () {
+        		// var curr = new Date().getFullYear();
+        	   var opt = {
+        			'date': {
+        				preset: 'date'
+        			},
+        			'select': {
+        			   preset: 'select'
+        		   }
+        		};
+        		$('#select1').scroller('destroy').scroller(
+        			$.extend(opt['select'], {
+        				theme: "ios7",
+        				mode: "scroller",
+        				display: "bottom",
+        				animate: ""
+        			})
+        		);
+        	});
+        </script>
+
+        <script>
+        	$(function () {
+        		$('.scroller-date').scroller('destroy').scroller({
+        			preset: 'date',
+        			theme: "ios7",
+        			mode: "scroller",
+        			display: "bottom",
+        			animate: ""
+        		});	
+        	});
+        </script>
+
+        <script>
+        	 $(function () {
+        		// var curr = new Date().getFullYear();
+        	   var opt = {
+        			'date': {
+        				preset: 'date'
+        			},
+        			'select': {
+        			   preset: 'select'
+        		   }
+        		};
+        		$('#select1').scroller('destroy').scroller(
+        			$.extend(opt['select'], {
+        				theme: "ios7",
+        				mode: "scroller",
+        				display: "bottom",
+        				animate: ""
+        			})
+        		);
+        	});
+        </script>
+	</body>
+</html>

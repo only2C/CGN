@@ -64,6 +64,10 @@ summerready = function(){
 		cgnBrandName:ko.observable(),
 		materialFSta:ko.observable(),
 		picArr:ko.observableArray(),
+		ieopEnterpriseName:ko.observable(),
+		suStoreName:ko.observable(),
+		suCode:ko.observable(),
+		suMRefCode:ko.observable(),
 		chooseItem:ko.observableArray(),
 		goodCommentL:ko.observable(0),
 		commentArr:ko.observableArray(),
@@ -74,20 +78,23 @@ summerready = function(){
             summer.setStorage("cartType",index)
 			$(".detail-to-cart").slideToggle();
 			var p_conditions = {};
-		    p_conditions['amount'] = 1;
-		    p_conditions['fcode'] = viewModel.cgnFCodes();
-		    p_conditions['mcode'] = viewModel.cgnMCode();
-		    p_conditions['cartstype'] = '1';
-		    if(viewModel.stock()=="-"){
-		    	p_conditions['borrowStoreSwitch'] = '1';
+		    p_conditions['suStoreCode'] = params.suStoreCode;
+		    p_conditions['ieopEnterpriseCode'] = params.ieopEnterpriseCode;
+		    p_conditions['materialCode'] = params.suMCode;
+		    if(type!="yy"){
+		        p_conditions['buyStoreSwitch'] = '0';
+		        if(Number(viewModel.stock())==0){
+		            uMsgTips("库存不足，请选择加入预约库！");
+		            return false
+		        }
+		    }else{
+		        p_conditions['buyStoreSwitch'] = '1';
 		    }
 		    viewModel.type(type);
+		    p_conditions['addAmount'] = '1';
 		    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
-		    p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/save', enc_conditions,'addToCarts');
+		    p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/save', enc_conditions,'addToCarts');
 		    
-		},
-		callRightNow:function(){
-			viewModel.addToCart('goConfirm');
 		},
 		toggleAttention:function(){
 			if(viewModel.materialFSta()=='1'){
@@ -171,6 +178,7 @@ function querysingle (ret){
     viewModel.cgnMName(retData.suMName);
     viewModel.cgnBrandName(retData.suMBrandName);
     viewModel.cgnMCode(retData.suMCode);
+    viewModel.ieopEnterpriseName(retData.ieopEnterpriseName);
     var cgnMUnit = retData.suMUnit;
     var cgnMDesc = retData.suMDesc;
     //var matnr = retData.matnr;
@@ -204,16 +212,16 @@ function querysingle (ret){
 		list.push({content:picArr[i]});
 	}
 
-	// var islider = new iSlider({
-	//     type: 'pic',
-	//     data: list,
-	//     dom: document.getElementById("iSlider-wrapper"),
-	//     isLooping: true,
-	//     animateType: 'default',
-	//     isAutoplay: true,
-	//     animateTime: 800
-	// });
-	// islider.addDot();
+	var islider = new iSlider({
+	    type: 'pic',
+	    data: list,
+	    dom: document.getElementById("iSlider-wrapper"),
+	    isLooping: true,
+	    animateType: 'default',
+	    isAutoplay: true,
+	    animateTime: 800
+	});
+	islider.addDot();
 
     //获取库存和价格   价格暂时去掉
     var p_conditions = {"suMCode":params.suMCode,"suStoreCode":params.suStoreCode,"ieopEnterpriseCode":params.ieopEnterpriseCode};
@@ -269,7 +277,9 @@ function getsinglepriceandstock(storeRet){
     if(storeRetData.length!=0){
         var storeInfo = storeRetData[0];
         $(".secure_stock .info .secure_num span").html(parseInt(storeInfo.suMarStock));
-        viewModel.suPrice(Number(storeInfo.suPrice).toFix(2));
+        viewModel.suStoreName(storeInfo.suStoreName);
+	    viewModel.suMRefCode(storeInfo.suMRefCode);
+        viewModel.suPrice(Number(storeInfo.suPrice).toFixed(2));
         if(parseInt(storeInfo.suMarStock)){
         	viewModel.stock(parseInt(storeInfo.suMarStock));
         }else{
@@ -329,10 +339,10 @@ function favoritesSave1 (data){
 }
 function addToCarts (data){
 	if(data.status==1){
-		if(viewModel.type()=="goConfirm"){
-		   openWin1('confirm_order');
+		if(viewModel.type()=="yy"){
+		   openWin1('confirm_order_cg');
 		}else{
-		   openWin1('cart');
+		   openWin1('cart_cg');
 		}
 	}else{
 		summer.toast({

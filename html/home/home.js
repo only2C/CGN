@@ -97,7 +97,7 @@ summerready = function () {
         systemFlag:ko.observable(stype),
         chooseOrg: function (item) {
             var p_conditions = {
-                fcode: item.cgnFCode
+                ccode: item.cgnFCode
             };
             var page_params = {"pageIndex": 1, "pageSize": 100};  //分页
             var sortItem = {};
