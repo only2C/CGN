@@ -7,70 +7,87 @@
     <link rel="stylesheet" href="../../css/iuapmobile.um.css">
     <link rel="stylesheet" href="../../css/font-icons.css">
     <link rel="stylesheet" href="../../css/my.css">
-    <script src="../../js/summer.js" ></script>
-    <script src="../../js/jquery.min.js" ></script>
-    <script src="../../js/knockout.js" ></script>
-    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    <script src="../../js/summer.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/pub.js"></script>
+    <script src="../../js/pub1.js"></script>
+    <script src="../../js/base64.js"></script>
+    <script src="../../js/knockout.js"></script>
+    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
     <script src="./iframe_code.js"></script>
-    <link rel="stylesheet" href="./iframe_code.css" />
+    <link rel="stylesheet" href="./iframe_code.css"/>
 
 </head>
 <body>
 
 <div class="um-win my" id="index">
-  
-		<div class="um-header" id="header">
-				<a onClick="closeWin()" class="um-back"></a>
-				<h3>框架协议</h3>
-		</div>
-		
-	    <div class="um-content"> 
-			    <div class="row">
-			        <div class="iframe-img fl">
-			            <img src="../../img/file-icon.png" width="50" height="50">
-			        </div>
-			        <div class="iframe-info fl">
-			            <div class="iframe-title">
-			                <span>编码007</span>
-			                <button class="iframe-button-start btn btn-sm btn-warning fr">启动</button>
-			            </div>
-			            <div class="iframe-list" onclick="openDetailWin()">
-			                <div  class="iframe-detail">
-			                    <label>供应商</label>
-			                    <span>用友网络</span>
-			                </div>
-			                <div  class="iframe-detail">
-			                    <label>业主</label>
-			                    <span>中广核</span>
-			                </div>
-			            </div>
-			            <div class="iframe-time">2018年05月24日14:52:27</div>
-			        </div>
-			    </div>
-			
-			    <div class="row">
-			        <div class="iframe-img fl">
-			            <img src="../../img/file-icon.png" width="50" height="50">
-			        </div>
-			        <div class="iframe-info fl">
-			            <div class="iframe-title">
-			                <span>编码007</span>
-			                <button class="iframe-button-stop btn btn-sm btn-primary fr">停止</button>
-			            </div>
-			            <div class="iframe-list">
-			                <div  class="iframe-detail">
-			                    <label>供应商</label>
-			                    <span>用友网络</span>
-			                </div>
-			                <div  class="iframe-detail">
-			                    <label>业主</label>
-			                    <span>中广核</span>
-			                </div>
-			            </div>
-			            <div>2018年05月24日14:52:27</div>
-			        </div>
-			    </div>
-		 </div>
+
+    <div class="um-header" id="header">
+        <a onClick="closeWin()" class="um-back"></a>
+        <h3>框架协议</h3>
+    </div>
+
+    <div class="um-content" data-bind="foreach:iframeList" >
+        <div class="row">
+            <div class="iframe-img fl">
+                <img src="../../img/file-icon.png" width="30">
+            </div>
+            <div class="iframe-info fl">
+                <div class="iframe-title">
+                    <span data-bind="text:ieopEnterpriseCode"></span>
+                    <i class="fr" data-bind="css:{'iframe-button-start':suFaSta == 1,'iframe-button-stop':suFaSta==0}"></i>
+                </div>
+                <div class="iframe-list" data-bind="click:$root.openDetailWin.bind($data,suFaCode)" >
+                    <div class="iframe-detail">
+                        <label>供应商：</label>
+                        <span data-bind="text:ieopEnterpriseName"></span>
+                    </div>
+                    <div class="iframe-detail">
+                        <label>协议名称：</label>
+                        <span data-bind="text:suFaName"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="um-footer" id='footer'>
+        <div class="um-footerbar h45" id='nav'>
+            <a href="../home/home.html" id="home" class="um-footerbar-item home">
+                <div class="icon-home mb5"></div>
+                <div class="f12 lh1">
+                    首页
+                </div>
+            </a>
+            <a data-bind="attr:{href:isAndriod()?'javascript:void(0);':'../attention/attention.html'}"
+               id="attention"
+               onclick="openWin1('attention')" class="um-footerbar-item attention">
+                <div class="icon-attention mb5"></div>
+                <div class="f12 lh1">
+                    关注
+                </div>
+            </a>
+            <a href="../categroy/categroy.html" id="categroy" class="um-footerbar-item categroy">
+                <div class="icon-categroy mb5"></div>
+                <div class="f12 lh1">
+                    分类
+                </div>
+            </a>
+            <a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse">
+                <div class="icon-warehouse mb5"></div>
+                <div class="f12 lh1">
+                    仓库
+                </div>
+            </a>
+            <a href="../my/my.html" id="my" class="um-footerbar-item my active">
+                <div class="icon-my mb5"></div>
+                <div class="f12 lh1">
+                    我
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
 </body>
 </html>

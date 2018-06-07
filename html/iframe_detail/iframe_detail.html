@@ -7,48 +7,169 @@
     <link rel="stylesheet" href="../../css/iuapmobile.um.css">
     <link rel="stylesheet" href="../../css/font-icons.css">
     <link rel="stylesheet" href="../../css/my.css">
-    <script src="../../js/summer.js" ></script>
-    <script src="../../js/jquery.min.js" ></script>
-    <script src="../../js/knockout.js" ></script>
-    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    <script src="../../js/summer.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/pub.js"></script>
+    <script src="../../js/pub1.js"></script>
+    <script src="../../js/base64.js"></script>
+    <script src="../../js/knockout.js"></script>
+    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
     <script src="./iframe_detail.js"></script>
-    <link rel="stylesheet" href="./iframe_detail.css" />
+    <link rel="stylesheet" href="./iframe_detail.css"/>
 
 </head>
 <body>
 
 <div class="um-win" id="iframe_detail">
 
-		<div class="um-header" id="header">
-				<a onClick="closeWin()" class="um-back"></a>
-				<h3 data-bind="text:title"></h3>
-		</div>
-		
-	    <div class="um-content">
-			     <div class="row">
-			        <div class="iframe-img fl">
-			            <img src="../../img/file-icon.png" width="80" height="80">
-			        </div>
-			        <div class="iframe-info fl"> 
-			          		<div class="iframe-info-title">
-			          		失败过 哪用怕 即管说吧  共于苦恋中找点潇洒 深夜时 将一起暗恋的她
-			          		</div>
-			                <div  class="iframe-detail">
-			                    <label>供应商</label>
-			                    <span>用友网络</span>
-			                </div>
-			                <div  class="iframe-detail">
-			                    <label>业主</label>
-			                    <span>中广核</span>
-			                </div>
-			       </div>   
-			  </div>
-	    		</div>
+    <div class="um-header" id="header">
+        <a onClick="closeWin()" class="um-back"></a>
+        <h3 data-bind="text:title"></h3>
+    </div>
 
+    <div class="um-content">
+        <div class="iframe-nav">
+            <ul>
+                <li class="iframe-nav-li active" data-bind="click:changeItem.bind($data,0)">
+                    <div class="iframe-ul-detail"></div>
+                    <p>框架明细</p>
+                </li>
+                <li class="iframe-nav-li" data-bind="click:changeItem.bind($data,1)">
+                    <div class="iframe-ul-range"></div>
+                    <p>使用范围</p>
+                </li>
+                <li class="iframe-nav-li" data-bind="click:changeItem.bind($data,2)">
+                    <div class="iframe-ul-doc"></div>
+                    <p>管理文档</p>
+                </li>
+            </ul>
+        </div>
+        <!--默认-->
+        <div data-bind="visible:nullDataVisible">没有数据了~</div>
 
-    
+        <!--框架明细-->
+        <div data-bind="foreach:detailArr" class="iframe-item">
+            <div class="row">
+                <div class="iframe-img fl">
+                    <img src="../../img/file-icon.png" width="30">
+                </div>
+                <div class="iframe-info fl">
+                    <div class="iframe-title">
+                        <span data-bind="text:suFamName"></span>
+                        <i class="fr"
+                           data-bind="css:{'iframe-button-start':suFamSta == 1,'iframe-button-stop':suFamSta==0}"></i>
+                    </div>
+                    <div class="iframe-list">
+                        <div class="iframe-detail">
+                            <label>采购商供应编码：</label>
+                            <span data-bind="text:suFamCode"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>供应商物料编码：</label>
+                            <span data-bind="text:suFamRefCode"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>最小备货量：</label>
+                            <span data-bind="text:suFamMinStockup"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>框架协议价格：</label>
+                            <span data-bind="text:suFamAgreementPrice"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--适用范围-->
+        <div data-bind="foreach:rangArr" class="iframe-item hide">
+            <div class="row">
+                <div class="iframe-img fl">
+                    <img src="../../img/file-icon.png" width="30">
+                </div>
+                <div class="iframe-info fl">
+                    <div class="iframe-list">
+                        <div class="iframe-detail">
+                            <label>适用公司编码：</label>
+                            <span data-bind="text:cgnCCode"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>适用公司：</label>
+                            <span data-bind="text:cgnCName"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上级公司编码：</label>
+                            <span data-bind="text:supperCCode"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上级公司：</label>
+                            <span data-bind="text:supperCName"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--管理文档-->
+        <div class="iframe-item hide" data-bind="foreach:docArr">
+            <div class="row">
+                <div class="iframe-img fl">
+                    <img src="../../img/file-icon.png" width="30">
+                </div>
+                <div class="iframe-info fl">
+                    <div class="iframe-list">
+                        <div class="iframe-detail">
+                            <label>文档名称：</label>
+                            <a data-bind="text:suFaaFileName,attr:{'href':suFaaFileAddr}"></a>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上传人：</label>
+                            <span data-bind="text:suFaaUpusername"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上传日期：</label>
+                            <span data-bind="text:suFaaDate"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    
+    </div>
+    <div class="um-footer" id='footer'>
+        <div class="um-footerbar h45" id='nav'>
+            <a href="../home/home.html" id="home" class="um-footerbar-item home">
+                <div class="icon-home mb5"></div>
+                <div class="f12 lh1">
+                    首页
+                </div>
+            </a>
+            <a data-bind="attr:{href:isAndriod()?'javascript:void(0);':'../attention/attention.html'}"
+               id="attention"
+               onclick="openWin1('attention')" class="um-footerbar-item attention">
+                <div class="icon-attention mb5"></div>
+                <div class="f12 lh1">
+                    关注
+                </div>
+            </a>
+            <a href="../categroy/categroy.html" id="categroy" class="um-footerbar-item categroy">
+                <div class="icon-categroy mb5"></div>
+                <div class="f12 lh1">
+                    分类
+                </div>
+            </a>
+            <a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse">
+                <div class="icon-warehouse mb5"></div>
+                <div class="f12 lh1">
+                    仓库
+                </div>
+            </a>
+            <a href="../my/my.html" id="my" class="um-footerbar-item my active">
+                <div class="icon-my mb5"></div>
+                <div class="f12 lh1">
+                    我
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
