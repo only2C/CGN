@@ -51,7 +51,6 @@ function openWin1 (winId){
     });
 }
 
-var cartTypeList = [{id:0,name:'预约库'},{id:1,name:'采购库'}]
 
 summerready = function(){
 	$summer.fixStatusBar($summer.byId('header'));
@@ -65,12 +64,12 @@ summerready = function(){
 		chooseNum:ko.observable(0),
 		ufn:ko.observable(summer.getStorage("ufn")),
 		item:ko.observableArray([]),
+		stype:ko.observable(summer.getStorage("stype")),
 		orgItem:ko.observable([]),
 		ents:ko.observable([]),
 		organizationArr:ko.observableArray([]),
 		cartList:ko.observableArray([]),
 		isAndriod:ko.observable($summer.os=='android'),
-        cartTypeArr:ko.observableArray([]),
 		edit:function(){
 			this.deleteOrChange()=='调拨'?this.deleteOrChange('删除'):this.deleteOrChange('调拨');
 			this.operateText()=='完成'?this.operateText('编辑'):this.operateText('完成');
@@ -222,7 +221,6 @@ summerready = function(){
 	}
 	window.viewModel = viewModel;
 	ko.applyBindings(viewModel);
-	viewModel.cartTypeArr(cartTypeList);
     if(summer.getStorage("cartType")){
     	viewModel.cartType(cartTypeList[summer.getStorage("cartType")]["name"]);
 	}

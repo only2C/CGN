@@ -91,6 +91,7 @@ summerready = function(){
 				menu:ko.observableArray(firstMenu),
 				defaultOrg:ko.observable(summer.getStorage("ufn")),
 				organizationArr:ko.observableArray([]),
+				stype:ko.observable(summer.getStorage("stype")),
 				item:ko.observableArray([]),
 				isAndriod:ko.observable($summer.os=='android'),
 				openWin:function(thirdMenu){

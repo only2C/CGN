@@ -70,7 +70,7 @@ function logon_after_process(data){
         var userInfo = JSON.stringify(ent);
         summer.setStorage("userInfo", userInfo);
         summer.setStorage("ufn",data.ufn);
-
+		summer.setStorage("ufcn",data.ufcn);
         if(ent.ieopUserIsInner=="1"){
             summer.openWin({
                 id : 'home',

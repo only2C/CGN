@@ -63,6 +63,7 @@ summerready = function(){
         ufn:ko.observable(summer.getStorage('ufn')),
         isAndriod:ko.observable($summer.os=='android'),
         systemType: ko.observable(stypeText),
+        stype:ko.observable(summer.getStorage("stype")),
         systemArr: ko.observableArray([]),
         systemFlag:ko.observable(stype),
         isCG:ko.observable(true),    //采购

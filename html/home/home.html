@@ -252,7 +252,7 @@
 					<div class="f12 lh1">
 						分类
 					</div> </a>
-					<a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse"> 
+					<a data-bind="attr:{href:systemFlag()==1?'../cart/cart.html':'../cart_cg/cart_cg.html'}" id="warehouse" class="um-footerbar-item warehouse"> 
 					<div class="icon-warehouse mb5"></div>
 					<div class="f12 lh1">
 						仓库

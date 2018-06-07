@@ -25,7 +25,7 @@
 					<span>我的仓库</span>
 					<div data-bind="click:edit,text:operateText" class="um-header-right">编辑</div>
 				</div>
-				<div class="cart-type-list" id="cart-type-list" data-bind="foreach:cartTypeArr,event:{mouseout:disableCartType}">
+				<div class="cart-type-list" id="cart-type-list" data-bind="foreach:cartTypeArr">
 					<p data-bind="text:name,click:$root.setCartType.bind($data,id,name)"></p>
 				</div>
 				<div class="org">
@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="um-content">
-				<ul data-bind="foreach:cartList" class="attention-list">
+				<ul data-bind="foreach:cartList,visible:cartList().length!=0" class="attention-list">
 					<li>
                         <label class="um-check-inline">
                             <input data-bind="checked:choose,click:$root.chooseToggle.bind($data,$data)" name="um-checkbox-inline" type="checkbox">
@@ -53,18 +53,19 @@
 							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
 						</div>
 						<div class="fl">
-							<div class="item-title"></div> <!-- data-bind="text:materialName,click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
+							<div data-bind="text:materialName" class="item-title"></div> <!-- data-bind="text:materialName,click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
 							<div class="location">仓库：<span data-bind="text:suStoreName"></span></div>
-							<div class="left-num">库存：<span data-bind="text:stock"></span></div>
+							<!--<div class="left-num">库存：<span data-bind="text:stock"></span></div>-->
 							<div class="left-num">价格：<span data-bind="text:suPrice"></span></div>
 							<div class="choose-num">
 								<span data-bind="click:$root.minus.bind($data,$data)" class="minus"></span>
-								<span data-bind="text:parseInt(mallTAmount())" class="num"></span>
+								<span data-bind="text:materialTAmount" class="num"></span>
 								<span data-bind="click:$root.addNum.bind($data,$data)" class="add"></span>
 							</div>
 						</div>
 					</li>
 				</ul>
+				<div data-bind="visible:cartList().length==0" class="no-results">无数据</div>
 			</div>
 		
 			<div class="um-footer"  id='footer'>
@@ -78,7 +79,7 @@
                     </span>
                     <div class="fr">
                     	<span class="total">共<span data-bind="text:cartList().length"></span>件备件</span>
-                    	<div data-bind="css:{disable:chooseNum()==0},text:deleteOrChange,click:openWin.bind($data,'confirm_order')" class="change-goods"></div>
+                    	<div data-bind="css:{disable:chooseNum()==0},text:deleteOrChange,click:openWin.bind($data,'confirm_order_cg')" class="change-goods"></div>
                     </div>
 				</div>
 				<div class="um-footerbar h45"  id='nav'>
@@ -97,7 +98,7 @@
 					<div class="f12 lh1">
 						分类
 					</div> </a>
-					<a href="../cart/cart.html" id="warehouse" class="um-footerbar-item warehouse active"> 
+					<a data-bind="attr:{href:stype()==1?'../cart/cart.html':'../cart_cg/cart_cg.html'}" id="warehouse" class="um-footerbar-item warehouse active"> 
 					<div class="icon-warehouse mb5"></div>
 					<div class="f12 lh1">
 						仓库

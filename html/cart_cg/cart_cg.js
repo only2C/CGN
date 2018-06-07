@@ -58,13 +58,14 @@ summerready = function(){
 	window.ip = summer.getStorage("ip");
 	var viewModel = {
 		operateText:ko.observable('编辑'),
-		deleteOrChange:ko.observable('调拨'),
+		deleteOrChange:ko.observable(summer.getStorage('cartType')==1?'去下单':'预约'),
         cartType:ko.observable(),
 		checkedAll:ko.observable(false),
 		defaultOrg:ko.observable(summer.getStorage("ufn")),
 		chooseNum:ko.observable(0),
 		ufn:ko.observable(summer.getStorage("ufn")),
 		item:ko.observableArray([]),
+		stype:ko.observable(summer.getStorage("stype")),
 		orgItem:ko.observable([]),
 		ents:ko.observable([]),
 		organizationArr:ko.observableArray([]),
@@ -72,25 +73,34 @@ summerready = function(){
 		isAndriod:ko.observable($summer.os=='android'),
         cartTypeArr:ko.observableArray([]),
 		edit:function(){
-			this.deleteOrChange()=='调拨'?this.deleteOrChange('删除'):this.deleteOrChange('调拨');
+			if(summer.getStorage('cartType')==1){
+				this.deleteOrChange()=='去下单'?this.deleteOrChange('删除'):this.deleteOrChange('去下单');
+			}else{
+				this.deleteOrChange()=='预约'?this.deleteOrChange('删除'):this.deleteOrChange('预约');
+			}
 			this.operateText()=='完成'?this.operateText('编辑'):this.operateText('完成');
 		},
 		minus:function(item){
-			if(item.mallTAmount()<=1){
+			if(item.materialTAmount()<=1){
 				summer.toast({
                      "msg" : "至少调拨一件"
                 })
                 return;
 			}
 			var p_conditions = {};
-			p_conditions['amount'] = -1;
-            p_conditions['fcode'] = item['supplyFactoryCode'];
-            p_conditions['mcode'] = item['materialCode'];
-            var page_params={"pageIndex":1,"pageSize":20};  //分页
-            var sortItem = {};
-            var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-            viewModel.item([item]);
-            p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/save', enc_conditions,'minus');
+	        p_conditions['id'] = item.id;
+	        p_conditions['suStoreCode'] = item['suStoreCode'];
+	        p_conditions['ieopEnterpriseCode'] = item['ieopEnterpriseCode'];
+	        p_conditions['materialCode'] = item['materialCode'];
+	        if(summer.getStorage("cartType")==1){
+	        	p_conditions['buyStoreSwitch'] = '0';
+	        }else{
+	        	p_conditions['buyStoreSwitch'] = '1';
+	        }
+	        p_conditions['addAmount'] = '-1';
+	        var bb = p_params_con_dataj_enc(p_conditions);
+	        viewModel.item([item]);
+	        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/save', bb,'minus');
             
 		},
 		openWin2:function(options,data){
@@ -104,22 +114,26 @@ summerready = function(){
             });
 		},
 		addNum:function(item){
-			if(item.mallTAmount()>=item.stock){
+			if(item.materialTAmount()>=item.stock){
 				summer.toast({
                      "msg" : "调拨数量不能大于库存"
                 })
                 return;
 			}
 			var p_conditions = {};
-			p_conditions['amount'] = 1;
-            p_conditions['fcode'] = item['supplyFactoryCode'];
-            p_conditions['mcode'] = item['materialCode'];
-            var page_params={"pageIndex":1,"pageSize":20};  //分页
-            var sortItem = {};
-            var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-            viewModel.item([item]);
-            p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/save', enc_conditions,'addNum');
-            
+	        p_conditions['id'] = item.id;
+	        p_conditions['suStoreCode'] = item['suStoreCode'];
+	        p_conditions['ieopEnterpriseCode'] = item['ieopEnterpriseCode'];
+	        p_conditions['materialCode'] = item['materialCode'];
+	        if(summer.getStorage("cartType")==1){
+	        	p_conditions['buyStoreSwitch'] = '0';
+	        }else{
+	        	p_conditions['buyStoreSwitch'] = '1';
+	        }
+	        p_conditions['addAmount'] = '1';
+	        var bb = p_params_con_dataj_enc(p_conditions);
+	        viewModel.item([item]);
+	        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/save', bb,'addNum');
 		},
 		chooseToggle:function(item){
 			var flag = 0;
@@ -128,10 +142,10 @@ summerready = function(){
 			for(var i =0;i<cartList.length;i++){
 				if(!cartList[i].choose()){
 					flag = 1;
-					updatesta(cartList[i].id,0);
+					updatesta(cartList[i].id,'0');
 				}else{
 					num++;
-					updatesta(cartList[i].id,1);
+					updatesta(cartList[i].id,'1');
 				}
 			}
 			viewModel.chooseNum(num);
@@ -148,13 +162,13 @@ summerready = function(){
 			if(viewModel.checkedAll()){
 				for(var i =0;i<len;i++){
 					cartList[i].choose(true);
-					updatesta(cartList[i].id,1);
+					updatesta(cartList[i].id,'1');
 				}
 				viewModel.chooseNum(len);
 			}else{
 				for(var i =0;i<len;i++){
 					cartList[i].choose(false);
-					updatesta(cartList[i].id,0);
+					updatesta(cartList[i].id,'0');
 				}
 				viewModel.chooseNum(0);
 			}
@@ -171,7 +185,7 @@ summerready = function(){
 				        var page_params={"pageIndex":1,"pageSize":20};  //分页
 				        var sortItem = {};
 				        var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-				        p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/delete', enc_conditions,'deleteCart');
+				        p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/delete', enc_conditions,'deleteCart');
 				        
 					}
 				}
@@ -215,10 +229,7 @@ summerready = function(){
 			summer.setStorage("cartType",id);
             $("#cart-type-list").fadeToggle();
             query_action();
-        },
-        disableCartType:function(){
-            $("#cart-type-list").fadeIn();
-		}
+        }
 	}
 	window.viewModel = viewModel;
 	ko.applyBindings(viewModel);
@@ -242,10 +253,10 @@ summerready = function(){
     //确认订单
     function updatesta(id,status){
     	var p_conditions = {};
-		p_conditions['id'] = id;
-		p_conditions['confirmStatus'] = status;
+		p_conditions['ids'] = id;
+		p_conditions['buyStoreStatus'] = status;
 		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
-		p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/updatesta', enc_conditions,'updatesta');
+		p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/updatestas', enc_conditions,'updatesta');
 		
     }
     //获取列表
@@ -253,7 +264,12 @@ summerready = function(){
 }
 function query_action(){
 	    //查询仓库列表
-	var p_conditions = {"borrowStoreSwitch":"0"};
+	    //区分预约和采购
+	if(summer.getStorage("cartType")==1){
+		var p_conditions = {"borrowStoreSwitch":"0"};
+	}else{
+		var p_conditions = {"buyStoreSwitch":"1"};
+	}
 	var page_params={"pageIndex":1,"pageSize":1000};  //分页
 	var sortItem = {};
 	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
@@ -267,6 +283,10 @@ function queryCarts (data){
 
 		if(data.status==1){
 	    	var ents = data.retData.ents;
+	    	if(ents.length==0){
+	    		viewModel.cartList(ents);
+	    		return;
+	    	}
 	    	var len = ents.length;
 	    	var ieopEnterpriseName = "";
 	        var suMCodes = "";
@@ -298,6 +318,12 @@ function queryCarts (data){
 	    } 
 }
 function getpriceandstock(ret){
+	if(ret.status==0){
+		summer.toast({
+             "msg" : ret.msg
+        })
+        return;
+	}
 	var retData = ret.retData.ents;
 	var ents = viewModel.ents();
 	var num = 0;
@@ -310,18 +336,20 @@ function getpriceandstock(ret){
 	for(var i=0;i<ents.length;i++){
 	   //ents[i].materialImgUrl = summer.getStorage("imgBaseUrl") + ents[i].materialImgUrl; 		
 	   //if(ents[i].borrowFactoryName==viewModel.defaultOrg()){
-	      var choose = ents[i].suMarSta ==1?true:false;
+	      var choose = ents[i].buyStoreStatus ==1?true:false;
 		  if(choose){
 		    num++;
 		  }
 		  //var key = ents[i].supplyFactoryCode+','+ents[i].materialCode;
-		  ents[i].suPrice = Number(storeInfo.suPrice).toFixed(2);
+		  ents[i].suPrice = Number(ents[i].sumallTPrice).toFixed(2);
+		  ents[i].materialTAmount = parseInt(ents[i].materialTAmount);
 		  if(parseInt(ents[i].suMarStock)){
         	  ents[i].stock = parseInt(ents[i].suMarStock);
 	      }else{
 	          ents[i].stock = '-'; 
 	      }
 		  ents[i].choose = ko.observable(choose);
+		  ents[i].materialTAmount = ko.observable(ents[i].materialTAmount);
 		 // ents[i].mallTAmount = ko.observable(ents[i].mallTAmount);
 	      tmpArr.push(ents[i]);
 	   //}
@@ -336,8 +364,8 @@ function getpriceandstock(ret){
 function minus(data){
 	if(data.status == 1){
 		var item = viewModel.item()[0];
-       var tmp =parseInt(item.mallTAmount())-1;
-       item.mallTAmount(tmp);
+       var tmp =parseInt(item.materialTAmount())-1;
+       item.materialTAmount(tmp);
             	
     }else {
        summer.toast({
@@ -348,8 +376,8 @@ function minus(data){
 function addNum(data){
 	if(data.status == 1){
 		var item = viewModel.item()[0];
-        var tmp = parseInt(item.mallTAmount())+1;
-         item.mallTAmount(tmp);
+        var tmp = parseInt(item.materialTAmount())+1;
+         item.materialTAmount(tmp);
     }else {
          summer.toast({
              "msg" : data.msg 

@@ -7,6 +7,10 @@ background-size:auto 100%;
 .um-footerbar-item.active {
 color:#ee9430;
 }
+.no-results {
+	text-align:center;
+	margin-top:20px;
+}
 .icon-attention {
 background-image: url(../../img/icon-attention.png);
 }

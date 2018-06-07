@@ -44,6 +44,7 @@ summerready = function(){
 		defaultOrg:ko.observable(summer.getStorage("ufn")),
 		organizationArr:ko.observableArray([]),
 		item:ko.observableArray([]),
+		stype:ko.observable(summer.getStorage("stype")),
 		mList:ko.observableArray([]),
 		searchWord:ko.observable(),
 		isAndriod:ko.observable($summer.os=='android'),
