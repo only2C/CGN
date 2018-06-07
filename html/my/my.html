@@ -20,7 +20,7 @@
 
         <div id="header" class="my-header">
             <div class="my-header-sys">
-                <div class="my-header-systype">
+                <div class="my-header-systype" data-bind="visible:isSupplier===false">
                     <div data-bind="text:systemType,click:chooseSystem" class="system-title"></div>
                     <ul data-bind="foreach:systemArr" class="system-list">
                         <li data-bind="click:$root.chooseSystemArr.bind($data,$data)">
@@ -63,7 +63,7 @@
         </div>-->
 
 
-        <div data-bind="click:openIframeCode,visible:isCG" class="my-um-label um-box-justify mb10">
+        <div data-bind="click:openIframeCode,visible:isSupplier ? true :isCG" class="my-um-label um-box-justify mb10">
             <div class="f15" style="color: #666666">
                 框架协议
             </div>
@@ -193,7 +193,7 @@
                             <p></a>
                     </div>
                     <div data-bind="click:openList.bind($data,'','back')">
-                        <a href="#"> <img src="../../img/my_yituihui.png" height="23" alt="">
+                        <a href="#"> <img src="../../img/my_daiyan.png" height="23" alt="">
                             <p class="f13 mt10 " style="color: #666666">
                                 待验收
                             <p></a>
@@ -273,7 +273,52 @@
             </div>
         </div>
         <!--3、供应商-->
+        <div data-bind="visible:isSupplier">
+            <div data-bind="click:openList.bind($data,'prev_audit')" class="my-um-label um-box-justify mt10">
+                <div class="f15" style="color: #666666">
+                    订单提醒
+                </div>
+                <img src="../../img/my_right_arrow.png" height="16" alt="" class="mr10">
 
+            </div>
+            <div class=" w um-gray " style="height: 1px;"></div>
+            <div class="um-grid um-row " style="background-color: #FFFFFF">
+                <div class="um-grid-row tc ">
+                    <div data-bind="click:openList.bind($data,'outallocate','hasSend')" class="tc">
+                        <a href="#"> <img src="../../img/my_daifahuo.png" height="23" alt="">
+                            <p class="f13 mt10 " style="color: #666666">
+                                待发货
+                            <p></a>
+                    </div>
+                    <div data-bind="click:openList.bind($data,'outallocate','prevSend')">
+                        <a href="#"> <img src="../../img/my_daiqianshou.png" height="23" alt="">
+                            <p class="f13 mt10 " style="color: #666666">
+                                待验收
+                            <p></a>
+                    </div>
+                    <!--<div>
+                        <a href="#"> <img src="../../img/my_daipingjia.png"  height="23" alt="">
+                        <p class="f13 mt10 " style="color: #666666">
+                            待评价
+                        <p></a>
+                    </div>-->
+                    <div data-bind="click:openList.bind($data,'','back')">
+                        <a href="#"> <img src="../../img/my_daipingjia.png" height="23" alt="">
+                            <p class="f13 mt10 " style="color: #666666">
+                                待评价
+                            <p></a>
+                    </div>
+                    <div data-bind="click:openList.bind($data,'','signIn')">
+                        <a href="#"> <img src="../../img/my_yituihui.png" height="23" alt="">
+                            <p class="f13 mt10 " style="color: #666666">
+                                待退回
+                            <p></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
 
         <!--common-->
 
@@ -303,7 +348,7 @@
 
 
     </div>
-    <div class="um-footer" id='footer'>
+    <div class="um-footer" id='footer' data-bind="visible:isSupplier">
         <div class="um-footerbar h45" id='nav'>
             <a href="../home/home.html" id="home" class="um-footerbar-item home">
                 <div class="icon-home mb5"></div>

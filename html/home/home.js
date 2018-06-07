@@ -127,16 +127,17 @@ summerready = function () {
     }, {
         content: "../../img/banner1.png"
     }];
-    /*       var islider = new iSlider({
-             type : 'pic',
-             data : list,
-             dom : document.getElementById("iSlider-wrapper"),
-             isLooping : true,
-             animateType : 'default',
-             isAutoplay : true,
-             animateTime : 1000,
-           });
-           islider.addDot();*/
+
+   var islider = new iSlider({
+     type : 'pic',
+     data : list,
+     dom : document.getElementById("iSlider-wrapper"),
+     isLooping : true,
+     animateType : 'default',
+     isAutoplay : true,
+     animateTime : 1000,
+   });
+   islider.addDot();
 
     var $drop = $('.drop') , $drop2 = $(".drop2");
     $('#moreBtn').on('click', function () {

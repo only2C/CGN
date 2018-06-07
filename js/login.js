@@ -85,7 +85,7 @@ function logon_after_process(data){
                 isKeep: false,
                 "addBackListener":"true",
 				"pageParam":{
-                	isSupplier:true
+                	isSupplier:"01"  //供应商
 				}
             });
         }else{

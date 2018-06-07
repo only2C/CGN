@@ -8,7 +8,7 @@ body{
 }
 .row{
     font-weight: normal;
-    padding: 1% 2%;
+    padding: 1% 0 1% 2%;
     border-bottom:1px solid #cfcfcf;
     background: #fff;
     margin-top: 2%;
@@ -81,12 +81,20 @@ body{
     height:40px;
     line-height:40px;
 }
-.iframe-button-start,.iframe-button-stop{
-    width:60px;
+.iframe-button-start{
+    width:30px;
+    height: 30px;
+    background: url("../../img/icon_enable.png") no-repeat;
+    background-size:80%;
+}
+.iframe-button-stop{
+    width: 30px;
+    height: 30px;
+    background: url("../../img/icon_disable.png") no-repeat;
+    background-size:80%;
 }
 .iframe-info{
-    margin: 1px 5px;
-    width:75%;
+    width:81%;
 }
 
 .iframe-title , .iframe-detail ,.iframe-time{
@@ -98,7 +106,7 @@ body{
     font-weight:bold;
 }
 .iframe-list{
-    border-bottom: 1px solid #9c9c9c;
+    font-size:12px;
 }
 
 .iframe-list div label{
@@ -107,11 +115,53 @@ body{
 }
 
 .iframe-img{
-    padding:15px 10px 0 0;
+    width:18%;
+    overflow: hidden;
+    padding: 15px 0 0 5px;
 }
 .iframe-button-start .iframe-button-stop{
     width:60px
 }
 .iframe-time{
-    margin-top: 5px
+    margin: 5px;
+    font-size:12px;
+    text-align:right;
+
+}
+/* 设置背景图片 */
+.icon-home, .icon-attention, .icon-categroy, .icon-warehouse, .icon-my {
+    height: 19px;
+    background: url(../../img/icon-home.png) center no-repeat;
+    background-size:auto 100%;
+}
+.um-footerbar-item.active {
+    color:#ee9430;
+}
+.icon-attention {
+    background-image: url(../../img/icon-attention.png);
+}
+.icon-categroy {
+    background-image: url(../../img/icon-categroy.png);
+}
+.icon-warehouse {
+    background-image: url(../../img/icon-warehouse.png);
+}
+.icon-my {
+    background-image: url(../../img/icon-my.png);
+}
+/* 设置激活状态 */
+.um-footerbar-item.active .icon-home {
+    background-image: url(../../img/icon-home-active.png);
+}
+.um-footerbar-item.active .icon-attention {
+    background-image: url(../../img/icon-attention-active.png);
+}
+.um-footerbar-item.active .icon-categroy {
+    background-image: url(../../img/icon-categroy-active.png);
+}
+.um-footerbar-item.active .icon-warehouse {
+    background-image: url(../../img/icon-warehouse-active.png);
+}
+.um-footerbar-item.active .icon-my {
+    background-image: url(../../img/icon-my-active.png);
 }

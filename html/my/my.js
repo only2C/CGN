@@ -52,11 +52,7 @@ var stypeText = stype==1?'去调拨':'去采购';
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var userInfo = JSON.parse(summer.getStorage("userInfo"));
-    var isSupplier = summer.pageParam.isSupplier ;
-    if(isSupplier){
-        $("#footer").hide();
-    }
-
+    var isSuppliers =  summer.pageParam.isSupplier ? (summer.pageParam.isSupplier=="01"?true:false )  :false;
 
     var viewModel = {
         userName:ko.observable(userInfo.username),
@@ -68,6 +64,7 @@ summerready = function(){
         systemFlag:ko.observable(stype),
         isCG:ko.observable(true),    //采购
         isDB:ko.observable(false),  // 调拨
+        isSupplier:ko.observable(isSuppliers), // 供应商
         openList:function(type,enter){
             summer.openWin({
                 "id" :"order_list",
@@ -153,14 +150,19 @@ summerready = function(){
 
     }
     ko.applyBindings(viewModel);
-
-    if(stype == 0){
-        viewModel.isCG(true);
+    if(isSuppliers){  //供应商
+        viewModel.isCG(false);
         viewModel.isDB(false);
     }else{
-        viewModel.isCG(false);
-        viewModel.isDB(true);
+        if(stype == 0){
+            viewModel.isCG(true);
+            viewModel.isDB(false);
+        }else{
+            viewModel.isCG(false);
+            viewModel.isDB(true);
+        }
     }
+
 
 
     var  $drop2 = $(".drop2");
