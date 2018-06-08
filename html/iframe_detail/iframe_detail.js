@@ -84,8 +84,7 @@ function queryRang(){
 }
 function queryDoc(){
     var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100,"suFaCode":summer.pageParam.suFaCode});
-    // p_async_post(ip + '/ieop_base_mobile/mfrontsufaattachments/querypage', param, 'queryDocCallback');
-    p_async_post(ip + '/ieop_base_mobile/frontsufaattachments/querypage', param, 'queryDocCallback');
+    p_async_post(ip + '/ieop_base_mobile/mfrontsufaattachments/querypage', param, 'queryDocCallback');
 }
 
 function queryDetailCallback(res) {
