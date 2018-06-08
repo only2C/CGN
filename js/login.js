@@ -79,14 +79,12 @@ function logon_after_process(data){
                 "addBackListener":"true"
             });
         }else if(ent.ieopUserIsInner=="0"&&ent.ieopUserIsSu=="1"){
+            summer.setStorage("isSupplier","01");
             summer.openWin({
                 id : 'home',
                 url : 'html/my/my.html',
                 isKeep: false,
                 "addBackListener":"true",
-				"pageParam":{
-                	isSupplier:"01"  //供应商
-				}
             });
         }else{
             summer.openWin({

@@ -40,9 +40,11 @@ summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
+    var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
     var viewModel = {
 		title:ko.observable( summer.pageParam.title),
         isAndriod:ko.observable($summer.os=='android'),
+        isSupplier:ko.observable(isSuppliers),
         detailArr:ko.observableArray([]),
         rangArr:ko.observableArray([]),
         docArr:ko.observableArray([]),

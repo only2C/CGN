@@ -39,9 +39,12 @@ summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
+    var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
+
     var viewModel = {
         isAndriod:ko.observable($summer.os=='android'),
         iframeList:ko.observableArray([]),
+        isSupplier:ko.observable(isSuppliers),
         openDetailWin:function(suFaCode){
             summer.openWin({
                 "id" : "iframeDetail",
