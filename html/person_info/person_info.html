@@ -1,126 +1,136 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-		<meta charset="UTF-8">
-		<title></title>
-		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
-		<link rel="stylesheet" href="../../css/font-icons.css">
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../../css/font-icons.css">
+    <link rel="stylesheet" href="./person_info.css"/>
+    <script src="../../js/summer.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/knockout.js"></script>
+    <script src="../../js/base64.js"></script>
+    <script src="../../js/pub.js"></script>
+    <script src="../../js/pub1.js"></script>
+    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+    <script src="./person_info.js"></script>
+</head>
+<body>
+<div class="um-win" id="personInfo">
 
-		<link rel="stylesheet" href="./person_info.css"/>
-		<script src="../../js/summer.js" ></script>		
-		<script src="../../js/jquery.min.js" ></script>
-        <script src="../../js/knockout.js" ></script>
-		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
-        <script src="./person_info.js"></script>
-	</head>
-	<body>
-		<div class="um-win" id="personInfo">
+    <div class="um-header" id="header">
+        <a onClick="closeWin()" class="um-back"></a>
+        <h3>个人信息</h3>
+        <span class="save-info" data-bind="click:saveUserInfo">保存</span>
+    </div>
+    <div class="um-content">
 
-            <div class="um-header" id="header">
-                <a onClick="closeWin()" class="um-back"></a>
-                <h3>个人信息</h3>
-                <span class="save-info">保存</span>
-            </div>
+        <div class="um-header um-header-personal" style="background-color: #ffffff;">
+            <p class="tc pt15">
+                <img class="um-circle" height=60 width=60 src="../../img/user.png" alt="...">
+            </p>
+            <p style="color: #989898;position: relative;top: 13px;" class="tc um-white">点击修改头像</p>
+        </div>
 
-		<!--	<div class="um-header-light" style="background-color: #FAFAFA">
-                <a href="#" class="um-back"></a>
-                <h3 style="color: #000000">个人信息</h3>
-                <a style="color: #000000" href="#" class="um-header-right ">保存</a>
-            </div>-->
+        <div data-bind="foreach:userInfo">
+            <ul class="um-list" style="top: 10px;">
+                <li>
+                    <div class="um-list-item">
+                        <div class="um-list-item-inner">
 
-			<div class="um-content">
-				
-                <div class="um-header um-header-personal" style="background-color: #ffffff;">
-                    <p class="tc pt15">
-                		<img class="um-circle" height=60 width=60 src="../../img/user.png" alt="...">
-                    </p>
-                    <p style="color: #989898;position: relative;top: 13px;" class="tc um-white">点击修改头像</p> 
-                </div>
-				
-				
-                <ul class="um-list" style="top: 10px;">
-                    <li>
-                        <div class="um-list-item">
-                            <div class="um-list-item-inner">
-                                
-                                <div class="um-list-item-left pl15">
-                                    用户编号
-                                </div>
-                                <div class="um-list-item-right">
-                                    <input type="text" class="form-control" placeholder="92912267">
-                                </div>
+                            <div class="um-list-item-left pl15">
+                                用户编号
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" placeholder="用户编号" data-bind="value:ieopUserCode">
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="um-list-item">
-                            <div class="um-list-item-inner">
-                                <div class="um-list-item-left pl15">
-                                    用户姓名
-                                </div>
-                                <div class="um-list-item-right">
-                                    <input type="text" class="form-control" placeholder="yangzheng">
-                                </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                用户姓名
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" placeholder="用户姓名" data-bind="value:ieopUserName">
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="um-list-item">
-                            <div class="um-list-item-inner">
-                                <div class="um-list-item-left pl15">
-                                    手机
-                                </div>
-                                <div class="um-list-item-right">
-                                    <input type="text" class="form-control" placeholder="1389771341">
-                                    <i class="phone_icon"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="um-list-item">
-                            <div class="um-list-item-inner">
-                                
-                                <div class="um-list-item-left pl15">
-                                    性别
-                                </div>
-                                <div class="um-list-item-right">
-                                   <label class="um-check-inline um-bf1" style="float: left;">
-					                	<input id="pass" name="um-checkbox-inline" type="radio" value="1" checked="">
-					                	<span class="um-icon-checkbox um-css3-vc"></span> 
-					                	<span class="um-black ml5 f14">男</span> 
-					                </label>  
-					                <label class="um-check-inline um-bf1" style="float: left;left: 10%;">
-					                	<input name="um-checkbox-inline" type="radio" value="2">
-					                	<span class="um-icon-checkbox um-css3-vc"></span> 
-					                	<span class="um-black ml5 f14">女</span> 
-					                </label>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="um-list-item">
-                            <div class="um-list-item-inner">
-                                <div class="um-list-item-left pl15">
-                                   邮箱
-                                </div>
-                                <div class="um-list-item-right" style="padding-right: 2px;">
-                                    <input type="text" class="form-control" placeholder="yangzheng@yonyou.com">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </li>
 
-				
-			</div>
 
-			<div class="um-footer">
-				
-			</div>
-		</div>
-	</body>
+                <li>
+                    <div class="um-list-item">
+                        <div class="um-list-item-inner">
+
+                            <div class="um-list-item-left pl15">
+                                性别
+                            </div>
+                            <div class="um-list-item-right">
+                                <label class="um-check-inline um-bf1" style="float: left;">
+                                    <input id="pass" name="um-checkbox-inline" type="radio" value="1"
+                                           data-bind="attr:{checked:ieopUserSex==1?true:false}">
+                                    <span class="um-icon-checkbox um-css3-vc"></span>
+                                    <span class="um-black ml5 f14">男</span>
+                                </label>
+                                <label class="um-check-inline um-bf1" style="float: left;left: 10%;">
+                                    <input name="um-checkbox-inline" type="radio" value="2" data-bind="attr:{checked:ieopUserSex==0?true:false}">
+                                    <span class="um-icon-checkbox um-css3-vc"></span>
+                                    <span class="um-black ml5 f14">女</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                邮箱
+                            </div>
+                            <div class="um-list-item-right" style="padding-right: 2px;">
+                                <input type="text" class="form-control" placeholder="邮箱" data-bind="value:ieopUserMail">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                手机
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" placeholder="手机" data-bind="value:ieopUserPhone">
+                                <i class="phone_icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="um-list-item">
+                        <div class="um-list-item-inner">
+                            <div class="um-list-item-left pl15">
+                                固定电话
+                            </div>
+                            <div class="um-list-item-right">
+                                <input type="text" class="form-control" placeholder="手机" data-bind="value:ieopUserTel">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="um-footer">
+
+    </div>
+</div>
+</body>
 </html>
