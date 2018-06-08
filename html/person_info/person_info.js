@@ -32,8 +32,8 @@ summerready = function(){
                 ieopUserPhone:info[0].ieopUserPhone,
                 ieopUserSex:info[0].ieopUserSex,
                 ieopUserTel:info[0].ieopUserTel,
-            }
-            var params = p_page_params_con_dataj_enc(param);
+            };
+            var params = p_params_dataj_ent_enc(param);
             p_async_post(ip + '/ieop_base_mobile/mfrontmalluser/update', params, 'saveCallback');
         }
 
