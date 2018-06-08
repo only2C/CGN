@@ -25,7 +25,9 @@ summerready = function(){
 	var viewModel = {
 		pLevel:ko.observable(''),
 		ufn:ko.observable(summer.getStorage("ufn")),
-		backDate:ko.observable(''),
+		yyDate:ko.observable(''),
+		cartType:ko.observable(summer.getStorage("cartType")),
+		totalPrice:ko.observable(),
 		mList:ko.observableArray([]),
 		addressList:ko.observableArray([]),
 		sendOrder:function(){
@@ -36,25 +38,16 @@ summerready = function(){
                 //});
 			    //return;
 			//}
+			//  验证能否下单
 			var user_carts_materials_ids= '';
 			for(var i=0;i<viewModel.mList().length;i++){
 				user_carts_materials_ids = user_carts_materials_ids+viewModel.mList()[i].id+'#';
 			}
-			var receiveId = viewModel.addressList()[0].id;
-			var p_conditions = {};
-			for(var i =0;i<viewModel.mList().length;i++){
-				user_carts_materials_ids = user_carts_materials_ids+viewModel.mList()[i].id+'#';
-			}
-			p_conditions['userCartIds'] = user_carts_materials_ids;
-			p_conditions['receiveId'] = receiveId;
-			p_conditions['urgent'] = viewModel.pLevel();
-			p_conditions['expectDate'] = viewModel.backDate();
-			
-			var page_params={"pageIndex":1,"pageSize":10};  //
-			var sortItem = {};
-			var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-			p_async_post(ip+'/ieop_base_mobile/mfrontmalltransferorder/saveagg', enc_conditions,'saveAgg');
-			
+			var info = {};
+	        info['userCartIds'] = user_carts_materials_ids;
+	        var bb = p_params_con_dataj_enc(info);
+	        //p_params_con_dataj_enc
+	        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/valicarts', bb,'valiCarts');
 		},
 		openWin:function(winId){
 			summer.openWin({
@@ -73,11 +66,16 @@ summerready = function(){
     
     //获取订单列表
 	function query_action(){
-	    var p_conditions = {};
+	    var cartType = viewModel.cartType();
+	    if(cartType == 1){
+	    	var p_conditions = {"buyStoreSwitch":"0"};
+	    }else{
+	    	var p_conditions = {"buyStoreSwitch":"1"};
+	    }
 	    var page_params={"pageIndex":1,"pageSize":1000};  //
 	    var sortItem = {};
 	    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-	    p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/queryorderpage', enc_conditions,'queryorderpage');
+	    p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/queryorderpage', enc_conditions,'queryorderpage');
 	    
 	}
 	
@@ -88,6 +86,34 @@ summerready = function(){
         display: "bottom",
         animate: ""
     });
+}
+function valiCarts(res){
+	if(res.status!=1){
+		summer.toast({
+             "msg" : res.msg
+        })
+		return;
+	}
+	var user_carts_materials_ids= '';
+	var receiveId = viewModel.addressList()[0].id;
+	var p_conditions = {};
+	for(var i =0;i<viewModel.mList().length;i++){
+		user_carts_materials_ids = user_carts_materials_ids+viewModel.mList()[i].id+'#';
+	}
+	p_conditions['userCartIds'] = user_carts_materials_ids;
+	p_conditions['receiveId'] = receiveId;
+	if(viewModel.cartType()=="1"){
+       	p_conditions['buyStoreSwitch'] = '0'; 
+    }else{
+        var orderedExpectDate = viewModel.yyDate();
+        p_conditions['buyStoreSwitch'] = '1'; 
+        p_conditions['orderedExpectDate'] = orderedExpectDate;
+    }
+			
+	var page_params={"pageIndex":1,"pageSize":10};  //
+	var sortItem = {};
+	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/saveaggs', enc_conditions,'saveAgg');
 }
 function initAddress(){
 	viewModel.addressList([]);
@@ -116,12 +142,15 @@ function queryorderpage(data){
 	if(data.status == 1){
 	    var ents = data.retData.ents;
 	    var tmpArr = [];
+	    var totalPrice = 0;
 	    for(var i=0;i<ents.length;i++){
-	        if(ents[i].borrowFactoryName==viewModel.ufn()){
-	        	tmpArr.push(ents[i]);
-	        }
+	        //if(ents[i].buyFactoryName==viewModel.ufn()){  todo，待确定
+	        totalPrice += Number(Number(ents[i].sumallTPrice).toFixed(2));
+	        tmpArr.push(ents[i]);
+	        //}
 	    }
 	    ents = tmpArr;
+	    viewModel.totalPrice(totalPrice);
 	    viewModel.mList(ents);
 	}else{
 	    summer.toast({

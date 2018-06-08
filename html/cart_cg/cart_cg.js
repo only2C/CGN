@@ -62,6 +62,7 @@ summerready = function(){
         cartType:ko.observable(),
 		checkedAll:ko.observable(false),
 		defaultOrg:ko.observable(summer.getStorage("ufn")),
+		totalPrice:ko.observable(),
 		chooseNum:ko.observable(0),
 		ufn:ko.observable(summer.getStorage("ufn")),
 		item:ko.observableArray([]),
@@ -139,15 +140,18 @@ summerready = function(){
 			var flag = 0;
 			var num = 0;
 			var cartList = viewModel.cartList();
+			var totalPrice=0;
 			for(var i =0;i<cartList.length;i++){
 				if(!cartList[i].choose()){
 					flag = 1;
 					updatesta(cartList[i].id,'0');
 				}else{
 					num++;
+					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(2));
 					updatesta(cartList[i].id,'1');
 				}
 			}
+			viewModel.totalPrice(totalPrice);
 			viewModel.chooseNum(num);
 			if(flag == 1){
 				viewModel.checkedAll(false);
@@ -160,16 +164,20 @@ summerready = function(){
 			var cartList = viewModel.cartList(),
 				len = cartList.length;
 			if(viewModel.checkedAll()){
+				var totalPrice=0;
 				for(var i =0;i<len;i++){
 					cartList[i].choose(true);
+					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(2));
 					updatesta(cartList[i].id,'1');
 				}
+				viewModel.totalPrice(totalPrice);
 				viewModel.chooseNum(len);
 			}else{
 				for(var i =0;i<len;i++){
 					cartList[i].choose(false);
 					updatesta(cartList[i].id,'0');
 				}
+				viewModel.totalPrice(0);
 				viewModel.chooseNum(0);
 			}
 			viewModel.cartList(cartList);
@@ -277,10 +285,7 @@ function query_action(){
 	      
 }
 function queryCarts (data){
-
-		 var cartType = summer.getStorage("cartType");   //0  预约库 ， 1 采购库
-
-
+		var cartType = summer.getStorage("cartType");   //0  预约库 ， 1 采购库
 		if(data.status==1){
 	    	var ents = data.retData.ents;
 	    	if(ents.length==0){
@@ -333,15 +338,17 @@ function getpriceandstock(ret){
 		mds[key] = retData[i];
 	}
 	var tmpArr = [];
+	var totalPrice=0;
 	for(var i=0;i<ents.length;i++){
 	   //ents[i].materialImgUrl = summer.getStorage("imgBaseUrl") + ents[i].materialImgUrl; 		
 	   //if(ents[i].borrowFactoryName==viewModel.defaultOrg()){
 	      var choose = ents[i].buyStoreStatus ==1?true:false;
-		  if(choose){
-		    num++;
-		  }
 		  //var key = ents[i].supplyFactoryCode+','+ents[i].materialCode;
 		  ents[i].suPrice = Number(ents[i].sumallTPrice).toFixed(2);
+		  if(choose){
+		  	totalPrice += Number(ents[i].suPrice);
+		    num++;
+		  }
 		  ents[i].materialTAmount = parseInt(ents[i].materialTAmount);
 		  if(parseInt(ents[i].suMarStock)){
         	  ents[i].stock = parseInt(ents[i].suMarStock);
@@ -354,6 +361,7 @@ function getpriceandstock(ret){
 	      tmpArr.push(ents[i]);
 	   //}
 	}
+	viewModel.totalPrice(Number(totalPrice).toFixed(2));
 	ents = tmpArr;
 	if(num==ents.length){
 	    viewModel.checkedAll(true);

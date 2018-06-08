@@ -77,10 +77,15 @@
                     <span class="has-choose">
                     	全选（<span data-bind="text:chooseNum"></span>）
                     </span>
+                    <!--<span>合计：￥<span data-bind="text:totalPrice"></span></span>-->
                     <div class="fr">
-                    	<span class="total">共<span data-bind="text:cartList().length"></span>件备件</span>
+                    	<span class="total">合计：￥<span data-bind="text:totalPrice"></span></span>
                     	<div data-bind="css:{disable:chooseNum()==0},text:deleteOrChange,click:openWin.bind($data,'confirm_order_cg')" class="change-goods"></div>
                     </div>
+                    <!--<div class="fr">
+                    	<span class="total">共<span data-bind="text:cartList().length"></span>件备件</span>
+                    	<div data-bind="css:{disable:chooseNum()==0},text:deleteOrChange,click:openWin.bind($data,'confirm_order_cg')" class="change-goods"></div>
+                    </div>-->
 				</div>
 				<div class="um-footerbar h45"  id='nav'>
 					<a href="../home/home.html" id="home" class="um-footerbar-item home">

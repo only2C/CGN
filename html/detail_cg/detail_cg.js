@@ -103,7 +103,7 @@ summerready = function(){
 		        info['materialId'] = viewModel.mId();
 		        info['factoryCode'] = viewModel.cgnFCodes();
 		        var bb = p_params_dataj_ent_enc(info);
-	            p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialfavorites/save', bb,'favoritesSave');
+	            p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/save', bb,'favoritesSave');
 	            
 			}else {
 				//关注
@@ -113,11 +113,14 @@ summerready = function(){
 				info['materialCode'] = viewModel.cgnMCode();
 				info['materialName'] = viewModel.cgnMName();
 				info['materialImgUrl'] = viewModel.picArr()[0];
+				info['ieopEnterpriseCode'] = params.ieopenterprisecode;
+				info['ieopEnterpriseName'] = viewModel.ieopEnterpriseName();
 				info['userId'] = JSON.parse(userInfo).id;
-				info['materialFSta'] = 1;
-				info['factoryCode'] = params.cgnFCode;
-				info['factoryName'] = viewModel.cgnFName();
-				info['brandName'] = viewModel.cgnBrandName();
+				info['suStoreCode'] = params.suStoreCode;
+				info['suStoreName'] = viewModel.suStoreName();
+		
+				info['brandName'] = viewModel(cgnBrandName);
+				info['materialFSta'] = materialFSta;
 				var bb = p_params_dataj_ent_enc(info);
 				p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialfavorites/save', bb,'favoritesSave1');
 				

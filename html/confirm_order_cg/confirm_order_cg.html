@@ -106,35 +106,25 @@
 								</div>
 								<div class="fl">
 									<div data-bind="text:materialName" class="item-title">压力表ACC.1 6 0-1.6MPa</div>
-									<div class="location">位置：<span data-bind="text:supplyFactoryName"></span></div>
-									<div class="left-num">数量：<span data-bind="text:parseInt(mallTAmount)"></span></div>
+									<div class="location"><span data-bind="text:suStoreName"></span></div>
+									<div class="left-num">数量：<span style="margin-right:20px;" data-bind="text:parseInt(materialTAmount)"></span>价格：<span data-bind="text:Number(sumallTPrice).toFixed(2)"></span></div>
 								</div>
 							</li>
 						</ul>
-						<div class="item">
-							<div>
-								紧急程度<i class="arrow-right"></i>
-								<input type="text" data-bind="value:pLevel" id='select1_dummy' />
-                                	<select id='select1' data-bind="value:pLevel">
-                                		<option value="0">低</option>
-                                		<option value="1">中</option>
-                                		<option value="2">高</option>
-                                	</select>
-							</div>
-							<div class=" w um-gray "  style="height: 1px;"></div>
-						</div>
-						<div class="item">
-							<div>
-								预计归还日期<input type="text" class="scroller-date" data-bind="value:backDate" readonly=""/><i class="arrow-right"></i>
-							</div>
-							<div class=" w um-gray "  style="height: 1px;"></div>
-						</div>
 					</div>
 				</div>
 			</div>
 			<div class="um-footer">
-				<div class="flex2"><span class="fr">共<span data-bind="text:mList().length"></span>件产品</span></div>
-				<div data-bind="click:sendOrder" class="flex1">提交订单</div>
+				<div data-bind="visible:cartType()==0" class="item">
+					<div>
+						预约时间<input type="text" class="scroller-date" data-bind="value:yyDate" readonly=""/><i class="arrow-right"></i>
+					</div>
+					<div class=" w um-gray "  style="height: 1px;"></div>
+				</div>
+				<div class="flexDiv">
+					<div class="flex2"><span class="fl">共计&nbsp;<span data-bind="text:totalPrice"></span></span><span class="fr">共<span data-bind="text:mList().length"></span>件产品</span></div>
+					<div data-bind="click:sendOrder" class="flex1">提交订单</div>
+				</div>
 			</div>
 		</div>
 		<script src="./confirm_order_cg.js"></script>

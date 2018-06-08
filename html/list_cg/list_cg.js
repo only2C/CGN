@@ -14,9 +14,6 @@ function cloneObjectFn(obj) { // 对象复制
 
 summerready = function () {
     $summer.fixStatusBar($summer.byId('header'));
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, false);
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
     var thirdMenu = summer.pageParam.thirdMenu ? summer.pageParam.thirdMenu : [];

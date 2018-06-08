@@ -1,0 +1,82 @@
+.um-header {
+	background-color:#fff;
+	color:#333;
+}
+.um-header h3 {
+	font-size:15px;
+	font-weight: normal;
+	color:#333;
+}
+.um-back::before {
+	position:relative;
+	left:10px;
+	width: 10px;
+    height: 10px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+}
+.um-content {
+	background-color:#fff;
+}
+.container {
+    background-color: #efeff3;
+    padding-top:15px;
+}
+.nav-bar,.big-success {
+	background-color:#fff;
+}
+.nav-bar {
+	margin-bottom:15px;
+	height:75px;
+	padding-top:26px;
+}
+.nav-bar .line {
+	display:flex;
+	display:-webkit-flex;
+	width:80%;
+	margin:0 auto;
+	border-top:1px solid #e1e2e1;
+}
+.big-success {
+	text-align:center;
+	font-size:20px;
+	padding-top: 80px;
+}
+.big-success img {
+	display: block;
+    width: 120px;
+    margin: 0 auto 24px;
+}
+.um-footer {
+	background-color:#fe740e;
+	color:#fff;
+	line-height:44px;
+	font-size:15px;
+}
+.flex1 {
+	position:relative;
+	flex:1;
+}
+.arrive.on {
+	background: url(../../img/arrived.png) no-repeat;
+	background-size: 24px;
+}
+.arrive {
+	display: block;
+    width: 24px;
+    height: 24px;
+    background: url(../../img/not-arrive.png) no-repeat;
+    background-size: 24px;
+    margin: 0 auto 8px;
+}
+.step.first {
+    left: -24px;
+    right:auto;
+}
+.step {
+	position: absolute;
+    text-align: center;
+    font-size: 12px;
+    top: -13px;
+    right: -17px;
+}

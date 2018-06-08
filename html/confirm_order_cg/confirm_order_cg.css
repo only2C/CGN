@@ -124,10 +124,11 @@ html,body {
     border-radius: 3px;
 }
 .item {
+	width:100%;
 	position:relative;
 	line-height: 44px;
 	background-color:#fff;
-	padding:0 10px;
+	text-align:left;
 }
 .scroller-date {
 	width: 100%;
@@ -159,8 +160,12 @@ html,body {
 	padding-top:10px;
 }
 .um-footer {
+	height:88px;
+
+}
+.flexDiv {
 	display:flex;
-	display: -webkit-flex;
+	display:-webkit-flex;
 }
 .flex1 {
 	flex:1;
