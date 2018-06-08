@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="../../css/my.css">
     <script src="../../js/summer.js" ></script>
     <script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/pub.js"></script>
+	<script src="../../js/pub1.js"></script>
+	<script src="../../js/base64.js"></script>
     <script src="../../js/knockout.js" ></script>
     <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
     <script src="./my_store.js"></script>
     <link rel="stylesheet" href="./my_store.css" />
-
 </head>
 <body>
 
@@ -23,36 +25,47 @@
 				<h3>商铺管理</h3>
 		</div>
 		
-	    <div class="um-content">	
+	    <div class="um-content" data-bind="foreach:storeData">
 			    <div class="store-info">
 			        <div class="store-pic col-md-3">
-			            <img src="../../img/person.png" width="70" height="70">
+			            <img data-bind="attr:{src:ieopSuLogo?ieopSuLogo:'../../img/person.png'}" width="70" height="70">
 			        </div>
 					<div class="store-detail col-md-9">
 			            <div>
-			                <label>法人：</label>
-			                <span>张三</span>
+			                <label>供应商名称：</label>
+								<span data-bind="text:ieopEnterpriseName"></span>
 			            </div>
 			            <div>
-			                <label>店铺名称：</label>
-			                <span>用友能源</span>
+			                <label>供应商编码：</label>
+			                <span data-bind="text:ieopEnterpriseCode"></span>
 			            </div>
 			            <div>
 			                <label>店铺地址：</label>
-			                <span>北京</span>
+			                <span data-bind="text:ieopSuProvince"></span>
 			            </div>
 			        </div>
 			    </div>
 
 			    <div class="row">
-			        <div class="col-md-5 tl">供应商编码：</div>
-			        <div class="col-md-6 tl">123456788</div>
+			        <div class="col-md-5 tl">详细地址：</div>
+			        <div class="col-md-6 tl" data-bind="text:address"></div>
 			    </div>
 			
 			    <div class="row">
-			        <div class="col-md-5 tl">类型：</div>
-			        <div class="col-md-6 tl">生产厂家</div>
+			        <div class="col-md-5 tl">邮编：</div>
+			        <div class="col-md-6 tl" data-bind="text:ieopSuPostcode"></div>
 			    </div>
+
+				<div class="row">
+					<div class="col-md-5 tl">电话：</div>
+					<div class="col-md-6 tl" data-bind="text:ieopSuTel"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-5 tl">联系人：</div>
+					<div class="col-md-6 tl" data-bind="text:ieopSuContact"></div>
+				</div>
+
 			</div>	
 		</div>		
 </body>

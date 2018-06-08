@@ -52,8 +52,7 @@ var stypeText = stype==1?'去调拨':'去采购';
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var userInfo = JSON.parse(summer.getStorage("userInfo"));
-    var isSuppliers =  summer.pageParam.isSupplier ? (summer.pageParam.isSupplier=="01"?true:false )  :false;
-
+    var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
     var viewModel = {
         userName:ko.observable(userInfo.username),
         ufn:ko.observable(summer.getStorage('ufn')),
@@ -150,7 +149,7 @@ summerready = function(){
 
     }
     ko.applyBindings(viewModel);
-    if(isSuppliers){  //供应商
+    if(!isSuppliers){  //供应商
         viewModel.isCG(false);
         viewModel.isDB(false);
     }else{

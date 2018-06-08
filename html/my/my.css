@@ -17,13 +17,13 @@
     padding-top:25px;
 }
 .my-header-content{
-    
+
 }
 
 .my-header-sys{
-     height:30px;
+    height:30px;
     line-height: 30px;
- }
+}
 
 .my-header-systype {
     float:right;
@@ -39,6 +39,9 @@
 }
 .my-header-userName{
     margin:15px 0 3px 0;
+    font-size:14px;
+    width:150px;
+    overflow:hidden
 }
 .system-title{
     color: #fff;
@@ -47,12 +50,12 @@
     float: right;
 }
 .system-list{
-     background: #fff;
-     border: 1px solid #f0a30a;
-     position:absolute;
-     border-radius:5px;
-     margin-top: 20px;
- }
+    background: #fff;
+    border: 1px solid #f0a30a;
+    position:absolute;
+    border-radius:5px;
+    margin-top: 20px;
+}
 .system-list li{
     width:60px;
     line-height:25px;
@@ -136,10 +139,11 @@
     background-image: url(../../img/icon-my-active.png);
 }
 .open_store{
-    width: 120px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
     background: url(../../img/store-icon.png) no-repeat;
     background-size: 100%;
+    margin-top:10px;
 }
 .isDB,.isCG{
     background: none;

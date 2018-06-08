@@ -40,9 +40,11 @@ summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
+    var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
     var viewModel = {
 		title:ko.observable( summer.pageParam.title),
         isAndriod:ko.observable($summer.os=='android'),
+        isSupplier:ko.observable(isSuppliers),
         detailArr:ko.observableArray([]),
         rangArr:ko.observableArray([]),
         docArr:ko.observableArray([]),
@@ -82,8 +84,7 @@ function queryRang(){
 }
 function queryDoc(){
     var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100,"suFaCode":summer.pageParam.suFaCode});
-    // p_async_post(ip + '/ieop_base_mobile/mfrontsufaattachments/querypage', param, 'queryDocCallback');
-    p_async_post(ip + '/ieop_base_mobile/frontsufaattachments/querypage', param, 'queryDocCallback');
+    p_async_post(ip + '/ieop_base_mobile/mfrontsufaattachments/querypage', param, 'queryDocCallback');
 }
 
 function queryDetailCallback(res) {
