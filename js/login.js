@@ -80,6 +80,7 @@ function logon_after_process(data){
                 "addBackListener":"true",
             });
         }else{
+
            summer.setStorage("isSupplier","");
             summer.openWin({
                 id : 'home',
