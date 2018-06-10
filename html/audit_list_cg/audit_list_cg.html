@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../../css/font-icons.css">
+    <link rel="stylesheet" href="./audit_list_cg.css" />
+    <script>window.PointerEvent = undefined</script>
+    <script src="../../js/summer.js" ></script>
+    <script src="../../js/jquery.min.js" ></script>
+    <script src="../../js/pub.js"></script>
+    <script src="../../js/pub1.js"></script>
+    <script src="../../js/base64.js"></script>
+    <script src="../../js/knockout.js"></script>
+    <script src="../../js/jroll.min.js"></script>
+    <!--<script src="../../js/iscroll5.js"></script>-->
+    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    <script src="./audit_list_cg.js"></script>
+</head>
+<body>
+
+<div class="um-win" id="order_all">
+    <div class="um-header" id="header">
+        <a onClick="closeWin()" class="um-back"></a>
+        <h3>采购订单审核</h3>
+    </div>
+
+    <div class="um-content">
+
+        <!--采购订单审核-->
+        <div class="order-status">
+            <div data-bind="click:queryByStatus.bind($data,0)" class="order-status-icon">
+                <div class="order-icon-1"></div>
+                <p>待审核</p>
+            </div>
+            <div data-bind="click:queryByStatus.bind($data,1)" class="order-status-icon">
+                <div class="order-icon-6"></div>
+                <p>已审核</p>
+            </div>
+        </div>
+        <div data-bind="foreach:orderList" class="order-list">
+            <div class="order-header">
+                <div class="order-header-left fl">
+                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
+                </div>
+                <div class="order-header-right fr">
+                    已收货
+                </div>
+            </div>
+            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
+               	<div>
+               		 <div class="order-content-img fl">
+	                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
+	                </div>
+	                <div class="order-content-detail fl">
+	                    <h4 data-bind="text:materialName">压力表</h4>
+	                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
+	                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
+	                </div>
+	                <div class="order-content-tag fr">
+	                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
+	                </div>
+               	</div>
+            </div>
+            <div class="order-footer">
+                <div class="order-total">
+                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
+                </div>
+                <div class="order-button-list">
+                   <button class="btn-1">取消</button>
+                   <button class="btn-2">查看详情</button>
+                   <button class="btn-2">管理文档</button>
+                </div>
+            </div>
+
+        </div>
+        <div data-bind="visible:orderList().length<=0">没有数据</div>
+    </div>
+</div>
+
+</body>
+</html>
