@@ -1,0 +1,17 @@
+body{
+    font-size: 14px;
+}
+.um-header{
+    background: #ff9500;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.back {
+    background:url(../../img/back.png) no-repeat;
+    background-size:10px;
+    background-position: 15px 11px;
+}

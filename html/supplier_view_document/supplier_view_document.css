@@ -1,0 +1,51 @@
+body{
+    font-size: 14px;
+}
+.um-header{
+    background: #ff9500;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.back {
+    background:url(../../img/back.png) no-repeat;
+    background-size:10px;
+    background-position: 15px 11px;
+}
+.row{
+    font-weight: normal;
+    padding: 1% 0 1% 2%;
+    border-bottom:1px solid #cfcfcf;
+    background: #fff;
+    margin-top: 2%;
+    float:left;
+    width: 100%;
+}
+.iframe-img{
+    width:18%;
+    overflow: hidden;
+    padding: 15px 0 0 5px;
+}
+.iframe-info{
+    width:81%;
+}
+
+.iframe-title , .iframe-detail ,.iframe-time{
+    height:25px;
+    line-height:25px
+
+}
+.iframe-title span{
+    font-weight:bold;
+}
+.iframe-list{
+    font-size:12px;
+}
+
+.iframe-list div label{
+    float:left;
+    margin-right: 3px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../../css/font-icons.css">
+    <link rel="stylesheet" href="supplier_view_document.css" />
+    <script>window.PointerEvent = undefined</script>
+    <script src="../../js/summer.js" ></script>
+    <script src="../../js/jquery.min.js" ></script>
+    <script src="../../js/pub.js"></script>
+    <script src="../../js/pub1.js"></script>
+    <script src="../../js/base64.js"></script>
+    <script src="../../js/knockout.js"></script>
+    <script src="../../js/jroll.min.js"></script>
+    <!--<script src="../../js/iscroll5.js"></script>-->
+    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+    <script src="supplier_view_document.js"></script>
+</head>
+<body>
+
+<div class="um-win" id="supplier_view_document">
+    <div class="um-header" id="header">
+        <a onClick="closeWin()" class="um-back"></a>
+        <h3>查看文档</h3>
+    </div>
+
+    <div class="um-content">
+        <div data-bind="foreach:viewList">
+            <div class="row">
+                <div class="iframe-img fl">
+                    <img src="../../img/file-icon.png" width="30">
+                </div>
+                <div class="iframe-info fl">
+                    <div class="iframe-list">
+                        <div class="iframe-detail">
+                            <label>文档名称：</label>
+                            <a data-bind="text:suMoaFileName,attr:{'href':suMoaFileAddr}"></a>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上传人：</label>
+                            <span data-bind="text:suMoaUpusername"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上传日期：</label>
+                            <span data-bind="text:suMoaDate"></span>
+                        </div>
+                        <div class="iframe-detail">
+                            <label>上传单位：</label>
+                            <span data-bind="text:ieopEnterpriseName"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
