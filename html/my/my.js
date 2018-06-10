@@ -29,6 +29,9 @@ function openWin (winId){
 function openWin1 (winId){
     //var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
     var statusBarStyle = 'dark';
+    if(viewModel.stype()==0&&winId=='attention'){
+		winId='attention_cg';
+	}
     summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",
@@ -148,6 +151,7 @@ summerready = function(){
 
 
     }
+    window.viewModel = viewModel;
     ko.applyBindings(viewModel);
     if(!isSuppliers){  //供应商
         viewModel.isCG(false);

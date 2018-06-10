@@ -39,6 +39,9 @@ function openWin(winId, options) {
 function openWin1(winId) {
     //var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
     var statusBarStyle = 'dark';
+    if(viewModel.systemFlag()==0&&winId=='attention'){
+		winId='attention_cg';
+	}
     if ($summer.os == 'ios') {
         summer.createWin({
             id: winId,
@@ -87,6 +90,7 @@ summerready = function () {
         $('#iSlider-wrapper').css('height', '215px');
     }
     var stype = summer.getStorage("stype")?summer.getStorage("stype"):0;
+    summer.setStorage('stype',stype);
     var stypeText = stype==1?'去调拨':'去采购';
     var viewModel = {
         organizationArr: ko.observableArray([]),

@@ -34,6 +34,9 @@ function openWin (winId){
 function openWin1 (winId){
 	//var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
 	var statusBarStyle = 'dark';
+	if(viewModel.stype()==0&&winId=='attention'){
+		winId='attention_cg';
+	}
 	summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",
@@ -234,6 +237,11 @@ summerready = function(){
 		},
         setCartType:function(id,type){
 			viewModel.cartType(type);
+			if(id==1&&viewModel.deleteOrChange()!='删除'){
+				viewModel.deleteOrChange('去下单');
+			}else if(id==0&&viewModel.deleteOrChange()!='删除'){
+				viewModel.deleteOrChange('预约');
+			}
 			summer.setStorage("cartType",id);
             $("#cart-type-list").fadeToggle();
             query_action();

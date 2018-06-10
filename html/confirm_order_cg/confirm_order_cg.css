@@ -160,8 +160,10 @@ html,body {
 	padding-top:10px;
 }
 .um-footer {
+	height:44px;
+}
+.um-footer.h88 {
 	height:88px;
-
 }
 .flexDiv {
 	display:flex;
