@@ -23,8 +23,10 @@ summerready = function(){
     window.ip = summer.getStorage("ip");
     var viewModel = {
         supplierList:ko.observableArray([]),
+        tabIndex:ko.observable(summer.pageParam.status),
         getType:function(status){
             getData(status);
+            viewModel.tabIndex(status);
         },
         viewDocument:function (data) {
             summer.openWin({
