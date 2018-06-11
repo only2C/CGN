@@ -30,11 +30,6 @@ function getDocumentCallback(data){
 }
 function getDocumentList() {
     var id = summer.pageParam.orderId;
-    // var param = {
-    //     suMallorderTid:id,
-    //     pageIndex:1,
-    //     pageSize:10
-    // }
     var params = p_page_params_con_dataj_enc({suMallorderTid:id},{pageIndex:1,pageSize:10});
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallorderattachments/querypage', params,'getDocumentListCallback');
 }
@@ -42,6 +37,9 @@ function getDocumentListCallback(data) {
     var result = [];
     if(data.status==1){
         result =data.retData.ents;
+        result.forEach(function(val){
+            val.suMoaFileAddr = ip+ val.suMoaFileAddr;
+        })
     }
     viewModel.viewList(result);
 }
