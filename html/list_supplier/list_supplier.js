@@ -52,7 +52,7 @@ function getData(status){
         pageSize:100
     }
     if(status != -1){  //status == -1  查看全部
-        param.queryStatus = status?status:1;
+        param.queryStatus = status?status:summer.pageParam.status;
     }
 
     var params = p_page_params_con_dataj_enc(param);
