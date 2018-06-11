@@ -40,6 +40,21 @@ summerready = function(){
                 isKeep:false,
                 "addBackListener":"true"
             });
+        },
+        sendExpress:function (data) {
+            summer.openWin({
+                "id" :"supplier_view_document",
+                "url" : "html/list_supplier_express/list_supplier_express.html",
+                "pageParam" : {
+                    'expressObj':data.mainEnt
+                },
+                "animation":{
+                    type:"none", //动画类型（详见动画类型常量）
+                    duration:0 //动画过渡时间，默认300毫秒
+                },
+                isKeep:false,
+                "addBackListener":"true"
+            });
         }
     };
     window.viewModel = viewModel;
