@@ -40,6 +40,55 @@ summerready = function(){
                 isKeep:false,
                 "addBackListener":"true"
             });
+        },
+        sendExpress:function (data) {
+            summer.openWin({
+                "id" :"supplier_view_document",
+                "url" : "html/list_supplier_express/list_supplier_express.html",
+                "pageParam" : {
+                    'expressObj':data.mainEnt
+                },
+                "animation":{
+                    type:"none", //动画类型（详见动画类型常量）
+                    duration:0 //动画过渡时间，默认300毫秒
+                },
+                isKeep:false,
+                "addBackListener":"true"
+            });
+        },
+        getPageDetail:function (data) {
+            summer.openWin({
+                "id" :"order_detail_supplier",
+                "url" : "html/order_detail_supplier/order_detail_supplier.html",
+                "pageParam" : {
+                    'mainId':data.mainEnt.id
+                },
+                "animation":{
+                    type:"none", //动画类型（详见动画类型常量）
+                    duration:0 //动画过渡时间，默认300毫秒
+                },
+                isKeep:false,
+                "addBackListener":"true"
+            });
+        },
+        payBill:function (data) {
+            UM.confirm({
+                title: '确认结算',
+                text:'确认已经收到货款，将订单状态变成已结算？',
+                btnText: ["取消", "确定"],
+                overlay: true,
+                ok: function () {
+                    var param ={
+                        id:data.mainEnt.id,
+                        status:'11'
+                    };
+                    var params =  p_params_con_dataj_enc(param);
+                    p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/ussettlemented', params,'payBillCallback');
+                },
+                cancle: function () {
+
+                }
+            })
         }
     };
     window.viewModel = viewModel;
@@ -51,8 +100,8 @@ function getData(status){
         pageIndex:1,
         pageSize:100
     }
-    if(status != -1){  //status == -1  查看全部
-        param.queryStatus = status?status:1;
+    if(status&&status != -1){  //status == -1  查看全部
+        param.queryStatus = status?status:summer.pageParam.status;
     }
 
     var params = p_page_params_con_dataj_enc(param);
@@ -69,4 +118,20 @@ function  getDataCallback(res) {
         })
     }
     viewModel.supplierList(data);
+}
+
+function payBillCallback(data){
+    if(data.status==1){
+        UM.toast({
+            title: '结算成功',
+            duration: 3000
+        });
+        getData();
+    }else{
+        UM.toast({
+            title: data.msg,
+            duration: 3000
+        });
+    }
+
 }

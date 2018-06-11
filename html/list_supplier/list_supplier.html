@@ -60,7 +60,7 @@
                     </div>
                     <div class="order-header-right fr" data-bind="text:mainEnt.allStatusName"> </div>
                 </div>
-                <div class="order-content">
+                <div class="order-content" data-bind="click:$root.getPageDetail">
                     <div class="order-content-img fl">
                         <img src="../../img/default_small.png"/>
                     </div>
@@ -80,7 +80,7 @@
                         <!--共计：2345.00-->
                     <!--</div>-->
                     <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==1">
-                        <button class="btn-1">发货</button>
+                        <button class="btn-1" data-bind="click:$root.sendExpress">发货</button>
                         <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
                     </div>
                     <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==9">
@@ -90,7 +90,7 @@
                         <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
                     </div>
                     <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==10">
-                        <button class="btn-1">确认支付</button>
+                        <button class="btn-1" data-bind="click:$root.payBill">确认支付</button>
                         <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
                     </div>
                 </div>
