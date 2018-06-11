@@ -155,7 +155,8 @@ summerready = function(){
         },
         chooseSystem:function(){
             viewModel.systemArr(systemList);
-            $('.system-list').fadeIn();
+           $('.system-list').fadeIn();
+        	$drop2.fadeToggle();
         },
         chooseSystemArr:function (item) {
             viewModel.systemType(item.name);
@@ -168,6 +169,7 @@ summerready = function(){
                 viewModel.isCG(false);
                 viewModel.isDB(true);
             }
+            $drop2.fadeToggle();
         }
 
 
@@ -188,10 +190,10 @@ summerready = function(){
     }
 
 
-
+	
     var  $drop2 = $(".drop2");
     $drop2.on('click', function () {
-       // $('.system-list').slideToggle();
-       // $drop2.fadeToggle();
+        $('.system-list').slideToggle();
+        $drop2.fadeToggle();
     })
 }
