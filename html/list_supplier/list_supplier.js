@@ -70,6 +70,25 @@ summerready = function(){
                 isKeep:false,
                 "addBackListener":"true"
             });
+        },
+        payBill:function (data) {
+            UM.prompt({
+                title: '确认结算',
+                text:'确认已经收到货款，将订单状态变成已结算？',
+                btnText: ["取消", "确定"],
+                overlay: true,
+                ok: function () {
+                    var param ={
+                        id:data.mainEnt.id,
+                        status:'11'
+                    };
+                    var params =  p_params_con_dataj_enc(param);
+                    p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/ussettlemented', params,'payBillCallback');
+                },
+                cancle: function () {
+
+                }
+            })
         }
     };
     window.viewModel = viewModel;
@@ -99,4 +118,20 @@ function  getDataCallback(res) {
         })
     }
     viewModel.supplierList(data);
+}
+
+function payBillCallback(data){
+    if(data.status==1){
+        UM.toast({
+            title: '结算成功',
+            duration: 3000
+        });
+        getData();
+    }else{
+        UM.toast({
+            title: data.msg,
+            duration: 3000
+        });
+    }
+
 }

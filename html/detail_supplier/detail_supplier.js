@@ -1,11 +1,4 @@
 function closeWin (){
-    if(fromPage=='attention'){
-        var initPage = 'initPage()';
-        summer.execScript({
-            winId: 'attention',
-            script: initPage
-        });
-    }
     summer.closeWin()
 }
 function keyBack(){
@@ -66,7 +59,7 @@ function getDetail() {
     };
     var pageInfo ={"pageIndex":1,"pageSize":20};
     var param = p_page_params_con_dataj_enc(condition,pageInfo);
-    p_async_post('/ieop_base_mobile/mfrontsumaterial/queryaggsingle', param,'getDetailCallback');
+    p_async_post(ip+'/ieop_base_mobile/mfrontsumaterial/queryaggsingle', param,'getDetailCallback');
 
 }
 function getDetailCallback(data) {
