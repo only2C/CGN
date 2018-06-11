@@ -83,9 +83,26 @@ body{
     background: url("../../img/my_yijiesuan.png") no-repeat;
     background-size: 70%;
 }
+.order-icon-8{
+    background: url("../../img/icon-categroy.png") no-repeat 7px 2px;
+    background-size: 70%;
+}
 
+.order-status-icon.active .order-icon-8{
+    background: url("../../img/icon-categroy-active.png") no-repeat;
+    background-size: 70%;
+}
 .order-status-icon.active .order-icon-7{
     background: url("../../img/my_order_m3.png") no-repeat;
+    background-size: 70%;
+}
+.order-icon-8{
+    background: url("../../img/icon-categroy.png") no-repeat 7px 2px;
+    background-size: 70%;
+}
+
+.order-status-icon.active .order-icon-8{
+    background: url("../../img/icon-categroy-active.png") no-repeat;
     background-size: 70%;
 }
 .order-list {
