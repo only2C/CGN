@@ -72,7 +72,7 @@ summerready = function(){
             });
         },
         payBill:function (data) {
-            UM.prompt({
+            UM.confirm({
                 title: '确认结算',
                 text:'确认已经收到货款，将订单状态变成已结算？',
                 btnText: ["取消", "确定"],
