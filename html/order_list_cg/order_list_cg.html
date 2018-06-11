@@ -89,7 +89,7 @@
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus==2" class="btn-1">追加评价</button>
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&(mainEnt.allStatus==10||mainEnt.allStatus==11||mainEnt.allStatus==12)" class="btn-1">评价</button>
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==9,click:$root.acceptance.bind($data,mainEnt.id,mainEnt.receivePhone,mainEnt.receiveName)" class="btn-1">验收</button>
-	                   <button class="btn-2">查看详情</button>
+	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_supplier',mainEnt.id)" class="btn-2">查看详情</button>
 	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id)" class="btn-2">查看文档</button>
 	                </div>
 	            </div>

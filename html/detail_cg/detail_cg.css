@@ -4,6 +4,7 @@ html,body {
 }
 .um-header {
 	z-index:999 !important;
+	padding-top:22px;
 }
 #detail .um-header {
 	position:relative;

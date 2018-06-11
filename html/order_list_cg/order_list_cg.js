@@ -39,6 +39,14 @@ summerready = function(){
 			queryOrder(status);
 		},
 		openWin:function(winId,orderId){
+			var pageParam = {
+				"orderId":orderId
+			};
+			if(winId=='supplier_view_document'){
+				pageParam = {
+					"mainId":orderId
+				};
+			}
 			summer.openWin({
                 "id" :winId,
 		        "url" : "html/"+winId+"/"+winId+".html",
@@ -49,9 +57,7 @@ summerready = function(){
 		        },
 		        "statusBarStyle":'dark',
 		        "addBackListener":"true",
-		        "pageParam":{
-		        	"orderId":orderId
-		        }
+		        "pageParam":pageParam
             });
 		},
 		cancelClick:function(id){
