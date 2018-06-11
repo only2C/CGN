@@ -58,10 +58,10 @@ summerready = function(){
         },
         getPageDetail:function (data) {
             summer.openWin({
-                "id" :"supplier_view_document",
-                "url" : "html/detail_supplier/detail_supplier.html",
+                "id" :"order_detail_supplier",
+                "url" : "html/order_detail_supplier/order_detail_supplier.html",
                 "pageParam" : {
-                    'expressObj':data.mainEnt
+                    'mainId':data.mainEnt.id
                 },
                 "animation":{
                     type:"none", //动画类型（详见动画类型常量）
@@ -100,7 +100,7 @@ function getData(status){
         pageIndex:1,
         pageSize:100
     }
-    if(status != -1){  //status == -1  查看全部
+    if(status&&status != -1){  //status == -1  查看全部
         param.queryStatus = status?status:summer.pageParam.status;
     }
 

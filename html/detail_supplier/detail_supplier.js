@@ -62,7 +62,32 @@ function getDetail() {
     p_async_post(ip+'/ieop_base_mobile/mfrontsumaterial/queryaggsingle', param,'getDetailCallback');
 
 }
-function getDetailCallback(data) {
-
-    data ;
+function getDetailCallback(ret) {
+    if(ret.status==0){
+        UM.alert({
+            title: ret.msg,
+            overlay: true,
+            ok: function () {
+                closeWin();
+            }
+        });
+        return;
+    }
+    var retData = ret.retData.aggEnt.mainEnt;
+    var picArr = retData.suMSmallimgs.split("#");
+    var list = [];
+    for(var i=0;i<picArr.length;i++){
+        picArr[i] = summer.getStorage("imgBaseUrl")+picArr[i];
+        list.push({content:picArr[i]});
+    }
+    var islider = new iSlider({
+        type: 'pic',
+        data: list,
+        dom: document.getElementById("iSlider-wrapper"),
+        isLooping: true,
+        animateType: 'default',
+        isAutoplay: true,
+        animateTime: 800
+    });
+    islider.addDot();
 }
