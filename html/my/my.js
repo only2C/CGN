@@ -13,7 +13,13 @@ function keyBack(){
         turn=0;
     }, 3000);
 }
-function openWin (winId){
+function openWin (winId,status){
+	if(status===undefined){
+	}else {
+		var params = {
+			status:status
+		}
+	}
     summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",
@@ -23,7 +29,8 @@ function openWin (winId){
             duration:0 //动画过渡时间，默认300毫秒
         },
         statusBarStyle:'dark',
-        "addBackListener":"true"
+        "addBackListener":"true",
+        pageParam:params
     });
 }
 function openWin1 (winId){

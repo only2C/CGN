@@ -67,6 +67,7 @@ body{
     width: 100%;
     overflow: hidden;
     padding: 15px 0;
+    margin-bottom:10px;
 }
 .order-header{
     width: 100%;
@@ -126,6 +127,26 @@ body{
     padding: 3px 5px;
     background: #fff;
     border-radius: 5px;
+}
+.um-modal-text button {
+    width:100px;
+    background-color:blue;
+    color:#fff;
+    border:0;
+    padding:10px 5px;
+    float:left;
+}
+.um-modal-text input {
+    float:left;
+    height:40px;
+    width:140px;
+}
+.um-modal-text input:after{
+    display:block;
+    content:'';
+    clear:both;
+    width:0;
+    height:0;
 }
 .btn-1{
     border: 1px solid rgb(151,151,151);

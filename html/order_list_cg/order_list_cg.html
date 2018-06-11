@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../../css/iuapmobile.um.css">
     <link rel="stylesheet" href="../../css/font-icons.css">
     <link rel="stylesheet" href="./order_list_cg.css" />
-    <script>window.PointerEvent = undefined</script>
     <script src="../../js/summer.js" ></script>
     <script src="../../js/jquery.min.js" ></script>
     <script src="../../js/pub.js"></script>
@@ -31,7 +30,7 @@
 
         <!--采购订单-->
         <div class="order-status">
-        	<div class="order-status-icon" data-bind="click:queryByStatus">
+        	<div class="order-status-icon" data-bind="click:queryByStatus.bind($data,'')">
                 <div class="order-icon-8"></div>
                 <p>全部</p >
             </div>
@@ -56,42 +55,47 @@
                 <p>待结算</p>
             </div>
         </div>
-        <div data-bind="foreach:orderList" class="order-list">
-            <div class="order-header">
-                <div class="order-header-left fl">
-                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
-                </div>
-                <div class="order-header-right fr">
-                    已收货
-                </div>
-            </div>
-            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
-               	<div>
-               		 <div class="order-content-img fl">
-	                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
+        <div data-bind="foreach:orderList">
+        	<div class="order-list">
+	            <div class="order-header">
+	                <div class="order-header-left fl">
+	                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
 	                </div>
-	                <div class="order-content-detail fl">
-	                    <h4 data-bind="text:materialName">压力表</h4>
-	                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
-	                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
+	                <div class="order-header-right fr">
+	                    已收货
 	                </div>
-	                <div class="order-content-tag fr">
-	                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
+	            </div>
+	            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
+	               	<div>
+	               		 <div class="order-content-img fl">
+		                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
+		                </div>
+		                <div class="order-content-detail fl">
+		                    <h4 data-bind="text:materialName">压力表</h4>
+		                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
+		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
+		                </div>
+		                <div class="order-content-tag fr">
+		                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
+		                </div>
+	               	</div>
+	            </div>
+	            <div class="order-footer">
+	                <div class="order-total">
+	                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
 	                </div>
-               	</div>
-            </div>
-            <div class="order-footer">
-                <div class="order-total">
-                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
-                </div>
-                <div class="order-button-list">
-                   <button class="btn-1">取消</button>
-                   <button class="btn-2">查看详情</button>
-                   <button class="btn-2">管理文档</button>
-                </div>
-            </div>
-
+	                <div class="order-button-list">
+	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==0,click:$root.cancelClick.bind($data,mainEnt.id)" class="btn-1">取消</button>
+	                   <button data-bind="visible:mainEnt.suEvaluationStatus==2" class="btn-1">追加评价</button>
+	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&(mainEnt.allStatus==10||mainEnt.allStatus==11||mainEnt.allStatus==12)" class="btn-1">评价</button>
+	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==9,click:$root.acceptance.bind($data,mainEnt.id,mainEnt.receivePhone,mainEnt.receiveName)" class="btn-1">验收</button>
+	                   <button class="btn-2">查看详情</button>
+	                   <button data-bind="click:$root.openWin.bind('supplier_view_document',mainEnt.id)" class="btn-2">查看文档</button>
+	                </div>
+	            </div>
+	        </div>
         </div>
+        
         <div data-bind="visible:orderList().length<=0">没有数据</div>
     </div>
 </div>

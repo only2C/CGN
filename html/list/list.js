@@ -14,9 +14,6 @@ function cloneObjectFn(obj) { // 对象复制
 
 summerready = function () {
     $summer.fixStatusBar($summer.byId('header'));
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, false);
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
     var thirdMenu = summer.pageParam.thirdMenu ? summer.pageParam.thirdMenu : [];
@@ -149,9 +146,6 @@ summerready = function () {
             $('.more').hide();
         }
     }
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, false);
     $('.pull_icon').addClass('flip').addClass('loading');
     $('.more span').text('加载中...');
 
@@ -182,7 +176,7 @@ summerready = function () {
         $('#smallPic').toggle();
         $('#bigPic').toggle();
         mycall();
-        myScroll.scrollTo(0, 0, 200, easing);
+        myScroll.scrollTo(0, 0, 200, 'easing');
 
     })
     $('#thirdMenu').on('click', '.item', function () {

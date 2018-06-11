@@ -34,6 +34,43 @@ summerready = function(){
     var viewModel = {
     	orderList:ko.observableArray(),
     	status:ko.observable(),
+    	id:ko.observable(),
+    	noAccess:function(id){
+    		UM.prompt({
+			    title: '审核不通过',
+			    btnText: ["取消", "确定"],
+			    overlay: true,
+			    ok: function (data) {
+			        var info = {};
+	                info['id'] = id;
+	                info['status'] = '2';
+	                info['auditedContent'] = data;
+	                var bb = p_page_params_con_dataj_enc(info,{},{});
+	                var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunaudited', bb,'usunaudited');
+			    },
+			    cancle: function (data) {
+			    }
+			})
+    	},
+    	access:function(id){
+    		UM.prompt({
+			    title: '审核通过',
+			    btnText: ["取消", "确定"],
+			    overlay: true,
+			    ok: function (data) {
+			        var info = {};
+	                info['id'] = id;
+	                viewModel.id(id);
+	                info['status'] = '1';
+	                info['auditedContent'] = data;
+	                var bb = p_page_params_con_dataj_enc(info,{},{});
+	                var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usaudited', bb ,'usaudited');
+	                
+			    },
+			    cancle: function (data) {
+			    }
+			})
+    	},
 		queryByStatus:function(status,data,event){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			viewModel.status(status);
@@ -42,20 +79,77 @@ summerready = function(){
     };
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-    queryOrder();//初始化
-	function queryOrder(status,kwd){
-		var queryObj;
-	    var p_conditions = status===undefined?{}:{queryStatus:status};
-		if(kwd){
-			p_conditions['queryString'] = kwd;
-		}
-		var page_params={"pageIndex":1,"pageSize":100};  //分页
-		var sortItem = {};
-		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-		p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/queryauditmutiple', enc_conditions,'queryBack');
-	}
+    if(summer.pageParam.status===undefined){
+    	queryOrder();
+    }else{
+    	queryOrder(summer.pageParam.status);
+    }
+    //初始化
 }
-
+function usorderedsta(data){
+	if(data.status==1){
+		queryOrder(viewModel.status());
+    	summer.toast({
+             "msg" : "预约成功！" 
+        })
+    }else{
+    	summer.toast({
+             "msg" : data.msg
+        })
+    }
+}
+function usaudited(data){
+	if(data.status==1){
+        queryOrder(viewModel.status()); 
+        summer.toast({
+             "msg" : "审核通过！" 
+        })
+    }else if(data.status==3){
+    	UM.confirm({
+		    title: '是否预约下单',
+		    text: data.msg,
+		    btnText: ["取消", "确定"],
+		    overlay: true,
+		    ok: function () {
+		        var info = {};
+                info['id'] = viewModel.id();
+                info['status'] = '1';
+                var bb = p_page_params_con_dataj_enc(info,{},{});
+                var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usorderedsta', bb , 'usorderedsta');
+                
+		    },
+		    cancle: function () {
+		    }
+		});
+    }else{
+    	summer.toast({
+             "msg" : data.msg
+        })
+    }
+}
+function queryOrder(status,kwd){
+	var queryObj;
+    var p_conditions = status===undefined?{}:{queryStatus:status};
+	if(kwd){
+		p_conditions['queryString'] = kwd;
+	}
+	var page_params={"pageIndex":1,"pageSize":100};  //分页
+	var sortItem = {};
+	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/queryauditmutiple', enc_conditions,'queryBack');
+}
+function usunaudited(data){
+	if(data.status==1){
+        queryOrder(viewModel.status()); 
+        summer.toast({
+             "msg" : "审核未通过！" 
+        })
+    }else{
+    	summer.toast({
+             "msg" : data.msg
+        })
+    }
+}
 function queryBack(res){
 	console.log(res);
 	var orderList = res.retData.aggEnts;
