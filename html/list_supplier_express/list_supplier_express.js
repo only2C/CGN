@@ -11,11 +11,9 @@ summerready = function(){
         mallLCompany:ko.observable(),
         changeTab:function (index,data) {
             viewModel.tabIndex(index);
-            viewModel.sendExpress();
         },
         sendExpress:function () {
             var tabIndex = viewModel.tabIndex();
-
             var param ={};
             if(tabIndex == 1){
                 param ={
