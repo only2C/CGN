@@ -245,6 +245,7 @@ function getsumaterial(responseJSON) {
    	var ids="";
     for(var i= 0;i<data.length;i++){
     	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?data[i]['suMSmallimgs'][0]:'../static/mall/images/default_small.png';
+    	data[i]['suMSmallimg'] = data[i]['suMSmallimg'].substring(0,data[i]['suMSmallimg'].indexOf('#'));
     	var id = data[i].id;//物料id
 		ids += id + "#";
     }
