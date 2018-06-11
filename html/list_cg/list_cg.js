@@ -147,9 +147,6 @@ summerready = function () {
             $('.more').hide();
         }
     }
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault();
-    }, false);
     $('.pull_icon').addClass('flip').addClass('loading');
     $('.more span').text('加载中...');
 

@@ -125,18 +125,18 @@ summerready = function(){
     })
 }
 function initPage (keyW){
-		if(keyW){
-			var p_conditions = {
-				queryString:keyW
-			};
-		}else{
-			var p_conditions = {};
-		}
-		
-	    var page_params={"pageIndex":1,"pageSize":20};  //分页
-	    var sortItem = {};
-	    var paramData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-	    p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialfavorites/querypage', paramData,'querypage');
+	if(keyW){
+		var p_conditions = {
+			queryString:keyW
+		};
+	}else{
+		var p_conditions = {};
+	}
+	
+    var page_params={"pageIndex":1,"pageSize":20};  //分页
+    var sortItem = {};
+    var paramData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+    p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/querypage', paramData,'querypage');
 }
 function queryuserfactories(res){
 	var factories = res;
@@ -150,44 +150,12 @@ function queryuserfactories(res){
     }
 }
 function querypage(res){
-	 //获取库存
-    var tmpList = res.retData.ents;
-    viewModel.mList(res);
-	var cgnFCodes = '';
-	var cgnMCodes = '';
-	for(var i =0,len=tmpList.length;i<len;i++){
-		cgnFCodes = cgnFCodes+tmpList[i].factoryCode+'#';
-		cgnMCodes = cgnMCodes+tmpList[i].materialCode+'#';
-	}     
-	var p_conditions = {"fCodes":cgnFCodes.substring(0,cgnFCodes.length-1)};  //条件
-	p_conditions["mCodes"] = cgnMCodes.substring(0,cgnMCodes.length-1);
-	var page_params={"pageIndex":1,"pageSize":20};  //分页
-	var sortItem = {};
-	var data1 = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-	p_async_post(ip+'/ieop_base_mobile/mfrontmalltransferorder/getpriceandstock', data1,'getpriceandstock');
-	
-}
-function getpriceandstock(ret){
-	var retData = ret.retData.ents;
-	var mds = {};
-    for(var i=0;i<retData.length;i++){
-    	var key = retData[i].cgnFCode+','+retData[i].cgnMCode;
-		mds[key] = retData[i];
-    }
-    if(viewModel.mList().status==1){
-    	var attentionList = viewModel.mList().retData.ents;
-    	for(var i =0;i<attentionList.length;i++){
-    		var key = attentionList[i].factoryCode+','+attentionList[i].materialCode;
-    		if(attentionList[i].materialImgUrl){
-    			attentionList[i].materialImgUrl = summer.getStorage("imgBaseUrl")+attentionList[i].materialImgUrl;
-    		}
-    		if(mds[key]){
-    			attentionList[i].stock = parseInt(mds[key].labst)
-    		}else {
-    			attentionList[i].stock = '-';
-    		}
-    	}
-    	viewModel.attentionList(attentionList);
+	if(res.status==1){
+        console.log(res.retData.ents)
+    }else {
+        summer.toast({
+            "msg":res.msg
+        })
     }
 }
 function setuserfactory(result){

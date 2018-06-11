@@ -39,10 +39,41 @@ summerready = function(){
 			viewModel.status(status);
 			queryOrder(status);
 		},
+		saveClick:function(id){
+			UM.prompt({
+			    title: '请输入支付单号',
+			    btnText: ["取消", "确定"],
+			    overlay: true,
+			    ok: function (data) {
+			        var id = id;
+				    var valiOrderCode = data;
+				    if(data==""||data==null){
+				    	summer.toast({
+                             "msg" : "请输入支付单号！" 
+                        })
+				        return;
+				    }
+				    var info = {};
+				    info['id'] = id;
+				    info['valiOrderCode'] = data;
+				    var bb = p_page_params_con_dataj_enc(info,{},{});
+				    var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/savevaliordercode', bb ,'savevaliordercode');
+				    
+			    },
+			    cancle: function (data) {
+			        
+			    }
+			})
+		}
     };
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-    queryOrder();//初始化
+    if(summer.pageParam.status===undefined){
+    	queryOrder();
+    }else {
+    	queryOrder(summer.pageParam.status);
+    }
+    //初始化
 	function queryOrder(status,kwd){
 		var queryObj;
 		if(status=="20"){
@@ -59,7 +90,18 @@ summerready = function(){
 		p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysettlemutiple', enc_conditions,'queryBack');
 	}
 }
-
+function savevaliordercode(data){
+	if(data.status==1){
+        queryStatus(viewModel.status()); 
+        summer.toast({
+             "msg" : "保存成功！" 
+        })
+    }else{
+    	summer.toast({
+             "msg" : data.msg
+        })
+    }
+}
 function queryBack(res){
 	console.log(res);
 	var orderList = res.retData.aggEnts;

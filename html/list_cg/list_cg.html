@@ -14,7 +14,6 @@
 		<script src="../../js/base64.js"></script>
 		<script src="../../js/knockout.js"></script>
 		<script src="../../js/jroll.min.js"></script>
-		<!--<script src="../../js/iscroll5.js"></script>-->
 		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
 		<script src="./list_cg.js"></script>
 	</head>
@@ -119,7 +118,7 @@
 
 							<li data-bind="click:$root.openWin.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:suMCode,suStoreCode:suStoreCode})">
 								<div class="img-wp">
-									<img onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
+									<img onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg[0]}" alt="" />
 								</div>
 								<div class="right-cont">
 									<div data-bind="text:suMName" class="title"></div>

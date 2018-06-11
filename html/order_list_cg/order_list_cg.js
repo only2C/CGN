@@ -36,30 +36,127 @@ summerready = function(){
     	status:ko.observable(),
 		queryByStatus:function(status,data,event){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
-			viewModel.status(status);
 			queryOrder(status);
 		},
+		openWin:function(winId,orderId){
+			summer.openWin({
+                "id" :winId,
+		        "url" : "html/"+winId+"/"+winId+".html",
+		        "animation":{
+		            type:"none", //动画类型（详见动画类型常量）
+		            subType:"from_right", //动画子类型（详见动画子类型常量）
+		            duration:0 //动画过渡时间，默认300毫秒
+		        },
+		        "statusBarStyle":'dark',
+		        "addBackListener":"true",
+		        "pageParam":{
+		        	"orderId":orderId
+		        }
+            });
+		},
+		cancelClick:function(id){
+			UM.confirm({
+			    title: '取消订单',
+			    text: '确定取消该订单？',
+			    btnText: ["取消", "确定"],
+			    overlay: true,
+			    ok: function () {
+			    	var info = {};
+			    	info['id'] = id;
+		            info['status'] = '3';
+		            var bb = p_page_params_con_dataj_enc(info,{},{});
+		            var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunauditcanceled', bb,'usunauditcanceled');
+			    },
+			    cancle: function () {
+			    }
+			});
+		},
+		acceptance:function(id,receivePhone,receiveName){
+			UM.confirm({
+			    title: '验收',
+			    text: '<span><button onClick="sendcodesms('+id+','+receivePhone+',\''+receiveName+'\')">获取验证码</button><input id="acceptanceVal" stype="text"/></span><div class="clearfix"></div>',
+			    btnText: ["不通过", "通过"],
+			    overlay: true,
+			    ok: function () {
+			        var ver = $('#acceptanceVal').val();
+				    if(ver==""||ver==null){
+				    	summer.toast({
+				    		"msg":"请输入验证码！"
+				    	})
+				        return
+				    }else{
+				        var info = {};
+				        info['ieopVsmBillId'] = id;
+				        info['ieopVsmValiCode'] = ver;
+				        var bb = p_page_params_con_dataj_enc(info,{},{});
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb);
+				        if(data.status==1){
+				            var info = {};
+				            info['id'] = id;
+				            info['status'] = '12';
+				            info['checkContent'] = '验收不通过原因'
+				            var bb = p_page_params_con_dataj_enc(info,{},{});
+				            var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunchecked', bb);
+				            if(data.status==1){
+				                queryStatus(viewModel.status()); 
+				                summer.toast({
+				                	"mag":"验收未通过！"
+				                }) 
+				            }else{
+				            	summer.toast({
+				                	"mag":data.msg
+				                }) 
+				            }
+				        }else{
+				            summer.toast({
+				                	"mag":data.msg
+				                }) 
+				        }
+				    }
+			    },
+			    cancle: function () {
+			        
+			    }
+			});
+		}
     };
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-    queryOrder();//初始化
-	function queryOrder(status,kwd){
-		var queryObj;
-		if(status=="20"){
-        	var p_conditions = status?{suEvaluationStatus:'0'}:{};
-	    }else{
-	        var p_conditions = status===undefined?{}:{queryStatus:status};
-	    }
-		if(kwd){
-			p_conditions['queryString'] = kwd;
-		}
-		var page_params={"pageIndex":1,"pageSize":100};  //分页
-		var sortItem = {};
-		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-		p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querypurchasermutiple', enc_conditions,'queryBack');
-	}
+    if(summer.pageParam){
+    	queryOrder(summer.pageParam.status);
+    }else {
+    	queryOrder();
+    }
+    //初始化
 }
-
+function queryOrder(status,kwd){
+	viewModel.status(status);
+	var queryObj;
+	if(status=="20"){
+    	var p_conditions = status?{suEvaluationStatus:'0'}:{};
+    }else{
+        var p_conditions = status===undefined?{}:{queryStatus:status};
+    }
+	if(kwd){
+		p_conditions['queryString'] = kwd;
+	}
+	var page_params={"pageIndex":1,"pageSize":100};  //分页
+	var sortItem = {};
+	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querypurchasermutiple', enc_conditions,'queryBack');
+}
+function usunauditcanceled(res){
+	if(res.data==1){
+		summer.toast({
+             "msg" : "取消成功" 
+        })
+	}else{
+		summer.toast({
+             "msg" : res.msg
+        })
+	}
+	queryOrder(viewModel.status());
+}
 function queryBack(res){
 	console.log(res);
 	var orderList = res.retData.aggEnts;
@@ -99,6 +196,26 @@ function queryBack(res){
 		
 	}
 }
+function sendcodesms(id,receivePhone,receiveName){
+	var info = {};
+    info['ieopVsmBillId'] = id;
+    info['ieopVsmPhoneNum'] = receivePhone;
+    info['ieopUserName'] = receiveName;
+    var bb = p_page_params_con_dataj_enc(info,{},{});
+    var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/sendcodesms', bb,'sendcodesmsBack');
+}
+function sendcodesmsBack(res){
+	if(res.status==1){
+		summer.toast({
+             "msg" : "发送成功！" 
+        })
+	}else{
+		summer.toast({
+             "msg" : res.msg
+        })
+	}
+}
+
 function querybymescodes(data){
 	if(data.status==1){
         var refents = data.retData.ents;
