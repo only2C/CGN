@@ -132,7 +132,7 @@ summerready = function () {
         content: "../../img/banner1.png"
     }];
 
-   var islider = new iSlider({
+	var islider = new iSlider({
      type : 'pic',
      data : list,
      dom : document.getElementById("iSlider-wrapper"),
@@ -176,9 +176,14 @@ summerready = function () {
 
     $("#chooseSystem").on('click', function () {
         viewModel.systemArr(systemList);
-        var $this = $(this);
+        var $this = $(this); 
         $this.siblings('.system-list').slideToggle();
         $drop2.fadeToggle();
+        if($("#img1").hasClass("arrow-up"))
+        	$("#img1").removeClass("arrow-up").addClass("arrow-down")
+        else
+       		 $("#img1").removeClass("arrow-down").addClass("arrow-up")
+       	
     })
     $drop2.on('click', function () {
         $('.system-list').slideToggle();

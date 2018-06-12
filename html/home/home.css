@@ -308,7 +308,7 @@ div.um-label {
     margin-left: 5px;
 }
 
-.org-list li.on .has-choosen {
+.org-list li.on .has-choosen,.system-list li.on .has-choosen {
     display: inline-block;
 }
 
@@ -412,6 +412,29 @@ div.um-label {
 
 }
 .system-type {
-    width: 80px;
-    font-size: 12px;
+    font-size:14px;
+    float: left;
+}
+#img1{
+	width:10px;
+	height: 10px;
+}
+
+
+.arrow-down{
+
+	width:10px;
+	height:10px;
+	background:url("../../img/todown.png") no-repeat;
+	float:right;
+	margin:2px 0 0 0;
+}
+.arrow-up{
+
+	width:10px;
+	height:10px;
+	background:url("../../img/toup.png") no-repeat;
+	float:right;
+	background-size:90%;
+	margin-left:2px;
 }

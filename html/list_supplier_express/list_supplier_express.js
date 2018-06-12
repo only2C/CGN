@@ -15,13 +15,15 @@ summerready = function(){
         sendExpress:function () {
             var tabIndex = viewModel.tabIndex();
             var param ={};
+
+
             if(tabIndex == 1){
                 param ={
                     mallLCode:$("#expressId").val(),
                     mallLCompanyCode:viewModel.mallLCompanyCode()?viewModel.mallLCompanyCode():'youzhengguonei',
                     mallLCompany:viewModel.mallLCompany()?viewModel.mallLCompany():'邮政包裹/平邮',
-                    mallLCost:'包邮',
-                    mallLCostType:'4',
+                    mallLCost:$("#expressCost").val(),
+                    mallLCostType:  $("input[name='expressCost']:checked").val() ?   $("input[name='expressCost']:checked").val() :1,
                     status:'9',
                     id:summer.pageParam.expressObj.id
                 }

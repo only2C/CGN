@@ -30,7 +30,7 @@
     <div class="um-content">
         <div class="express-header">
             <div data-bind="click:changeTab.bind($data,0),css:{ 'active':tabIndex()==0 }">线下发货</div>
-            <div data-bind="click:changeTab.bind($data,1),css:{ 'active':tabIndex()==1 }">线上发货</div>
+            <div data-bind="click:changeTab.bind($data,1),css:{ 'active':tabIndex()==1 }">物流发货</div>
         </div>
         <div data-bind="visible:tabIndex()==1">
             <select class="mt15 form-control" id="expressSelect" data-bind=" event:{change:selectChange}">
@@ -854,6 +854,14 @@
 
             </select>
             <input type="text" value="" placeholder="输入订单号" class="form-control mt15" id="expressId">
+            <div class="form-control mt15">
+                <span>运费类型：</span>
+                <input type="radio" class="" value="1" name="expressCost" checked/>寄方付
+                <input type="radio" class="" value="2" name="expressCost"/>到付
+                <input type="radio" class="" value="3" name="expressCost"/>月结
+                <input type="radio" class="" value="4" name="expressCost"/>包邮
+            </div>
+            <input type="text" value="" placeholder="运费" class="form-control mt15" id="expressCost">
         </div>
 
     </div>
