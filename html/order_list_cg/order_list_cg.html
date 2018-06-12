@@ -61,9 +61,7 @@
 	                <div class="order-header-left fl">
 	                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
 	                </div>
-	                <!--<div class="order-header-right fr">
-	                    已收货
-	                </div>-->
+	                <div data-bind="text:mainEnt.billStatus" class="order-header-right fr"></div>
 	            </div>
 	            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
 	               	<div>
@@ -75,15 +73,25 @@
 		                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
 		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
 		                </div>
-		                <div class="order-content-tag fr">
+		                <!--<div class="order-content-tag fr">
 		                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
-		                </div>
+		                </div>-->
 	               	</div>
 	            </div>
 	            <div class="order-footer">
 	                <div class="order-total">
 	                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
+	                <div data-bind="visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
 	                </div>
+	                <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+	                	审核意见：<span class="audit-content" data-bind="text:mainEnt.auditedContent==null?'无':mainEnt.auditedContent"></span>
+	                	<div>
+	                		<span class="fl">审核人：<span data-bind="text:mainEnt.auditorName"></span></span>
+	                		<span class="fr">审核状态：<span data-bind="text:mainEnt.auditStatus"></span></span>
+	                		<div class="clearfix"></div>
+	                	</div>
+	                </div>
+	                
 	                <div class="order-button-list">
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==0,click:$root.cancelClick.bind($data,mainEnt.id)" class="btn-1">取消</button>
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus==2" class="btn-1">追加评价</button>

@@ -34,18 +34,25 @@ summerready = function(){
     var viewModel = {
     	orderList:ko.observableArray(),
     	status:ko.observable(),
+    	id:ko.observable(),
+    	changeShow:function(index){
+    		console.log(index());
+    		$('#switchWp'+index()).siblings('.order-total').find('.switch-btn').toggleClass('slide');
+    		$('#switchWp'+index()).slideToggle();
+    	},
 		queryByStatus:function(status,data,event){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			viewModel.status(status);
 			queryOrder(status);
 		},
 		saveClick:function(id){
+			viewModel.id(id);
 			UM.prompt({
 			    title: '请输入支付单号',
 			    btnText: ["取消", "确定"],
 			    overlay: true,
 			    ok: function (data) {
-			        var id = id;
+			        var id = viewModel.id();
 				    var valiOrderCode = data;
 				    if(data==""||data==null){
 				    	summer.toast({
@@ -73,26 +80,26 @@ summerready = function(){
     }else {
     	queryOrder(summer.pageParam.status);
     }
-    //初始化
-	function queryOrder(status,kwd){
-		var queryObj;
-		if(status=="20"){
-        	var p_conditions = status?{suEvaluationStatus:'0'}:{};
-	    }else{
-	        var p_conditions = status===undefined?{}:{queryStatus:status};
-	    }
-		if(kwd){
-			p_conditions['queryString'] = kwd;
-		}
-		var page_params={"pageIndex":1,"pageSize":100};  //分页
-		var sortItem = {};
-		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-		p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysettlemutiple', enc_conditions,'queryBack');
+}
+//初始化
+function queryOrder(status,kwd){
+	var queryObj;
+	if(status=="20"){
+    	var p_conditions = status?{suEvaluationStatus:'0'}:{};
+    }else{
+        var p_conditions = status===undefined?{}:{queryStatus:status};
+    }
+	if(kwd){
+		p_conditions['queryString'] = kwd;
 	}
+	var page_params={"pageIndex":1,"pageSize":100};  //分页
+	var sortItem = {};
+	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysettlemutiple', enc_conditions,'queryBack');
 }
 function savevaliordercode(data){
 	if(data.status==1){
-        queryStatus(viewModel.status()); 
+        queryOrder(viewModel.status()); 
         summer.toast({
              "msg" : "保存成功！" 
         })

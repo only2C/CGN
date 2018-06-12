@@ -35,6 +35,11 @@ summerready = function(){
     	orderList:ko.observableArray(),
     	status:ko.observable(),
     	id:ko.observable(),
+    	changeShow:function(index){
+    		console.log(index());
+    		$('#switchWp'+index()).siblings('.order-total').find('.switch-btn').toggleClass('slide');
+    		$('#switchWp'+index()).slideToggle();
+    	},
     	noAccess:function(id){
     		UM.prompt({
 			    title: '审核不通过',

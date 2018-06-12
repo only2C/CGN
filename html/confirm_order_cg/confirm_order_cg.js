@@ -126,11 +126,7 @@ function saveAgg(data){
 	if(data.status==1){
 		summer.openWin({
             "id" : "order_success",
-            "url" : "html/order_success/order_success.html",
-            "pageParam" : {
-                mainId:data.retData.ents[0].id,
-                type:'inallocate'
-             }
+            "url" : "html/order_success_cg/order_success_cg.html"
         });
 	}else{
 		summer.toast({

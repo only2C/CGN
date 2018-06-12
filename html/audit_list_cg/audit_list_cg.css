@@ -66,7 +66,6 @@ body{
 .order-list {
     background: #fff;
     width: 100%;
-    overflow: hidden;
     padding: 15px 0;
     margin-bottom:10px;
 }
@@ -108,10 +107,11 @@ body{
     padding:10px;
 }
 .order-footer{
-    overflow: hidden;
-	margin-bottom:6px;
+    /* overflow: hidden; */
+	/* margin-bottom:6px; */
 }
 .order-total{
+	position:relative;
     text-align: right;
     height: 40px;
     line-height: 40px;
@@ -158,4 +158,31 @@ body{
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 12px;
+}
+.switch-btn {
+	width: 16px;
+    height: 16px;
+    background: url(../../img/switch.png) no-repeat;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    bottom: -6px;
+    transform: rotate(180deg);
+    transition: all 0.5s;
+}
+.switch-btn.slide {
+	transform: rotate(0deg);
+}
+.audit-wp {
+	display:none;
+	padding: 5px 10px;
+    font-size: 13px;
+    color: #666;
+    border-bottom: 1px solid #cfcfcf;
+}
+.audit-wp>div {
+	margin-top:4px;
+}
+.audit-content {
+	color:#333;
 }

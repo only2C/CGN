@@ -91,7 +91,7 @@ summerready = function () {
     }
     var stype = summer.getStorage("stype")?summer.getStorage("stype"):0;
     summer.setStorage('stype',stype);
-    var stypeText = stype==1?'去调拨':'去采购';
+    var stypeText = stype==1?'去采购':'去调拨';
     var viewModel = {
         organizationArr: ko.observableArray([]),
         defaultOrg: ko.observable(summer.getStorage("ufn")),

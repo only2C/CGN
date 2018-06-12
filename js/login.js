@@ -1,6 +1,7 @@
-var ip =   "http://192.168.10.156:8170" ;   //GYQ
-//var ip = "http://123.207.175.212:8170";  //TX
+//var ip =   "http://192.168.10.156:8170" ;   //GYQ
+var ip = "http://123.207.175.212:8170";  //TX
 var pub_key ="";
+var flag = true;
 summerready = function(){
     //if(summer.getStorage("userInfo")!=''){
     //summer.openWin({
@@ -32,26 +33,15 @@ summerready = function(){
                 $('#main').css({'top':'0','transform':'translate(0,0%)','bottom':'0'});
             }
         });
-        var flag = true;
+        
         $('#loginBtn').on('click',function(){
-            var info = {};
             var username = $('#username').val();
             var pwd = $('#password').val();
             summer.setStorage('username',username);
             summer.setStorage('pwd',pwd);
 
             get_enc_key(username);
-            var encrypt = new JSEncrypt();
-            encrypt.setPublicKey(pub_key);
-
-            info['usercode']=username;
-           // info['pwd']=p_json_enc(pwd);
-            info['pwd']=encrypt.encrypt(pwd)
-            info['language_type']='0';
-            var bb = p_params_con_dataj_enc(info);
-            if(flag){
-                p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/login', bb,'logon_after_process');
-            }
+            
 
         })
         $('#changePassType').on('click',function(){
@@ -109,5 +99,17 @@ function get_enc_key(usercode){
 }
 function  get_enc_key_callback (data ){
 	pub_key = data.retData["pub_key"] ;
-
+	var encrypt = new JSEncrypt();
+    encrypt.setPublicKey(pub_key);
+	var info = {};
+    var username = $('#username').val();
+    var pwd = $('#password').val();
+    info['usercode']=username;
+   // info['pwd']=p_json_enc(pwd);
+    info['pwd']=encrypt.encrypt(pwd)
+    info['language_type']='0';
+    var bb = p_params_con_dataj_enc(info);
+    if(flag){
+        p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/login', bb,'logon_after_process');
+    }
 }
