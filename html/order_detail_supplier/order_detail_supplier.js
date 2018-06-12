@@ -284,18 +284,34 @@ function queryaggsingle(res) {
         mainEnt.returnUrgent = '高';
     }
     var progressPic;
-    if (mainEnt.billStatus == 0 || mainEnt.billStatus == 5) {
-        progressPic = '../../img/status/order-success.png';
-    } else if (mainEnt.billStatus == 1 || mainEnt.billStatus == 2 || mainEnt.billStatus == 3 || mainEnt.billStatus == 10) {
-        progressPic = '../../img/status/audit.png';
-    } else if (mainEnt.billStatus == 4 || mainEnt.billStatus == 6) {
-        progressPic = '../../img/status/has-send.png';
-    } else if (mainEnt.billStatus == 7) {
-        progressPic = '../../img/status/receive.png';
+    if(mainEnt.billStatus == 0){
+        progressPic = '../../img/order_xiadanchenggong.png';
     }
-    if (mainEnt.retrunStatus == 2) {
-        progressPic = '../../img/status/back.png';
+    if(mainEnt.billStatus == 1){
+        progressPic = '../../img/order_yishenhe.png';
     }
+    if(mainEnt.billStatus == 9){
+        progressPic = '../../img/order_yifahuo.png';
+    }
+    if(mainEnt.billStatus == 10){
+        progressPic = '../../img/order_yiyanshou.png';
+    }
+    if(mainEnt.billStatus == 11){
+        progressPic = '../../img/order_yijiesuan.png';
+    }
+
+    // if (mainEnt.billStatus == 0 || mainEnt.billStatus == 5) {
+    //     progressPic = '../../img/status/order-success.png';
+    // } else if (mainEnt.billStatus == 1 || mainEnt.billStatus == 2 || mainEnt.billStatus == 3 || mainEnt.billStatus == 10) {
+    //     progressPic = '../../img/status/audit.png';
+    // } else if (mainEnt.billStatus == 4 || mainEnt.billStatus == 6) {
+    //     progressPic = '../../img/status/has-send.png';
+    // } else if (mainEnt.billStatus == 7) {
+    //     progressPic = '../../img/status/receive.png';
+    // }
+    // if (mainEnt.retrunStatus == 2) {
+    //     progressPic = '../../img/status/back.png';
+    // }
     viewModel.progressPic(progressPic);
     viewModel.mainId(mainEnt.id);
     viewModel.mainOrder([mainEnt]);
