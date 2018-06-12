@@ -102,6 +102,10 @@ function getData(status){
         pageIndex:1,
         pageSize:100
     }
+    if(!status&&summer.pageParam.status&&summer.pageParam.status != -1){
+        param.queryStatus = summer.pageParam.status;
+    }
+
     if(status&&status != -1){  //status == -1  查看全部
         param.queryStatus = status?status:summer.pageParam.status;
     }
