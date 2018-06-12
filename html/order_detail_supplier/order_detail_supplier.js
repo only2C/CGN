@@ -77,7 +77,7 @@ summerready = function () {
                 "id": "logistics",
                 "url": "html/logistics/logistics.html",
                 "pageParam": {
-                    mainOrder: mainOrder()
+                    mainOrder: mainOrder
                 }
             });
         },
