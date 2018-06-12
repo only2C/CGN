@@ -1,5 +1,5 @@
 var turn = 0;
-var systemList =[{name: "去采购", code: 0}, {name: "去调拨", code: 1}];
+var systemList =[{name: "去调拨", code: 0}, {name: "去采购", code: 1}];
 
 function keyBack() {
     turn++;
