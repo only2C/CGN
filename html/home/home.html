@@ -32,7 +32,7 @@
 						</a>-->
 					</div>
 					<ul data-bind="foreach:systemArr" class="system-list">
-						<li data-bind="click:$root.chooseSystemArr.bind($data,$data)">
+						<li data-bind="css:{'on':name==$root.systemType()},click:$root.chooseSystemArr.bind($data,$data)">
 							<i class="org"></i>
 							<div class="org-name"><span data-bind="text:name"></span><span class="has-choosen"></span></div>
 						</li>

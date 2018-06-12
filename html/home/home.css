@@ -308,7 +308,7 @@ div.um-label {
     margin-left: 5px;
 }
 
-.org-list li.on .has-choosen {
+.org-list li.on .has-choosen,.system-list li.on .has-choosen {
     display: inline-block;
 }
 

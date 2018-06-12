@@ -99,7 +99,6 @@ summerready = function () {
         systemType: ko.observable(stypeText),
         systemArr: ko.observableArray([]),
         systemFlag:ko.observable(stype),
-        systemIcon:ko.observable(true),
         chooseOrg: function (item) {
             var p_conditions = {
                 ccode: item.cgnFCode
