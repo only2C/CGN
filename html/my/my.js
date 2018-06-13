@@ -171,7 +171,9 @@ summerready = function(){
                 viewModel.isCG(false);
                 viewModel.isDB(true);
             }
-            $drop2.fadeToggle();
+            if($summer.os=='android'){
+                $drop2.fadeToggle();
+            }
         }
 
 
