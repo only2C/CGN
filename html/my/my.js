@@ -57,7 +57,7 @@ function openWin1 (winId){
 
 
 var stype = summer.getStorage("stype")?summer.getStorage("stype"):0;
-var stypeText = stype==1?'去调拨':'去采购';
+var stypeText = stype==1?'欢迎调拨':'欢迎采购';
 
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
@@ -159,9 +159,11 @@ summerready = function(){
         	$drop2.fadeToggle();
         },
         chooseSystemArr:function (item) {
-            viewModel.systemType(item.name);
-            $('.system-list').fadeOut();
+        	var chooseText = item.code==1?'欢迎调拨':'欢迎采购';
+            viewModel.systemType(chooseText);
+            viewModel.systemFlag(item.code);
             summer.setStorage('stype',item.code);
+            $('.system-list').fadeOut();
             if(item.code == 0){
                 viewModel.isCG(true);
                 viewModel.isDB(false);

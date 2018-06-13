@@ -34,6 +34,13 @@ summerready = function(){
     var viewModel = {
     	orderList:ko.observableArray(),
     	status:ko.observable(),
+    	showFlag:ko.observable(0),
+    	id:ko.observable(),
+    	changeShow:function(index){
+    		console.log(index());
+    		$('#switchWp'+index()).siblings('.order-total').find('.switch-btn').toggleClass('slide');
+    		$('#switchWp'+index()).slideToggle();
+    	},
 		queryByStatus:function(status,data,event){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			queryOrder(status);
@@ -78,6 +85,7 @@ summerready = function(){
 			});
 		},
 		acceptance:function(id,receivePhone,receiveName){
+			viewModel.id(id);
 			UM.confirm({
 			    title: '验收',
 			    text: '<span><button onClick="sendcodesms('+id+','+receivePhone+',\''+receiveName+'\')">获取验证码</button><input id="acceptanceVal" stype="text"/></span><div class="clearfix"></div>',
@@ -91,37 +99,42 @@ summerready = function(){
 				    	})
 				        return
 				    }else{
+				    	/*暂时不校验验证码
 				        var info = {};
 				        info['ieopVsmBillId'] = id;
 				        info['ieopVsmValiCode'] = ver;
 				        var bb = p_page_params_con_dataj_enc(info,{},{});
-				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb);
-				        if(data.status==1){
-				            var info = {};
-				            info['id'] = id;
-				            info['status'] = '12';
-				            info['checkContent'] = '验收不通过原因'
-				            var bb = p_page_params_con_dataj_enc(info,{},{});
-				            var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunchecked', bb);
-				            if(data.status==1){
-				                queryStatus(viewModel.status()); 
-				                summer.toast({
-				                	"mag":"验收未通过！"
-				                }) 
-				            }else{
-				            	summer.toast({
-				                	"mag":data.msg
-				                }) 
-				            }
-				        }else{
-				            summer.toast({
-				                	"mag":data.msg
-				                }) 
-				        }
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'accessVal');*/
+				        var info = {};
+				        info['id'] = viewModel.id();
+				        info['status'] = '10';
+				        var bb = p_page_params_con_dataj_enc(info,{},{});
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/ussettlement', bb , 'ussettlement');
+				        
 				    }
 			    },
 			    cancle: function () {
-			        
+			        var ver = $('#acceptanceVal').val();
+				    if(ver==""||ver==null){
+				        summer.toast({
+				    		"msg":"请输入验证码！"
+				    	})
+				        return
+				    }else{
+				    	/* 暂时不校验验证码
+				        var info = {};
+				        info['ieopVsmBillId'] = viewModel.id();
+				        info['ieopVsmValiCode'] = ver;
+				        var bb = p_page_params_con_dataj_enc(info,{},{});
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'noAccessBack');*/
+				        var info = {};
+				        info['id'] = viewModel.id();
+				        info['status'] = '12';
+				        info['checkContent'] = '验收不通过原因'
+				        var bb = p_page_params_con_dataj_enc(info,{},{});
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunchecked', bb ,'usunchecked');
+				        
+				    }
 			    }
 			});
 		}
@@ -146,10 +159,65 @@ function queryOrder(status,kwd){
 	if(kwd){
 		p_conditions['queryString'] = kwd;
 	}
-	var page_params={"pageIndex":1,"pageSize":100};  //分页
+	var page_params={"pageIndex":1,"pageSize":20};  //分页
 	var sortItem = {};
 	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
 	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querypurchasermutiple', enc_conditions,'queryBack');
+}
+//通过 校验回调
+function accessVal(data){
+	if(data.status==1){
+        var info = {};
+        info['id'] = viewModel.id();
+        info['status'] = '10';
+        var bb = p_page_params_con_dataj_enc(info,{},{});
+        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/ussettlement', bb , 'ussettlement');
+        
+    }else{
+        summer.toast({
+            	"mag":data.msg
+            }) 
+    }
+}
+//未通过校验回调
+function noAccessBack(){
+	if(data.status==1){
+        var info = {};
+        info['id'] = viewModel.id();
+        info['status'] = '12';
+        info['checkContent'] = '验收不通过原因'
+        var bb = p_page_params_con_dataj_enc(info,{},{});
+        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunchecked', bb ,'usunchecked');
+        
+    }else{
+    	summer.toast({
+             "msg" : data.msg
+        })
+    }
+}
+function usunchecked(data){
+	if(data.status==1){
+        queryOrder(viewModel.status());  
+        summer.toast({
+             "msg" : "验收未通过！" 
+        })
+    }else{
+    	summer.toast({
+             "msg" : data.msg
+        })
+    }
+}
+function ussettlement(data){
+	if(data.status==1){
+        queryOrder(viewModel.status()); 
+        summer.toast({
+        	"mag":"验收通过！"
+        }) 
+    }else{
+    	summer.toast({
+        	"mag":data.msg
+        }) 
+    }
 }
 function usunauditcanceled(res){
 	if(res.data==1){
@@ -180,24 +248,6 @@ function queryBack(res){
         }
         viewModel.orderList(orderList);
         return;
-        for(var i=0;i<orderList.length;i++){
-            var children = orderList[i].children.su_mall_order_infos;
-            for(var j=0;j<children.length;j++){
-                var child = children[j];
-                suMCodes += child.materialCode + "#";
-                suStoreCodes += child.suStoreCode + "#";
-                ieopEnterpriseCodes += child.ieopEnterpriseCode + "#";
-            }
-        }
-        suMCodes = suMCodes.substring(0,suMCodes.length-1);
-        suStoreCodes = suStoreCodes.substring(0,suStoreCodes.length-1);
-        ieopEnterpriseCodes = ieopEnterpriseCodes.substring(0,ieopEnterpriseCodes.length-1);
-        var info = {};
-        info['suMCodes'] = suMCodes;
-        info['suStoreCodes'] = suStoreCodes;
-        info['ieopEnterpriseCodes'] = ieopEnterpriseCodes;
-        var bb = p_params_con_dataj_enc(info);
-        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', bb,'querybymescodes');
 	}else{
 		
 	}

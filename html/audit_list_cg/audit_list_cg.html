@@ -29,6 +29,10 @@
 
         <!--采购订单审核-->
         <div class="order-status">
+        	<div class="order-status-icon" data-bind="click:queryByStatus.bind($data,undefined)">
+                <div class="order-icon-8"></div>
+                <p>全部</p >
+            </div>
             <div data-bind="click:queryByStatus.bind($data,0)" class="order-status-icon">
                 <div class="order-icon-1"></div>
                 <p>待审核</p>
@@ -39,14 +43,14 @@
             </div>
         </div>
         <div data-bind="foreach:orderList">
-        	<div class="order-list">
+        	<div data-bind="style:{paddingBottom:mainEnt.allStatus==0?'15px':'0px'}" class="order-list">
 	            <div class="order-header">
 	                <div class="order-header-left fl">
 	                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
 	                </div>
-	                <!--<div class="order-header-right fr">
-	                    已收货
-	                </div>-->
+	                <div data-bind="text:mainEnt.billStatus" class="order-header-right fr">
+	                    
+	                </div>
 	            </div>
 	            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
 	               	<div>
@@ -58,16 +62,25 @@
 		                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
 		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
 		                </div>
-		                <div class="order-content-tag fr">
+		                <!--<div class="order-content-tag fr">
 		                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
-		                </div>
+		                </div>-->
 	               	</div>
 	            </div>
 	            <div class="order-footer">
-	                <div class="order-total">
-	                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
+	                <div data-bind="style:{marginBottom:mainEnt.allStatus==0?'10px':'0px'}" class="order-total">
+	                    	共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
+	                	<div data-bind="visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
 	                </div>
-	                <div class="order-button-list">
+	                <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+	                	审核意见：<span class="audit-content" data-bind="text:mainEnt.auditedContent==null?'无':mainEnt.auditedContent"></span>
+	                	<div>
+	                		<span class="fl">审核人：<span data-bind="text:mainEnt.auditorName"></span></span>
+	                		<span class="fr">审核状态：<span data-bind="text:mainEnt.auditStatus"></span></span>
+	                		<div class="clearfix"></div>
+	                	</div>
+	                </div>
+	                <div data-bind="visible:mainEnt.allStatus==0" class="order-button-list">
 	                   <button data-bind="visible:mainEnt.allStatus==0,click:$root.noAccess.bind($data,mainEnt.id)" class="btn-1">不通过</button>
 	                   <button data-bind="visible:mainEnt.allStatus==0,click:$root.access.bind($data,mainEnt.id)" class="btn-2">通过</button>
 	                </div>

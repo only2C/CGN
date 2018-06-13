@@ -23,7 +23,7 @@
                 <div class="my-header-systype" data-bind="visible:isSupplier">
                     <div data-bind="text:systemType,click:chooseSystem" class="system-title"></div>
                     <ul data-bind="foreach:systemArr" class="system-list" id="userChoose">
-                        <li data-bind="click:$root.chooseSystemArr.bind($data,$data)">
+                        <li data-bind="visible:$root.systemFlag()!=code,click:$root.chooseSystemArr.bind($data,$data)">
                            <i class="org"></i>
 							<div class="org-name"><span data-bind="text:name"></span><span class="has-choosen"></span></div>
                         </li>

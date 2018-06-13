@@ -108,18 +108,19 @@ body{
     overflow: hidden;
 }
 .order-total{
+	position:relative;
     text-align: right;
     height: 40px;
     line-height: 40px;
     border-bottom: 1px solid #cfcfcf;
     color: rgb(151,151,151);
-    margin-bottom: 10px;
     padding-right: 10px;
 }
 .order-button-list{
     width: 100%;
     overflow: hidden;
     padding-right: 10px;
+    padding-top:15px;
 }
 .order-button-list button{
     float: right;
@@ -166,7 +167,33 @@ body{
 .order-content-detail h4{
     color:rgb(105,105,105);
 }
-
+.switch-btn {
+	width: 16px;
+    height: 16px;
+    background: url(../../img/switch.png) no-repeat;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    bottom: -8px;
+    transform: rotate(180deg);
+    transition: all 0.5s;
+}
+.switch-btn.slide {
+	transform: rotate(0deg);
+}
+.audit-wp {
+	display:none;
+	padding: 5px 10px;
+    font-size: 13px;
+    color: #666;
+    border-bottom: 1px solid #cfcfcf;
+}
+.audit-wp>div {
+	margin-top:4px;
+}
+.audit-content {
+	color:#333;
+}
 .order-content-detail p{
     color: rgb(151,151,151);
     width: 100%;
