@@ -9,7 +9,9 @@ html, body {
 .um-header {
     background-color: #fff;
 }
-
+.um-bf8 {
+	flex:8;
+}
 .um-content {
     -webkit-text-size-adjust: none;
 }

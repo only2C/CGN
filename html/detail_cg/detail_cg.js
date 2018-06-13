@@ -343,7 +343,7 @@ function favoritesSave1 (data){
 function addToCarts (data){
 	if(data.status==1){
 		if(viewModel.type()=="gotocg"){
-		   openWin1('confirm_order_cg');
+		   openWin1('cart_cg');
 		}else{
 		   openWin1('cart_cg');
 		}
