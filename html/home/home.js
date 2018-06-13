@@ -99,6 +99,8 @@ summerready = function () {
         systemType: ko.observable(stypeText),
         systemArr: ko.observableArray([]),
         systemFlag:ko.observable(stype),
+        listType:ko.observable(stype==1?'list':'list_cg'),
+        factoryParamType:ko.observable(stype==1?'cgnMBrandName':'ieopEnterpriseName'),
         chooseOrg: function (item) {
             var p_conditions = {
                 ccode: item.cgnFCode
@@ -112,6 +114,26 @@ summerready = function () {
             $('.org-list').slideUp();
             $('.drop').hide();
         },
+        openWin:function(winId, options) {
+		    var flag = summer.getStorage("stype");
+		    if(flag === 0 ){
+		        winId = 'list_cg'
+		    }
+		    summer.openWin({
+		        "id": winId,
+		        "url": "html/" + winId + "/" + winId + ".html",
+		        "pageParam": {
+		            "count": 1,
+		            options: options,
+		            flag:flag
+		        },
+		        "animation": {
+		            type: "none", //动画类型（详见动画类型常量）
+		            subType: "from_right", //动画子类型（详见动画子类型常量）
+		            duration: 0 //动画过渡时间，默认300毫秒
+		        },
+		    });
+		},
         chooseSystemArr:function(item){
             viewModel.systemType(item.name);
             viewModel.systemFlag(item.code);

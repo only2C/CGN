@@ -123,49 +123,49 @@
 				</div>-->
 				<div class="um-nav ">
 					<div class="um-nav-inner">
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'金风科技'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'金风科技'}:{ieopEnterpriseName:'金风科技'})">
 							<img src="../../img/jinfeng.png" width="58" alt="">
 							<p class="f12 mt5 " style="color: #040404">
 								金风科技
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'上海电气'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'上海电气'}:{ieopEnterpriseName:'上海电气'})">
 							<img src="../../img/shanghai.png" width="58" alt="">
 							<p class="f12 mt5 " style="color: #040404">
 								上海电气
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'东方电气'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'东方电气'}:{ieopEnterpriseName:'东方电气'})">
 							<img src="../../img/dongfang.png" width="58" alt="">
 							<p class="f12 mt5" style="color: #040404">
 								东方电气
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'远景能源'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'远景能源'}:{ieopEnterpriseName:'远景能源'})">
 							<img src="../../img/yuanjing.png" width="58" alt="">
 							<p class="f12 mt5" style="color: #040404">
 								远景能源
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'海装风电'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'海装风电'}:{ieopEnterpriseName:'海装风电'})">
 							<img src="../../img/haizhuang.png" width="58" alt="">
 							<p class="f12 mt5" style="color: #040404">
 								海装风电
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'运达风电'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'运达风电'}:{ieopEnterpriseName:'运达风电'})">
 							<img src="../../img/yunda.png" width="58" alt="">
 							<p class="f12 mt5" style="color: #040404">
 								运达风电
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'大唐华创风能'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'大唐华创风能'}:{ieopEnterpriseName:'大唐华创风能'})">
 							<img src="../../img/datang.png" width="58" alt="">
 							<p class="f12 mt5" style="color: #040404">
 								大唐华创风能
 							<p>
 						</div>
-						<div class="um-nav-item" onClick="openWin('list',{cgnMBrandName:'明阳风电'})">
+						<div class="um-nav-item" data-bind="click:openWin.bind($data,listType(),systemFlag()==1?{cgnMBrandName:'明阳风电'}:{ieopEnterpriseName:'明阳风电'})">
 							<img src="../../img/mingyang.png" width="58" alt="">
 							<p class="f12 mt5" style="color: #040404">
 								明阳风电
@@ -174,63 +174,63 @@
 					</div>
 				</div>
 				<div class="pro-list">
-					<div onClick="openWin('list',{mgCName:'压力表与传感器'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'压力表与传感器'})" class="item">
 						<img src="../../img/dbchuanganqi.png" alt="" />
 						<div class="pro-name">
 							<span>压力表与传感器</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'母线金具'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'母线金具'})" class="item">
 						<img src="../../img/muxian.png" alt="" />
 						<div class="pro-name">
 							<span>母线金具</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'功率模块柜'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'功率模块柜'})" class="item">
 						<img src="../../img/gonglv.png" alt="" />
 						<div class="pro-name">
 							<span>功率模块柜</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'传感器'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'传感器'})" class="item">
 						<img src="../../img/chuanganqi.png" alt="" />
 						<div class="pro-name">
 							<span>传感器</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'轴控箱--继电器'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'轴控箱--继电器'})" class="item">
 						<img src="../../img/zhoukong.png" alt="" />
 						<div class="pro-name">
 							<span>轴控箱--继电器</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'冷却系统风扇'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'冷却系统风扇'})" class="item">
 						<img src="../../img/lengque.png" alt="" />
 						<div class="pro-name">
 							<span>冷却系统风扇</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'显示装置'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'显示装置'})" class="item">
 						<img src="../../img/xianshi.png" alt="" />
 						<div class="pro-name">
 							<span>显示装置</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'电压表'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'电压表'})" class="item">
 						<img src="../../img/dianya.png" alt="" />
 						<div class="pro-name">
 							<span>电压表</span>
 							<i class="expend"></i>
 						</div>
 					</div>
-					<div onClick="openWin('list',{mgCName:'垫片'})" class="item">
+					<div data-bind="click:openWin.bind($data,listType(),{mgCName:'垫片'})" class="item">
 						<img src="../../img/lastcategory.png" alt="" />
 						<div class="pro-name">
 							<span>垫片</span>
