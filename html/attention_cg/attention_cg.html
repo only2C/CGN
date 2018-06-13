@@ -36,15 +36,15 @@
 			</div>
 			<div class="um-content">
 				<ul data-bind="foreach:attentionList" class="attention-list">
-					<li data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:factoryCode?factoryCode:'',cgnFName:factoryName?factoryName:'',fromPage:'attention'})">
+					<li>
 						<div class="img-wp">
 							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="" />
 						</div>
 						<div class="fl">
 							<div data-bind="text:materialName" class="item-title"></div>
-							<div class="location">位置：<span data-bind="text:factoryName"></span></div>
-							<div class="left-num">库存：<span data-bind="text:stock"></span></div>
-							<div data-bind="click:$root.addToCart.bind($data,{mCode:materialCode,fCode:factoryCode,fName:factoryName,stock:stock}),css:{'no-left':stock=='-'}" class="join-in">加入采购库</div>
+							<div class="location">供应商：<span data-bind="text:ieopEnterpriseName"></span></div>
+							<div class="left-num">品牌：<span data-bind="text:brandName"></span></div>
+							<div data-bind="click:$root.addToCg.bind($data,$data),css:{'no-left':!showAdd}" class="join-in">加入采购库</div>
 							<div id="nelsonATCAContainer" class="nelsonATCAContainer">1</div>
 						</div>
 					</li>
