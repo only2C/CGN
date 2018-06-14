@@ -17,7 +17,7 @@ summerready = function () {
     window.ip = summer.getStorage("ip");
     var type = summer.pageParam.type;
     var userInfo = summer.getStorage("userInfo");
-    var mainId = summer.pageParam.mainId;
+    var mainId = summer.pageParam.mainId||summer.pageParam.orderId;
     var viewModel = {
         mainOrder: ko.observableArray([]),
         billStatus: ko.observable(),
@@ -30,6 +30,7 @@ summerready = function () {
         changeStatusOptions: ko.observableArray([]),
         type: ko.observable(type),
         enter: ko.observable(summer.pageParam.enter),
+        nullDataTips:ko.observable(false),
         changeStatus: function (options) {
             var info = {};
             info['id'] = options.id;
@@ -259,7 +260,7 @@ summerready = function () {
 
 function querySingle() {
     var p_conditions = {
-        id: summer.pageParam.mainId
+        id: summer.pageParam.mainId||summer.pageParam.orderId
     };
     var page_params = {"pageIndex": 1, "pageSize": 100};  //分页
     var sortItem = {};
@@ -269,6 +270,19 @@ function querySingle() {
 }
 
 function queryaggsingle(res) {
+    if(res.status!=1){
+        summer.toast({
+            "msg" : res.msg
+        })
+        return ;
+    }
+    if( res.retData.aggEnt == null ||  res.retData.aggEnt.length == 0){
+        summer.toast({
+            "msg" : "暂无数据"
+        });
+        viewModel.nullDataTips(true);
+        return ;
+    }
     if (summer.pageParam.type == 'send_back') {
         var childOrder = res.retData.aggEnt.children.mall_transfer_order_ret;
     } else {

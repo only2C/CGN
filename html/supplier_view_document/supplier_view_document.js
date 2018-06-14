@@ -23,7 +23,6 @@ function getDocument() {
 function getDocumentCallback(data){
 
     if(data.status == 1){
-        data.retData.ent;
         getDocumentList();
     }
 
