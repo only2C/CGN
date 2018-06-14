@@ -29,15 +29,15 @@
 
         <!--采购订单审核-->
         <div class="order-status">
-        	<div class="order-status-icon" data-bind="click:queryByStatus.bind($data,undefined)">
+        	<div class="order-status-icon" data-bind="click:queryByStatus.bind($data,-1),css:{active:status()==-1}">
                 <div class="order-icon-8"></div>
                 <p>全部</p >
             </div>
-            <div data-bind="click:queryByStatus.bind($data,0)" class="order-status-icon">
+            <div data-bind="click:queryByStatus.bind($data,0),css:{active:status()==0}" class="order-status-icon">
                 <div class="order-icon-1"></div>
                 <p>待审核</p>
             </div>
-            <div data-bind="click:queryByStatus.bind($data,1)" class="order-status-icon">
+            <div data-bind="click:queryByStatus.bind($data,1),css:{active:status()==1}" class="order-status-icon">
                 <div class="order-icon-6"></div>
                 <p>已审核</p>
             </div>

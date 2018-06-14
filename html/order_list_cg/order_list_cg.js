@@ -51,11 +51,6 @@ summerready = function(){
 			var pageParam = {
 				"orderId":orderId
 			};
-			if(winId=='supplier_view_document'){
-				pageParam = {
-					"mainId":orderId
-				};
-			}
 			summer.openWin({
                 "id" :winId,
 		        "url" : "html/"+winId+"/"+winId+".html",

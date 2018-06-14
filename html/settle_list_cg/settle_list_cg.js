@@ -94,15 +94,33 @@ summerready = function(){
 			        
 			    }
 			})
-		}
+		},
+        openWin:function(winId,orderId){
+            var pageParam = {
+                "orderId":orderId
+            };
+            summer.openWin({
+                "id" :winId,
+                "url" : "html/"+winId+"/"+winId+".html",
+                "animation":{
+                    type:"none", //动画类型（详见动画类型常量）
+                    subType:"from_right", //动画子类型（详见动画子类型常量）
+                    duration:0 //动画过渡时间，默认300毫秒
+                },
+                "statusBarStyle":'dark',
+                "addBackListener":"true",
+                "pageParam":pageParam
+            });
+        },
     };
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-    if(summer.pageParam.status===undefined){
+    if(summer.pageParam.status==-1 || summer.pageParam.status===undefined){
     	queryOrder();
     }else {
     	queryOrder(summer.pageParam.status);
     }
+    viewModel.status(summer.pageParam.status);
 }
 //初始化
 function queryOrder(status,kwd){

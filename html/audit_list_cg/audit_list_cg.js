@@ -84,11 +84,13 @@ summerready = function(){
     };
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-    if(summer.pageParam.status===undefined){
+    if(summer.pageParam.status===undefined || summer.pageParam.status== -1 ){
     	queryOrder();
     }else{
     	queryOrder(summer.pageParam.status);
     }
+    viewModel.status(summer.pageParam.status);
+
     //初始化
 }
 function usorderedsta(data){
@@ -156,7 +158,12 @@ function usunaudited(data){
     }
 }
 function queryBack(res){
-	console.log(res);
+	if(res.status != 1 ){
+        summer.toast({
+            "msg" : res.msg
+        })
+        return ;
+    }
 	var orderList = res.retData.aggEnts;
 	var tmpArr = []; 
     var refObj = {};
