@@ -393,11 +393,11 @@ function addNum(data){
 	if(data.status == 1){
 		var item = viewModel.item()[0];
         var tmp = parseInt(item.materialTAmount())+1;
-         item.materialTAmount(tmp);
+        item.materialTAmount(tmp);
     }else {
-         summer.toast({
-             "msg" : data.msg 
-         })
+        summer.toast({
+            "msg" : data.msg 
+        })
     }
 }
 function updatesta(data){

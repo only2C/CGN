@@ -387,7 +387,11 @@ $("textarea.form-control").elastic();
         html += settings.text + '</div>';
       }
       if (type === "prompt") {
-        html += '<div class="um-modal-input"><input type="text" class="form-control"></div>';
+      	var valueStr = '';
+      	if (settings.inputValue){
+      		valueStr =  ' value="'+settings.inputValue+'" '
+      	}
+        html += '<div class="um-modal-input"><input type="text" '+valueStr+' class="form-control"></div>';
       }
 
       if (type === "login") {

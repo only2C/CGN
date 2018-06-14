@@ -138,7 +138,7 @@
 						<ul id="bigPic" data-bind="foreach:listArr" class="big-pic">
 							<li data-bind="click:$root.openWin.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:suMCode,suStoreCode:suStoreCode})" class="cg-list"> 
 								<div class="big-img">
-									<img  onerror="nofind(this,1)" data-bind="attr:{href:suMSmallimg}" alt="" />
+									<img  onerror="nofind(this,1)" data-bind="attr:{src:suMSmallimg}" alt="" />
 									<div class="com-name"><span data-bind="text:ieopEnterpriseName"></span><span data-bind="text:suStoreName"></span></div>
 								</div>
 								<div class="under-pic">

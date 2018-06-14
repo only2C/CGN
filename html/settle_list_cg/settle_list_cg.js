@@ -45,10 +45,33 @@ summerready = function(){
 			viewModel.status(status);
 			queryOrder(status);
 		},
-		saveClick:function(id){
+		openWin:function(winId,orderId){
+			var pageParam = {
+				"orderId":orderId
+			};
+			if(winId=='supplier_view_document'){
+				pageParam = {
+					"mainId":orderId
+				};
+			}
+			summer.openWin({
+                "id" :winId,
+		        "url" : "html/"+winId+"/"+winId+".html",
+		        "animation":{
+		            type:"none", //动画类型（详见动画类型常量）
+		            subType:"from_right", //动画子类型（详见动画子类型常量）
+		            duration:0 //动画过渡时间，默认300毫秒
+		        },
+		        "statusBarStyle":'dark',
+		        "addBackListener":"true",
+		        "pageParam":pageParam
+            });
+		},
+		saveClick:function(id,valiOrderCode){
 			viewModel.id(id);
 			UM.prompt({
 			    title: '请输入支付单号',
+			    inputValue:valiOrderCode,
 			    btnText: ["取消", "确定"],
 			    overlay: true,
 			    ok: function (data) {

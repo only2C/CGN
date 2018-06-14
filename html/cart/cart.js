@@ -224,9 +224,9 @@ summerready = function(){
 	}
 	window.viewModel = viewModel;
 	ko.applyBindings(viewModel);
-    if(summer.getStorage("cartType")){
+    /*if(summer.getStorage("cartType")){
     	viewModel.cartType(cartTypeList[summer.getStorage("cartType")]["name"]);
-	}
+	}*/
 
 	query_action();
 	

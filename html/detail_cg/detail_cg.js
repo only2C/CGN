@@ -17,7 +17,8 @@ function nofind(_this,type){
     _this.onerror=null;
 }
 function openWin1 (winId){
-    var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
+    //var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
+    var statusBarStyle = 'dark';
     summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",
@@ -84,7 +85,9 @@ summerready = function(){
 		    if(type!="yy"){
 		        p_conditions['buyStoreSwitch'] = '0';
 		        if(Number(viewModel.stock())==0){
-		            uMsgTips("库存不足，请选择加入预约库！");
+		        	summer.toast({
+                         "msg" : "库存不足，请选择加入预约库！" 
+                    })
 		            return false
 		        }
 		    }else{
