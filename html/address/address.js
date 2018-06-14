@@ -1,9 +1,17 @@
 function closeWin(){
 	var initAddress = 'initAddress();';
-	summer.execScript({
-	    winId: 'confirm_order',
-	    script: initAddress
-	});
+	var stype=summer.getStorage("stype");
+	if(stype==0){
+		summer.execScript({
+	    	winId: 'confirm_order_cg',
+	    	script: initAddress
+		});
+	}else{
+		summer.execScript({
+	    	winId: 'confirm_order',
+	    	script: initAddress
+		});
+	}
 	summer.closeWin();
 }
 function keyBack(){
