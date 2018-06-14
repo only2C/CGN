@@ -30,6 +30,7 @@ summerready = function () {
         cgnMFieldsName: ko.observableArray([]),
         cgnMProductName: ko.observableArray([]),
         mgCName: ko.observableArray([]),
+        isZeroF:ko.observable(false),
         cgnSuName: ko.observableArray([]),
         cgnFNameItem: ko.observable(''),
         totalPage: ko.observable(''),
@@ -51,6 +52,10 @@ summerready = function () {
                 "id": "search",
                 "url": "html/search/search.html"
             });
+        },
+        refresh:function(){
+        	queryPage(1);
+        	return true;
         },
         filterSearch: function () {
             queryPage(1);
@@ -162,8 +167,9 @@ summerready = function () {
 
         url = '/ieop_base_mobile/mfrontsusolr/getsumaterial';
         callback  = 'getsumaterial';
-
-
+		if(!viewModel.isZeroF()){
+			summer.pageParam.options['isSuMarStockStatus'] = '1';
+		}
         var enc_conditions = p_page_params_con_dataj_enc(summer.pageParam.options, {
             "pageIndex": pageSize,
             "pageSize": 12
@@ -212,6 +218,7 @@ function getsumaterial(responseJSON) {
         })
         $('.pull_icon').hide();
     	$('.more span').text('无数据');
+    	viewModel.listArr(data);
         return;
     }
     var navigation = responseJSON.retData.navigation;
@@ -222,14 +229,17 @@ function getsumaterial(responseJSON) {
             tmpArr.push({mgCName: navigation.mgCName[i]});
         }
     }
+    function notNull(item){
+    	return item != '';
+    }
     viewModel.thirdMenu(tmpArr);
-    viewModel.cgnFName(navigation.ieopEnterpriseName);
-    viewModel.cgnMApplyModelName(navigation.suMApplyModelName);
-    viewModel.cgnMApplyPositionName(navigation.suMApplyPositionName);
-    viewModel.cgnMBrandName(navigation.suMBrandName);
-    viewModel.cgnMFieldsName(navigation.suMFieldsName);
-    viewModel.cgnMProductName(navigation.suMProductName);
-    viewModel.mgCName(navigation.mgCName);
+    viewModel.cgnFName(navigation.ieopEnterpriseName.filter(notNull));
+    viewModel.cgnMApplyModelName(navigation.suMApplyModelName.filter(notNull));
+    viewModel.cgnMApplyPositionName(navigation.suMApplyPositionName.filter(notNull));
+    viewModel.cgnMBrandName(navigation.suMBrandName.filter(notNull));
+    viewModel.cgnMFieldsName(navigation.suMFieldsName.filter(notNull));
+    viewModel.cgnMProductName(navigation.suMProductName.filter(notNull));
+    viewModel.mgCName(navigation.mgCName.filter(notNull));
     //viewModel.cgnSuName(navigation.mgCName);
     if (!myScrollMenu) {
         myScrollMenu = new JRoll('#menu', {

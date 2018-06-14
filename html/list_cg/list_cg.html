@@ -39,7 +39,16 @@
 					</div>
 				</div>
 				<div class="filter um-border-top solid">
-					<div class="flex1 on"><!--综合排序<i class="arrow"></i>--></div>
+					<div class="flex1 on">
+						<div class="filter-zero">
+							
+                            <label class="um-check-inline">
+                                <input name="um-checkbox-inline" type="checkbox" value="过滤零库存" data-bind="click:refresh,checked:isZeroF">
+                                <span class="um-icon-checkbox um-css3-vc"></span>
+                                <span class="um-black ml5">过滤零库存</span> 
+                            </label>
+						</div>
+					</div>
 					<!--<div class="flex1">距离优先<i class="arrow"></i></div>-->
 					<div data-bind="click:toggleF" class="flex1 um-border-left">备件筛选<i class="fliter-btn"></i></div>
 				</div>
@@ -93,17 +102,7 @@
 					<ul class="filter-list" data-bind="foreach:cgnMProductName">
 						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{suMProductName:$data})"></li>
 					</ul>
-				</div>
-				<div class="filter-zero">
-					过滤零库存
-                    <label class="um-switch1 fr">
-                        <input type="checkbox" value="on" checked="checked">
-                        <div class="um-track">
-                            <div class="um-handle">
-                            </div>
-                        </div>
-                    </label>
-				</div>
+				</div>				
 				<div class="filter-btns um-border-top">
 					
 					<div data-bind="click:clearChoosen" class="flex1">重置</div>
