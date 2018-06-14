@@ -28,6 +28,7 @@
     </div>
 
     <div class="um-content">
+        <div data-bind="visible:viewList().length == 0">暂无数据</div>
         <div data-bind="foreach:viewList">
             <div class="row">
                 <div class="iframe-img fl">

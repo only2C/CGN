@@ -38,7 +38,6 @@ summerready = function(){
     	id:ko.observable(),
         tabIndex:ko.observable(),
     	changeShow:function(index){
-    		console.log(index());
     		$('#switchWp'+index()).siblings('.order-total').find('.switch-btn').toggleClass('slide');
     		$('#switchWp'+index()).slideToggle();
     	},
@@ -233,7 +232,12 @@ function usunauditcanceled(res){
 	queryOrder(viewModel.status());
 }
 function queryBack(res){
-	console.log(res);
+	if(res.status != 1 ){
+        summer.toast({
+            "msg" : res.msg
+        })
+        return ;
+	}
 	var orderList = res.retData.aggEnts;
 	var tmpArr = []; 
     var refObj = {};
@@ -244,8 +248,12 @@ function queryBack(res){
     	for(var i=0;i<orderList.length;i++){
             var mainEnt = orderList[i].mainEnt;
             var children = orderList[i].children.su_mall_order_infos;
+            children.forEach(function (val) {
+				val.materialImgUrl = summer.getStorage("imgBaseUrl") + val.materialImgUrl;
+            })
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];
+
         }
         viewModel.orderList(orderList);
         return;

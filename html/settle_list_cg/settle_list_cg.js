@@ -164,6 +164,9 @@ function queryBack(res){
             var children = orderList[i].children.su_mall_order_infos;
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];
+            children.forEach(function (val) {
+                val.materialImgUrl = summer.getStorage("imgBaseUrl") + val.materialImgUrl;
+            })
         }
         viewModel.orderList(orderList);
         return;
