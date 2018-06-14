@@ -36,6 +36,7 @@ summerready = function(){
     	status:ko.observable(),
     	showFlag:ko.observable(0),
     	id:ko.observable(),
+        tabIndex:ko.observable(),
     	changeShow:function(index){
     		console.log(index());
     		$('#switchWp'+index()).siblings('.order-total').find('.switch-btn').toggleClass('slide');
@@ -43,6 +44,7 @@ summerready = function(){
     	},
 		queryByStatus:function(status,data,event){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
+			viewModel.tabIndex(status);
 			queryOrder(status);
 		},
 		openWin:function(winId,orderId){
@@ -141,12 +143,16 @@ summerready = function(){
     };
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-    if(summer.pageParam){
+    if(summer.pageParam && summer.pageParam.status != -1 ){
+
     	queryOrder(summer.pageParam.status);
+
     }else {
     	queryOrder();
     }
+    viewModel.tabIndex(summer.pageParam.status)
     //初始化
+
 }
 function queryOrder(status,kwd){
 	viewModel.status(status);
@@ -154,12 +160,12 @@ function queryOrder(status,kwd){
 	if(status=="20"){
     	var p_conditions = status?{suEvaluationStatus:'0'}:{};
     }else{
-        var p_conditions = status===undefined?{}:{queryStatus:status};
+        var p_conditions = status===-1?{}:{queryStatus:status};
     }
 	if(kwd){
 		p_conditions['queryString'] = kwd;
 	}
-	var page_params={"pageIndex":1,"pageSize":20};  //分页
+	var page_params={"pageIndex":1,"pageSize":100};  //分页
 	var sortItem = {};
 	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
 	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querypurchasermutiple', enc_conditions,'queryBack');

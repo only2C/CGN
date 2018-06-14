@@ -94,7 +94,7 @@ body{
 }
 
 .order-status-icon.active .order-icon-8{
-    background: url("../../img/icon-categroy-active.png") no-repeat;
+    background: url("../../img/icon-categroy-active.png") no-repeat 7px 2px;
     background-size: 70%;
 }
 
