@@ -209,7 +209,7 @@ body{
     position: absolute;
     left: 50%;
     margin-left: -8px;
-    bottom: -8px;
+    bottom:1px;
     transform: rotate(180deg);
     transition: all 0.5s;
 }
