@@ -23,7 +23,7 @@ function getStoreInfo(){
 function queryStoreCallback(res){
     var val = res.retData.ent;
     val.address = val.ieopSuCity + val.ieopSuCounty;
-    val.ieopSuLogo = ip + val.ieopSuLogo;
+    val.ieopSuLogo =summer.getStorage("imgBaseUrl")+val.ieopSuLogo;
     var list  = [] ;
     list.push(val);
     viewModel.storeData(list)

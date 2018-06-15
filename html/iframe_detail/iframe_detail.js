@@ -101,7 +101,7 @@ function queryRangCallback(res){
 function queryDocCallback(res){
     var ents = res.retData.ents;
     ents.forEach(function(val){
-        val.suFaaFileAddr = ip + val.suFaaFileAddr  ;
+        val.suFaaFileAddr = summer.getStorage("imgBaseUrl")+ val.suFaaFileAddr  ;
     })
     viewModel.docArr(ents);
 }
