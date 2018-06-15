@@ -17,6 +17,19 @@ var billStatus = {
     15:'其他',
     20:'待评价'
 };
+function keyBack() {
+    turn++;
+    if (turn == 2) {
+        clearInterval(intervalID);
+        summer.exitApp()
+    } else {
+        summer.toast({"msg": "再按一次返回键退出!"});
+    }
+    var intervalID = setInterval(function () {
+        clearInterval(intervalID);
+        turn = 0;
+    }, 3000);
+}
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
@@ -33,7 +46,8 @@ summerready = function(){
                 "id" :"supplier_view_document",
                 "url" : "html/supplier_view_document/supplier_view_document.html",
                 "pageParam" : {
-                    'orderId':data.mainEnt.id
+                    'orderId':data.mainEnt.id,
+                    'status':viewModel.tabIndex()
                 },
                 "animation":{
                     type:"none", //动画类型（详见动画类型常量）
@@ -48,7 +62,8 @@ summerready = function(){
                 "id" :"supplier_view_document",
                 "url" : "html/list_supplier_express/list_supplier_express.html",
                 "pageParam" : {
-                    'expressObj':data.mainEnt
+                    'expressObj':data.mainEnt,
+                    'status':viewModel.tabIndex()
                 },
                 "animation":{
                     type:"none", //动画类型（详见动画类型常量）
@@ -63,7 +78,8 @@ summerready = function(){
                 "id" :"order_detail_supplier",
                 "url" : "html/order_detail_supplier/order_detail_supplier.html",
                 "pageParam" : {
-                    'mainId':data.mainEnt.id
+                    'mainId':data.mainEnt.id,
+                    'status':viewModel.tabIndex()
                 },
                 "animation":{
                     type:"none", //动画类型（详见动画类型常量）
@@ -128,6 +144,7 @@ function  getDataCallback(res) {
         data = res.retData.aggEnts;
         data.forEach(function (value) {
             value.mainEnt.allStatusName = billStatus[value.mainEnt.allStatus];
+            value.mainEnt.materialImgUrl = summer.getStorage("imgBaseUrl") + value.mainEnt.materialImgUrl;
         })
     }
     viewModel.supplierList(data);

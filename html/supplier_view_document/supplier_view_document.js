@@ -1,5 +1,16 @@
 function closeWin (){
-    summer.closeWin()
+    summer.openWin({
+        "id" : "supplier",
+        "url" : "html/list_supplier/list_supplier.html",
+        "animation":{
+            type:"none", //动画类型（详见动画类型常量）
+            subType:"from_right", //动画子类型（详见动画子类型常量）
+            duration:0 //动画过渡时间，默认300毫秒
+        },
+        "pageParam" : {
+            status:summer.pageParam.status
+        },
+    });
 }
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
@@ -11,6 +22,19 @@ summerready = function(){
     window.viewModel = viewModel;
     getDocument();
     ko.applyBindings(viewModel);
+}
+function keyBack() {
+    turn++;
+    if (turn == 2) {
+        clearInterval(intervalID);
+        summer.exitApp()
+    } else {
+        summer.toast({"msg": "再按一次返回键退出!"});
+    }
+    var intervalID = setInterval(function () {
+        clearInterval(intervalID);
+        turn = 0;
+    }, 3000);
 }
 function getDocument() {
     var id = summer.pageParam.orderId;
@@ -37,7 +61,7 @@ function getDocumentListCallback(data) {
     if(data.status==1){
         result =data.retData.ents;
         result.forEach(function(val){
-            val.suMoaFileAddr = ip+ val.suMoaFileAddr;
+            val.suMoaFileAddr = summer.getStorage("imgBaseUrl")+ val.suMoaFileAddr;
         })
     }
     viewModel.viewList(result);
