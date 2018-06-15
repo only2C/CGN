@@ -96,8 +96,13 @@ summerready = function(){
     window.viewModel = viewModel;
     getData();
     ko.applyBindings(viewModel);
+    $('#searchInput').on('keyup',function(e){
+		if(e.keyCode==13){
+			getData(viewModel.tabIndex(),$(this).val());
+		}
+	})
 }
-function getData(status){
+function getData(status,kwd){
     var param ={
         pageIndex:1,
         pageSize:100
@@ -109,7 +114,9 @@ function getData(status){
     if(status&&status != -1){  //status == -1  查看全部
         param.queryStatus = status?status:summer.pageParam.status;
     }
-
+	if(kwd){
+		param['queryString'] = kwd;
+	}
     var params = p_page_params_con_dataj_enc(param);
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysupplymutiple', params,'getDataCallback');
 }

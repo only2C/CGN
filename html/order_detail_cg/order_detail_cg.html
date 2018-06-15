@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./order_detail_cg.css" />
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/clipboard.min.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+		<script src="./order_detail_cg.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="order_detail_supplier">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>订单详情</h3>
+			</div>
+			<div data-bind="visible:nullDataTips()">暂无数据</div>
+			<div class="um-content">
+				<!-- data-bind="attr:{src:'../../img/'++'.png'}" -->
+				<img class="progress-bar" data-bind="attr:{src:progressPic}" alt="" />
+				<div data-bind="visible:(billStatus()!='0'&&billStatus()!='1'&&billStatus()!='2'&&billStatus()!='3'&&billStatus()!='5')" class="wuliu">
+					<i class="car"></i>
+					<div data-bind="foreach:mainOrder,click:goLogistics.bind($data,mainOrder)" class="fl detail-wp">
+						<div class="green-text">该订单已由<span data-bind="text:senderName"></span>发出，点击进入"物流详情"可查看物流详情</div>
+						<div data-bind="text:sumallTDt" class="time"></div>
+					</div>
+					<i class="arrow-right"></i>
+				</div>
+				<div class=" w um-gray "  style="height: 1px;"></div>
+				<div data-bind="foreach:mainOrder" class="receiver">
+					<i class="address-icon fl"></i>
+					<div class="fl detail-wp mrc">
+						<div class="name">收货人：<font data-bind="text:receiveName"></font><span data-bind="text:receivePhone" class="phone-number fr"></span></div>
+						<div class="address-text">收获地址：<span data-bind="text:receiveArea+' '+receiveAddr"></span></div>
+					</div>
+				</div>
+				<div class="order-list-wp">
+				    <div data-bind="foreach:mainOrder" class="head">
+				        <i class="location3"></i>
+				        <span data-bind="text:buyCompanyName"></span>
+				    </div>
+				    <ul data-bind="foreach:childOrders" class="order-list">
+				        <li data-bind="click:$root.openWin.bind($data,{cgnMCode:materialCode,cgnFCode:buyFactoryCode?buyFactoryCode:'',cgnFName:buyFactoryName?buyFactoryName:''})">
+				            <div class="img-wp">
+				                <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="">
+				            </div>
+				            <div class="fl">
+				                <div data-bind="text:materialName" class="item-title"></div>
+				                <div class="left-num">数量：<span class="amount" data-bind="text:materialTAmount"></span></div>
+				            </div>
+				         <!--   <div data-bind="visible:returnConfirmSta==1&&$root.type()=='send_back',click:$root.confirmClick.bind($data,$data)" class="operate-btn">确认</div>
+				            <div data-bind="visible:(returnSta==1 || returnSta==0)&&$root.type()=='borrow_back',click:$root.backClick.bind($data,$data)" class="operate-btn">归还</div>
+				            <div data-bind="visible:$root.mainOrder()[0].billStatus==7&&$root.type()=='comment',click:$root.giveComment.bind($data,$data,$root.mainId)" class="operate-btn">评价</div>-->
+				        </li>
+				    </ul>
+				    <div data-bind="foreach:mainOrder" class="order-info">
+				    	<div class="order-code">订单编号：<span data-bind="text:id"></span></div>
+				    	<div class="creat-time">创建时间：<span data-bind="text:createTime"></span></div>
+				    	<div class="urgency">紧急程度：<span data-bind="text:returnUrgent"></span></div>
+				    	<!--<div class="back-date">预计归还时间：<span data-bind="text:returnExpectDate"></span></div>-->
+                        <button class="btn btn-inline btn-sm">复制</button>
+				    </div>
+				</div>
+			</div>
+
+			<div class="um-footer">
+				<div data-bind="foreach:mainOrder" id="operateBtns" class="fr">
+
+					<span data-bind="click:$root.viewDocument" class="more show">查看文档</span>
+					<!--<span data-bind="visible:allStatus==9 ">验收</span>-->
+					<span data-bind="css:{show:billStatus==1},click:$root.sendExpress" class="more btn-1">发货</span>
+					<span data-bind="css:{show:billStatus==10},click:$root.payBill" class="more btn-1">确认结算</span>
+					<!--<span data-bind="css:{show:billStatus==5}" class="more">已取消</span>-->
+					<!--<span data-bind="css:{show:billStatus==7&&$root.type()!='send_back'&&$root.type()!='borrow_back'}" class="more">已完成</span>-->
+					<!--&lt;!&ndash;<span data-bind="css:{show:billStatus==7&&$root.type()=='comment'},click:$root.goComment.bind($data,$data)" class="gray-btn">评价</span>&ndash;&gt;-->
+					<!--<span data-bind="css:{show:billStatus==8}" class="more">被拒收</span>-->
+					<!--<span data-bind="css:{show:billStatus==10}" class="more">已退回</span>-->
+					<!--<span data-bind="css:{show:returnConfirmSta==3&&$root.type()=='send_back'}" class="more">已确认</span>-->
+					<!--<span data-bind="css:{show:returnConfirmSta==1&&$root.type()=='send_back'}" class="more">待确认</span>-->
+					<!--<span data-bind="css:{show:returnConfirmSta==0&&$root.type()=='send_back'}" class="more">未确认</span>-->
+					<!--<span data-bind="css:{show:returnSta==0&&($root.type()=='send_back'||$root.type()=='borrow_back')}" class="more">未归还</span>-->
+					<!--<span data-bind="css:{show:returnSta==1&&($root.type()=='send_back'||$root.type()=='borrow_back')}" class="more">部分归还</span>-->
+					<!--<span data-bind="css:{show:returnSta==2&&($root.type()=='send_back'||$root.type()=='borrow_back')}" class="more">全部归还</span>-->
+					<!--<span data-bind="css:{show:billStatus==1&&$root.type()=='inallocate'}" class="more">待发货</span>-->
+					<!--<span data-bind="css:{show:billStatus==6&&($root.type()=='outallocate'||$root.enter()=='signIn')}" class="more">待签收</span>-->
+					<!--<span data-bind="css:{show:billStatus==1&&$root.type()=='outallocate'},click:$root.sendGoods.bind($data,{id:id,status:6,msg:'已发货'})" class="gray-btn">发货</span>-->
+					<!--<span data-bind="css:{show:billStatus<4&&$root.type()=='outallocate'},click:$root.sendBack.bind($data,{id:id,status:10,msg:'已退回'})" class="gray-btn">退回</span>-->
+					<!--<span data-bind="css:{show:billStatus=='0'&&$root.type()=='prev_audit' && $root.ieopUserTransferSta()!=0},click:$root.accessF.bind($data,{id:id,status:1,msg:'审核已通过',fcode:supplyFactoryCode})" class="gray-btn">审核通过</span>-->
+					<!--<span data-bind="css:{show:billStatus=='0'&&$root.type()=='prev_audit' && $root.ieopUserTransferSta()!=0},click:$root.changeStatus.bind($data,{id:id,status:2,msg:'审核未通过'})" class="gray-btn">审核不通过</span>-->
+					<!--<span data-bind="css:{show:(billStatus==0||billStatus==2)&&$root.type()=='inallocate'},click:$root.changeStatus.bind($data,{id:id,status:5,msg:'已取消'})" class="gray-btn">取消</span>-->
+					<!--<span data-bind="css:{show:(billStatus==6||billStatus==4)&&($root.type()=='inallocate' || $root.enter()=='signIn')},click:$root.changeStatus.bind($data,{id:id,status:7,msg:'已签收'})" class="gray-btn">签收</span>-->
+					<!--<span data-bind="css:{show:(billStatus==6||billStatus==4)&&($root.type()=='inallocate' || $root.enter()=='signIn')},click:$root.changeStatus.bind($data,{id:id,status:8,msg:'已拒收'})" class="gray-btn">拒收</span>-->
+					<!--<span class="yellow-btn">确认收货</span>-->
+				</div>
+			</div>
+			<div class="drop">
+				
+			</div>
+			<div class="box">
+				<div class="sender-list">
+					<div class="title">指定发货人</div>
+					<div class="list" data-bind="foreach:senderList">
+						<div data-bind="css:{on:choose()==true},click:$root.chooseClick.bind($data,$data)" class="item"><span><i class="choose-icon"></i><span data-bind="text:ieopUserName"></span></span><span data-bind="text:ieopUserCode"></span></div>
+					</div>
+				</div>
+				<div class="item confirm-wp"><span class="cancel">取消</span><span class="confirm">确认</span></div>
+			</div>
+		</div>
+	</body>
+</html>

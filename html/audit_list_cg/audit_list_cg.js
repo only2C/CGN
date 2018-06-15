@@ -92,6 +92,11 @@ summerready = function(){
     viewModel.status(summer.pageParam.status);
 
     //初始化
+    $('#searchInput').on('keyup',function(e){
+		if(e.keyCode==13){
+			queryOrder(viewModel.status(),$(this).val());
+		}
+	})
 }
 function usorderedsta(data){
 	if(data.status==1){
