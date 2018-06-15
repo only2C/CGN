@@ -62,7 +62,7 @@
                 </div>
                 <div class="order-content">
                     <div class="order-content-img fl">
-                        <img src="../../img/default_small.png"/>
+                        <img data-bind="attr:{src:mainEnt.materialImgUrl?mainEnt.materialImgUrl:'../../img/default_small.png'}"/>
                     </div>
                     <div class="order-content-detail fl">
                         <h4 data-bind="text:mainEnt.materialName"></h4>

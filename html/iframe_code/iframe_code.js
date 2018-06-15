@@ -64,8 +64,12 @@ summerready = function(){
 //查询框架列表
 function queryIframe(){
     var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100});
-    p_async_post(ip + '/ieop_base_mobile/mfrontsuframeworkagreement/querypage', param, 'iframeCallback');
-    //suFaSta   1 启用  0 禁用
+    var url = 'mfrontsuframeworkagreement/querypage';
+    if(summer.getStorage("isSupplier") == "01"){
+        url = 'mfrontsuframeworkagreement/querysupage' ;
+    }
+    p_async_post(ip + '/ieop_base_mobile/'+url, param, 'iframeCallback');
+
 }
 function iframeCallback(res) {
     var ents = res.retData.ents;

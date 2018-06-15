@@ -73,18 +73,32 @@ summerready = function(){
     queryDoc()
 }
 
+var isSupplier = summer.getStorage("isSupplier") == "01";
+
 function queryDeatil(){
+    var url = 'mfrontsufamaterialref/querypage';
+    if(isSupplier){
+       url ='mfrontsufamaterialref/queryrefpage';
+    }
     var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100,"suFaCode":summer.pageParam.suFaCode});
-    p_async_post(ip + '/ieop_base_mobile/mfrontsufamaterialref/querypage', param, 'queryDetailCallback');
+    p_async_post(ip + '/ieop_base_mobile/'+url, param, 'queryDetailCallback');
 }
 
 function queryRang(){
+    var url = 'mfrontsufaapplication/querypage';
+    if(isSupplier){
+        url ='mfrontsufaapplication/querypage';
+    }
     var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100,"suFaCode":summer.pageParam.suFaCode});
-    p_async_post(ip + '/ieop_base_mobile/mfrontsufaapplication/querypage', param, 'queryRangCallback');
+    p_async_post(ip + '/ieop_base_mobile/'+url, param, 'queryRangCallback');
 }
 function queryDoc(){
+    var url = 'mfrontsufaattachments/querypages';
+    if(isSupplier){
+        url ='mfrontsufaattachments/querysupage';
+    }
     var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100,"suFaCode":summer.pageParam.suFaCode});
-    p_async_post(ip + '/ieop_base_mobile/mfrontsufaattachments/querypage', param, 'queryDocCallback');
+    p_async_post(ip + '/ieop_base_mobile/'+url, param, 'queryDocCallback');
 }
 
 function queryDetailCallback(res) {
