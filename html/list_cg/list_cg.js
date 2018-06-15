@@ -167,8 +167,10 @@ summerready = function () {
 
         url = '/ieop_base_mobile/mfrontsusolr/getsumaterial';
         callback  = 'getsumaterial';
-		if(!viewModel.isZeroF()){
+		if(viewModel.isZeroF()){
 			summer.pageParam.options['isSuMarStockStatus'] = '1';
+		}else {
+			delete summer.pageParam.options['isSuMarStockStatus']
 		}
         var enc_conditions = p_page_params_con_dataj_enc(summer.pageParam.options, {
             "pageIndex": pageSize,
@@ -283,6 +285,7 @@ function querybyids(res){
 	        viewModel.listArr(data);
 	        if (myScroll) {
 	            myScroll.refresh();
+	            myScroll.scrollTo(0, 0, 200);
 	        }
 	        if (data.length <= 0) {
 	            summer.toast({

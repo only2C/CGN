@@ -237,3 +237,45 @@ body{
     text-overflow: ellipsis;
     font-size: 12px;
 }
+/*搜索框*/
+.um-input-search {
+  display: -webkit-box;
+  display: box;
+  -webkit-box-align: center;
+  box-align: center;
+  width:90%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 9px 0;
+  background-color: #ffffff;
+}
+.um-input-search input {
+	background-color:#f1f1f2 !important;
+	-webkit-appearance: none;
+}
+.um-input-search form {
+	display:block;
+	width:100%;
+}
+.um-input-search .form-control:focus {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+}
+.cancel {
+	position: absolute;
+    right: 0;
+    top: 0;
+    color: #ff5d00;
+    font-size: 13px;
+    margin-top: 15px;
+    margin-right: 2%;
+}
+.search-wp {
+	padding: 0 10px;
+    position: relative;
+    top:0 !important;
+    background-color:#fff;
+}

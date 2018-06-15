@@ -43,6 +43,7 @@
 
 			<div class="um-content">
 				<ul data-bind="foreach:cartList,visible:cartList().length!=0" class="attention-list">
+					<div data-bind="if:firstMe" class="order-header-left fl"><i class="order-icon"></i><span data-bind="text:ieopEnterpriseName"></span></div>
 					<li>
                         <label class="um-check-inline">
                             <input data-bind="checked:choose,click:$root.chooseToggle.bind($data,$data)" name="um-checkbox-inline" type="checkbox">

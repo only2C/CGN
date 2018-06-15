@@ -375,6 +375,16 @@ function getpriceandstock(ret){
 	    viewModel.checkedAll(true);
 	}
 	viewModel.chooseNum(num);
+	console.log(ents);
+	var obj = {};
+	for(var i =0;i<ents.length;i++){
+		if(!obj[ents[i]['ieopEnterpriseName']]){
+			obj[ents[i]['ieopEnterpriseName']] = true;
+			ents[i]['firstMe'] = true;
+		}else{
+			ents[i]['firstMe'] = false;
+		}
+	}
 	viewModel.cartList(ents);
 }
 function minus(data){

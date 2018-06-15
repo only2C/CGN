@@ -50,6 +50,11 @@ summerready = function(){
 			var pageParam = {
 				"orderId":orderId
 			};
+			if(winId =='order_detail_supplier'){
+				pageParam = {
+					"mainId":orderId
+				};
+			}
 			summer.openWin({
                 "id" :winId,
 		        "url" : "html/"+winId+"/"+winId+".html",
@@ -146,6 +151,11 @@ summerready = function(){
     }
     viewModel.tabIndex(summer.pageParam.status)
     //初始化
+    $('#searchInput').on('keyup',function(e){
+		if(e.keyCode==13){
+			queryOrder(viewModel.status(),$(this).val());
+		}
+	})
 
 }
 function queryOrder(status,kwd){
@@ -236,7 +246,7 @@ function queryBack(res){
         summer.toast({
             "msg" : res.msg
         })
-        return ;
+        return;
 	}
 	var orderList = res.retData.aggEnts;
 	var tmpArr = []; 

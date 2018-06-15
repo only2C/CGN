@@ -443,6 +443,9 @@ $("textarea.form-control").elastic();
     },
     _attachEvent: function() {
       var that = this;
+      this.overlay.on(UM.UI.eventType.down, function () {
+          that.destroy();
+      });
       that.modal.on("click", '.btn', function(e) {
         e.preventDefault();
         if ($(this).hasClass('cancle')) {
@@ -1423,9 +1426,9 @@ $("textarea.form-control").elastic();
 
             this.$target.before(this.$overlay);
             //取消点击遮罩层
-            /* this.$overlay.on(UM.UI.eventType.down, function () {
+             this.$overlay.on(UM.UI.eventType.down, function () {
              that.close();
-             });*/
+             });
         },
         _generateHTMl: function () {
             var settings = this.settings ? this.settings : {};
