@@ -54,7 +54,10 @@ summerready = function () {
             });
         },
         refresh:function(){
-        	queryPage(1);
+        	//alert(viewModel.isZeroF());
+        	setTimeout(function(){
+        		queryPage(1);
+        	},200)
         	return true;
         },
         filterSearch: function () {

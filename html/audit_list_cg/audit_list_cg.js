@@ -204,7 +204,7 @@ function queryBack(res){
         var bb = p_params_con_dataj_enc(info);
         var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', bb,'querybymescodes');
 	}else{
-		
+		viewModel.orderList(orderList);
 	}
 }
 function querybymescodes(data){

@@ -33,6 +33,7 @@ summerready = function(){
     window.ip = summer.getStorage("ip");
     var viewModel = {
     	orderList:ko.observableArray(),
+    	childOrders:ko.observableArray(),
     	status:ko.observable(),
     	showFlag:ko.observable(0),
     	id:ko.observable(),
@@ -46,13 +47,20 @@ summerready = function(){
 			viewModel.tabIndex(status);
 			queryOrder(status);
 		},
-		openWin:function(winId,orderId){
+		openWin:function(winId,orderId,materialCode,addComment){
 			var pageParam = {
 				"orderId":orderId
 			};
 			if(winId =='order_detail_supplier'){
 				pageParam = {
 					"mainId":orderId
+				};
+			}
+			if(materialCode){
+				pageParam = {
+					"mainId":orderId,
+					"materialCode":materialCode,
+					"addComment":addComment
 				};
 			}
 			summer.openWin({
@@ -162,7 +170,7 @@ function queryOrder(status,kwd){
 	viewModel.status(status);
 	var queryObj;
 	if(status=="20"){
-    	var p_conditions = status?{suEvaluationStatus:'0'}:{};
+    	var p_conditions = status?{suEvaluationStatus:'0,2'}:{};
     }else{
         var p_conditions = status===-1?{}:{queryStatus:status};
     }
@@ -172,7 +180,11 @@ function queryOrder(status,kwd){
 	var page_params={"pageIndex":1,"pageSize":100};  //分页
 	var sortItem = {};
 	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querypurchasermutiple', enc_conditions,'queryBack');
+	if(status=="20"){
+		p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/queryevaluationmutiple', enc_conditions,'evaluationQueryBack');
+	}else{
+		p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querypurchasermutiple', enc_conditions,'queryBack');
+	}
 }
 //通过 校验回调
 function accessVal(data){
@@ -268,8 +280,21 @@ function queryBack(res){
         viewModel.orderList(orderList);
         return;
 	}else{
-		
+		viewModel.orderList(orderList);
 	}
+}
+function evaluationQueryBack(res){
+	if(res.status != 1 ){
+        summer.toast({
+            "msg" : res.msg
+        })
+        return;
+	}
+	var childOrders = res.retData.ents;
+	for(var i = 0;i<childOrders.length;i++){
+		childOrders[i]['billStatus'] = billStatus[childOrders[i]['billStatus']];
+	}
+	viewModel.childOrders(childOrders); 
 }
 function sendcodesms(id,receivePhone,receiveName){
 	var info = {};
@@ -299,4 +324,7 @@ function querybymescodes(data){
     }else{
        
     }
+}
+function evaluationBack(){
+	queryOrder('20');
 }

@@ -444,7 +444,68 @@ function replace_html_array_json_code(argArray){
     }
     return argArray;
 }
+// page file upload imgs 
+function page_file_upload_imgs(option,ele_id){
+    var input = document.getElementById(ele_id);
+    // var txshow = document.getElementById("txshow");
+    if (typeof (FileReader) === 'undefined') {
+        summer.toast({
+        	"msg":"抱歉，你的浏览器不支持 FileReader，请使用IE9 10 11 或Google Chrome浏览器操作！"
+        })
+        input.value = '';
+        input.setAttribute('disabled', 'disabled');
+        return ;
+    } else {
+        var reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = function(e){
+            var fileData = e.target.result;
 
+            var fileSize = fileData.length / 1024 / 1024 ;
+            if(fileSize>1){
+            	summer.toast({
+            		"msg":"上传文件过大，文件大小不能超过1MB！"
+            	});
+                input.value = '';
+                return ;
+            }
+            var file = $("#"+ele_id).val();
+            var strFileName=file.replace(/^.+?\\([^\\]+?)(\.[^\.\\]*?)?$/gi,"$1");  //正则表达式获取文件名，不带后缀
+            var fileExt=file.replace(/.+\./,"");   //正则表达式获取后缀
+            fileExt = fileExt.toLowerCase();
+            if(!(fileExt=="png"||fileExt=="jpg"||fileExt=="jpeg")){
+            	summer.toast({
+            		"msg":"您上传的文件类型不正确，只能上传 .png、.jpg、.jpeg 类型文件！"
+            	});
+                input.value = '';
+                return ;
+            }
+            fileData = fileData.replace(/^data:;base64,/, "");
+            fileData = fileData.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+            var p_conditions = {};
+            p_conditions['filename'] = strFileName;
+            p_conditions['fileext'] = fileExt;
+            var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
+            var file_info = "filedata="+encode64(fileData)+"&params="+enc_conditions;
+            //上传
+            $.ajax({
+                url: option.upload_url,//需要链接到服务器地址   
+                type:"POST",
+                data : file_info,
+                success: function (data) {
+                    if(typeof data=='string'){
+                        data = JSON.parse(data);
+                    }
+                    option.uploadCallBack(data);
+                },error:function(XMLHttpRequest, textStatus, errorThrown){  
+                	summer.toast({
+	            		"msg":"上传失败，请与管理员联系！"
+	            	});
+                }  
+            });
+        };
+    }
+}
 // validate elements of the max size
 function page_vali_input_length(input_text_id, max_len) {
     if (p_is_ele_null(input_text_id)) {

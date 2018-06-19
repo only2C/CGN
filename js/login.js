@@ -109,7 +109,7 @@ function  get_enc_key_callback (data ){
     info['pwd']=encrypt.encrypt(pwd)
     info['language_type']='0';
     var bb = p_params_con_dataj_enc(info);
-    if(flag){
-        p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/login', bb,'logon_after_process');
-    }
+    
+    p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/login', bb,'logon_after_process');
+
 }

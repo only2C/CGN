@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../css/jQuery.score.css">	
+		<style>
+		html,body {
+			font-size:14px;
+		}
+		.um-header-light .um-back:before {
+		    border-left: 2px solid #000000;
+		    border-bottom: 2px solid #000000;
+		}
+		.um-header {
+			background-color:#fff;
+			color:#333;
+		}
+		.um-header h3 {
+			font-size:15px;
+			font-weight: normal;
+			color:#333;
+		}
+		.um-back::before {
+			width: 10px;
+		    height: 10px;
+		    border-left: 2px solid #333;
+		    border-bottom: 2px solid #333;
+		    position: relative;
+		    left:10px;
+		}
+		.form-control {
+			font-size:14px;	
+		}
+		.upload-wp {
+			overflow:hidden;
+		}
+		.upload-wp .item img {
+			width:100%;
+			height:100%;
+		}
+		.upload-wp .item {
+			position:relative;
+			float: left;
+		    width: 23%;
+		    height: 80px;
+		    font-size: 50px;
+		    text-align: center;
+		    line-height: 80px;
+		    background-color: #ebebeb;
+		    color: #666;
+		    margin:0 1% 10px;
+		    overflow: hidden;
+		}
+		.upload-wp .item input {
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			opacity:0;
+			z-index:99;
+		}
+		.main-order {
+			padding:10px;
+			overflow:hidden;
+			background-color:#fff;
+			font-size:12px;
+			line-height: 51px;
+		}
+		.main-order .fl {
+			font-size:10px;
+			line-height: 55px;
+		}
+		</style>
+		<script src="../../js/summer.js" ></script>	
+		<script src="../../js/knockout.js" ></script>	
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header" style="background-color: #FAFAFA">
+                <a onClick="closeWin()" class="um-back"></a>
+				<h3>评价</h3>
+				<a style="color: #EC8A22" onClick="evaluateConfirm()" href="#" class="um-header-right ">提交</a>
+            </div>
+			<div class="um-content">
+				<div class="main-order">
+					<span class="fl">订单号：<span data-bind="text:mainId"></span></span>
+					<span class="fr">订单评分：<span id="mainStar"></span></span>
+				</div>
+                <div class="um-panel um-row " >
+                	<div class="um-panel-row" style="width: 100%">
+                		<div style="width:100px;position: relative;">
+                			<img onerror="nofind(this,1)" id="mImg" style="width: 100px;position: relative;height: 100px;background-size: 100% 100%;" src="../../img/default_small.png"/>
+                		</div>
+                		<div style="float: left;bottom: 84px;position: relative;width: 173px;left: 36%;">
+                			<label>产品评分</label>
+                			<div style="width: 243px;top: 30px;position: relative;">
+                				<ul id="star" style="display: -webkit-inline-box;">
+							    </ul>
+                			</div>
+                		</div>
+                		
+                	</div>
+                	<div class="um-panel-row">
+                		
+                        <textarea style="height: 150px;bottom: 18px;position: relative;" name="" id="commentCont" cols="30" rows="10" class="form-control" placeholder="产品还符合您的期待吗？说说它的优点和不足的地方吧"></textarea>
+
+                	</div>
+                	<div class="upload-wp">
+                		<span data-bind="foreach:imgArr">
+                			<div class="item"><img data-bind="attr:{src:$data}" alt="" /></div>
+                		</span>
+                		<div class="item">
+                			+
+                			<input type="file" id="uploadInput"  />
+                		</div>
+                	</div>
+                </div>
+			</div>
+
+		</div>
+		<script src="../../js/jQuery.score.js"></script>
+		<script>
+			var score = 5;
+			var orderScore = 5;
+			function closeWin(){
+				summer.closeWin();
+			}
+			function nofind(_this,type){  
+			    src = "../static/mall/images/default_small.png"
+			    _this.src = src
+			    _this.onerror=null;
+			}
+			function evaluateConfirm(){
+				var params = summer.pageParam;
+				var evaluationType = params.addComment==1?'1':'0';
+				var info = {};
+	            info['suMaterialCode']=params.materialCode;
+	            info['orderId']=params.mainId;
+	            info['orderEvaluationLv']=orderScore;
+	            info['materialEvaluationLv'] = score;
+	            info['evaluationContent'] = $('#commentCont').val();    
+	            info['evaluationType'] = evaluationType;  
+	            var imgArr = viewModel.imgArr().map(function(item){
+	            	return item.replace(summer.getStorage('imgBaseUrl'),'');
+	            }) 
+	            info['evaluationUrls'] = imgArr.join('#');  
+	            var bb = p_params_dataj_ent_enc(info);
+		        p_async_post(ip+'/ieop_base_mobile/mfrontsumaterialevaluation/save', bb,'saveComment');
+			}
+			summerready =  function(){
+				$summer.fixStatusBar($summer.byId('header'));
+				window.ip = summer.getStorage('ip');
+				window.viewModel = {
+					mainId:summer.pageParam.mainId,
+					imgArr:ko.observableArray([])
+				}
+				ko.applyBindings(viewModel);
+				var options = summer.pageParam;
+				var materialImgUrl = options.materialImgUrl?options.materialImgUrl:'../../img/default_small.png';
+				$('#mImg').attr({src:materialImgUrl});
+				$('#mainStar').score({
+				    number      : 5,
+				    size        : 20,
+				    color       : '#ffac38',
+				    score       : 5,
+				    vertical    : false,
+				    hints       : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+				    click       : function(score, event){
+				    	orderScore = score;
+				        //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
+				    },
+				    readOnly    : false,
+				    fontAwesome : true,
+				    debug       : true
+				});
+				$('#star').score({
+				    number      : 5,
+				    size        : 20,
+				    color       : '#ffac38',
+				    score       : 5,
+				    vertical    : false,
+				    hints       : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+				    click       : function(score, event){
+				    	window.score = score;
+				        //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
+				    },
+				    readOnly    : false,
+				    fontAwesome : true,
+				    debug       : true
+				});
+			}
+			$('#uploadInput').on('change',imgChange);
+			function imgChange(){
+				var btnId = 'uploadInput';
+				var option ={
+		            upload_url:ip+"/ieop_base_mobile/mfrontsumaterialevaluation/uploadfiles",
+		            uploadCallBack:img_load_process
+		        };
+		        page_file_upload_imgs(option,btnId);
+			}
+			var imgBaseUrl = summer.getStorage('imgBaseUrl');
+			function img_load_process(data){
+				var imgArr = viewModel.imgArr();
+				imgArr.push(imgBaseUrl+data.fileUrl);
+				viewModel.imgArr(imgArr);
+			}
+			function saveComment(data){
+				summer.toast({
+					msg:data.msg
+				})
+				if(data.status==1){
+					summer.execScript({
+						winId:'order_list_cg',
+						script: 'evaluationBack();'
+					});
+					summer.closeWin();
+				}
+			}
+		</script>
+	</body>
+</html>
