@@ -85,22 +85,10 @@
                     <!--<div class="order-total">-->
                         <!--共计：2345.00-->
                     <!--</div>-->
-                    <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==1">
-                        <button class="btn-1" data-bind="click:$root.sendExpress">发货</button>
-                        <button class="btn-2" data-bind="click:$root.getPageDetail">查看详情</button>
-                        <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
 
-                    </div>
-                    <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==9">
-                        <button class="btn-2" data-bind="click:$root.getPageDetail">查看详情</button>
-                        <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
-                    </div>
-                    <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==20">
-                        <button class="btn-2" data-bind="click:$root.getPageDetail">查看详情</button>
-                        <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
-                    </div>
-                    <div class="order-button-list mt10" data-bind="visible:mainEnt.allStatus==10">
-                        <button class="btn-1" data-bind="click:$root.payBill">确认支付</button>
+                    <div class="order-button-list mt10">
+                        <button class="btn-1" data-bind="click:$root.sendExpress,visible:mainEnt.allStatus==1">发货</button>
+                        <button class="btn-1" data-bind="click:$root.payBill,visible:mainEnt.allStatus==10">确认支付</button>
                         <button class="btn-2" data-bind="click:$root.getPageDetail">查看详情</button>
                         <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
                     </div>

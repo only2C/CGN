@@ -120,6 +120,9 @@ summerready = function(){
 }
 function getData(status,kwd){
     var param ={
+
+    }
+    var pageParam ={
         pageIndex:1,
         pageSize:100
     }
@@ -133,7 +136,7 @@ function getData(status,kwd){
 	if(kwd){
 		param['queryString'] = kwd;
 	}
-    var params = p_page_params_con_dataj_enc(param);
+    var params = p_page_params_con_dataj_enc(param,pageParam);
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysupplymutiple', params,'getDataCallback');
 }
 
