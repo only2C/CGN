@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="../../css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../../css/jQuery.score.css">	
+		<style>
+		html,body {
+			font-size:14px;
+		}
+		.um-header-light .um-back:before {
+		    border-left: 2px solid #000000;
+		    border-bottom: 2px solid #000000;
+		}
+		.um-header {
+			background-color:#fff;
+			color:#333;
+		}
+		.um-header h3 {
+			font-size:15px;
+			font-weight: normal;
+			color:#333;
+		}
+		.um-back::before {
+			width: 10px;
+		    height: 10px;
+		    border-left: 2px solid #333;
+		    border-bottom: 2px solid #333;
+		    position: relative;
+		    left:10px;
+		}
+		.form-control {
+			font-size:14px;	
+		}
+		.main-order {
+			overflow:hidden;
+			background-color:#fff;
+			font-size:12px;
+			line-height: 51px;
+		}
+		.main-order .fl {
+			font-size:10px;
+			line-height: 55px;
+		}
+
+		</style>
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header" style="background-color: #FAFAFA">
+                <a onClick="closeWin()" class="um-back"></a>
+				<h3>评价</h3>
+				<a style="color: #EC8A22" onClick="evaluateConfirm()" href="#" class="um-header-right ">提交</a>
+            </div>
+			<div class="um-content">
+				
+                <div class="um-panel um-row " >
+                	<div class="um-panel-row" style="width: 100%">
+                		<div class="main-order">
+							<span class="fl">订单号：<span id="orderId"></span></span>
+							<span class="fr">订单评分：<span id="mainStar"></span></span>
+						</div>
+                		
+                	</div>
+                	<div class="um-panel-row">
+                		
+                        <textarea style="height: 150px;bottom: 18px;position: relative;" name="" id="commentCont" cols="30" rows="10" class="form-control" placeholder="产品还符合您的期待吗？说说它的优点和不足的地方吧"></textarea>
+
+                	</div>
+                </div>
+               
+
+			</div>
+
+		</div>
+		<script src="../../js/jQuery.score.js"></script>
+		<script>
+			var score = 5;
+			function closeWin(){
+				summer.closeWin();
+			}
+			function nofind(_this,type){  
+			    src = "../static/mall/images/default_small.png"
+			    _this.src = src
+			    _this.onerror=null;
+			}
+			function evaluateConfirm(){
+				var params = summer.pageParam;
+				var p_conditions = {
+		            orderId:params.orderId,
+		            order_elv:score,
+		            content:$('#commentCont').val()
+		        };
+		        var bb = p_page_params_con_dataj_enc(p_conditions,{},{});
+		        p_async_post(ip+'/ieop_base_mobile/mfrontsumaterialorderevaluation/save', bb,'saveComment');
+			}
+			summerready =  function(){
+				$summer.fixStatusBar($summer.byId('header'));
+				window.ip = summer.getStorage('ip');
+				var options = summer.pageParam;
+				$('#orderId').html(options.orderId);
+				$('#mainStar').score({
+				    number      : 5,
+				    size        : 20,
+				    color       : '#ffac38',
+				    score       : 5,
+				    vertical    : false,
+				    hints       : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+				    click       : function(score, event){
+				    	window.score = score;
+				        //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
+				    },
+				    readOnly    : false,
+				    fontAwesome : true,
+				    debug       : true
+				});
+			}
+			function saveComment(data){
+				summer.toast({
+					msg:data.msg
+				})
+				if(data.status==1){
+					summer.execScript({
+						winId:'supplier',
+						script: 'evaluationBack();'
+					});
+					summer.closeWin();
+				}
+			}
+		</script>
+	</body>
+</html>

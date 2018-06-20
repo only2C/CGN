@@ -41,6 +41,15 @@ summerready = function(){
             getData(status);
             viewModel.tabIndex(status);
         },
+        openComment:function(orderId){
+        	summer.openWin({
+                "id" : "comment_su",
+                "url" : "html/comment_su/comment_su.html",
+                "pageParam" : {
+                    "orderId" : orderId
+                }
+            });
+        },
         viewDocument:function (data) {
             summer.openWin({
                 "id" :"supplier_view_document",
@@ -118,6 +127,9 @@ summerready = function(){
 		}
 	})
 }
+function evaluationBack(){
+	viewModel.getType('20');
+}
 function getData(status,kwd){
     var param ={
 
@@ -126,11 +138,12 @@ function getData(status,kwd){
         pageIndex:1,
         pageSize:100
     }
-    if(!status&&summer.pageParam.status&&summer.pageParam.status != -1){
+    
+	if(status==20 ||!status && summer.pageParam.status==20){
+		param.sellEvaluationSta = '0';
+	}else if(!status&&summer.pageParam.status&&summer.pageParam.status != -1){
         param.queryStatus = summer.pageParam.status;
-    }
-
-    if(status&&status != -1){  //status == -1  查看全部
+    }else if(status&&status != -1){  //status == -1  查看全部
         param.queryStatus = status?status:summer.pageParam.status;
     }
 	if(kwd){
