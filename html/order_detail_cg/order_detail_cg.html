@@ -49,7 +49,7 @@
 				        <span data-bind="text:buyCompanyName"></span>
 				    </div>
 				    <ul data-bind="foreach:childOrders" class="order-list">
-				        <li data-bind="click:$root.openWin.bind($data,{cgnMCode:materialCode,cgnFCode:buyFactoryCode?buyFactoryCode:'',cgnFName:buyFactoryName?buyFactoryName:''})">
+				        <li data-bind="click:$root.openWin.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
 				            <div class="img-wp">
 				                <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="">
 				            </div>

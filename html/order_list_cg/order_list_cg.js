@@ -56,7 +56,7 @@ summerready = function(){
 					"mainId":orderId
 				};
 			}
-			if(materialCode){
+			if(materialCode&&toString.call(materialCode)!='[object Object]'){
 				pageParam = {
 					"mainId":orderId,
 					"materialCode":materialCode,

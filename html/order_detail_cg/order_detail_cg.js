@@ -85,7 +85,7 @@ summerready = function () {
         openWin: function (options, data) {
             summer.openWin({
                 "id": "detail",
-                "url": "html/detail/detail.html",
+                "url": "html/detail_cg/detail_cg.html",
                 "pageParam": {
                     options: options
                 }
@@ -265,7 +265,7 @@ function querySingle() {
     var page_params = {"pageIndex": 1, "pageSize": 100};  //分页
     var sortItem = {};
     var enc_conditions = p_page_params_con_dataj_enc(p_conditions, page_params, sortItem);
-    p_async_post(ip + '/ieop_base_mobile/mfrontsumallorder/querysuaggsingle', enc_conditions, 'queryaggsingle');
+    p_async_post(ip + '/ieop_base_mobile/mfrontsumallorder/queryaggsingle', enc_conditions, 'queryaggsingle');
 
 }
 

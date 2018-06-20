@@ -89,6 +89,12 @@ summerready = function(){
                 },
             })
         },
+        openComment:function(){
+            summer.openWin({
+                "id" :"comment_list_cg",
+                "url" : "html/comment_list_cg/comment_list_cg.html"
+            })
+        },
         openList2:function(status){
             summer.openWin({
                 "id" :"order_list",

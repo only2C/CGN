@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">
+		<link rel="stylesheet" href="./comment_list_cg.css">
+		<script src="../../js/summer.js"></script>		
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/knockout.js"></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+		<script src="./comment_list_cg.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>评价列表</h3>
+				<div class="tab"><div data-bind="click:changeTab.bind($data,1),css:{on:tabIndex()==1}" class="flex1">给他人的评价</div><div data-bind="click:changeTab.bind($data,2),css:{on:tabIndex()==2}" class="flex1">来自他人的评价</div></div>
+			</div>
+			
+			<div class="um-content">
+				<div data-bind="visible:tabIndex()==1,foreach:giveList" class="give-wp">
+					<div class="item">
+						<div class="main-order">
+							<span class="fl">订单号：<span data-bind="text:orderId" id="orderId"></span></span>
+							<span class="fr">订单评分：<span data-bind="text:orderEvaluationLv" id="mainStar"></span></span>
+						</div>
+						<div class="item-inner">
+							<div style="width:80px;position: relative;">
+	                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" data-bind="attr:{src:evaluationUrls?evaluationUrls:'../../img/default_small.png'}"/>
+	                		</div>
+	                		<div style="float: left;margin-left:8px;width: 173px;">
+	                			<div class="rite-item">商品名称：<span data-bind="text:suMaterialName"></span></div>
+	                			<div class="rite-item">供应商物料编码：<span data-bind="text:suMaterialCode"></span></div>
+	                			<div class="rite-item">采购方物料编码：<span data-bind="text:suMRefCode"></span></div>
+	                			<div class="rite-item">商品评分：<span data-bind="text:materialEvaluationLv"></span></div>
+	                		</div>
+						</div>
+						<div class="comment-wp">
+							<div class="comment-item">
+								<div>初评内容：<span data-bind="text:evaluationContent">很好</span></div>
+								<div><span class="commenter" data-bind="text:userName">老王</span><span class="comment-time" data-bind="text:createTime">2018-05-03</span></div>
+							</div>
+							<div class="comment-item">
+								<div>追评内容：<span data-bind="text:addComment.evaluationContent?addComment.evaluationContent:''"></span></div>
+								<div><span data-bind="text:addComment.userName" class="commenter"></span><span data-bind="text:addComment.createTime" class="comment-time"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-bind="visible:tabIndex()==1&&giveList().length<=0">无数据</div>
+				<div data-bind="visible:tabIndex()==2,foreach:fromList" class="list-wp">
+					<div class="item">
+						<div class="main-order">
+							<span class="fl">订单号：<span id="orderId"></span></span>
+							<span class="fr">订单评分：<span id="mainStar"></span></span>
+						</div>
+						<div class="item-inner">
+							<div style="width:80px;position: relative;">
+	                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" src="../../img/default_small.png"/>
+	                		</div>
+	                		<div style="float: left;margin-left:8px;width: 173px;">
+	                			<div class="rite-item">商品名称：<span></span></div>
+	                			<div class="rite-item">供应商物料编码：<span></span></div>
+	                			<div class="rite-item">采购方物料编码：<span></span></div>
+	                			<div class="rite-item">商品评分：<span></span></div>
+	                		</div>
+						</div>
+						<div class="comment-wp">
+							<div class="comment-item">
+								<div>初评内容：<span>很好</span></div>
+								<div><span class="commenter">老王</span><span class="comment-time">2018-05-03</span></div>
+							</div>
+							<div class="comment-item">
+								<div>追评内容：<span>很好</span></div>
+								<div><span class="commenter">老王</span><span class="comment-time">2018-05-03</span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div data-bind="visible:tabIndex()==2&&fromList().length<=0">无数据</div>
+			</div>
+		</div>
+	</body>
+</html>
