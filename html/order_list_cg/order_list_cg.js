@@ -271,7 +271,7 @@ function queryBack(res){
             var mainEnt = orderList[i].mainEnt;
             var children = orderList[i].children.su_mall_order_infos;
             children.forEach(function (val) {
-				val.materialImgUrl = summer.getStorage("imgBaseUrl") + val.materialImgUrl;
+				val.materialImgUrl = val.materialImgUrl ? summer.getStorage("imgBaseUrl") + val.materialImgUrl:"";
             })
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];
