@@ -173,13 +173,13 @@ html,body {
 	background-color: #fff;
 }
 .mcode {
-	line-height: 44px;
+	line-height: 25px;
 }
 .send-service {
 	padding: 13px 5% !important;
 }
 .mcode {
-	height: 44px;
+	height: 25px;
 }
 .mcode span,.send-service span {
 	color:#666;
