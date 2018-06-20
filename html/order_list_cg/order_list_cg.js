@@ -51,6 +51,12 @@ summerready = function(){
 			var pageParam = {
 				"orderId":orderId
 			};
+			if(winId == 'supplier_view_document'){
+				pageParam.backWinParam ={
+					page:'order_list_cg',
+                    status:viewModel.status()
+				}
+			}
 			if(winId =='order_detail_supplier'){
 				pageParam = {
 					"mainId":orderId
@@ -172,7 +178,7 @@ function queryOrder(status,kwd){
 	if(status=="20"){
     	var p_conditions = status?{suEvaluationStatus:'0,2'}:{};
     }else{
-        var p_conditions = status===-1?{}:{queryStatus:status};
+        var p_conditions = ( status===-1 || !status) ?{}:{queryStatus:status};
     }
 	if(kwd){
 		p_conditions['queryString'] = kwd;
@@ -271,7 +277,7 @@ function queryBack(res){
             var mainEnt = orderList[i].mainEnt;
             var children = orderList[i].children.su_mall_order_infos;
             children.forEach(function (val) {
-				val.materialImgUrl = summer.getStorage("imgBaseUrl") + val.materialImgUrl;
+				val.materialImgUrl = val.materialImgUrl ? summer.getStorage("imgBaseUrl") + val.materialImgUrl:"";
             })
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];

@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<div class="um-win" id="order_all">
+<div class="um-win" id="list_supplier">
     <div class="um-header" id="header">
         <a onClick="closeWin()" class="um-back"></a>
         <h3>订单</h3>
@@ -66,7 +66,24 @@
                     </div>
                     <div class="order-header-right fr" data-bind="text:mainEnt.allStatusName"> </div>
                 </div>
-                <div class="order-content">
+                <div data-bind="foreach:children.su_mall_order_infos">
+                    <div class="order-content">
+                        <div class="order-content-img fl">
+                            <img data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}"/>
+                        </div>
+                        <div class="order-content-detail fl">
+                            <h4 data-bind="text:materialName"></h4>
+                            <p>物料编码：<span data-bind="text:materialCode"></span></p>
+                            <p>数量：<span data-bind="text:materialTAmount"></span></p>
+                            <p>单价：<span data-bind="text:sumallTTotal"></span></p>
+                            <p>支付单号：<span data-bind="text:valiOrderCode"></span></p>
+                        </div>
+                        <div class="order-content-tag fr">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="order-content">
                     <div class="order-content-img fl">
                         <img data-bind="attr:{src:mainEnt.materialImgUrl?mainEnt.materialImgUrl:'../../img/default_small.png'}"/>
                     </div>
@@ -80,7 +97,7 @@
                     <div class="order-content-tag fr">
                         <span></span>
                     </div>
-                </div>
+                </div>-->
                 <div class="order-footer">
                     <!--<div class="order-total">-->
                         <!--共计：2345.00-->
@@ -88,7 +105,8 @@
 
                     <div class="order-button-list mt10">
                         <button class="btn-1" data-bind="click:$root.sendExpress,visible:mainEnt.allStatus==1">发货</button>
-                        <button class="btn-1" data-bind="click:$root.payBill,visible:mainEnt.allStatus==10">确认支付</button>
+                        <button class="btn-1" data-bind="click:$root.payBill,visible:mainEnt.allStatus==10&&mainEnt.valiOrderCode">确认支付</button>
+                        <button class="btn-1" data-bind="visible:mainEnt.sellEvaluationSta==0,click:$root.openComment.bind($data,mainEnt.id)">评价</button>
                         <button class="btn-2" data-bind="click:$root.getPageDetail">查看详情</button>
                         <button class="btn-2" data-bind="click:$root.viewDocument">查看文档</button>
                     </div>

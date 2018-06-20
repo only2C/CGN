@@ -1,3 +1,6 @@
+button{
+    outline: none;
+}
 .um-header {
     background-color: #fff;
     color: #333;
