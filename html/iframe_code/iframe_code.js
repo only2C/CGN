@@ -39,7 +39,7 @@ summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
-    var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
+    var isSuppliers = summer.getStorage("isSupplier");
 
     var viewModel = {
         isAndriod:ko.observable($summer.os=='android'),
@@ -73,6 +73,10 @@ function queryIframe(){
 }
 function iframeCallback(res) {
     var ents = res.retData.ents;
+    var isSupplier =  viewModel.isSupplier() != "01" ;
+    ents.forEach(function(v){
+        v.isSupplier =  isSupplier;
+    })
     viewModel.iframeList(ents);
 
 }

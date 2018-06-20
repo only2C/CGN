@@ -107,6 +107,7 @@ body{
 }
 .iframe-list{
     font-size:12px;
+    overflow: hidden;
 }
 
 .iframe-list div label{

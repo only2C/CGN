@@ -38,6 +38,10 @@
                     <i class="fr" data-bind="css:{'iframe-button-start':suFaSta == 1,'iframe-button-stop':suFaSta==0}"></i>
                 </div>
                 <div class="iframe-list" data-bind="click:$root.openDetailWin.bind($data,suFaCode)" >
+                    <div class="iframe-detail" data-bind="visible:isSupplier">
+                        <label>业主方：</label>
+                        <span data-bind="text:suFaOwnerCode"></span>
+                    </div>
                     <div class="iframe-detail">
                         <label>供应商：</label>
                         <span data-bind="text:ieopEnterpriseName"></span>
@@ -45,6 +49,7 @@
                     <div class="iframe-detail">
                         <label>协议名称：</label>
                         <span data-bind="text:suFaName"></span>
+                        (<span data-bind="text:suFaCode"></span>)
                     </div>
                 </div>
             </div>
