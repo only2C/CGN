@@ -1,6 +1,9 @@
 html,body {
 	font-size:14px;
 }
+button{
+	outline: none;
+}
 .address {
 	background-color:#fff;
 	overflow:hidden;

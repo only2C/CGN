@@ -17,6 +17,7 @@ var billStatus = {
     15:'其他',
     20:'待评价'
 };
+var turn = 0 ;
 function keyBack() {
     turn++;
     if (turn == 2) {
@@ -116,6 +117,10 @@ summerready = function(){
 
                 }
             })
+        },
+        changeShow:function (index) {
+            $('#switchWp'+index()).siblings('.order-total').find('.switch-btn').toggleClass('slide');
+            $('#switchWp'+index()).slideToggle();
         }
     };
     window.viewModel = viewModel;

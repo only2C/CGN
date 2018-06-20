@@ -5,6 +5,9 @@ body{
     background: #ff9500;
     padding-top:22px;
 }
+button{
+    outline: none;
+}
 .fl{
     float: left;
 }

@@ -1,6 +1,9 @@
 body{
     font-size: 14px;
 }
+button{
+    outline: none;
+}
 .um-header{
     background: #ff9500;
     padding-top:22px;

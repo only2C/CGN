@@ -93,7 +93,7 @@ function queryRang(){
     p_async_post(ip + '/ieop_base_mobile/'+url, param, 'queryRangCallback');
 }
 function queryDoc(){
-    var url = 'mfrontsufaattachments/querypages';
+    var url = 'mfrontsufaattachments/querypage';
     if(isSupplier){
         url ='mfrontsufaattachments/querysupage';
     }
