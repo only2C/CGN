@@ -66,7 +66,24 @@
                     </div>
                     <div class="order-header-right fr" data-bind="text:mainEnt.allStatusName"> </div>
                 </div>
-                <div class="order-content">
+                <div data-bind="foreach:children.su_mall_order_infos">
+                    <div class="order-content">
+                        <div class="order-content-img fl">
+                            <img data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}"/>
+                        </div>
+                        <div class="order-content-detail fl">
+                            <h4 data-bind="text:materialName"></h4>
+                            <p>物料编码：<span data-bind="text:materialCode"></span></p>
+                            <p>数量：<span data-bind="text:materialTAmount"></span></p>
+                            <p>单价：<span data-bind="text:sumallTTotal"></span></p>
+                            <p>支付单号：<span data-bind="text:valiOrderCode"></span></p>
+                        </div>
+                        <div class="order-content-tag fr">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="order-content">
                     <div class="order-content-img fl">
                         <img data-bind="attr:{src:mainEnt.materialImgUrl?mainEnt.materialImgUrl:'../../img/default_small.png'}"/>
                     </div>
@@ -80,7 +97,7 @@
                     <div class="order-content-tag fr">
                         <span></span>
                     </div>
-                </div>
+                </div>-->
                 <div class="order-footer">
                     <!--<div class="order-total">-->
                         <!--共计：2345.00-->

@@ -138,6 +138,7 @@ body{
     overflow: hidden;
     background: rgb(242,242,242);
     padding:10px;
+    margin-bottom: 1px;
 }
 .order-footer{
     overflow: hidden;

@@ -147,7 +147,9 @@ function  getDataCallback(res) {
         data = res.retData.aggEnts;
         data.forEach(function (value) {
             value.mainEnt.allStatusName = billStatus[value.mainEnt.allStatus];
-            value.mainEnt.materialImgUrl = summer.getStorage("imgBaseUrl") + value.mainEnt.materialImgUrl;
+            value.children.su_mall_order_infos.forEach(function(v){
+                v.materialImgUrl = v.materialImgUrl ? summer.getStorage("imgBaseUrl") +  v.materialImgUrl:''
+            })
         })
     }
     viewModel.supplierList(data);
