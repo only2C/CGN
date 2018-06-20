@@ -175,10 +175,11 @@ summerready = function(){
 function queryOrder(status,kwd){
 	viewModel.status(status);
 	var queryObj;
+	var p_conditions  ={} ;
 	if(status=="20"){
-    	var p_conditions = status?{suEvaluationStatus:'0,2'}:{};
+    	p_conditions = status?{suEvaluationStatus:'0,2'}:{};
     }else{
-        var p_conditions = ( status===-1 || !status) ?{}:{queryStatus:status};
+        p_conditions = ( status===-1 || status == 'undefined') ?{}:{queryStatus:status};
     }
 	if(kwd){
 		p_conditions['queryString'] = kwd;
