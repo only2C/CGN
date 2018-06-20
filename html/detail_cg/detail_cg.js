@@ -63,7 +63,7 @@ summerready = function(){
 		type:ko.observable(),
 		cgnMCode:ko.observable(),
 		cgnBrandName:ko.observable(),
-		materialFSta:ko.observable(),
+		materialFSta:ko.observable(summer.getStorage("materiaFSta")),
 		picArr:ko.observableArray(),
 		ieopEnterpriseName:ko.observable(),
 		suStoreName:ko.observable(),
@@ -122,8 +122,8 @@ summerready = function(){
 				info['suStoreCode'] = params.suStoreCode;
 				info['suStoreName'] = viewModel.suStoreName();
 		
-				info['brandName'] = viewModel(cgnBrandName);
-				info['materialFSta'] = materialFSta;
+				info['brandName'] = viewModel.cgnBrandName();
+				info['materialFSta'] =viewModel.materialFSta();
 				var bb = p_params_dataj_ent_enc(info);
 				p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialfavorites/save', bb,'favoritesSave1');
 				
