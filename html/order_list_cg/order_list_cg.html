@@ -75,8 +75,8 @@
 		                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
 		                </div>
 		                <div class="order-content-detail fl">
-		                    <h4 data-bind="text:materialName">压力表</h4>
-							<p>物料编码:<span data-bind="text:materialRefCode"></span></p>
+		                    <h4 data-bind="text:materialName"></h4>
+							<p>物料编码：<span data-bind="text:materialRefCode"></span></p>
 		                    <p>单价：<span data-bind="text:sumallTPrice" class="mr5"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
 		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
 		                </div>
@@ -102,8 +102,8 @@
 	                <div class="order-button-list">
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==0,click:$root.cancelClick.bind($data,mainEnt.id)" class="btn-1">取消</button>
 	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==9,click:$root.acceptance.bind($data,mainEnt.id,mainEnt.receivePhone,mainEnt.receiveName)" class="btn-1">验收</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id)" class="btn-2">查看详情</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id)" class="btn-2">查看文档</button>
+	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id,'','')" class="btn-2">查看详情</button>
+	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id,'','')" class="btn-2">查看文档</button>
 	                </div>
 	            </div>
 	        </div>
@@ -122,7 +122,8 @@
 		                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
 		                </div>
 		                <div class="order-content-detail fl">
-		                    <h4 data-bind="text:materialName">压力表</h4>
+		                    <h4 data-bind="text:materialName"></h4>
+							<p>物料编码：<span data-bind="text:materialRefCode"></span></p>
 		                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
 		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
 		                </div>
@@ -149,8 +150,8 @@
 	                   <button data-bind="visible:suEvaluationStatus!=3&allStatus==0,click:$root.cancelClick.bind($data,suMallorderTid)" class="btn-1">取消</button>
 	                   <button data-bind="visible:suEvaluationStatus==2,click:$root.openWin.bind($data,'comment_cg',suMallorderTid,materialCode,1)" class="btn-1">追加评价</button>
 	                   <button data-bind="visible:suEvaluationStatus!=3&suEvaluationStatus!=2&(allStatus==10||allStatus==11||allStatus==12),click:$root.openWin.bind($data,'comment_cg',suMallorderTid,materialCode)" class="btn-1">评价</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',suMallorderTid)" class="btn-2">查看详情</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',suMallorderTid)" class="btn-2">查看文档</button>
+	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',suMallorderTid,'','')" class="btn-2">查看详情</button>
+	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',suMallorderTid,'','')" class="btn-2">查看文档</button>
 	                </div>
 	            </div>
 	        </div>

@@ -51,6 +51,12 @@ summerready = function(){
 			var pageParam = {
 				"orderId":orderId
 			};
+			if(winId == 'supplier_view_document'){
+				pageParam.backWinParam ={
+					page:'order_list_cg',
+                    status:viewModel.status()
+				}
+			}
 			if(winId =='order_detail_supplier'){
 				pageParam = {
 					"mainId":orderId
