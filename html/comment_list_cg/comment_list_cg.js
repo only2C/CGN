@@ -11,6 +11,9 @@ function keyBack(){
         turn=0;
     }, 3000);
 }
+function closeWin(){
+	summer.closeWin();
+}
 function nofind(_this,type){  
     src = "../static/mall/images/default_small.png"
     _this.src = src
@@ -18,10 +21,12 @@ function nofind(_this,type){
 }
 summerready = function(){
 	window.ip = summer.getStorage("ip");
+	var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
     window.viewModel = {
-    	tabIndex:ko.observable(1),
+    	tabIndex:ko.observable(isSuppliers?1:2),
     	giveList:ko.observableArray(),
     	fromList:ko.observableArray(),
+    	isSuppliers:ko.observable(isSuppliers),
         tmpArr:ko.observableArray(),
     	changeTab:function(index){
     		viewModel.tabIndex(index);
@@ -35,19 +40,26 @@ summerready = function(){
         };
         var bb = p_page_params_con_dataj_enc(p_conditions,{},{});
         if(viewModel.tabIndex()==2){
-        	baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/queryfrom';
+        	if(viewModel.isSuppliers()){
+        		baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/queryfrom';
+        	}else{
+        		baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/querybuyto';
+        	}
         }else {
-        	baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/querysellto';
+        	if(viewModel.isSuppliers()){
+        		baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/querysellto';
+        	}else{
+        		baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/queryfrom'
+        	}
         }
         p_async_post(ip+baseUrl, bb,'queryfromBack');
     }
     getList();
 }﻿ 
+var s_map = {};
 function queryfromBack(data){
 	var tmpArr = data.retData.ents;
-    var spaInfos = res.retData.spaInfos;
-    var tmpArr = []; 
-    var s_map = {};
+    var spaInfos = data.retData.spaInfos;
     var tmpObj = {};
     if(tmpArr.length>0){
         if(viewModel.tabIndex()!=2&&spaInfos!=undefined){
@@ -96,27 +108,40 @@ function querybymescodesBack(data){
             var key = ent.suMCode+"#"+ent.suStoreCode+"#"+ent.ieopEnterpriseCode;
             refObj[key] = ent;
         }
+        var ods = [];
         for(var i=0;i<viewModel.tmpArr().length;i++){
             var od = viewModel.tmpArr()[i];
             var key = od.suMaterialCode+"#"+od.suStoreCode+"#"+od.suCompanyCode;
             var refm = refObj[key];
             if(refm!=undefined){
-                viewModel.tmpArr()[i]['suMRefCode'] = refm['suMRefCode'];
+                od['suMRefCode'] = refm['suMRefCode'];
             }
+            key = od.orderId+","+od.orderCid;
             if(null != s_map[key] && s_map[key] != undefined){
                 tArr = s_map[key];
                 for(var j=0;j<tArr.length;j++){
                     var son = tArr[j];
-                    viewModel.tmpArr()[i]['addComment'] = son;
+                    od['addComment'] = son; //追评只有一次，所以存了obj，多次追评时需修改为数组
                 }
+            }else {
+            	od['addComment'] = undefined;
             }
+            ods.push(od);
         }
-        console.log()
-        if(viewModel.tabIndex()==1){
-            viewModel.giveList(viewModel.tmpArr());
+        viewModel.tmpArr(ods);
+        if(viewModel.tabIndex()==(viewModel.isSuppliers()?1:2)){
+        	if(viewModel.isSuppliers()){
+        		viewModel.giveList(viewModel.tmpArr());
+        	}else{
+        		viewModel.fromList(viewModel.tmpArr());
+        	}
             console.log(viewModel.tmpArr());
         }else {
-            viewModel.fromList(viewModel.tmpArr());
+        	if(viewModel.isSuppliers()){
+        		viewModel.fromList(viewModel.tmpArr());
+        	}else{
+        		viewModel.giveList(viewModel.tmpArr());
+        	}
             console.log(viewModel.tmpArr());
         }
     }else{
