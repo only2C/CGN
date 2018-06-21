@@ -333,7 +333,7 @@
                             地址
                         <p></a>
                 </div>
-                <div data-bind="click:openList.bind($data,'comment')">
+                <div data-bind="click:openComment.bind($data,isSupplier()==false?'comment':'comment_list_cg')">
                     <a href="#"> <img src="../../img/my_comment.png" height="24" alt="">
                         <p class="f14 mt10 " style="color: #666666">
                             评价

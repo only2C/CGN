@@ -1,0 +1,60 @@
+html,body {
+	font-size:14px;
+}
+.um-header-light .um-back:before {
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    padding-top:22px;
+}
+.um-header {
+	background-color:#fff;
+	color:#333;
+	padding-top:22px;
+}
+.um-header h3 {
+	font-size:15px;
+	font-weight: normal;
+	color:#333;
+}
+.um-back::before {
+	width: 10px;
+    height: 10px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    position: relative;
+    left:10px;
+}
+.tab {
+	display:flex;
+	display:-webkit-flex;
+}
+.flex1 {
+	flex:1;
+}
+.tab .flex1 {
+	line-height: 40px;
+	text-align:center;
+	border:2px solid rgba(238, 148, 48, 1);
+}
+.tab .flex1.on {
+	background-color:rgba(238, 148, 48, 1);
+	color:#fff;
+}
+.main-order {
+	overflow:hidden;
+	background-color:#fff;
+	font-size:12px;
+	line-height: 40px;
+}
+.main-order .fl {
+	font-size:10px;
+	line-height: 45px;
+}
+.item-inner {
+	padding:10px;
+	background-color:#fff;
+	overflow: hidden;
+}
+.comment-wp {
+	background-color:#fff;
+}
