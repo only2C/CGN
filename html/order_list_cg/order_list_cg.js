@@ -157,9 +157,7 @@ summerready = function(){
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
     if(summer.pageParam && summer.pageParam.status != -1 ){
-
     	queryOrder(summer.pageParam.status);
-
     }else {
     	queryOrder();
     }
