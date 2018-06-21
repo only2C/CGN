@@ -64,6 +64,34 @@ summerready = function(){
             }else{
                 viewModel.nullDataVisible(false);
             }
+        },
+        downFile:function (val) {
+
+
+            var params = ["android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE"];
+            summer.getPermission(params,  function(args){
+                // summer.openWin({
+                //     id : 'otherHome',
+                //     url :val,
+                //     type: "externalLink",//打开外链接，页面跳转二级以上，导航栏出现关闭按钮
+                //     create: false,
+                //     title: "自定义title",
+                //     image: "img/back.png", // 在www目录下的图片位置，路径随意放置，返回按钮图片
+                //     titleColor: "#000000", //标题、返回、关闭的字体颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+                //     navigationbgColor: "#ffffff" //导航栏 的背景色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+                // });
+                summer.download({
+                    "url" : 'http://img07.tooopen.com/images/20170316/tooopen_sy_201956178977.jpg',
+                    "locate" : "download",
+                    "filename" : "tooopen_sy_201956178977.jpg",
+                    "override" : "true",
+                    "callback" : "downloadCallBack()"
+                })
+            }, function(args){
+                alert(args); //失败返回illegal access
+            })
+
         }
     };
     window.viewModel = viewModel;
@@ -71,6 +99,26 @@ summerready = function(){
     queryDeatil();
     queryRang();
     queryDoc()
+}
+
+function downloadCallBack(args) {
+    if(args.isfinish){
+        summer.openWin({
+            id : 'otherHome',
+            url :'http://img07.tooopen.com/images/20170316/tooopen_sy_201956178977.jpg',
+            type: "externalLink",//打开外链接，页面跳转二级以上，导航栏出现关闭按钮
+            create: false,
+            title: "自定义title",
+            image: "img/back.png", // 在www目录下的图片位置，路径随意放置，返回按钮图片
+            titleColor: "#000000", //标题、返回、关闭的字体颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+            navigationbgColor: "#ffffff" //导航栏 的背景色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
+        });
+
+        alert("下载成功"); //多次回调，用于进度条提示
+    }
+    console.log("223")
+    console.log(args)
+    args
 }
 
 var isSupplier = summer.getStorage("isSupplier") == "01";
