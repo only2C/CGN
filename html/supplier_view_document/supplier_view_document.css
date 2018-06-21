@@ -38,8 +38,8 @@ button{
 
 .iframe-title , .iframe-detail ,.iframe-time{
     height:25px;
-    line-height:25px
-
+    line-height:25px;
+    overflow: hidden;
 }
 .iframe-title span{
     font-weight:bold;

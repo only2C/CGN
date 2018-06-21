@@ -86,9 +86,11 @@
 	                		<div class="clearfix"></div>
 	                	</div>
 	                </div>
-	                <div data-bind="visible:mainEnt.allStatus==0" class="order-button-list">
+	                <div  class="order-button-list">
 	                   <button data-bind="visible:mainEnt.allStatus==0,click:$root.noAccess.bind($data,mainEnt.id)" class="btn-1">不通过</button>
 	                   <button data-bind="visible:mainEnt.allStatus==0,click:$root.access.bind($data,mainEnt.id)" class="btn-2">通过</button>
+                        <button class="btn-2" data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id)">查看详情</button>
+                        <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id)" class="btn-2">查看文档</button>
 	                </div>
 	            </div>
 	        </div>

@@ -44,24 +44,53 @@ summerready = function() {
         // 执行pc特殊代码
     }
     var viewModel = {
+        detailData: ko.observableArray([]),
+        sumescodeObj:ko.observable()
 
     }
     window.viewModel = viewModel;
-    getDetail();
+    getSumescode();
+
     ko.applyBindings(viewModel);
 }
 
 function getDetail() {
-    var obj = summer.pageParam.expressObj;
+    var obj = summer.pageParam.options;
     var condition ={
         materialCode:obj.materialCode,
         suStoreCode:obj.suStoreCode ,
     };
-    var pageInfo ={"pageIndex":1,"pageSize":20};
+    var pageInfo ={"pageIndex":1,"pageSize":100};
     var param = p_page_params_con_dataj_enc(condition,pageInfo);
     p_async_post(ip+'/ieop_base_mobile/mfrontsumaterial/queryaggsingle', param,'getDetailCallback');
 
 }
+
+function getSumescode() {
+    var obj = summer.pageParam.options;
+    var condition ={
+        suMCode:obj.materialCode,
+        suStoreCode:obj.suStoreCode ,
+    };
+    var bb = p_params_con_dataj_enc(condition);
+    var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybysumescode', bb);
+    if(data.retData.ents.length==0){
+        UM.alert({
+            title: '物料已下架',
+            btnText: ["确定"],
+            overlay: true,
+            ok: function () {
+               closeWin();
+            }
+        });
+        return;
+    }
+    if(data.status==1){
+        viewModel.sumescodeObj(data.retData.ents[0])
+        getDetail();
+    }
+}
+
 function getDetailCallback(ret) {
     if(ret.status==0){
         UM.alert({
@@ -74,6 +103,12 @@ function getDetailCallback(ret) {
         return;
     }
     var retData = ret.retData.aggEnt.mainEnt;
+    retData.suPrice =  viewModel.sumescodeObj().suPrice;
+    retData.suMRefCode = viewModel.sumescodeObj().suMRefCode;
+    retData.suStoreName = viewModel.sumescodeObj().suStoreName;
+    retData.suInvStock = viewModel.sumescodeObj().suInvStock;
+    viewModel.detailData([retData])
+
     var picArr = retData.suMSmallimgs.split("#");
     var list = [];
     for(var i=0;i<picArr.length;i++){
@@ -90,4 +125,5 @@ function getDetailCallback(ret) {
         animateTime: 800
     });
     islider.addDot();
+
 }

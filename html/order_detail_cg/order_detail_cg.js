@@ -283,12 +283,14 @@ function queryaggsingle(res) {
         viewModel.nullDataTips(true);
         return ;
     }
+    var childOrder = res.retData.aggEnt.children.su_mall_order_infos;
     if (summer.pageParam.type == 'send_back') {
-        var childOrder = res.retData.aggEnt.children.mall_transfer_order_ret;
-    } else {
-        var childOrder = res.retData.aggEnt.children.su_mall_order_infos;
+        childOrder = res.retData.aggEnt.children.mall_transfer_order_ret;
     }
 
+    childOrder.forEach(function (val) {
+        val.materialImgUrl = val.materialImgUrl ? summer.getStorage("imgBaseUrl")+materialImgUrl:"";
+    })
     var mainEnt = res.retData.aggEnt.mainEnt;
     if (mainEnt.returnUrgent == '0') {
         mainEnt.returnUrgent = '低';

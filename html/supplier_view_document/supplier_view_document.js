@@ -1,6 +1,5 @@
 var turn =  0 ;
 function closeWin (){
-	summer.closeWin()
     if(summer.pageParam.backWinParam){
         summer.openWin({
             "id" :summer.pageParam.backWinParam.page,
@@ -11,23 +10,12 @@ function closeWin (){
                 duration:0 //动画过渡时间，默认300毫秒
             },
             "pageParam" : {
-                status:summer.pageParam.backWinParam.status
+                status:summer.pageParam.backWinParam.status?summer.pageParam.backWinParam.status:''
             },
         });
 
     }else{
-        summer.openWin({
-            "id" : "supplier",
-            "url" : "html/list_supplier/list_supplier.html",
-            "animation":{
-                type:"none", //动画类型（详见动画类型常量）
-                subType:"from_right", //动画子类型（详见动画子类型常量）
-                duration:0 //动画过渡时间，默认300毫秒
-            },
-            "pageParam" : {
-                status:summer.pageParam.status
-            },
-        });
+        summer.closeWin();
     }
 }
 summerready = function(){
@@ -35,7 +23,8 @@ summerready = function(){
     var platform = $summer.os;
     window.ip = summer.getStorage("ip");
     var viewModel = {
-        viewList:ko.observableArray([])
+        viewList:ko.observableArray([]),
+        orderId:ko.observable( summer.pageParam.orderId ? summer.pageParam.orderId : summer.pageParam.mainId),
     };
     window.viewModel = viewModel;
     getDocument();
@@ -55,10 +44,10 @@ function keyBack() {
     }, 3000);
 }
 
-var orderId =  summer.pageParam.orderId ? summer.pageParam.orderId : summer.pageParam.mainId;
+
 function getDocument() {
     var param ={
-        id:orderId
+        id:viewModel.orderId()
     }
     var params = p_params_con_dataj_enc(param);
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysingle', params,'getDocumentCallback');
@@ -70,7 +59,7 @@ function getDocumentCallback(data){
 }
 function getDocumentList() {
 
-    var params = p_page_params_con_dataj_enc({suMallorderTid:orderId},{pageIndex:1,pageSize:10});
+    var params = p_page_params_con_dataj_enc({suMallorderTid:viewModel.orderId()},{pageIndex:1,pageSize:10});
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallorderattachments/querypage', params,'getDocumentListCallback');
 }
 function getDocumentListCallback(data) {

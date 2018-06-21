@@ -65,29 +65,27 @@ summerready = function(){
                 viewModel.nullDataVisible(false);
             }
         },
-        downFile:function (val) {
+        downFile:function (url) {
 
 
             var params = ["android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
                 "android.permission.WRITE_EXTERNAL_STORAGE"];
             summer.getPermission(params,  function(args){
-                // summer.openWin({
-                //     id : 'otherHome',
-                //     url :val,
-                //     type: "externalLink",//打开外链接，页面跳转二级以上，导航栏出现关闭按钮
-                //     create: false,
-                //     title: "自定义title",
-                //     image: "img/back.png", // 在www目录下的图片位置，路径随意放置，返回按钮图片
-                //     titleColor: "#000000", //标题、返回、关闭的字体颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
-                //     navigationbgColor: "#ffffff" //导航栏 的背景色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
-                // });
-                summer.download({
-                    "url" : 'http://img07.tooopen.com/images/20170316/tooopen_sy_201956178977.jpg',
-                    "locate" : "download",
-                    "filename" : "tooopen_sy_201956178977.jpg",
-                    "override" : "true",
-                    "callback" : "downloadCallBack()"
-                })
+                summer.openWin({
+                    id: "12344",
+                    url: url,
+                    type: "externalLink",
+                    title: "文件下载，支持Android7.0以上版本",
+                    create: false,
+                    titleColor: "#ff8000", //标题、返回、关闭的字体颜色
+                    navigationbgColor: "#ffffff", //topbar 的背景色
+                    position: {
+                        "left": 0,
+                        "right": 0,
+                        "top": 0,
+                        "bottom": 0
+                    }
+                });
             }, function(args){
                 alert(args); //失败返回illegal access
             })
@@ -101,28 +99,7 @@ summerready = function(){
     queryDoc()
 }
 
-function downloadCallBack(args) {
-    if(args.isfinish){
-        summer.openWin({
-            id : 'otherHome',
-            url :'http://img07.tooopen.com/images/20170316/tooopen_sy_201956178977.jpg',
-            type: "externalLink",//打开外链接，页面跳转二级以上，导航栏出现关闭按钮
-            create: false,
-            title: "自定义title",
-            image: "img/back.png", // 在www目录下的图片位置，路径随意放置，返回按钮图片
-            titleColor: "#000000", //标题、返回、关闭的字体颜色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
-            navigationbgColor: "#ffffff" //导航栏 的背景色，注意必须是6位数的颜色值。（3位数颜色值会不正常）
-        });
-
-        alert("下载成功"); //多次回调，用于进度条提示
-    }
-    console.log("223")
-    console.log(args)
-    args
-}
-
 var isSupplier = summer.getStorage("isSupplier") == "01";
-
 function queryDeatil(){
     var url = 'mfrontsufamaterialref/querypage';
     if(isSupplier){

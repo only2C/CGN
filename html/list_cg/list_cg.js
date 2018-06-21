@@ -231,12 +231,7 @@ function getsumaterial(responseJSON) {
     var tmpArr = [];
     for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
         if (navigation.mgCName[i] != '') {
-        	if(navigation.mgCName[i] == "水冷系统 "){
-        		navigation.mgCName[i]="水冷系统";
-        		tmpArr.push({mgCName: navigation.mgCName[i]});
-        	}else{
-         		tmpArr.push({mgCName: navigation.mgCName[i]});       		
-        	}
+        	tmpArr.push({mgCName: $.trim(navigation.mgCName[i])});
         }
     }
     function notNull(item){

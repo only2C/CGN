@@ -83,7 +83,7 @@
 	                </div>
 	                <div class="order-button-list">
 	                   <button data-bind="visible:mainEnt.allStatus==10,click:$root.saveClick.bind($data,mainEnt.id,mainEnt.valiOrderCode)" class="btn-1">保存</button>
-	                   <button class="btn-2">查看详情</button>
+	                   <button class="btn-2" data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id)">查看详情</button>
 	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id)" class="btn-2">查看文档</button>
 	                </div>
 	            </div>
