@@ -231,12 +231,7 @@ function getsumaterial(responseJSON) {
     var tmpArr = [];
     for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
         if (navigation.mgCName[i] != '') {
-        	if(navigation.mgCName[i] == "水冷系统 "){
-        		navigation.mgCName[i]="水冷系统";
-        		tmpArr.push({mgCName: navigation.mgCName[i]});
-        	}else{
-         		tmpArr.push({mgCName: navigation.mgCName[i]});       		
-        	}
+        	tmpArr.push({mgCName: $.trim(navigation.mgCName[i])});
         }
     }
     function notNull(item){
@@ -265,7 +260,6 @@ function getsumaterial(responseJSON) {
    	var ids="";
     for(var i= 0;i<data.length;i++){
     	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?summer.getStorage("imgBaseUrl") + data[i]['suMSmallimgs'][0]:'../static/mall/images/default_small.png';
-    	data[i]['suMSmallimg'] = data[i]['suMSmallimg'].substring(0,data[i]['suMSmallimg'].indexOf('#'));
     	var id = data[i].id;//物料id
 		ids += id + "#";
     }
