@@ -115,10 +115,10 @@
                     <img src="../../img/file-icon.png" width="30">
                 </div>
                 <div class="iframe-info fl">
-                    <div class="iframe-list">
+                    <div class="iframe-list" data-bind="click:$root.downFile.bind($data,suFaaFileAddr)">
                         <div class="iframe-detail">
                             <label>文档名称：</label>
-                            <a data-bind="text:suFaaFileName,click:$root.downFile.bind($data,suFaaFileAddr)"></a>
+                            <a data-bind="text:suFaaFileName"></a>
                         </div>
                         <div class="iframe-detail">
                             <label>上传人：</label>

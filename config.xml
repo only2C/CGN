@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<application>
-    <app_start>html/login.html</app_start>
-    <app_name>备件通（测试版）</app_name>
-    <project_name>cgnspare</project_name>
-    <package_name>com.mobile.cgnspare</package_name>
-    <frame_name>summer-um</frame_name>
-    <theme>red</theme>
-    <icon relativePath="css/themes/default/app">app</icon>
-    <versionCode>1</versionCode>
-    <versionBuild>1</versionBuild>
-    <versionName>1</versionName>
-    <orientation>unspecified</orientation>
-    <permission id="android.permission.INTERNET"/>
-    <statusBarStyle>dark</statusBarStyle>
-    <fullScreen>true</fullScreen>
-    <windowSoftInputMode>stateHidden</windowSoftInputMode>
-    <import id="cordova-plugin-compat" type="web" ref="cordova"/>
-    <import id="cordova-plugin-http" type="web" ref="cordova"/>
-    <import id="cordova-plugin-camera" type="web" ref="cordova"/>
-    <import id="cordova-plugin-file" type="web" ref="cordova"/>
+<application> 
+  <app_start>html/login.html</app_start>  
+  <app_name>备件通（测试版）</app_name>  
+  <project_name>cgnspare</project_name>  
+  <package_name>com.mobile.cgnspare</package_name>  
+  <frame_name>summer-um</frame_name>  
+  <theme>red</theme>  
+  <icon relativePath="css/themes/default/app">app</icon>  
+  <versionCode>1</versionCode>  
+  <versionBuild>1</versionBuild>  
+  <versionName>1</versionName>  
+  <orientation>unspecified</orientation>  
+  <permission id="android.permission.INTERNET"/>  
+  <statusBarStyle>dark</statusBarStyle>  
+  <fullScreen>true</fullScreen>  
+  <windowSoftInputMode>stateHidden</windowSoftInputMode>  
+  <import id="cordova-plugin-compat" type="web" ref="cordova"/>  
+  <import id="summer-plugin-upload" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-http" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-camera" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-dialogs" type="web" ref="cordova"/>  
+  <import id="cordova-plugin-file" type="web" ref="cordova"/> 
 </application>
 <!--
 【屏幕显示方向】

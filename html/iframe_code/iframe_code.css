@@ -98,8 +98,8 @@ body{
 }
 
 .iframe-title , .iframe-detail ,.iframe-time{
-    height:25px;
-    line-height:25px
+    /*height:25px;*/
+    /*line-height:25px*/
 
 }
 .iframe-title span{
