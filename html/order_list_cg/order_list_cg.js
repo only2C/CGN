@@ -45,6 +45,7 @@ summerready = function(){
     		$('#switchWp'+index()).slideToggle();
     	},
 		queryByStatus:function(status,data,event){
+			curPage = 1;
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			viewModel.tabIndex(status);
 			queryOrder(status);
