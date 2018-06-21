@@ -76,6 +76,23 @@ summerready = function(){
 			    }
 			})
     	},
+        openWin:function(winId,orderId){
+            var pageParam = {
+                "orderId":orderId
+            };
+            summer.openWin({
+                "id" :winId,
+                "url" : "html/"+winId+"/"+winId+".html",
+                "animation":{
+                    type:"none", //动画类型（详见动画类型常量）
+                    subType:"from_right", //动画子类型（详见动画子类型常量）
+                    duration:0 //动画过渡时间，默认300毫秒
+                },
+                "statusBarStyle":'dark',
+                "addBackListener":"true",
+                "pageParam":pageParam
+            });
+        },
 		queryByStatus:function(status,data,event){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			viewModel.status(status);

@@ -65,7 +65,8 @@
 				    <div data-bind="foreach:mainOrder" class="order-info">
 				    	<div class="order-code">订单编号：<span data-bind="text:id"></span></div>
 				    	<div class="creat-time">创建时间：<span data-bind="text:createTime"></span></div>
-				    	<div class="urgency">紧急程度：<span data-bind="text:returnUrgent"></span></div>
+						<div class="creat-time" data-bind="visible:orderedExpectDate">预约时间：<span data-bind="text:orderedExpectDate"></span></div>
+				    	<!--<div class="urgency">紧急程度：<span data-bind="text:returnUrgent"></span></div>-->
 				    	<!--<div class="back-date">预计归还时间：<span data-bind="text:returnExpectDate"></span></div>-->
                         <button class="btn btn-inline btn-sm">复制</button>
 				    </div>
