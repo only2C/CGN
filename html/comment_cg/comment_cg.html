@@ -169,21 +169,11 @@
 				var options = summer.pageParam;
 				var materialImgUrl = options.materialImgUrl?options.materialImgUrl:'../../img/default_small.png';
 				$('#mImg').attr({src:materialImgUrl});
-				$('#mainStar').score({
-				    number      : 5,
-				    size        : 20,
-				    color       : '#ffac38',
-				    score       : 5,
-				    vertical    : false,
-				    hints       : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
-				    click       : function(score, event){
-				    	orderScore = score;
-				        //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
-				    },
-				    readOnly    : false,
-				    fontAwesome : true,
-				    debug       : true
-				});
+				var info = {};
+			    info['suMallorderTid'] = options.mainId;
+			    var bb = p_params_con_dataj_enc(info);
+			    var ret = p_async_post(ip + '/ieop_base_mobile/mfrontsumaterialevaluation/queryorderevaluation', bb, 'queryorderevaluation');
+				
 				$('#star').score({
 				    number      : 5,
 				    size        : 20,
@@ -225,6 +215,30 @@
 						script: 'evaluationBack();'
 					});
 					summer.closeWin();
+				}
+			}
+			function queryorderevaluation(data){
+				if(data.status==1){
+					var mainScore = data.retData.ent.orderEvaluationLv;
+					$('#mainStar').score({
+					    number      : 5,
+					    size        : 20,
+					    color       : '#ffac38',
+					    score       : mainScore?mainScore:5,
+					    vertical    : false,
+					    hints       : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+					    click       : function(score, event){
+					    	orderScore = score;
+					        //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
+					    },
+					    readOnly    : false,
+					    fontAwesome : true,
+					    debug       : true
+					});
+				}else{
+					summer.toast({
+						"msg":data.msg
+					})
 				}
 			}
 		</script>

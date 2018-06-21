@@ -193,7 +193,7 @@ summerready = function () {
     })
     $('#thirdMenu').on('click', '.item', function () {
         var $this = $(this);
-        queryPage(1, {mgCName: $this.html()});
+        queryPage(1, {mgCName: $this.text()});
         myScroll.scrollTo(0, 0, 200, true);
         $this.addClass('on').siblings().removeClass('on');
     })
@@ -242,7 +242,11 @@ function getsumaterial(responseJSON) {
     function notNull(item){
     	return item != '';
     }
-    viewModel.thirdMenu(tmpArr);
+    if(summer.pageParam.options['mgCName']){
+    	viewModel.thirdMenu([{mgCName:summer.pageParam.options['mgCName']}]);
+    }else {
+    	viewModel.thirdMenu(tmpArr);
+    }
     viewModel.cgnFName(navigation.ieopEnterpriseName.filter(notNull));
     viewModel.cgnMApplyModelName(navigation.suMApplyModelName.filter(notNull));
     viewModel.cgnMApplyPositionName(navigation.suMApplyPositionName.filter(notNull));
@@ -265,7 +269,6 @@ function getsumaterial(responseJSON) {
    	var ids="";
     for(var i= 0;i<data.length;i++){
     	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?summer.getStorage("imgBaseUrl") + data[i]['suMSmallimgs'][0]:'../static/mall/images/default_small.png';
-    	data[i]['suMSmallimg'] = data[i]['suMSmallimg'].substring(0,data[i]['suMSmallimg'].indexOf('#'));
     	var id = data[i].id;//物料id
 		ids += id + "#";
     }

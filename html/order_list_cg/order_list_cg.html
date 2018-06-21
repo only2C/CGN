@@ -61,102 +61,107 @@
                 <p>待结算</p>
             </div>
         </div>
-        <div data-bind="visible:status()!=20,foreach:orderList">
-        	<div class="order-list">
-	            <div class="order-header">
-	                <div class="order-header-left fl">
-	                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
-	                </div>
-	                <div data-bind="text:mainEnt.billStatus" class="order-header-right fr"></div>
-	            </div>
-	            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
-	               	<div>
-	               		 <div class="order-content-img fl">
-		                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
-		                </div>
-		                <div class="order-content-detail fl">
-		                    <h4 data-bind="text:materialName"></h4>
-							<p>物料编码：<span data-bind="text:materialRefCode"></span></p>
-		                    <p>单价：<span data-bind="text:sumallTPrice" class="mr5"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
-		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
-		                </div>
-		                <!--<div class="order-content-tag fr">
-		                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
-		                </div>-->
-	               	</div>
-	            </div>
-	            <div class="order-footer">
-	                <div class="order-total">
-	                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
-	                <div data-bind="visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
-	                </div>
-	                <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
-	                	审核意见：<span class="audit-content" data-bind="text:mainEnt.auditedContent==null?'无':mainEnt.auditedContent"></span>
-	                	<div>
-	                		<span class="fl">审核人：<span data-bind="text:mainEnt.auditorName"></span></span>
-	                		<span class="fr">审核状态：<span data-bind="text:mainEnt.auditStatus"></span></span>
-	                		<div class="clearfix"></div>
-	                	</div>
-	                </div>
-	                
-	                <div class="order-button-list">
-	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==0,click:$root.cancelClick.bind($data,mainEnt.id)" class="btn-1">取消</button>
-	                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==9,click:$root.acceptance.bind($data,mainEnt.id,mainEnt.receivePhone,mainEnt.receiveName)" class="btn-1">验收</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id,'','')" class="btn-2">查看详情</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id,'','')" class="btn-2">查看文档</button>
-	                </div>
-	            </div>
-	        </div>
+        <div id="swrapper">
+        	<div class="scroller">
+				<div data-bind="visible:status()!=20,foreach:orderList">
+		        	<div class="order-list">
+			            <div class="order-header">
+			                <div class="order-header-left fl">
+			                    <i class="order-icon"></i>  <span data-bind="text:mainEnt.ieopEnterpriseName"></span>
+			                </div>
+			                <div data-bind="text:mainEnt.billStatus" class="order-header-right fr"></div>
+			            </div>
+			            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
+			               	<div>
+			               		 <div class="order-content-img fl">
+				                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
+				                </div>
+				                <div class="order-content-detail fl">
+				                    <h4 data-bind="text:materialName"></h4>
+									<p>物料编码：<span data-bind="text:materialRefCode"></span></p>
+				                    <p>单价：<span data-bind="text:sumallTPrice" class="mr5"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
+				                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
+				                </div>
+				                <!--<div class="order-content-tag fr">
+				                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
+				                </div>-->
+			               	</div>
+			            </div>
+			            <div class="order-footer">
+			                <div class="order-total">
+			                    共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
+			                <div data-bind="visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
+			                </div>
+			                <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+			                	审核意见：<span class="audit-content" data-bind="text:mainEnt.auditedContent==null?'无':mainEnt.auditedContent"></span>
+			                	<div>
+			                		<span class="fl">审核人：<span data-bind="text:mainEnt.auditorName"></span></span>
+			                		<span class="fr">审核状态：<span data-bind="text:mainEnt.auditStatus"></span></span>
+			                		<div class="clearfix"></div>
+			                	</div>
+			                </div>
+			                
+			                <div class="order-button-list">
+			                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==0,click:$root.cancelClick.bind($data,mainEnt.id)" class="btn-1">取消</button>
+			                   <button data-bind="visible:mainEnt.suEvaluationStatus!=3&mainEnt.allStatus==9,click:$root.acceptance.bind($data,mainEnt.id,mainEnt.receivePhone,mainEnt.receiveName)" class="btn-1">验收</button>
+			                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id,'','')" class="btn-2">查看详情</button>
+			                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id,'','')" class="btn-2">查看文档</button>
+			                </div>
+			            </div>
+			        </div>
+		        </div>
+		        <div data-bind="visible:status()==20,foreach:childOrders">
+		        	<div class="order-list">
+			            <div class="order-header">
+			                <div class="order-header-left fl">
+			                    <i class="order-icon"></i>  <span data-bind="text:ieopEnterpriseName"></span>
+			                </div>
+			                <div data-bind="text:billStatus" class="order-header-right fr"></div>
+			            </div>
+			            <div class="order-content">
+			               	<div>
+			               		 <div class="order-content-img fl">
+				                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
+				                </div>
+				                <div class="order-content-detail fl">
+				                    <h4 data-bind="text:materialName"></h4>
+									<p>物料编码：<span data-bind="text:materialRefCode"></span></p>
+				                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
+				                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
+				                </div>
+				                <!--<div class="order-content-tag fr">
+				                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
+				                </div>-->
+			               	</div>
+			            </div>
+			            <div class="order-footer">
+			                <div class="order-total">
+			                    共计：<span data-bind="text:sumallTTotal"></span>
+			                <div data-bind="visible:auditStatus=='审核通过'||auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
+			                </div>
+			                <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+			                	审核意见：<span class="audit-content" data-bind="text:auditedContent==null?'无':auditedContent"></span>
+			                	<div>
+			                		<span class="fl">审核人：<span data-bind="text:auditorName"></span></span>
+			                		<span class="fr">审核状态：<span data-bind="text:auditStatus"></span></span>
+			                		<div class="clearfix"></div>
+			                	</div>
+			                </div>
+			                
+			                <div class="order-button-list">
+			                   <button data-bind="visible:suEvaluationStatus!=3&allStatus==0,click:$root.cancelClick.bind($data,suMallorderTid)" class="btn-1">取消</button>
+			                   <button data-bind="visible:suEvaluationStatus==2,click:$root.openWin.bind($data,'comment_cg',materialImgUrl,suMallorderTid,materialCode,1)" class="btn-1">追加评价</button>
+			                   <button data-bind="visible:suEvaluationStatus!=3&suEvaluationStatus!=2&(allStatus==10||allStatus==11||allStatus==12),click:$root.openWin.bind($data,'comment_cg',materialImgUrl,suMallorderTid,materialCode)" class="btn-1">评价</button>
+			                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',suMallorderTid,'','')" class="btn-2">查看详情</button>
+			                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',suMallorderTid,'','')" class="btn-2">查看文档</button>
+			                </div>
+			            </div>
+			        </div>
+		        </div>
+		        <div data-bind="visible:orderList().length<=0&&childOrders().length<=0">没有数据</div>
+		        <div class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
+        	</div>
         </div>
-        <div data-bind="visible:status()==20,foreach:childOrders">
-        	<div class="order-list">
-	            <div class="order-header">
-	                <div class="order-header-left fl">
-	                    <i class="order-icon"></i>  <span data-bind="text:ieopEnterpriseName"></span>
-	                </div>
-	                <div data-bind="text:billStatus" class="order-header-right fr"></div>
-	            </div>
-	            <div class="order-content">
-	               	<div>
-	               		 <div class="order-content-img fl">
-		                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
-		                </div>
-		                <div class="order-content-detail fl">
-		                    <h4 data-bind="text:materialName"></h4>
-							<p>物料编码：<span data-bind="text:materialRefCode"></span></p>
-		                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
-		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
-		                </div>
-		                <!--<div class="order-content-tag fr">
-		                    <span data-bind="text:$parent.mainEnt.billStatus"></span>
-		                </div>-->
-	               	</div>
-	            </div>
-	            <div class="order-footer">
-	                <div class="order-total">
-	                    共计：<span data-bind="text:sumallTTotal"></span>
-	                <div data-bind="visible:auditStatus=='审核通过'||auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
-	                </div>
-	                <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
-	                	审核意见：<span class="audit-content" data-bind="text:auditedContent==null?'无':auditedContent"></span>
-	                	<div>
-	                		<span class="fl">审核人：<span data-bind="text:auditorName"></span></span>
-	                		<span class="fr">审核状态：<span data-bind="text:auditStatus"></span></span>
-	                		<div class="clearfix"></div>
-	                	</div>
-	                </div>
-	                
-	                <div class="order-button-list">
-	                   <button data-bind="visible:suEvaluationStatus!=3&allStatus==0,click:$root.cancelClick.bind($data,suMallorderTid)" class="btn-1">取消</button>
-	                   <button data-bind="visible:suEvaluationStatus==2,click:$root.openWin.bind($data,'comment_cg',suMallorderTid,materialCode,1)" class="btn-1">追加评价</button>
-	                   <button data-bind="visible:suEvaluationStatus!=3&suEvaluationStatus!=2&(allStatus==10||allStatus==11||allStatus==12),click:$root.openWin.bind($data,'comment_cg',suMallorderTid,materialCode)" class="btn-1">评价</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'order_detail_cg',suMallorderTid,'','')" class="btn-2">查看详情</button>
-	                   <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',suMallorderTid,'','')" class="btn-2">查看文档</button>
-	                </div>
-	            </div>
-	        </div>
-        </div>
-        <div data-bind="visible:orderList().length<=0&&childOrders().length<=0">没有数据</div>
     </div>
 </div>
 

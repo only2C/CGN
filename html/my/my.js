@@ -36,7 +36,7 @@ function openWin (winId,status){
 function openWin1 (winId){
     //var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
     var statusBarStyle = 'dark';
-    if(viewModel.stype()==0&&winId=='attention'){
+    if(summer.getStorage("stype")==0&&winId=='attention'){
 		winId='attention_cg';
 	}
     summer.openWin({
