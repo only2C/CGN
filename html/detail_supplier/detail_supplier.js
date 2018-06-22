@@ -49,9 +49,8 @@ summerready = function() {
 
     }
     window.viewModel = viewModel;
-    getSumescode();
-
     ko.applyBindings(viewModel);
+    getSumescode();
 }
 
 function getDetail() {
@@ -66,30 +65,6 @@ function getDetail() {
 
 }
 
-function getSumescode() {
-    var obj = summer.pageParam.options;
-    var condition ={
-        suMCode:obj.materialCode,
-        suStoreCode:obj.suStoreCode ,
-    };
-    var bb = p_params_con_dataj_enc(condition);
-    var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybysumescode', bb);
-    if(data.retData.ents.length==0){
-        UM.alert({
-            title: '物料已下架',
-            btnText: ["确定"],
-            overlay: true,
-            ok: function () {
-               closeWin();
-            }
-        });
-        return;
-    }
-    if(data.status==1){
-        viewModel.sumescodeObj(data.retData.ents[0])
-        getDetail();
-    }
-}
 
 function getDetailCallback(ret) {
     if(ret.status==0){
@@ -126,4 +101,35 @@ function getDetailCallback(ret) {
     });
     islider.addDot();
 
+}
+
+
+
+function getSumescode() {
+    var obj = summer.pageParam.options;
+    var condition ={
+        suMCode:obj.materialCode,
+        suStoreCode:obj.suStoreCode ,
+    };
+    var param = p_params_con_dataj_enc(condition);
+    p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybysumescode', param,'sumesCallback');
+
+}
+
+function sumesCallback(data) {
+    if(data.retData.ents.length==0){
+        UM.alert({
+            title: '物料已下架',
+            btnText: ["确定"],
+            overlay: true,
+            ok: function () {
+                closeWin();
+            }
+        });
+        return;
+    }
+    if(data.status==1){
+        viewModel.sumescodeObj(data.retData.ents[0]);
+        getDetail();
+    }
 }
