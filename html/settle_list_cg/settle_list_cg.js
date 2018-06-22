@@ -26,6 +26,7 @@ var billStatus = {
     12:'验收未通过',
     15:'其他'
 };
+var curPage =1;
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
@@ -34,6 +35,8 @@ summerready = function(){
     var viewModel = {
     	orderList:ko.observableArray(),
     	status:ko.observable(),
+    	kwd:ko.observable(),
+    	totalPage:ko.observable(),
     	id:ko.observable(),
     	changeShow:function(index){
     		console.log(index());
@@ -41,9 +44,11 @@ summerready = function(){
     		$('#switchWp'+index()).slideToggle();
     	},
 		queryByStatus:function(status,data,event){
+			curPage = 1;
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			viewModel.status(status);
 			queryOrder(status);
+			myScroll.scrollTo(0, 0, 200, 'easing');
 		},
 		openWin:function(winId,orderId){
 			var pageParam = {
@@ -128,7 +133,9 @@ summerready = function(){
 	})
 }
 //初始化
-function queryOrder(status,kwd){
+function queryOrder(status,kwd,curPage){
+	viewModel.status(status);
+	viewModel.kwd(kwd);
 	var queryObj;
 	if(status=="20"){
     	var p_conditions = status?{suEvaluationStatus:'0'}:{};
@@ -138,11 +145,81 @@ function queryOrder(status,kwd){
 	if(kwd){
 		p_conditions['queryString'] = kwd;
 	}
-	var page_params={"pageIndex":1,"pageSize":100};  //分页
+	var page_params={"pageIndex":curPage,"pageSize":5};  //分页
 	var sortItem = {};
 	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
 	p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/querysettlemutiple', enc_conditions,'queryBack');
 }
+$('.pull_icon').addClass('loading');
+$('.more span').text('加载中...');
+$('.drop').on('click', function () {
+    var $this = $(this);
+    $this.next().removeClass('limith');
+})
+myScroll = null;
+window.mycall = function () {
+    window.myScroll = new JRoll('#swrapper', {
+        preventDefault: false,
+        mouseWheel: true,
+        momentum: true,
+        fadeScrollbars: true,
+        useTransform: true,
+        useTransition: true,
+        click: true,
+        tap: true
+    })
+    myScroll.on('scrollStart', function () {
+        console.log('scrollStart');
+    })
+    myScroll.on('scroll', function () {
+        console.log('scroll'+this.y+'-'+this.maxScrollY);
+        if (this.y < (this.maxScrollY)) {
+            $('.pull_icon').addClass('flip');
+            $('.pull_icon').removeClass('loading');
+            $('.more span').text('释放加载...');
+        } else {
+            $('.pull_icon').removeClass('flip loading');
+            $('.more span').text('上拉加载...')
+        }
+    })
+    myScroll.on('scrollEnd', function () {
+        console.log('scrollEnd');
+        if (curPage >= viewModel.totalPage()) {
+            $('.more i').hide();
+            $('.more span').text('没有更多了');
+            return;
+        }
+        if ($('.pull_icon').hasClass('flip')) {
+            $('.pull_icon').addClass('loading');
+            $('.more span').text('加载中...');
+            console.log('pullupA')
+            pullUpAction();
+        }
+    })
+    myScroll.on('refresh', function () {
+        if ($('.scroller').height() < $('#swrapper').height()) {
+            $('.more').hide();
+        }
+        $('.more').removeClass('flip loading');
+        $('.more span').text('上拉加载...');
+    })
+
+    function pullUpAction() {
+        console.log('请求')
+        curPage++;
+        if (curPage < viewModel.totalPage()) {
+            queryOrder(viewModel.status(),viewModel.kwd(),curPage);
+        } else {
+
+        }
+    }
+
+    if ($('.scroller').height() < $('#swrapper').height()) {
+        $('.more').hide();
+    }
+}
+$('.pull_icon').addClass('flip').addClass('loading');
+$('.more span').text('加载中...');
 function savevaliordercode(data){
 	if(data.status==1){
         queryOrder(viewModel.status()); 
@@ -158,6 +235,7 @@ function savevaliordercode(data){
 function queryBack(res){
 	console.log(res);
 	var orderList = res.retData.aggEnts;
+	viewModel.totalPage(res.pageParams.totalPage);
 	var tmpArr = []; 
     var refObj = {};
     var suMCodes = "";
@@ -173,7 +251,22 @@ function queryBack(res){
                 val.materialImgUrl = summer.getStorage("imgBaseUrl") + val.materialImgUrl;
             })
         }
-        viewModel.orderList(orderList);
+        if(curPage==1){
+            viewModel.orderList(orderList);
+            if (myScroll) {
+            	setTimeout(function(){
+            		myScroll.refresh();
+            	},100)
+            }
+        }else{
+            viewModel.orderList(viewModel.orderList().concat(orderList));
+            setTimeout(function(){
+            	myScroll.refresh();
+            },100)
+        }
+        if (!myScroll) {
+            mycall();
+        }
         return;
         for(var i=0;i<orderList.length;i++){
             var children = orderList[i].children.su_mall_order_infos;

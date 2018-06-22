@@ -52,6 +52,7 @@ summerready = function(){
 			$(event.currentTarget).addClass('on').siblings().removeClass('on');
 			viewModel.tabIndex(status);
 			queryOrder(status);
+			myScroll.scrollTo(0, 0, 200, 'easing');
 		},
 		openWin:function(winId,materialImgUrl,orderId,materialCode,addComment){
 			var pageParam = {
@@ -125,6 +126,7 @@ summerready = function(){
 				        var info = {};
 				        info['ieopVsmBillId'] = id;
 				        info['ieopVsmValiCode'] = ver;
+				        info['ieopVsmPurpose'] = '1';
 				        var bb = p_page_params_con_dataj_enc(info,{},{});
 				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'accessVal');*/
 				        var info = {};
@@ -190,7 +192,7 @@ function queryOrder(status,kwd,curPage){
 	if(kwd){
 		p_conditions['queryString'] = kwd;
 	}
-	var page_params={"pageIndex":curPage,"pageSize":10};  //分页
+	var page_params={"pageIndex":curPage,"pageSize":5};  //分页
 	var sortItem = {};
 	var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
 	if(status=="20"){
@@ -255,7 +257,6 @@ window.mycall = function () {
     })
 
     function pullUpAction() {
-        console.log('请求')
         curPage++;
         if (curPage < viewModel.totalPage()) {
             queryOrder(viewModel.status(),viewModel.kwd(),curPage);
@@ -366,11 +367,15 @@ function queryBack(res){
         if(curPage==1){
         	viewModel.orderList(orderList);
 	        if (myScroll) {
-		       myScroll.refresh();
+		        setTimeout(function(){
+            		myScroll.refresh();
+            	},100)
 		    }
         }else{
         	viewModel.orderList(viewModel.orderList().concat(orderList));
-        	myScroll.refresh();
+        	setTimeout(function(){
+            	myScroll.refresh();
+            },100)
         }
         if (!myScroll) {
 	        mycall();
@@ -396,11 +401,15 @@ function evaluationQueryBack(res){
 	if(curPage==1){
 		viewModel.childOrders(childOrders); 
 		if (myScroll) {
-	       myScroll.refresh();
+	       setTimeout(function(){
+            	myScroll.refresh();
+           },100)
 	    }
 	}else{
 		viewModel.childOrders(viewModel.childOrders().concat(childOrders));
-		myScroll.refresh();
+		setTimeout(function(){
+            myScroll.refresh();
+        },100)
 	}
 	if (!myScroll) {
 	    mycall();
@@ -411,6 +420,7 @@ function sendcodesms(id,receivePhone,receiveName){
     info['ieopVsmBillId'] = id;
     info['ieopVsmPhoneNum'] = receivePhone;
     info['ieopUserName'] = receiveName;
+    info['ieopVsmPurpose '] = '1';
     var bb = p_page_params_con_dataj_enc(info,{},{});
     var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/sendcodesms', bb,'sendcodesmsBack');
 }
