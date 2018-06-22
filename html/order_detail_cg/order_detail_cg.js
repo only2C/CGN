@@ -289,7 +289,7 @@ function queryaggsingle(res) {
     }
 
     childOrder.forEach(function (val) {
-        val.materialImgUrl = val.materialImgUrl ? summer.getStorage("imgBaseUrl")+materialImgUrl:"";
+        val.materialImgUrl = val.materialImgUrl ? summer.getStorage("imgBaseUrl")+val.materialImgUrl:"";
     })
     var mainEnt = res.retData.aggEnt.mainEnt;
     if (mainEnt.returnUrgent == '0') {
