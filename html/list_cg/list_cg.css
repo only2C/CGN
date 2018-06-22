@@ -126,11 +126,15 @@
     width: 100%;
 }
 
+.right-cont{
+	height:120px;
+}
+
 .title {
-    font-size: 14px;
+    font-size: 16px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    height: 42px;
+    /*height: 42px;*/
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
@@ -143,6 +147,8 @@
 
 .btns {
     margin-top: 10px;
+    /* padding-top:5px; */
+    position:relative;
 }
 
 .btns div {
@@ -158,6 +164,11 @@
     background-color: #eaa646;
 }
 
+.right{
+	background-color:#ff0000;
+	margin-left:10px;
+}
+
 .com-send {
     background-color: #ee7171;
 }
@@ -168,9 +179,11 @@
 }
 
 .company-name {
+    position:absolute;
+    bottom:0;
     font-size: 12px;
     color: #666;
-    margin-top: 5px;
+    margin: 5px 0 0 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
