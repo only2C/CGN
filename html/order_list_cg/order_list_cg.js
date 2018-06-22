@@ -28,7 +28,6 @@ var billStatus = {
     11:'已结算',
     12:'验收未通过',
     15:'其他',
-    16:'待评价',
 };
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));
@@ -180,7 +179,7 @@ summerready = function(){
 }
 function queryOrder(status,kwd,curPage){
 	viewModel.status(status);
-	viewModel.status(kwd);
+	viewModel.kwd(kwd);
 	var queryObj;
 	var p_conditions  ={} ;
 	if(status=="20"){
