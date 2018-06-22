@@ -285,7 +285,7 @@ function querybyids(res){
     			}
     		}
     		data[i]['suPrice'] = data[i]['suPrice']?data[i]['suPrice']:'';
-    		data[i]['suMarStock'] = data[i]['suMarStock']?data[i]['suMarStock']:'';
+    		data[i]['suMarStock'] = parseInt(data[i]['suMarStock']?data[i]['suMarStock']:'');
     	}
     	if (pageSize == 1) {
 	        viewModel.listArr(data);
