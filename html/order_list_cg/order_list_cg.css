@@ -14,10 +14,21 @@ button{
 .fr{
     float: right;
 }
+.um-content{
+	padding-top:166px;
+}
 .order-status{
+	position:fixed;
+	top:106px;
+	width:100%;
+	background-color:#efeff4;
     overflow: hidden;
-    margin: 10px 0;
-    background: #fff;
+    padding: 10px 0 0;
+    z-index:99;
+}
+.status-wp {
+	overflow:hidden;
+	background-color:#fff;
 }
 .order-status-icon{
     width: 20%;
@@ -240,7 +251,7 @@ button{
     text-overflow: ellipsis;
     font-size: 12px;
 }
-/*搜索框*/
+/*æœç´¢æ¡†*/
 .um-input-search {
   display: -webkit-box;
   display: box;
@@ -283,7 +294,7 @@ button{
     background-color:#fff;
 }
 /*
- 下拉加载
+ ä¸‹æ‹‰åŠ è½½
  * */
 .more {
     height: 4rem;

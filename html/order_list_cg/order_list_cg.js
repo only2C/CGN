@@ -176,7 +176,7 @@ summerready = function(){
 }
 function queryOrder(status,kwd,curPage){
 	viewModel.status(status);
-	viewModel.status(kwd);
+	viewModel.kwd(kwd);
 	var queryObj;
 	var p_conditions  ={} ;
 	if(status=="20"){
