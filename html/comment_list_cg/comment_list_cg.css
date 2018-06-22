@@ -67,7 +67,11 @@ html,body {
 	background-color:#fff;
 }
 .comment-item {
+	padding:10px;
 	border-top:1px solid #cfcfcf;
+}
+.comment-time{
+	padding:5px;
 }
 .item {
 	margin-bottom:6px;
