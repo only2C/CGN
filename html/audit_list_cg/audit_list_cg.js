@@ -208,7 +208,7 @@ function queryBack(res){
                 suMCodes += child.materialCode + "#";
                 suStoreCodes += child.suStoreCode + "#";
                 ieopEnterpriseCodes += child.ieopEnterpriseCode + "#";
-                child.materialImgUrl = summer.getStorage("imgBaseUrl") + child.materialImgUrl;
+                child.materialImgUrl =child.materialImgUr ?  summer.getStorage("imgBaseUrl") + child.materialImgUrl:'';
             }
         }
         suMCodes = suMCodes.substring(0,suMCodes.length-1);

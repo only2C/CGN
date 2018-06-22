@@ -8,6 +8,9 @@ button{
     background: #ff9500;
     padding-top:22px;
 }
+.mb1{
+    margin-bottom: 1px;
+}
 .fl{
     float: left;
 }
@@ -141,6 +144,7 @@ button{
     overflow: hidden;
     background: rgb(242,242,242);
     padding:10px;
+    margin-bottom: 1px;
 }
 .order-footer{
     overflow: hidden;

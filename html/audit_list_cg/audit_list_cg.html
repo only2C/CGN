@@ -58,13 +58,14 @@
 	                    
 	                </div>
 	            </div>
-	            <div data-bind="foreach:children.su_mall_order_infos" class="order-content">
-	               	<div>
+                <div data-bind="foreach:children.su_mall_order_infos" >
+	                <div class="order-content">
 	               		 <div class="order-content-img fl">
 		                    <img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" />
 		                </div>
 		                <div class="order-content-detail fl">
-		                    <h4 data-bind="text:materialName">压力表</h4>
+		                    <h4 data-bind="text:materialName"></h4>
+                            <p>物料编码：<span data-bind="text:$parent.mainEnt.materialRefCode"></span></p>
 		                    <p>单价：<span data-bind="text:sumallTPrice"></span>单位：<span data-bind="text:sumaterialMUnit"></span></p>
 		                    <p>数量：<span data-bind="text:materialTAmount"></span></p>
 		                </div>
