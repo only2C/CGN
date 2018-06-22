@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+		<link rel="stylesheet" href="../../css/font-icons.css">	
+		<link rel="stylesheet" href="./logistics_supplier.css">
+		<script src="../../js/summer.js" ></script>		
+		<script src="../../js/jquery.min.js" ></script>
+		<script src="../../js/base64.js" ></script>
+		<script src="../../js/pub.js" ></script>
+		<script src="../../js/pub1.js" ></script>
+		<script src="../../js/knockout.js" ></script>
+		<script src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header" id="header">
+				<a onClick="closeWin()" class="um-back"></a>
+				<h3>物流信息</h3>
+			</div>
+
+			<div class="um-content">
+				<ul data-bind="foreach:mList" class="order-list">
+					<li>
+						<div class="img-wp">
+							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="">
+						</div>
+						<div class="fl">
+							<div data-bind="text:materialName" class="item-title"></div>
+							<div class="location">仓库：<span data-bind="text:suStoreName"></span></div>
+							<div class="left-num">数量：<span data-bind="text:parseInt(materialTAmount)"></span></div>
+						</div>
+					</li>
+				</ul>
+				<!--<div class="status-bar">
+					<div class="status-text">
+						<div data-bind="css:{on:evaluation_status()==1}" class="status-item">
+							<div class="top-text">已发货</div>
+							<div class="radius"></div>
+							<div class="from-city">北京</div>
+							<div class="x-line"></div>
+						</div>
+						<div data-bind="css:{on:evaluation_status()==0}" class="status-item">
+							<div class="top-text">运输中</div>
+							<div class="radius"></div>
+							<div class="from-city"></div>
+							<div class="x-line"></div>
+						</div>
+						<div data-bind="css:{on:evaluation_status()==5}" class="status-item">
+							<div class="top-text">派件中</div>
+							<div class="radius"></div>
+							<div class="from-city"></div>
+							<div class="x-line"></div>
+						</div>
+						<div data-bind="css:{on:evaluation_status()==2||evaluation_status()==3||evaluation_status()==4||evaluation_status()==6}" class="status-item">
+							<div data-bind="text:evaluationText" class="top-text"></div>
+							<div class="radius"></div>
+							<div class="from-city">北京</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>-->
+				<div data-bind="visible:logisticsList()<=0">暂无物流信息~</div>
+				<div data-bind="foreach:logisticsList" class="progress-bar">
+					<div data-bind="css:{first:$index()==0}" class="item">
+						<div data-bind="text:mallLChildDt"></div>
+						<div data-bind="text:mallLChildSite" class="l-text"></div>
+					</div>
+				</div>
+			</div>
+
+			
+		</div>
+		<script src="./logistics_supplier.js"></script>
+	</body>
+</html>

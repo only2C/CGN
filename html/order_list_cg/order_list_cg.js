@@ -27,7 +27,7 @@ var billStatus = {
     10:'待结算',
     11:'已结算',
     12:'验收未通过',
-    15:'其他'
+    15:'其他',
 };
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));

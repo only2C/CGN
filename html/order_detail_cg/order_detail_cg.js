@@ -76,9 +76,9 @@ summerready = function () {
         goLogistics: function (mainOrder) {
             summer.openWin({
                 "id": "logistics",
-                "url": "html/logistics/logistics.html",
+                "url": "html/logistics_supplier/logistics_supplier.html",
                 "pageParam": {
-                    mainOrder: mainOrder
+                    mainOrder: mainOrder()
                 }
             });
         },
@@ -300,19 +300,19 @@ function queryaggsingle(res) {
         mainEnt.returnUrgent = '高';
     }
     var progressPic;
-    if(mainEnt.billStatus == 0){
+    if(mainEnt.allStatus == 0){
         progressPic = '../../img/order_xiadanchenggong.png';
     }
-    if(mainEnt.billStatus == 1){
+    if(mainEnt.allStatus == 1){
         progressPic = '../../img/order_yishenhe.png';
     }
-    if(mainEnt.billStatus == 9){
+    if(mainEnt.allStatus == 9){
         progressPic = '../../img/order_yifahuo.png';
     }
-    if(mainEnt.billStatus == 10){
+    if(mainEnt.allStatus == 10){
         progressPic = '../../img/order_yiyanshou.png';
     }
-    if(mainEnt.billStatus == 11){
+    if(mainEnt.allStatus == 11){
         progressPic = '../../img/order_yijiesuan.png';
     }
 
@@ -331,7 +331,7 @@ function queryaggsingle(res) {
     viewModel.progressPic(progressPic);
     viewModel.mainId(mainEnt.id);
     viewModel.mainOrder([mainEnt]);
-    viewModel.billStatus(mainEnt.billStatus);
+    viewModel.billStatus(mainEnt.allStatus);
     viewModel.childOrders(childOrder);
     var clipboard = new ClipboardJS('.btn.btn-sm', {
         text: function () {

@@ -1,16 +1,17 @@
 function closeWin() {
-    summer.openWin({
-        "id" : "supplier",
-        "url" : "html/list_supplier/list_supplier.html",
-        "animation":{
-            type:"none", //动画类型（详见动画类型常量）
-            subType:"from_right", //动画子类型（详见动画子类型常量）
-            duration:0 //动画过渡时间，默认300毫秒
-        },
-        "pageParam" : {
-            status:summer.pageParam.status
-        },
-    });
+    summer.closeWin();
+    // summer.openWin({
+    //     "id" : "supplier",
+    //     "url" : "html/list_supplier/list_supplier.html",
+    //     "animation":{
+    //         type:"none", //动画类型（详见动画类型常量）
+    //         subType:"from_right", //动画子类型（详见动画子类型常量）
+    //         duration:0 //动画过渡时间，默认300毫秒
+    //     },
+    //     "pageParam" : {
+    //         status:summer.pageParam.status
+    //     },
+    // });
 }
 
 function keyBack() {
@@ -87,9 +88,9 @@ summerready = function () {
         goLogistics: function (mainOrder) {
             summer.openWin({
                 "id": "logistics",
-                "url": "html/logistics/logistics.html",
+                "url": "html/logistics_supplier/logistics_supplier.html",
                 "pageParam": {
-                    mainOrder: mainOrder
+                    mainOrder: mainOrder()
                 }
             });
         },
@@ -311,19 +312,34 @@ function queryaggsingle(res) {
         mainEnt.returnUrgent = '高';
     }
     var progressPic;
-    if(mainEnt.billStatus == 0){
+    // billStatus = {
+    //     0:'待审核',  //显示审核按钮 买方
+    //     1:'待发货',
+    //     2:'未通过',  //显示确认按钮 买方
+    //     3:'未审批取消',
+    //     5:'已审批取消', //已发货前 买方
+    //     6:'待签收',
+    //     7:'已签收',
+    //     8:'拒收',
+    //     9:'待验收',
+    //     10:'待结算',
+    //     11:'已结算',
+    //     12:'验收未通过',
+    //     15:'其他'
+    // };
+    if(mainEnt.allStatus == 0){
         progressPic = '../../img/order_xiadanchenggong.png';
     }
-    if(mainEnt.billStatus == 1){
+    if(mainEnt.allStatus == 1){
         progressPic = '../../img/order_yishenhe.png';
     }
-    if(mainEnt.billStatus == 9){
+    if(mainEnt.allStatus == 9){
         progressPic = '../../img/order_yifahuo.png';
     }
-    if(mainEnt.billStatus == 10){
+    if(mainEnt.allStatus == 10){
         progressPic = '../../img/order_yiyanshou.png';
     }
-    if(mainEnt.billStatus == 11){
+    if(mainEnt.allStatus == 11){
         progressPic = '../../img/order_yijiesuan.png';
     }
 
@@ -342,7 +358,7 @@ function queryaggsingle(res) {
     viewModel.progressPic(progressPic);
     viewModel.mainId(mainEnt.id);
     viewModel.mainOrder([mainEnt]);
-    viewModel.billStatus(mainEnt.billStatus);
+    viewModel.billStatus(mainEnt.allStatus);  //
     viewModel.childOrders(childOrder);
     var clipboard = new ClipboardJS('.btn.btn-sm', {
         text: function () {
