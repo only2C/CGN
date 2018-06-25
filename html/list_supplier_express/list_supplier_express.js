@@ -34,7 +34,7 @@ summerready = function(){
                     mallLCompanyCode:viewModel.mallLCompanyCode()?viewModel.mallLCompanyCode():'youzhengguonei',
                     mallLCompany:viewModel.mallLCompany()?viewModel.mallLCompany():'邮政包裹/平邮',
                     mallLCost:$("#expressCost").val(),
-                    mallLCostType:  $("input[name='expressCost']:checked").val() ?   $("input[name='expressCost']:checked").val() :1,
+                    mallLCostType:  $("input[name='expressCost']:checked").val() ?   $("input[name='expressCost']:checked").val() :4,
                     status:'9',
                     id:summer.pageParam.expressObj.id
                 }
