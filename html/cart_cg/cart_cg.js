@@ -375,9 +375,9 @@ function getpriceandstock(ret){
 	    viewModel.checkedAll(true);
 	}
 	viewModel.chooseNum(num);
-	console.log(ents);
 	var obj = {};
 	for(var i =0;i<ents.length;i++){
+		ents[i].materialImgUrl = ents[i].materialImgUrl ? summer.getStorage("imgBaseUrl")+ ents[i].materialImgUrl:''
 		if(!obj[ents[i]['ieopEnterpriseName']]){
 			obj[ents[i]['ieopEnterpriseName']] = true;
 			ents[i]['firstMe'] = true;
