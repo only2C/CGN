@@ -107,7 +107,7 @@
 								<div class="fl">
 									<div data-bind="text:materialName" class="item-title">压力表ACC.1 6 0-1.6MPa</div>
 									<div class="location"><span data-bind="text:suStoreName"></span></div>
-									<div class="left-num">数量：<span style="margin-right:20px;" data-bind="text:parseInt(materialTAmount)"></span>价格：<span data-bind="text:Number(sumallTPrice).toFixed(2)"></span></div>
+									<div class="left-num">数量：<span style="margin-right:20px;" data-bind="text:parseInt(materialTAmount)"></span>价格：<span data-bind="text:mallTPrice"></span></div>
 								</div>
 							</li>
 						</ul>
@@ -122,7 +122,7 @@
 					<div class=" w um-gray "  style="height: 1px;"></div>
 				</div>
 				<div class="flexDiv">
-					<div class="flex2"><span class="fl">共计&nbsp;<span data-bind="text:totalPrice"></span></span><span class="fr">共<span data-bind="text:mList().length"></span>件产品</span></div>
+					<div class="flex2"><div class="fl order-total-num">合计：<span data-bind="text:totalPrice"></span></div><div class="fr">共<span data-bind="text:mList().length"></span>件产品</div></div>
 					<div data-bind="click:sendOrder" class="flex1">提交订单</div>
 				</div>
 			</div>
