@@ -46,18 +46,18 @@
 					<div data-bind="if:firstMe" class="order-header-left fl"><i class="order-icon"></i><span data-bind="text:ieopEnterpriseName"></span></div>
 					<li>
                         <label class="um-check-inline">
-                            <input data-bind="checked:choose,click:$root.chooseToggle.bind($data,$data)" name="um-checkbox-inline" type="checkbox">
+                            <input data-bind="checked:choose,click:$root.chooseToggle.bind($data,$data,materialTAmount)" name="um-checkbox-inline" type="checkbox">
                             <span class="um-icon-checkbox um-css3-vc"></span>
                         </label>
 
-						<div class="img-wp"> <!-- data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
+						<div class="img-wp" data-bind="click:$root.openPageDetail"> <!-- data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
 							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
 						</div>
 						<div class="fl">
 							<div data-bind="text:materialName" class="item-title"></div> <!-- data-bind="text:materialName,click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
 							<div class="location">仓库：<span data-bind="text:suStoreName"></span></div>
 							<!--<div class="left-num">库存：<span data-bind="text:stock"></span></div>-->
-							<div class="left-num">价格：<span data-bind="text:suPrice"></span></div>
+							<div class="left-num">价格：<span data-bind="text:mallTPrice"></span></div>
 							<div class="choose-num">
 								<span data-bind="click:$root.minus.bind($data,$data)" class="minus"></span>
 								<span data-bind="text:materialTAmount" class="num"></span>
