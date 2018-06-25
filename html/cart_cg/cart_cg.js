@@ -150,7 +150,7 @@ summerready = function(){
 					updatesta(cartList[i].id,'0');
 				}else{
 					num++;
-					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(2));
+					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(3));
 					updatesta(cartList[i].id,'1');
 				}
 			}
@@ -170,7 +170,7 @@ summerready = function(){
 				var totalPrice=0;
 				for(var i =0;i<len;i++){
 					cartList[i].choose(true);
-					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(2));
+					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(3));
 					updatesta(cartList[i].id,'1');
 				}
 				viewModel.totalPrice(totalPrice);
@@ -352,7 +352,7 @@ function getpriceandstock(ret){
 	   //if(ents[i].borrowFactoryName==viewModel.defaultOrg()){
 	      var choose = ents[i].buyStoreStatus ==1?true:false;
 		  //var key = ents[i].supplyFactoryCode+','+ents[i].materialCode;
-		  ents[i].suPrice = Number(ents[i].sumallTPrice).toFixed(2);
+		  ents[i].suPrice = Number(ents[i].sumallTPrice).toFixed(3);
 		  if(choose){
 		  	totalPrice += Number(ents[i].suPrice);
 		    num++;
@@ -369,7 +369,7 @@ function getpriceandstock(ret){
 	      tmpArr.push(ents[i]);
 	   //}
 	}
-	viewModel.totalPrice(Number(totalPrice).toFixed(2));
+	viewModel.totalPrice(Number(totalPrice).toFixed(3));
 	ents = tmpArr;
 	if(num==ents.length){
 	    viewModel.checkedAll(true);
