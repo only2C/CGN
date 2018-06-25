@@ -139,7 +139,7 @@ summerready = function(){
 	        viewModel.item([item]);
 	        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/save', bb,'addNum');
 		},
-		chooseToggle:function(item){
+		chooseToggle:function(item,materialTAmount){
 			var flag = 0;
 			var num = 0;
 			var cartList = viewModel.cartList();
@@ -152,8 +152,22 @@ summerready = function(){
 					num++;
 					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(3));
 					updatesta(cartList[i].id,'1');
+
+             /*       var num1 = item.sumallTPrice/item.mallTPrice , //原有数量
+                        num2 = materialTAmount() ;  //用户操作的数量
+                    if(num1 > num2){   //减法
+                        totalPrice = FloatSub (totalPrice,( num2-num1 )*item.mallTPrice)
+                    }else{   //加法
+                        totalPrice = FloatAdd (totalPrice,( num1 - num2 )*item.mallTPrice)
+                    }*/
+
+
 				}
 			}
+
+
+
+
 			viewModel.totalPrice(totalPrice);
 			viewModel.chooseNum(num);
 			if(flag == 1){
@@ -245,6 +259,20 @@ summerready = function(){
 			summer.setStorage("cartType",id);
             $("#cart-type-list").fadeToggle();
             query_action();
+        },
+        openPageDetail:function (data) {
+			var options ={
+            	ieopEnterpriseCode:data.ieopEnterpriseCode,
+				suMCode:data.materialCode,
+				suStoreCode:data.suStoreCode
+			}
+            summer.openWin({
+                "id": "detail",
+                "url": "html/detail_cg/detail_cg.html",
+                "pageParam": {
+                    options: options
+                }
+            });
         }
 	}
 	window.viewModel = viewModel;
@@ -375,9 +403,9 @@ function getpriceandstock(ret){
 	    viewModel.checkedAll(true);
 	}
 	viewModel.chooseNum(num);
-	console.log(ents);
 	var obj = {};
 	for(var i =0;i<ents.length;i++){
+		ents[i].materialImgUrl = ents[i].materialImgUrl ? summer.getStorage("imgBaseUrl")+ ents[i].materialImgUrl:''
 		if(!obj[ents[i]['ieopEnterpriseName']]){
 			obj[ents[i]['ieopEnterpriseName']] = true;
 			ents[i]['firstMe'] = true;
@@ -388,11 +416,14 @@ function getpriceandstock(ret){
 	viewModel.cartList(ents);
 }
 function minus(data){
+	var totalPrice = viewModel.totalPrice();
 	if(data.status == 1){
 		var item = viewModel.item()[0];
-       var tmp =parseInt(item.materialTAmount())-1;
-       item.materialTAmount(tmp);
-            	
+        var tmp =parseInt(item.materialTAmount())-1;
+        item.materialTAmount(tmp);
+        // totalPrice = FloatSub(totalPrice,item.mallTPrice);
+        //totalPrice = totalPrice < 0 ? 0 : totalPrice;
+        viewModel.totalPrice(totalPrice);
     }else {
        summer.toast({
            "msg" : data.msg 
@@ -400,10 +431,13 @@ function minus(data){
     }
 }
 function addNum(data){
+    var totalPrice = viewModel.totalPrice();
 	if(data.status == 1){
 		var item = viewModel.item()[0];
         var tmp = parseInt(item.materialTAmount())+1;
         item.materialTAmount(tmp);
+        // totalPrice = FloatAdd(totalPrice, item.mallTPrice);
+        viewModel.totalPrice(totalPrice);
     }else {
         summer.toast({
             "msg" : data.msg 
@@ -452,4 +486,24 @@ function setOrg(result){
     }
     $('.org-list').slideUp();
     $('.drop').hide();
+}
+
+//浮点数加法运算
+function FloatAdd(arg1,arg2){
+    var r1,r2,m;
+    try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+    try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+    m=Math.pow(10,Math.max(r1,r2));
+    return (arg1*m+arg2*m)/m;
+}
+
+//浮点数减法运算
+function FloatSub(arg1,arg2){
+    var r1,r2,m,n;
+    try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+    try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+    m=Math.pow(10,Math.max(r1,r2));
+    //动态控制精度长度
+    n=(r1=r2)?r1:r2;
+    return ((arg1*m-arg2*m)/m).toFixed(n);
 }

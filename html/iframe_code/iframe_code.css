@@ -127,6 +127,7 @@ body{
     margin: 5px;
     font-size:12px;
     text-align:right;
+    border-top:1px solid #cfcfcf;
 
 }
 /* 设置背景图片 */

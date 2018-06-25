@@ -28,7 +28,7 @@
     </div>
 
     <div class="um-content" data-bind="foreach:iframeList" >
-        <div class="row">
+        <div class="row"  data-bind="click:$root.openDetailWin.bind($data,suFaCode)">
             <div class="iframe-img fl">
                 <img src="../../img/file-icon.png" width="30">
             </div>
@@ -37,8 +37,8 @@
                     <!--<span data-bind="text:ieopEnterpriseCode"></span>-->
                     <i class="fr" data-bind="css:{'iframe-button-start':suFaSta == 1,'iframe-button-stop':suFaSta==0}"></i>
                 </div>
-                <div class="iframe-list" data-bind="click:$root.openDetailWin.bind($data,suFaCode)" >
-                    <div class="iframe-detail" data-bind="visible:isSupplier">
+                <div class="iframe-list" >
+                    <div class="iframe-detail">
                         <label>业主方：</label>
                         <span data-bind="text:suFaOwnerCode"></span>
                     </div>
@@ -52,12 +52,13 @@
                         (<span data-bind="text:suFaCode"></span>)
                     </div>
                 </div>
+                <div class="iframe-time">有效期：<span data-bind="text:suFaStartIn"></span>至<span data-bind="text:suFaExpireIn"></span></div>
             </div>
         </div>
 
 
     </div>
-    <div class="um-footer" id='footer' data-bind="visible:isSupplier">
+    <div class="um-footer" id='footer' data-bind="visible:isSupplier()!='01'">
         <div class="um-footerbar h45" id='nav'>
             <a href="../home/home.html" id="home" class="um-footerbar-item home">
                 <div class="icon-home mb5"></div>
