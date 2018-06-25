@@ -63,7 +63,7 @@ summerready = function(){
 		openWin2:function(options,data){
 			summer.openWin({
                 "id" : "detail",
-                "url" : "html/detail/detail.html",
+                "url" : "html/detail_cg/detail_cg.html",
                 "pageParam" : {
                     options:options
                 },
@@ -160,12 +160,17 @@ function querypage(res){
         var suMCodes = "";
         var suStoreCodes = "";
         var ieopEnterpriseCodes = "";
+        if(orderData.length<=0){
+        	viewModel.attentionList(orderData);
+        	return;
+        }
 		for(var i = 0; i < orderData.length; i++){
             var ent = orderData[i];
             ent.showAdd = true;
             suMCodes += ent.materialCode + "#";
             suStoreCodes += ent.suStoreCode + "#";
             ieopEnterpriseCodes += ent.ieopEnterpriseCode + "#";
+            orderData[i]['materialImgUrl'] = orderData[i]['materialImgUrl']?summer.getStorage("imgBaseUrl")+orderData[i]['materialImgUrl']:'../../img/default_small.png';
         }
         suMCodes = suMCodes.substring(0,suMCodes.length-1);
         suStoreCodes = suStoreCodes.substring(0,suStoreCodes.length-1);
@@ -196,8 +201,9 @@ function querybymescodes(data){
         var attentionList = viewModel.attentionList();
         for(var i=0;i<attentionList.length;i++){
             var key = attentionList[i].materialCode+"#"+attentionList[i].suStoreCode+"#"+attentionList[i].ieopEnterpriseCode;
+            var refm = refObj[key];
             if(refm!=undefined){
-                suMRefCode = refm.suMRefCode;
+                attentionList[i]['suMRefCode'] = refm.suMRefCode;
             }
             if(refm==undefined){
                 attentionList[i].showAdd = false;

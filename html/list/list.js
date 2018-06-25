@@ -334,6 +334,7 @@ function getpriceandstock(ret) {
             myScroll.refresh();
         }
         if (data.length <= 0) {
+        	$('.more').hide();
             summer.toast({
                 "msg": "暂无内容"
             })

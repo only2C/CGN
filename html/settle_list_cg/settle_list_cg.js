@@ -129,6 +129,7 @@ summerready = function(){
      $('#searchInput').on('keyup',function(e){
 		if(e.keyCode==13){
 			queryOrder(viewModel.status(),$(this).val());
+			document.getElementById('searchInput').blur();
 		}
 	})
 }
@@ -257,6 +258,9 @@ function queryBack(res){
             	setTimeout(function(){
             		myScroll.refresh();
             	},100)
+            }
+            if(orderList.length<=0){
+            	$('.more').hide();
             }
         }else{
             viewModel.orderList(viewModel.orderList().concat(orderList));

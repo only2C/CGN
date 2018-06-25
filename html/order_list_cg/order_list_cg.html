@@ -26,7 +26,7 @@
         <h3>全部订单</h3>
         <div class="search-wp">
 			<div id="searchBtn" class="pr um-input-search">
-                 <form action="javascript:;"><input type="search" id="searchInput" class="form-control" placeholder="请输入商品标题或订单号"></form>
+                 <form action="javascript:return true;"><input type="search" id="searchInput" class="form-control" placeholder="请输入商品标题或订单号"></form>
             </div>
             <div class="cancel">取消</div>
 		</div>
@@ -161,8 +161,9 @@
 			            </div>
 			        </div>
 		        </div>
-		        <div data-bind="visible:orderList().length<=0&&childOrders().length<=0">没有数据</div>
-		        <div class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
+		        <div data-bind="visible:orderList().length<=0&&status()!=20">没有数据</div>
+		        <div data-bind="visible:status()==20&&childOrders().length<=0">没有数据</div>
+		        <div data-bind="visible:!(orderList().length<=0&&status()!=20 || status()==20&&childOrders().length<=0)" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
         	</div>
         </div>
     </div>

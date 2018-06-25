@@ -36,7 +36,7 @@
 			</div>
 			<div class="um-content">
 				<ul data-bind="foreach:attentionList" class="attention-list">
-					<li>
+					<li data-bind="click:$root.openWin2.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
 						<div class="img-wp">
 							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="" />
 						</div>
@@ -49,6 +49,7 @@
 						</div>
 					</li>
 				</ul>
+				<div data-bind="visible:attentionList().length<=0" class="no-data">无数据</div>
 			</div>
 			<div class="um-footer"  id='footer'>
 				<div class="um-footerbar h45"  id='nav'>

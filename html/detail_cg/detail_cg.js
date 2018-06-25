@@ -100,15 +100,7 @@ summerready = function(){
 		    
 		},
 		toggleAttention:function(){
-			if(viewModel.materialFSta()=='1'){
-				//取消关注
-				var info = {};
-		        info['materialId'] = viewModel.mId();
-		        info['factoryCode'] = viewModel.cgnFCodes();
-		        var bb = p_params_dataj_ent_enc(info);
-	            p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/save', bb,'favoritesSave');
-	            
-			}else {
+			
 				//关注
 				var info = {};
 				var userInfo = summer.getStorage('userInfo');
@@ -116,18 +108,17 @@ summerready = function(){
 				info['materialCode'] = viewModel.cgnMCode();
 				info['materialName'] = viewModel.cgnMName();
 				info['materialImgUrl'] = viewModel.picArr()[0];
-				info['ieopEnterpriseCode'] = params.ieopenterprisecode;
+				info['ieopEnterpriseCode'] = params.ieopEnterpriseCode;
 				info['ieopEnterpriseName'] = viewModel.ieopEnterpriseName();
 				info['userId'] = JSON.parse(userInfo).id;
 				info['suStoreCode'] = params.suStoreCode;
 				info['suStoreName'] = viewModel.suStoreName();
 		
 				info['brandName'] = viewModel.cgnBrandName();
-				info['materialFSta'] =viewModel.materialFSta();
+				info['materialFSta'] =1;
 				var bb = p_params_dataj_ent_enc(info);
-				p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialfavorites/save', bb,'favoritesSave1');
+				p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/save', bb,'favoritesSave1');
 				
-			}
 		},
 		chooseOrg:function(item){
     		var p_conditions = {
@@ -285,7 +276,7 @@ function getsinglepriceandstock(storeRet){
         $(".secure_stock .info .secure_num span").html(parseInt(storeInfo.suMarStock));
         viewModel.suStoreName(storeInfo.suStoreName);
 	    viewModel.suMRefCode(storeInfo.suMRefCode);
-        viewModel.suPrice(Number(storeInfo.suPrice).toFixed(2));
+        viewModel.suPrice(Number(storeInfo.suPrice).toFixed(3));
         if(parseInt(storeInfo.suMarStock)){
         	viewModel.stock(parseInt(storeInfo.suMarStock));
         }else{
@@ -299,10 +290,10 @@ function materialFavorites(retFavorites){
     var fds = {};
     var key = "";
     for(var i = 0; i < flen ;i++){
-		key = retFData[i].factoryCode+','+retFData[i].materialCode;
+		key = retFData[i].ieopEnterpriseCode+','+retFData[i].materialCode;
 		fds[key] = retFData[i];
     }
-    var key = params.cgnFCode+','+params.cgnMCode
+    var key = params.ieopEnterpriseCode+','+params.suMCode
     viewModel.materialFSta(fds[key]?fds[key].materialFSta:0);
 }
 function querymalevallist (commentList){
@@ -336,7 +327,7 @@ function favoritesSave(data){
 }
 function favoritesSave1 (data){
 	if(data.status==1){
-		viewModel.materialFSta(1);
+		viewModel.materialFSta(viewModel.materialFSta()==1?0:1);
 	}else{
 		summer.toast({
            "msg" : "网络错误" 
