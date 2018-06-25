@@ -1,3 +1,6 @@
+function closeWin(){
+	summer.closeWin();
+}
 summerready = function(){
 	var map = new AMap.Map('container', {           //显示地图
     resizeEnable: true,                           //是否支持缩放

@@ -4,6 +4,11 @@
 	height:162px;
 	background:url(../../img/aboutus.png) no-repeat;
 }
+.um-back{
+	position: absoulte;
+	top: inherit;
+	left: 15px;
+}
 .bars {
 	position: absolute;
     background-color: #fff;
