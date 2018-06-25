@@ -298,36 +298,7 @@ function queryBack(res){
         if (!myScroll) {
             mycall();
         }
-        return;  //下边没用到
-        for(var i=0;i<orderList.length;i++){
-            var children = orderList[i].children.su_mall_order_infos;
-            for(var j=0;j<children.length;j++){
-                var child = children[j];
-                suMCodes += child.materialCode + "#";
-                suStoreCodes += child.suStoreCode + "#";
-                ieopEnterpriseCodes += child.ieopEnterpriseCode + "#";
-                child.materialImgUrl =child.materialImgUr ?  summer.getStorage("imgBaseUrl") + child.materialImgUrl:'';
-            }
-        }
-        suMCodes = suMCodes.substring(0,suMCodes.length-1);
-        suStoreCodes = suStoreCodes.substring(0,suStoreCodes.length-1);
-        ieopEnterpriseCodes = ieopEnterpriseCodes.substring(0,ieopEnterpriseCodes.length-1);
-        var info = {};
-        info['suMCodes'] = suMCodes;
-        info['suStoreCodes'] = suStoreCodes;
-        info['ieopEnterpriseCodes'] = ieopEnterpriseCodes;
-        var bb = p_params_con_dataj_enc(info);
-        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', bb,'querybymescodes');
 	}else{
 		viewModel.orderList(orderList);
 	}
-}
-function querybymescodes(data){
-	if(data.status==1){
-        var refents = data.retData.ents;
-    
-        
-    }else{
-       
-    }
 }

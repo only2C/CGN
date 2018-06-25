@@ -17,6 +17,7 @@ var billStatus = {
     15:'其他',
     20:'待评价'
 };
+var curPage =1;
 var turn = 0 ;
 function keyBack() {
     turn++;
@@ -37,10 +38,15 @@ summerready = function(){
     window.ip = summer.getStorage("ip");
     var viewModel = {
         supplierList:ko.observableArray([]),
+        status:ko.observable(),
+        kwd:ko.observable(),
+        totalPage:ko.observable(),
         tabIndex:ko.observable(summer.pageParam.status),
         getType:function(status){
+        	curPage=1;
             getData(status);
             viewModel.tabIndex(status);
+            myScroll.scrollTo(0, 0, 200, 'easing');
         },
         openComment:function(orderId){
         	summer.openWin({
@@ -135,13 +141,15 @@ summerready = function(){
 function evaluationBack(){
 	viewModel.getType('20');
 }
-function getData(status,kwd){
+function getData(status,kwd,curPage){
+	viewModel.status(status);
+	viewModel.kwd(kwd);
     var param ={
 
     }
     var pageParam ={
-        pageIndex:1,
-        pageSize:100
+        pageIndex:curPage,
+        pageSize:5
     }
     
 	if(status==20 ||!status && summer.pageParam.status==20){
@@ -163,6 +171,7 @@ function  getDataCallback(res) {
     if(res.status==1){
         //allStatus
         data = res.retData.aggEnts;
+        viewModel.totalPage(res.pageParams.totalPage);
         data.forEach(function (value) {
             value.mainEnt.allStatusName = billStatus[value.mainEnt.allStatus];
             value.children.su_mall_order_infos.forEach(function(v){
@@ -170,9 +179,93 @@ function  getDataCallback(res) {
             })
         })
     }
-    viewModel.supplierList(data);
+    
+    if(curPage==1){
+        viewModel.supplierList(data);
+        if (!myScroll) {
+	        mycall();
+	    }
+        //if (myScroll) {
+           setTimeout(function(){
+            	myScroll.refresh();
+           },100)
+        //}
+    }else{
+    	viewModel.supplierList(viewModel.supplierList().concat(data));
+        setTimeout(function(){
+        	myScroll.refresh();
+        },100)
+    }
 }
+//分页
+$('.pull_icon').addClass('loading');
+$('.more span').text('加载中...');
+$('.drop').on('click', function () {
+    var $this = $(this);
+    $this.next().removeClass('limith');
+})
+myScroll = null;
+window.mycall = function () {
+    window.myScroll = new JRoll('#swrapper', {
+        preventDefault: false,
+        mouseWheel: true,
+        momentum: true,
+        fadeScrollbars: true,
+        useTransform: true,
+        useTransition: true,
+        click: true,
+        tap: true
+    })
+    myScroll.on('scrollStart', function () {
+        console.log('scrollStart');
+    })
+    myScroll.on('scroll', function () {
+        if (this.y < (this.maxScrollY)) {
+            $('.pull_icon').addClass('flip');
+            $('.pull_icon').removeClass('loading');
+            $('.more span').text('释放加载...');
+        } else {
+            $('.pull_icon').removeClass('flip loading');
+            $('.more span').text('上拉加载...')
+        }
+    })
+    myScroll.on('scrollEnd', function () {
+        if (curPage >= viewModel.totalPage()) {
+            $('.more i').hide();
+            $('.more span').text('没有更多了');
+            return;
+        }
+        if ($('.pull_icon').hasClass('flip')) {
+            $('.pull_icon').addClass('loading');
+            $('.more span').text('加载中...');
+            console.log('pullupA')
+            pullUpAction();
+        }
+    })
+    myScroll.on('refresh', function () {
+        if ($('.scroller').height() < $('#swrapper').height()) {
+            $('.more').hide();
+        }
+        $('.more').removeClass('flip loading');
+        $('.more span').text('上拉加载...');
+    })
 
+    function pullUpAction() {
+        console.log('请求')
+        curPage++;
+        if (curPage < viewModel.totalPage()) {
+            getData(viewModel.status(),viewModel.kwd(),curPage);
+        } else {
+
+        }
+    }
+
+    if ($('.scroller').height() < $('#swrapper').height()) {
+        $('.more').hide();
+    }
+}
+$('.pull_icon').addClass('flip').addClass('loading');
+$('.more span').text('加载中...');
 function payBillCallback(data){
     if(data.status==1){
         UM.toast({
