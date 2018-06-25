@@ -223,3 +223,11 @@ button{
     font-size: 14px;
     height: 44px;
 }
+.order-total-num{
+	line-height:50px;
+	margin-left:5px;
+}
+
+.order-total-num span{
+	color: #ee9430;
+}

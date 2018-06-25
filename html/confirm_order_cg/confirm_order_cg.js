@@ -141,7 +141,9 @@ function queryorderpage(data){
 	    var totalPrice = 0;
 	    for(var i=0;i<ents.length;i++){
 	        //if(ents[i].buyFactoryName==viewModel.ufn()){  todo，待确定
-	        totalPrice += Number(Number(ents[i].sumallTPrice).toFixed(2));
+	        totalPrice += Number(Number(ents[i].sumallTPrice).toFixed(3));
+            ents[i].mallTPrice  = Number(Number(ents[i].mallTPrice).toFixed(3));
+            ents[i].materialImgUrl = ents[i].materialImgUrl ? summer.getStorage("imgBaseUrl")+ents[i].materialImgUrl:'';
 	        tmpArr.push(ents[i]);
 	        //}
 	    }
