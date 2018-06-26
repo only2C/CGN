@@ -66,17 +66,22 @@ summerready = function(){
             }
         },
         downFile:function (url) {
-            summer.openWebView({
-                url:url
-            })
-
-            /*
-            var params = ["android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
-                "android.permission.WRITE_EXTERNAL_STORAGE"];
-            summer.getPermission(params,  function(args){
-            }, function(args){
-            })*/
-
+            var platform = $summer.os;
+            if(platform == "android"){
+                // 执行android特殊代码
+                var params = ["android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE",
+                    "android.permission.READ_PHONE_STATE"];
+                summer.getPermission(params,  function(args){
+                    summer.openWebView({
+                        url:url
+                    })
+                }, function(args){
+                })
+            } else {
+                summer.openWebView({
+                    url:url
+                })
+            }
         }
     };
     window.viewModel = viewModel;
