@@ -1,6 +1,7 @@
 var turn =  0 ;
 function closeWin (){
-    if(summer.pageParam.backWinParam){
+    summer.closeWin();
+ /*   if(summer.pageParam.backWinParam){
         summer.openWin({
             "id" :summer.pageParam.backWinParam.page,
             "url" : "html/"+ summer.pageParam.backWinParam.page + "/"+summer.pageParam.backWinParam.page+".html",
@@ -15,8 +16,8 @@ function closeWin (){
         });
 
     }else{
-        summer.closeWin();
-    }
+
+    }*/
 }
 summerready = function(){
     $summer.fixStatusBar($summer.byId('header'));

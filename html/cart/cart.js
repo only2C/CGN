@@ -37,6 +37,9 @@ function openWin1 (winId){
 	if(viewModel.stype()==0&&winId=='attention'){
 		winId='attention_cg';
 	}
+	if(viewModel.stype()==0&&winId=='cart'){
+		winId='cart_cg';
+	}
 	summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",
@@ -87,7 +90,7 @@ summerready = function(){
 			p_conditions['amount'] = -1;
             p_conditions['fcode'] = item['supplyFactoryCode'];
             p_conditions['mcode'] = item['materialCode'];
-            var page_params={"pageIndex":1,"pageSize":20};  //分页
+            var page_params={"pageIndex":1,"pageSize":30};  //分页
             var sortItem = {};
             var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
             viewModel.item([item]);

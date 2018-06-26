@@ -23,6 +23,9 @@ function openWin1 (winId){
 	if(viewModel.stype()==0&&winId=='attention'){
 		winId='attention_cg';
 	}
+	if(viewModel.stype()==0&&winId=='cart'){
+		winId='cart_cg';
+	}
 	summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",

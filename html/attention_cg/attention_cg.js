@@ -1,4 +1,5 @@
 var turn = 0;
+var curPage =1;
 function keyBack(){
     turn++;
     if(turn==2){
@@ -47,6 +48,9 @@ summerready = function(){
 		defaultOrg:ko.observable(summer.getStorage("ufn")),
 		organizationArr:ko.observableArray([]),
 		item:ko.observableArray([]),
+		attentionListTmp:ko.observableArray([]),
+		totalPage:ko.observable(),
+		kwd:ko.observable(),
 		stype:ko.observable(summer.getStorage("stype")),
 		mList:ko.observableArray([]),
 		searchWord:ko.observable(),
@@ -110,14 +114,16 @@ summerready = function(){
     $(".um-input-clear").click(function() {
           $(this).prev("input").val("");
     }) 
-    $('#searchInput').on('keyup',function(e){
+    /*$('#searchInput').on('keyup',function(e){
     	if(e.keyCode==13){
     		viewModel.searchAttention();
+    		$('#searchInput').blur();
     	}
-    })
+    })*/
 }
-function initPage (keyW){
+function initPage (keyW,curPage){
 	if(keyW){
+		viewModel.kwd(keyW);
 		var p_conditions = {
 			queryString:keyW
 		};
@@ -125,11 +131,81 @@ function initPage (keyW){
 		var p_conditions = {};
 	}
 	
-    var page_params={"pageIndex":1,"pageSize":20};  //分页
+    var page_params={"pageIndex":curPage,"pageSize":10};  //分页
     var sortItem = {};
     var paramData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/querypage', paramData,'querypage');
 }
+$('.pull_icon').addClass('loading');
+$('.more span').text('加载中...');
+$('.drop').on('click', function () {
+    var $this = $(this);
+    $this.next().removeClass('limith');
+})
+myScroll = null;
+window.mycall = function () {
+    window.myScroll = new JRoll('#swrapper', {
+        preventDefault: false,
+        mouseWheel: true,
+        momentum: true,
+        fadeScrollbars: true,
+        useTransform: true,
+        useTransition: true,
+        click: true,
+        tap: true
+    })
+    myScroll.on('scrollStart', function () {
+        console.log('scrollStart');
+    })
+    myScroll.on('scroll', function () {
+        console.log('scroll'+this.y+'-'+this.maxScrollY);
+        if (this.y < (this.maxScrollY)) {
+            $('.pull_icon').addClass('flip');
+            $('.pull_icon').removeClass('loading');
+            $('.more span').text('释放加载...');
+        } else {
+            $('.pull_icon').removeClass('flip loading');
+            $('.more span').text('上拉加载...')
+        }
+    })
+    myScroll.on('scrollEnd', function () {
+        console.log('scrollEnd');
+        if (curPage >= viewModel.totalPage()) {
+            $('.more i').hide();
+            $('.more span').text('没有更多了');
+            return;
+        }
+        if ($('.pull_icon').hasClass('flip')) {
+            $('.pull_icon').addClass('loading');
+            $('.more span').text('加载中...');
+            console.log('pullupA')
+            pullUpAction();
+        }
+    })
+    myScroll.on('refresh', function () {
+        if ($('.scroller').height() < $('#swrapper').height()) {
+            $('.more').hide();
+        }
+        $('.more').removeClass('flip loading');
+        $('.more span').text('上拉加载...');
+    })
+
+    function pullUpAction() {
+        console.log('请求')
+        curPage++;
+        //if (curPage < viewModel.totalPage()) {
+            initPage(viewModel.kwd(),curPage);
+        //} else {
+
+        //}
+    }
+
+    if ($('.scroller').height() < $('#swrapper').height()) {
+        $('.more').hide();
+    }
+}
+$('.pull_icon').addClass('flip').addClass('loading');
+$('.more span').text('加载中...');
 function addUserCart(data){
 	if(data.status == 1){
 		summer.setStorage("cartType", 1);
@@ -157,6 +233,7 @@ function queryuserfactories(res){
 function querypage(res){
 	if(res.status==1){
         var orderData = res.retData.ents;
+        viewModel.totalPage(res.pageParams.totalPage);
         var suMCodes = "";
         var suStoreCodes = "";
         var ieopEnterpriseCodes = "";
@@ -181,7 +258,7 @@ function querypage(res){
         info['ieopEnterpriseCodes'] = ieopEnterpriseCodes;
         var bb = p_params_con_dataj_enc(info);
         console.log(res.retData.ents)
-		viewModel.attentionList(orderData);
+		viewModel.attentionListTmp(orderData);
         var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', bb ,'querybymescodes');
     }else {
         summer.toast({
@@ -198,7 +275,7 @@ function querybymescodes(data){
             var key = ent.suMCode+"#"+ent.suStoreCode+"#"+ent.ieopEnterpriseCode;
             refObj[key] = ent;
         }
-        var attentionList = viewModel.attentionList();
+        var attentionList = viewModel.attentionListTmp();
         for(var i=0;i<attentionList.length;i++){
             var key = attentionList[i].materialCode+"#"+attentionList[i].suStoreCode+"#"+attentionList[i].ieopEnterpriseCode;
             var refm = refObj[key];
@@ -211,7 +288,25 @@ function querybymescodes(data){
                 attentionList[i].showAdd = true;
             }
         }
-        viewModel.attentionList(attentionList);
+        if(curPage==1){
+            viewModel.attentionList(attentionList);
+            if (myScroll) {
+            	setTimeout(function(){
+            		myScroll.refresh();
+            	},100)
+            }
+            if(attentionList.length<=0){
+            	$('.more').hide();
+            }
+        }else{
+        	viewModel.attentionList(viewModel.attentionList().concat(attentionList));
+            setTimeout(function(){
+            	myScroll.refresh();
+            },100)
+        }
+        if (!myScroll) {
+            mycall();
+        }
     }else{
         summer.toast({
             "msg":data.msg

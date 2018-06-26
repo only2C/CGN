@@ -143,29 +143,24 @@ summerready = function(){
 			var flag = 0;
 			var num = 0;
 			var cartList = viewModel.cartList();
-			var totalPrice=0;
+			// var totalPrice=0;
 			for(var i =0;i<cartList.length;i++){
 				if(!cartList[i].choose()){
 					flag = 1;
 					updatesta(cartList[i].id,'0');
 				}else{
 					num++;
-					totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(3));
+					//totalPrice += Number(Number(cartList[i].sumallTPrice).toFixed(3));
 					updatesta(cartList[i].id,'1');
-
-             /*       var num1 = item.sumallTPrice/item.mallTPrice , //原有数量
-                        num2 = materialTAmount() ;  //用户操作的数量
-                    if(num1 > num2){   //减法
-                        totalPrice = FloatSub (totalPrice,( num2-num1 )*item.mallTPrice)
-                    }else{   //加法
-                        totalPrice = FloatAdd (totalPrice,( num1 - num2 )*item.mallTPrice)
-                    }*/
-
-
 				}
 			}
 
-
+			var totalPrice = viewModel.totalPrice();
+			if(!item.choose()){
+                totalPrice = FloatSub( totalPrice,item.mallTPrice * materialTAmount());
+			}else {
+                totalPrice = FloatAdd(totalPrice,item.mallTPrice * materialTAmount())
+			}
 
 
 			viewModel.totalPrice(totalPrice);
@@ -421,7 +416,9 @@ function minus(data){
 		var item = viewModel.item()[0];
         var tmp =parseInt(item.materialTAmount())-1;
         item.materialTAmount(tmp);
-        // totalPrice = FloatSub(totalPrice,item.mallTPrice);
+        if(item.choose()){
+            totalPrice = FloatSub(totalPrice,item.mallTPrice);
+		}
         //totalPrice = totalPrice < 0 ? 0 : totalPrice;
         viewModel.totalPrice(totalPrice);
     }else {
@@ -436,7 +433,8 @@ function addNum(data){
 		var item = viewModel.item()[0];
         var tmp = parseInt(item.materialTAmount())+1;
         item.materialTAmount(tmp);
-        // totalPrice = FloatAdd(totalPrice, item.mallTPrice);
+        if(item.choose())
+        	totalPrice = FloatAdd(totalPrice, item.mallTPrice);
         viewModel.totalPrice(totalPrice);
     }else {
         summer.toast({

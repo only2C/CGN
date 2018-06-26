@@ -66,30 +66,22 @@ summerready = function(){
             }
         },
         downFile:function (url) {
-
-
-            var params = ["android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE",
-                "android.permission.WRITE_EXTERNAL_STORAGE"];
-            summer.getPermission(params,  function(args){
-                summer.openWin({
-                    id: "12344",
-                    url: url,
-                    type: "externalLink",
-                    title: "文件下载，支持Android7.0以上版本",
-                    create: false,
-                    titleColor: "#ff8000", //标题、返回、关闭的字体颜色
-                    navigationbgColor: "#ffffff", //topbar 的背景色
-                    position: {
-                        "left": 0,
-                        "right": 0,
-                        "top": 0,
-                        "bottom": 0
-                    }
-                });
-            }, function(args){
-                alert(args); //失败返回illegal access
-            })
-
+            var platform = $summer.os;
+            if(platform == "android"){
+                // 执行android特殊代码
+                var params = ["android.permission.READ_EXTERNAL_STORAGE","android.permission.WRITE_EXTERNAL_STORAGE",
+                    "android.permission.READ_PHONE_STATE"];
+                summer.getPermission(params,  function(args){
+                    summer.openWebView({
+                        url:url
+                    })
+                }, function(args){
+                })
+            } else {
+                summer.openWebView({
+                    url:url
+                })
+            }
         }
     };
     window.viewModel = viewModel;

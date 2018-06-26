@@ -254,7 +254,7 @@ function getsumaterial(responseJSON) {
         $('#thirdMenu').css('transform', 'translate(0, 0)')
     }
     //window.updateFilter = false;
-    viewModel.totalPage(responseJSON.pageParams.totalPage);
+    viewModel.totalPage(responseJSON.pageParams.totalCount);
    	var ids="";
     for(var i= 0;i<data.length;i++){
     	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?summer.getStorage("imgBaseUrl") + data[i]['suMSmallimgs'][0]:'../static/mall/images/default_img.png';

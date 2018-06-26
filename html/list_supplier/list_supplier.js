@@ -254,7 +254,7 @@ window.mycall = function () {
     function pullUpAction() {
         console.log('请求')
         curPage++;
-        if (curPage < viewModel.totalPage()) {
+        if (curPage <= viewModel.totalPage()) {
             getData(viewModel.status(),viewModel.kwd(),curPage);
         } else {
 
