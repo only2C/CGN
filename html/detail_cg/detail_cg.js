@@ -168,6 +168,11 @@ function querysingle (ret){
         });
         return;
     }
+ 	if(ret.retData.aggEnt==null){
+ 		summer.toast({
+             "msg" : "物料已下架！" 
+        })
+    }
     var retData = ret.retData.aggEnt.mainEnt;
     var materialTds = ret.retData.materialTds;
     var materialReplaceables = ret.retData.materialReplaceables;
