@@ -36,6 +36,7 @@ summerready = function(){
     	orderList:ko.observableArray(),
     	status:ko.observable(),
     	kwd:ko.observable(),
+    	valiOrderCode:ko.observable(),
     	totalPage:ko.observable(),
     	id:ko.observable(),
     	changeShow:function(index){
@@ -72,8 +73,9 @@ summerready = function(){
 		        "pageParam":pageParam
             });
 		},
-		saveClick:function(id,valiOrderCode){
+		saveClick:function(id,valiOrderCode,item){
 			viewModel.id(id);
+			window.curItem = item;
 			UM.prompt({
 			    title: '请输入支付单号',
 			    inputValue:valiOrderCode,
@@ -82,6 +84,7 @@ summerready = function(){
 			    ok: function (data) {
 			        var id = viewModel.id();
 				    var valiOrderCode = data;
+				    viewModel.valiOrderCode(data);
 				    if(data==""||data==null){
 				    	summer.toast({
                              "msg" : "请输入支付单号！" 
@@ -93,7 +96,6 @@ summerready = function(){
 				    info['valiOrderCode'] = data;
 				    var bb = p_page_params_con_dataj_enc(info,{},{});
 				    var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/savevaliordercode', bb ,'savevaliordercode');
-				    
 			    },
 			    cancle: function (data) {
 			        
@@ -208,7 +210,7 @@ window.mycall = function () {
     function pullUpAction() {
         console.log('请求')
         curPage++;
-        if (curPage < viewModel.totalPage()) {
+        if (curPage <= viewModel.totalPage()) {
             queryOrder(viewModel.status(),viewModel.kwd(),curPage);
         } else {
 
@@ -223,7 +225,9 @@ $('.pull_icon').addClass('flip').addClass('loading');
 $('.more span').text('加载中...');
 function savevaliordercode(data){
 	if(data.status==1){
-        queryOrder(viewModel.status()); 
+		var cloneItem = cloneObj(curItem);
+        cloneItem['mainEnt']['valiOrderCode'] = viewModel.valiOrderCode();
+        viewModel.orderList.replace(curItem,cloneItem);
         summer.toast({
              "msg" : "保存成功！" 
         })
@@ -272,34 +276,7 @@ function queryBack(res){
             mycall();
         }
         return;
-        for(var i=0;i<orderList.length;i++){
-            var children = orderList[i].children.su_mall_order_infos;
-            for(var j=0;j<children.length;j++){
-                var child = children[j];
-                suMCodes += child.materialCode + "#";
-                suStoreCodes += child.suStoreCode + "#";
-                ieopEnterpriseCodes += child.ieopEnterpriseCode + "#";
-            }
-        }
-        suMCodes = suMCodes.substring(0,suMCodes.length-1);
-        suStoreCodes = suStoreCodes.substring(0,suStoreCodes.length-1);
-        ieopEnterpriseCodes = ieopEnterpriseCodes.substring(0,ieopEnterpriseCodes.length-1);
-        var info = {};
-        info['suMCodes'] = suMCodes;
-        info['suStoreCodes'] = suStoreCodes;
-        info['ieopEnterpriseCodes'] = ieopEnterpriseCodes;
-        var bb = p_params_con_dataj_enc(info);
-        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', bb,'querybymescodes');
 	}else{
 		viewModel.orderList(orderList);
 	}
-}
-function querybymescodes(data){
-	if(data.status==1){
-        var refents = data.retData.ents;
-    
-        
-    }else{
-       
-    }
 }

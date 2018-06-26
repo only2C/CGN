@@ -224,7 +224,7 @@ function getcgnmaterial(responseJSON) {
         $('#thirdMenu').css('transform', 'translate(0, 0)')
     }
     //window.updateFilter = false;
-    viewModel.totalPage(responseJSON.pageParams.totalPage);
+    viewModel.totalPage(responseJSON.pageParams.totalCount);
     var cgnMCodes = "";
     var cgnFCodes = "";
     var mCodeM = {};

@@ -42,6 +42,9 @@ function openWin1(winId) {
     if(viewModel.systemFlag()==0&&winId=='attention'){
 		winId='attention_cg';
 	}
+	if(viewModel.systemFlag()==0&&winId=='cart'){
+		winId='cart_cg';
+	}
     if ($summer.os == 'ios') {
         summer.createWin({
             id: winId,

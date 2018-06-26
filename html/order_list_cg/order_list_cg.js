@@ -259,7 +259,7 @@ window.mycall = function () {
 
     function pullUpAction() {
         curPage++;
-        if (curPage < viewModel.totalPage()) {
+        if (curPage <= viewModel.totalPage()) {
             queryOrder(viewModel.status(),viewModel.kwd(),curPage);
         } else {
 

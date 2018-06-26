@@ -39,6 +39,9 @@ function openWin1 (winId){
     if(summer.getStorage("stype")==0&&winId=='attention'){
 		winId='attention_cg';
 	}
+	if(summer.getStorage("stype")==0&&winId=='cart'){
+		winId='cart_cg';
+	}
     summer.openWin({
         "id" :winId,
         "url" : "html/"+winId+"/"+winId+".html",
@@ -74,6 +77,26 @@ summerready = function(){
         isCG:ko.observable(true),    //采购
         isDB:ko.observable(false),  // 调拨
         isSupplier:ko.observable(isSuppliers), // 供应商
+        openWin:function (winId,status){
+			if(status===undefined){
+			}else {
+				var params = {
+					status:status
+				}
+			}
+		    summer.openWin({
+		        "id" :winId,
+		        "url" : "html/"+winId+"/"+winId+".html",
+		        "animation":{
+		            type:"none", //动画类型（详见动画类型常量）
+		            subType:"from_right", //动画子类型（详见动画子类型常量）
+		            duration:0 //动画过渡时间，默认300毫秒
+		        },
+		        statusBarStyle:'dark',
+		        "addBackListener":"true",
+		        pageParam:params
+		    });
+		},
         openList:function(type,enter){
             summer.openWin({
                 "id" :"order_list",
@@ -89,10 +112,10 @@ summerready = function(){
                 },
             })
         },
-        openComment:function(){
+        openComment:function(winId){
             summer.openWin({
-                "id" :"comment_list_cg",
-                "url" : "html/comment_list_cg/comment_list_cg.html"
+                "id" :winId,
+                "url" : "html/"+winId+"/"+winId+".html"
             })
         },
         openList2:function(status){
