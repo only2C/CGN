@@ -81,7 +81,7 @@ function getDetailCallback(ret) {
     retData.suPrice =  viewModel.sumescodeObj().suPrice;
     retData.suMRefCode = viewModel.sumescodeObj().suMRefCode;
     retData.suStoreName = viewModel.sumescodeObj().suStoreName;
-    retData.suInvStock = viewModel.sumescodeObj().suInvStock;
+    retData.suInvStock = parseInt(viewModel.sumescodeObj().suInvStock);
     viewModel.detailData([retData])
 
     var picArr = retData.suMSmallimgs.split("#");

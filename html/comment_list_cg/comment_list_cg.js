@@ -35,7 +35,36 @@ summerready = function(){
     		viewModel.tabIndex(index);
     		getList();
     		myScroll.scrollTo(0, 0, 200, 'easing');
-    	}
+    	},
+        openPageDetail:function (data) {
+    	    if(summer.getStorage("isSupplier") == "01"){
+                var options ={
+                    suStoreCode:data.suStoreCode,
+                    materialCode:data.suMaterialCode
+                };
+                summer.openWin({
+                    "id": "detail",
+                    "url": "html/detail_supplier/detail_supplier.html",
+                    "pageParam": {
+                        options: options
+                    }
+                });
+            }else{
+                var options ={
+                    ieopEnterpriseCode:data.suCompanyCode,
+                    suMCode:data.suMaterialCode,
+                    suStoreCode:data.suStoreCode
+                };
+                summer.openWin({
+                    "id": "detail",
+                    "url": "html/detail_cg/detail_cg.html",
+                    "pageParam": {
+                        options: options
+                    }
+                });
+            }
+
+        }
     }
     ko.applyBindings(viewModel);
     getList();
@@ -203,6 +232,9 @@ function querybymescodesBack(data){
             }
             ods.push(od);
         }
+        ods.forEach(function (value) {
+            value.evaluationUrls = value.evaluationUrls ?summer.getStorage("imgBaseUrl")+value.evaluationUrls:''
+        })
         viewModel.tmpArr(ods);
         if(viewModel.tabIndex()==(viewModel.isSuppliers()?1:2)){
         	if(viewModel.isSuppliers()){

@@ -87,14 +87,14 @@
                                 支付单号：<span class="audit-content" data-bind="text:mainEnt.valiOrderCode==null?'无':mainEnt.valiOrderCode"></span>
                             </div>
                             <div class="order-button-list">
-                               <button data-bind="visible:mainEnt.allStatus==10,click:$root.saveClick.bind($data,mainEnt.id,mainEnt.valiOrderCode,$data)" class="btn-1">保存</button>
+                               <button data-bind="visible:mainEnt.allStatus==10,click:$root.saveClick.bind($data,mainEnt.id,mainEnt.valiOrderCode,$data)" class="btn-1">结算</button>
                                <button class="btn-2" data-bind="click:$root.openWin.bind($data,'order_detail_cg',mainEnt.id)">查看详情</button>
                                <button data-bind="click:$root.openWin.bind($data,'supplier_view_document',mainEnt.id)" class="btn-2">查看文档</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div data-bind="visible:orderList().length<=0">没有数据</div>
+                <div data-bind="visible:orderList().length<=0,"><img style="background: no-repeat;" src="../../img/status/icon_noOrder.png"/></div>
                 <div data-bind="visible:orderList().length>0" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
             </div>
         </div>

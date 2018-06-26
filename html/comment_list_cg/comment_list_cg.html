@@ -94,7 +94,7 @@
 										<!--<span data-bind="text:orderEvaluationLv" id="mainStar"></span>-->
 									</span>
 								</div>
-								<div class="item-inner">
+								<div class="item-inner" data-bind="click:$root.openPageDetail">
 									<div style="width:80px;position: relative;">
 			                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" data-bind="attr:{src:evaluationUrls?evaluationUrls:'../../img/default_small.png'}"/>
 			                		</div>

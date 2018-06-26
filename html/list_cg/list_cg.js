@@ -38,7 +38,6 @@ summerready = function () {
         isDBVisible:ko.observable(true),
         isCGVisible:ko.observable(false),
         openWin: function (options, data) {
-        	console.log(options);
             summer.openWin({
                 "id": "detail",
                 "url": "html/detail_cg/detail_cg.html",
@@ -106,10 +105,8 @@ summerready = function () {
             tap: true
         })
         myScroll.on('scrollStart', function () {
-            console.log('scrollStart');
         })
         myScroll.on('scroll', function () {
-            console.log('scroll');
             if (this.y < (this.maxScrollY)) {
                 $('.pull_icon').addClass('flip');
                 $('.pull_icon').removeClass('loading');
@@ -120,7 +117,6 @@ summerready = function () {
             }
         })
         myScroll.on('scrollEnd', function () {
-            console.log('scrollEnd');
             if (pageSize >= viewModel.totalPage()) {
                 $('.more i').hide();
                 $('.more span').text('没有更多了');
@@ -129,7 +125,6 @@ summerready = function () {
             if ($('.pull_icon').hasClass('flip')) {
                 $('.pull_icon').addClass('loading');
                 $('.more span').text('加载中...');
-                console.log('pullupA')
                 pullUpAction();
             }
         })
@@ -142,7 +137,6 @@ summerready = function () {
         })
 
         function pullUpAction() {
-            console.log('请求')
             pageSize++;
             if (pageSize < viewModel.totalPage()) {
                 queryPage(pageSize);

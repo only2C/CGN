@@ -28,6 +28,9 @@
 <div class="um-win" id="detail">
     <div class="um-header solid" id="header">
         <a href="#" onClick="closeWin();" class="um-back"></a>
+        <div data-bind="foreach:detailData">
+        	<h3 data-bind="text:suMName"></h3>
+        </div>
     </div>
 
     <div class="um-content">
@@ -35,14 +38,14 @@
 
             <div class="um-row"><div id="iSlider-wrapper" class="iSlider-wrapper"></div></div>
 
-            <div data-bind="foreach:detailData">
+            <div data-bind="foreach:detailData" class="supplierDetail">
                 <h3 data-bind="text:suMName"></h3>
+                <p> 库存 ：<span data-bind="text:suInvStock"></span> </p>
+                <p style="border-bottom: 1px solid #ccc;color: #EA7500;font-size: 18px;font-weight: bold;padding-bottom:5px; "> 商品单价 ：￥<span data-bind="text:suPrice"></span> </p>
                 <p> 供应商物料编码： <span data-bind="text:suMCode"></span> </p>
                 <p> 采购方物料编码 ：<span data-bind="text:suMRefCode"></span> </p>
                 <p> 品牌： <span data-bind="text:suMBrandName"></span> </p>
-                <p> 商品单价 ：￥<span data-bind="text:suPrice"></span> </p>
                 <p> 计量单位： <span data-bind="text:suMBuyUnit"></span> </p>
-                <p> 库存 ：<span data-bind="text:suInvStock"></span> </p>
                 <p> 所在仓库： <span data-bind="text:suStoreName"></span> </p>
                 <p> 供应商： <span data-bind="text:ieopEnterpriseName"></span> </p>
             </div>

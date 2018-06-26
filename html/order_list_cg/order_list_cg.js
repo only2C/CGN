@@ -397,7 +397,8 @@ function evaluationQueryBack(res){
 	var childOrders = res.retData.ents;
 	viewModel.totalPage(res.pageParams.totalPage);
 	for(var i = 0;i<childOrders.length;i++){
-		childOrders[i]['billStatus'] = billStatus[childOrders[i]['billStatus']];
+		childOrders[i]['materialImgUrl'] = childOrders[i]['materialImgUrl'] ? summer.getStorage("imgBaseUrl")+childOrders[i]['materialImgUrl']:"";
+        childOrders[i]['billStatus'] = billStatus[childOrders[i]['billStatus']];
 	}
 	if(curPage==1){
 		viewModel.childOrders(childOrders); 

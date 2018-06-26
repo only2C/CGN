@@ -7,15 +7,18 @@ html,body {
 }
 #detail .um-header {
     position:relative;
-    background-color:#fff;
+    background-color:#EA7500;
     min-height: 66px;
 }
 #detail .um-back::before{
     width:12px;
     height:12px;
-    border-left: 2px solid #333;
-    border-bottom: 2px solid #333;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
     margin-left:6px;
+}
+#header> h3{
+	color: #fff;
 }
 .arrow-down {
     display: inline-block;
@@ -24,4 +27,17 @@ html,body {
     margin-left: 5px;
     background:url(../../img/home_down_arrow.png) no-repeat;
     background-size: 12px;
+}
+.um-content{
+	background-color:#f9f9f9;
+}
+.supplierDetail > h3{
+	margin-left:10px;
+}
+.supplierDetail{
+	margin:5px 5px 5px 10px; 
+}
+.supplierDetail > p{
+	margin:5px 5px 5px 10px;
+	color:#7F7F7F;
 }
