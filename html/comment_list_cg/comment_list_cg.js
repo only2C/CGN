@@ -1,3 +1,4 @@
+var curPage = 1;
 function keyBack(){
     turn++;
     if(turn==2){
@@ -26,11 +27,14 @@ summerready = function(){
     	tabIndex:ko.observable(isSuppliers?1:2),
     	giveList:ko.observableArray(),
     	fromList:ko.observableArray(),
+    	totalPage:ko.observable(),
     	isSuppliers:ko.observable(isSuppliers),
         tmpArr:ko.observableArray(),
     	changeTab:function(index){
+    		curPage=1;
     		viewModel.tabIndex(index);
     		getList();
+    		myScroll.scrollTo(0, 0, 200, 'easing');
     	},
         openPageDetail:function (data) {
     	    if(summer.getStorage("isSupplier") == "01"){
@@ -63,32 +67,103 @@ summerready = function(){
         }
     }
     ko.applyBindings(viewModel);
-    function getList(){
-    	var p_conditions = {
-            
-        };
-        var bb = p_page_params_con_dataj_enc(p_conditions,{},{});
-        if(viewModel.tabIndex()==2){
-        	if(viewModel.isSuppliers()){
-        		baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/queryfrom';
-        	}else{
-        		baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/querybuyto';
-        	}
-        }else {
-        	if(viewModel.isSuppliers()){
-        		baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/querysellto';
-        	}else{
-        		baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/queryfrom'
-        	}
-        }
-        p_async_post(ip+baseUrl, bb,'queryfromBack');
-    }
     getList();
+}﻿ 
+function getList(curPage){
+	var p_conditions = {
+        
+    };
+    var bb = p_page_params_con_dataj_enc(p_conditions,{"pageIndex":curPage,"pageSize":10},{});
+    if(viewModel.tabIndex()==2){
+    	if(viewModel.isSuppliers()){
+    		baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/queryfrom';
+    	}else{
+    		baseUrl = '/ieop_base_mobile/mfrontsumaterialorderevaluation/querybuyto';
+    	}
+    }else {
+    	if(viewModel.isSuppliers()){
+    		baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/querysellto';
+    	}else{
+    		baseUrl = '/ieop_base_mobile/mfrontsumaterialevaluation/queryfrom'
+    	}
+    }
+    p_async_post(ip+baseUrl, bb,'queryfromBack');
 }
+$('.pull_icon').addClass('loading');
+$('.more span').text('加载中...');
+$('.drop').on('click', function () {
+    var $this = $(this);
+    $this.next().removeClass('limith');
+})
+myScroll = null;
+window.mycall = function () {
+    window.myScroll = new JRoll('#swrapper', {
+        preventDefault: false,
+        mouseWheel: true,
+        momentum: true,
+        fadeScrollbars: true,
+        useTransform: true,
+        useTransition: true,
+        click: true,
+        tap: true
+    })
+    myScroll.on('scrollStart', function () {
+        console.log('scrollStart');
+    })
+    myScroll.on('scroll', function () {
+        console.log('scroll'+this.y+'-'+this.maxScrollY);
+        if (this.y < (this.maxScrollY)) {
+            $('.pull_icon').addClass('flip');
+            $('.pull_icon').removeClass('loading');
+            $('.more span').text('释放加载...');
+        } else {
+            $('.pull_icon').removeClass('flip loading');
+            $('.more span').text('上拉加载...')
+        }
+    })
+    myScroll.on('scrollEnd', function () {
+        console.log('scrollEnd');
+        if (curPage >= viewModel.totalPage()) {
+            $('.more i').hide();
+            $('.more span').text('没有更多了');
+            return;
+        }
+        if ($('.pull_icon').hasClass('flip')) {
+            $('.pull_icon').addClass('loading');
+            $('.more span').text('加载中...');
+            console.log('pullupA')
+            pullUpAction();
+        }
+    })
+    myScroll.on('refresh', function () {
+        if ($('.scroller').height() < $('#swrapper').height()) {
+            $('.more').hide();
+        }
+        $('.more').removeClass('flip loading');
+        $('.more span').text('上拉加载...');
+    })
+
+    function pullUpAction() {
+        console.log('请求')
+        curPage++;
+        if (curPage <= viewModel.totalPage()) {
+            getList(curPage);
+        } else {
+
+        }
+    }
+
+    if ($('.scroller').height() < $('#swrapper').height()) {
+        $('.more').hide();
+    }
+}
+$('.pull_icon').addClass('flip').addClass('loading');
+$('.more span').text('加载中...');
 var s_map = {};
 function queryfromBack(data){
 	var tmpArr = data.retData.ents;
     var spaInfos = data.retData.spaInfos;
+    viewModel.totalPage(data.pageParams.totalPage);
     var tmpObj = {};
     if(tmpArr.length>0){
         if(viewModel.tabIndex()!=2&&spaInfos!=undefined){
@@ -163,22 +238,62 @@ function querybymescodesBack(data){
         viewModel.tmpArr(ods);
         if(viewModel.tabIndex()==(viewModel.isSuppliers()?1:2)){
         	if(viewModel.isSuppliers()){
-        		viewModel.giveList(viewModel.tmpArr());
+                giveList();
         	}else{
-        		viewModel.fromList(viewModel.tmpArr());
+        		fromList();
         	}
-            console.log(viewModel.tmpArr());
         }else {
         	if(viewModel.isSuppliers()){
-        		viewModel.fromList(viewModel.tmpArr());
+        		fromList();
         	}else{
-        		viewModel.giveList(viewModel.tmpArr());
+        		giveList();
         	}
-            console.log(viewModel.tmpArr());
         }
     }else{
         summer.toast({
             "msg":data.msg
         })
+    }
+}
+function giveList(){
+    if(curPage==1){
+        viewModel.giveList(viewModel.tmpArr());
+        if (myScroll) {
+            setTimeout(function(){
+                myScroll.refresh();
+            },100)
+        }
+        if(viewModel.tmpArr().length<=0){
+            $('.more').hide();
+        }
+    }else{
+        viewModel.giveList(viewModel.giveList().concat(viewModel.tmpArr()));
+        setTimeout(function(){
+            myScroll.refresh();
+        },100)
+    }
+    if (!myScroll) {
+        mycall();
+    }
+}
+function fromList(){
+    if(curPage==1){
+        viewModel.fromList(viewModel.tmpArr());
+        if (myScroll) {
+            setTimeout(function(){
+                myScroll.refresh();
+            },100)
+        }
+        if(viewModel.tmpArr().length<=0){
+            $('.more').hide();
+        }
+    }else{
+        viewModel.fromList(viewModel.fromList().concat(viewModel.tmpArr()));
+        setTimeout(function(){
+            myScroll.refresh();
+        },100)
+    }
+    if (!myScroll) {
+        mycall();
     }
 }
