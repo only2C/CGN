@@ -108,7 +108,7 @@
 						<ul id="smallPic" data-bind="foreach:listArr" class="list noshow little-pic um-border-top">
 							<li data-bind="click:$root.openWin.bind($data,{cgnMCode:cgnMCode,cgnFCode:cgnFCode?cgnFCode:'',cgnFName:cgnFName?cgnFName:''})">
 								<div class="img-wp">
-									<img onerror="nofind(this,1)" data-bind="attr:{src:cgnMIcon?cgnMIcon:'../../img/default_small.png'}" alt="" />
+									<img onerror="nofind(this,1)" data-bind="attr:{src:cgnMIcon?cgnMIcon:'../../img/default_img.png'}" alt="" />
 								</div>
 								<div class="right-cont">
 									<div data-bind="text:cgnMName" class="title"></div>
@@ -127,7 +127,7 @@
 						<ul id="bigPic" data-bind="foreach:listArr" class="big-pic">
 							<li data-bind="click:$root.openWin.bind($data,{cgnMCode:cgnMCode,cgnFCode:cgnFCode?cgnFCode:'',cgnFName:cgnFName?cgnFName:''})" class="cg-list">
 								<div class="big-img">
-									<img  onerror="nofind(this,1)" data-bind="attr:{src:cgnMIcon?cgnMIcon:'../../img/default_small.png'}" alt="" />
+									<img  onerror="nofind(this,1)" data-bind="attr:{src:cgnMIcon?cgnMIcon:'../../img/default_img.png'}" alt="" />
 									<div data-bind="text:cgnFName" class="com-name"></div>
 								</div>
 								<div class="under-pic">

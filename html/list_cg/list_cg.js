@@ -3,7 +3,7 @@ function closeWin() {
 }
 
 function nofind(_this, type) {
-    src = "../static/mall/images/default_small.png"
+    src = "../static/mall/images/default_img.png"
     _this.src = src
     _this.onerror = null;
 }
@@ -257,7 +257,7 @@ function getsumaterial(responseJSON) {
     viewModel.totalPage(responseJSON.pageParams.totalCount);
    	var ids="";
     for(var i= 0;i<data.length;i++){
-    	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?summer.getStorage("imgBaseUrl") + data[i]['suMSmallimgs'][0]:'../static/mall/images/default_small.png';
+    	data[i]['suMSmallimg'] = data[i]['suMSmallimgs'][0]?summer.getStorage("imgBaseUrl") + data[i]['suMSmallimgs'][0]:'../static/mall/images/default_img.png';
     	var id = data[i].id;//物料id
 		ids += id + "#";
     }

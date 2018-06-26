@@ -38,7 +38,7 @@
 				<ul data-bind="foreach:attentionList" class="attention-list">
 					<li data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:factoryCode?factoryCode:'',cgnFName:factoryName?factoryName:'',fromPage:'attention'})">
 						<div class="img-wp">
-							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="" />
+							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
 						</div>
 						<div class="fl">
 							<div data-bind="text:materialName" class="item-title"></div>

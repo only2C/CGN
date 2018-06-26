@@ -36,6 +36,23 @@
                 </div>-->
 			</div>
 			<div class="um-content">
+<<<<<<< HEAD
+				<ul data-bind="foreach:attentionList" class="attention-list">
+					<li data-bind="click:$root.openWin2.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
+						<div class="img-wp">
+							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
+						</div>
+						<div class="fl">
+							<div data-bind="text:materialName" class="item-title"></div>
+							<div class="location">供应商：<span data-bind="text:ieopEnterpriseName"></span><span data-bind="visible:!showAdd" class="fr red">失效</span></div>
+							<div class="left-num">品牌：<span data-bind="text:brandName"></span></div>
+							<div data-bind="click:$root.addToCg.bind($data,$data),css:{'no-left':!showAdd}" class="join-in">加入采购库</div>
+							<div id="nelsonATCAContainer" class="nelsonATCAContainer">1</div>
+						</div>
+					</li>
+				</ul>
+				<div data-bind="visible:attentionList().length<=0" class="no-data"><img src="../../img/staus/icon_noAttention.png" /></div>
+=======
 				<div id="swrapper">
 					<div class="scroller">
 						<ul data-bind="visible:attentionList().length>0,foreach:attentionList" class="attention-list">
@@ -56,6 +73,7 @@
 						<div data-bind="visible:attentionList().length>0" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
 					</div>
 				</div>
+>>>>>>> e9bd5bd12db3a35c922f287a726b8843dfdf7153
 			</div>
 			<div class="um-footer"  id='footer'>
 				<div class="um-footerbar h45"  id='nav'>

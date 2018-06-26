@@ -14,7 +14,7 @@ function keyBack(){
     }, 3000);
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_small.png"
+    src = "../static/mall/images/default_img.png"
     _this.src = src
     _this.onerror=null;
 }

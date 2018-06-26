@@ -292,8 +292,12 @@ div.um-label {
     z-index: 99999;
 }
 
+.org-list li{
+	border-bottom:1px solid #f0f0f0;
+}
+
 .org-list li, .system-list li {
-    line-height: 40px;
+    line-height: 50px;
 }
 
 .org-list li.on, .system-list li.on {
