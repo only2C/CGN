@@ -85,7 +85,7 @@ summerready = function(){
                     type:"none", //动画类型（详见动画类型常量）
                     duration:0 //动画过渡时间，默认300毫秒
                 },
-                isKeep:false,
+                isKeep:true,
                 "addBackListener":"true"
             });
         },

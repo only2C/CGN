@@ -161,8 +161,8 @@
 			            </div>
 			        </div>
 		        </div>
-		        <div data-bind="visible:orderList().length<=0&&status()!=20">没有数据</div>
-		        <div data-bind="visible:status()==20&&childOrders().length<=0">没有数据</div>
+		        <div data-bind="visible:orderList().length<=0&&status()!=20"><img style="background: no-repeat;" src="../../img/status/icon_noOrder.png"/></div>
+		        <div data-bind="visible:status()==20&&childOrders().length<=0"><img style="background: no-repeat;" src="../../img/status/icon_noOrder.png"/></div>
 		        <div data-bind="visible:!(orderList().length<=0&&status()!=20 || status()==20&&childOrders().length<=0)" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
         	</div>
         </div>
