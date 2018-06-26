@@ -12,7 +12,7 @@ function keyBack(){
 	closeWin();
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_small.png"
+    src = "../static/mall/images/default_img.png"
     _this.src = src
     _this.onerror=null;
 }
@@ -196,7 +196,7 @@ function querysingle (ret){
     viewModel.cgnFCodes(cgnFCodes);
     //返回图片为空设为默认图片
     if(retData.suMSmallimgs==null || retData.suMSmallimgs==""){
-        retData.suMSmallimgs = "../../img/default_small.png";
+        retData.suMSmallimgs = "../../img/default_img.png";
     }
     var picArr = retData.suMSmallimgs.split("#");
     viewModel.picArr(picArr);

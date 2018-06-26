@@ -15,7 +15,7 @@
     width: 90%;
     left: 5%;
     border-radius: 3px;
-    bottom: -30px;
+    bottom: -100px;
     font-size:14px;
     box-shadow: 1px 4px 7px 1px rgba(0,0,0,0.5);
 }
@@ -57,7 +57,7 @@
     color:#ee9531;
 }
 .content {
-	padding: 60px 14px 0;
+	padding: 120px 20px 0;
 	font-size:14px;
 }
 .um-content {

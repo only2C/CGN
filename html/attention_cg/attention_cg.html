@@ -38,7 +38,7 @@
 				<ul data-bind="foreach:attentionList" class="attention-list">
 					<li data-bind="click:$root.openWin2.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
 						<div class="img-wp">
-							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_small.png'}" alt="" />
+							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
 						</div>
 						<div class="fl">
 							<div data-bind="text:materialName" class="item-title"></div>
@@ -49,7 +49,7 @@
 						</div>
 					</li>
 				</ul>
-				<div data-bind="visible:attentionList().length<=0" class="no-data">无数据</div>
+				<div data-bind="visible:attentionList().length<=0" class="no-data"><img src="../../img/staus/icon_noAttention.png" /></div>
 			</div>
 			<div class="um-footer"  id='footer'>
 				<div class="um-footerbar h45"  id='nav'>

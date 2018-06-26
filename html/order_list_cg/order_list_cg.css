@@ -267,6 +267,8 @@ button{
   align-items: center;
   padding: 9px 0;
   background-color: #ffffff;
+  position:absolute;
+  margin:auto;
 }
 .um-input-search input {
 	background-color:#f1f1f2 !important;
@@ -280,15 +282,6 @@ button{
   width: 100%;
   border: none;
   box-shadow: none;
-}
-.cancel {
-	position: absolute;
-    right: 0;
-    top: 0;
-    color: #ff5d00;
-    font-size: 13px;
-    margin-top: 15px;
-    margin-right: 2%;
 }
 .search-wp {
 	padding: 0 10px;
