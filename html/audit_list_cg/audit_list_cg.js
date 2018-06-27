@@ -214,7 +214,6 @@ window.mycall = function () {
             return;
         }
         if(locked){
-            console.log('locked')
             return;
         }
         if ($('.pull_icon').hasClass('flip')) {
@@ -270,16 +269,14 @@ function queryBack(res){
     }
 	var orderList = res.retData.aggEnts;
     viewModel.totalPage(res.pageParams.totalPage);
-	var tmpArr = []; 
-    var refObj = {};
-    var suMCodes = "";
-    var suStoreCodes = "";
-    var ieopEnterpriseCodes = "";
     locked = false;
     if(orderList.length>0){
     	for(var i=0;i<orderList.length;i++){
             var mainEnt = orderList[i].mainEnt;
             var children = orderList[i].children.su_mall_order_infos;
+            children.forEach(function (val) {
+                val.materialImgUrl = val.materialImgUrl ? summer.getStorage("imgBaseUrl")+val.materialImgUrl:''
+            })
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];
         }
