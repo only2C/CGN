@@ -36,7 +36,7 @@
 			</div>
 
 			<div class="um-content">
-				<ul data-bind="foreach:cartList" class="attention-list">
+				<ul data-bind="visible:cartList().length>0,foreach:cartList" class="attention-list">
 					<li>
                         <label class="um-check-inline">
                             <input data-bind="checked:choose,click:$root.chooseToggle.bind($data,$data)" name="um-checkbox-inline" type="checkbox">

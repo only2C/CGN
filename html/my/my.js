@@ -112,7 +112,23 @@ summerready = function(){
                 },
             })
         },
-        openComment:function(winId){
+        openComment:function(winId,enter){
+        	if(winId=='comment'){
+        		summer.openWin({
+	                "id" :"order_list",
+	                "url" : "html/order_list/order_list.html",
+	                "pageParam" : {
+	                    type:winId,
+	                    enter:enter
+	                },
+	                "animation":{
+	                    type:"none", //动画类型（详见动画类型常量）
+	                    subType:"from_right", //动画子类型（详见动画子类型常量）
+	                    duration:0 //动画过渡时间，默认300毫秒
+	                },
+	            })
+        		return;
+        	}
             summer.openWin({
                 "id" :winId,
                 "url" : "html/"+winId+"/"+winId+".html"
@@ -191,6 +207,7 @@ summerready = function(){
         	var chooseText = item.code==1?'欢迎调拨':'欢迎采购';
             viewModel.systemType(chooseText);
             viewModel.systemFlag(item.code);
+            viewModel.stype(item.code);
             summer.setStorage('stype',item.code);
             $('.system-list').fadeOut();
             if(item.code == 0){

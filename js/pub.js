@@ -462,9 +462,9 @@ function page_file_upload_imgs(option,ele_id){
             var fileData = e.target.result;
 
             var fileSize = fileData.length / 1024 / 1024 ;
-            if(fileSize>1){
+            if(fileSize>10){
             	summer.toast({
-            		"msg":"上传文件过大，文件大小不能超过1MB！"
+            		"msg":"上传文件过大，文件大小不能超过10MB！"
             	});
                 input.value = '';
                 return ;

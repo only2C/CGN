@@ -97,8 +97,7 @@ html,body {
 .um-content {
 	padding:10px 0 0;
 	background-color:#fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	overflow-y:scroll !important;
 }
 .iSlider-wrapper img {
 	width: 100%;

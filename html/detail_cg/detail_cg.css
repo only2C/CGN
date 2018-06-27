@@ -1,6 +1,5 @@
 html,body {
 	font-family: 'microsoft yahei Light' !important;
-	overflow-x:hidden;
 }
 .um-header {
 	z-index:999 !important;
@@ -38,9 +37,6 @@ html,body {
     margin: 0 auto;
     font-size: 14px;
     max-width:250px;
-    text-overflow:hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
 }
 .goods-left {
 	overflow: hidden;
@@ -103,8 +99,7 @@ html,body {
 }
 .um-content {
 	background-color:#fff;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	overflow-y:scroll !important;
 }
 .iSlider-wrapper img {
 	width: 100%;
@@ -138,12 +133,12 @@ html,body {
 }
 .um-footer .item3{
 	flex:3;
-	color: #000;
+	color: #fff;
 	background-color:#ee9430;
 }
 .um-footer .item4{
 	flex:3;
-	color:#000;
+	color:#fff;
 	background-color:#ea7500;
 }
 .orange {

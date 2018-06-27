@@ -70,17 +70,6 @@ summerready = function(){
     query_action();
     //获取收货地址列表
     initAddress();
-    
-    //获取订单列表
-	function query_action(){
-	    var p_conditions = {};
-	    var page_params={"pageIndex":1,"pageSize":1000};  //
-	    var sortItem = {};
-	    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-	    p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/queryorderpage', enc_conditions,'queryorderpage');
-	    
-	}
-	
 	$('.scroller-date').scroller('destroy').scroller({
         preset: 'date',
         theme: "ios7",
@@ -88,6 +77,16 @@ summerready = function(){
         display: "bottom",
         animate: ""
     });
+}
+//获取订单列表
+function query_action(){
+	alert('query')
+    var p_conditions = {};
+    var page_params={"pageIndex":1,"pageSize":1000};  //
+    var sortItem = {};
+    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+    p_async_post(ip+'/ieop_base_mobile/mfrontmallusercarts/queryorderpage', enc_conditions,'queryorderpage');
+    
 }
 function initAddress(){
 	viewModel.addressList([]);
