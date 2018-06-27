@@ -68,7 +68,7 @@ summerready = function(){
     }
     ko.applyBindings(viewModel);
     getList();
-}﻿ 
+}
 function getList(curPage){
 	var p_conditions = {
         
