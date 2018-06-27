@@ -78,9 +78,28 @@ summerready = function(){
                 }, function(args){
                 })
             } else {
-                summer.openWebView({
-                    url:url
-                })
+                var xlsxFile = url.split(".");
+                if (url && xlsxFile[xlsxFile.length-1] == 'xlsx') {   //iphone 手机浏览器不支持xlsx格式
+                    UM.confirm({
+                        title: '提示：',
+                        text: 'iphone浏览器不支持xlsx格式，请在浏览器中选择其他应用打开。可使用wps打开此类文件。',
+                        btnText: ["取消", "继续打开"],
+                        overlay: true,
+                        ok: function () {
+                            summer.openWebView({
+                                url: url
+                            })
+                        },
+                        cancle: function () {
+                        }
+                    });
+                }else{
+                    summer.openWebView({
+                        url: url
+                    })
+                }
+
+
             }
         }
     };

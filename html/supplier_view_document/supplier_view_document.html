@@ -29,8 +29,8 @@
 
     <div class="um-content">
         <div data-bind="visible:viewList().length == 0">暂无数据</div>
-        <div data-bind="foreach:viewList">
-            <div class="row">
+        <div data-bind="foreach:viewList,visible:viewList().length != 0">
+            <div class="row" data-bind="click:$root.downFile.bind($data,suMoaFileAddr)">
                 <div class="iframe-img fl">
                     <img src="../../img/file-icon.png" width="30">
                 </div>
