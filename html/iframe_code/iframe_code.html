@@ -38,19 +38,21 @@
                     <i class="fr" data-bind="css:{'iframe-button-start':suFaSta == 1,'iframe-button-stop':suFaSta==0}"></i>
                 </div>
                 <div class="iframe-list" >
-                    <div class="iframe-detail">
-                        <label>业主方：</label>
-                        <span data-bind="text:suFaOwnerCode"></span>
+                	<div class="fl">
+                		<div class="iframe-detail" style="font-weight: bold;font-size: 15px;">
+                        	<span data-bind="text:suFaName"></span>
+                        	(<span data-bind="text:suFaCode"></span>)
+                    	</div>
+                    	<div class="iframe-detail">
+                        	<label>业主方：</label>
+                        	<span data-bind="text:suFaOwnerCode"></span>
+                    	</div>
+                    	<div class="iframe-detail">
+                        	<label>供应商：</label>
+                        	<span data-bind="text:ieopEnterpriseName"></span>
+                    	</div>
                     </div>
-                    <div class="iframe-detail">
-                        <label>供应商：</label>
-                        <span data-bind="text:ieopEnterpriseName"></span>
-                    </div>
-                    <div class="iframe-detail">
-                        <label>协议名称：</label>
-                        <span data-bind="text:suFaName"></span>
-                        (<span data-bind="text:suFaCode"></span>)
-                    </div>
+                    <img src="../../img/my_right_arrow.png" height="16" alt="" class="iframe-go mr10">
                 </div>
                 <div class="iframe-time">有效期：<span data-bind="text:suFaStartIn"></span>至<span data-bind="text:suFaExpireIn"></span></div>
             </div>

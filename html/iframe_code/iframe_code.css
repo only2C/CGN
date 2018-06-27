@@ -10,10 +10,16 @@ body{
     font-weight: normal;
     padding: 1% 0 1% 2%;
     border-bottom:1px solid #cfcfcf;
+   	height:auto;
     background: #fff;
     margin-top: 2%;
     float:left;
     width: 100%;
+    overflow:hidden;
+    position: relative;
+}
+.fl{
+	float: left;
 }
 .tl{
     text-align: left;
@@ -73,9 +79,12 @@ body{
     background-position: 15px 11px;
 }
 .um-header{
-    background:#ff8000;
-    color:#fff;
-    padding-top: 25px;
+    padding-top:25px;
+	position:relative;
+	background:url("../../img/dingbu.png") no-repeat;
+	text-align:center;
+	color:#fff;
+	background-size:100% 100%;
 }
 .um-box{
     height:40px;
@@ -94,7 +103,7 @@ body{
     background-size:80%;
 }
 .iframe-info{
-    width:81%;
+    width:80%;
 }
 
 .iframe-title , .iframe-detail ,.iframe-time{
@@ -102,12 +111,23 @@ body{
     /*line-height:25px*/
 
 }
+.iframe-detail{
+	padding-top:5px; 
+}
 .iframe-title span{
     font-weight:bold;
 }
 .iframe-list{
     font-size:12px;
     overflow: hidden;
+    position:relative;
+}
+.iframe-go{
+	margin:40px 5px 0 0;
+	float: right;
+}
+.fl{
+	float: left;
 }
 
 .iframe-list div label{
@@ -127,9 +147,11 @@ body{
     margin: 5px;
     font-size:12px;
     text-align:right;
-    border-top:1px solid #cfcfcf;
+    padding-right:10px;
+    color:#7F7F7F;
 
 }
+
 /* 设置背景图片 */
 .icon-home, .icon-attention, .icon-categroy, .icon-warehouse, .icon-my {
     height: 19px;
