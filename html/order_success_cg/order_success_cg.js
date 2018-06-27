@@ -1,4 +1,8 @@
 function closeWin(){
+	summer.execScript({
+	    winId: 'confirm_order',
+	    script: 'query_action();'
+	});
 	summer.closeWin();
 }
 summerready = function(){

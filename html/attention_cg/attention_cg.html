@@ -36,6 +36,7 @@
                 </div>-->
 			</div>
 			<div class="um-content">
+<<<<<<< HEAD
 				<ul data-bind="foreach:attentionList" class="attention-list">
 					<li data-bind="click:$root.openWin2.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
 						<div class="img-wp">
@@ -51,9 +52,11 @@
 					</li>
 				</ul>
 				<div data-bind="visible:attentionList().length<=0" class="no-data"><img style="width: 100%;height: 100%;"  src="../../img/staus/icon_noAttention.png" /></div>
+=======
+>>>>>>> ea439346d2d70cd33b856e152a2106fd33eb2e3c
 				<div id="swrapper">
 					<div class="scroller">
-						<ul data-bind="visible:attentionList().length>0,foreach:attentionList" class="attention-list">
+						<ul data-bind="foreach:attentionList" class="attention-list">
 							<li data-bind="click:$root.openWin2.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
 								<div class="img-wp">
 									<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
@@ -67,7 +70,11 @@
 								</div>
 							</li>
 						</ul>
+<<<<<<< HEAD
 						<div data-bind="visible:attentionList().length<=0" class="no-data" style="text-align: center;vertical-align:middle;"><img style="width: 50%;height: 50%;vertical-align: middle;" src="../../img/status/icon_noAttention.png" /></div>
+=======
+						<div data-bind="visible:attentionList().length<=0" class="no-data"><img src="../../img/staus/icon_noAttention.png" /></div>
+>>>>>>> ea439346d2d70cd33b856e152a2106fd33eb2e3c
 						<div data-bind="visible:attentionList().length>0" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
 					</div>
 				</div>

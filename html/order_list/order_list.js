@@ -83,7 +83,7 @@ summerready = function(){
 		if(kwd){
 			p_conditions['queryString'] = kwd;
 		}
-		var page_params={"pageIndex":1,"pageSize":20};  //分页
+		var page_params={"pageIndex":1,"pageSize":100};  //分页
 	    var sortItem = {};
 	    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
 	    p_async_post(url, enc_conditions,'queryBack');

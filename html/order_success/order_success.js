@@ -1,5 +1,12 @@
 function closeWin(){
+	summer.execScript({
+	    winId: 'confirm_order',
+	    script: 'query_action();'
+	});
 	summer.closeWin();
+}
+function keyBack(){
+	closeWin();
 }
 summerready = function(){
 	$summer.fixStatusBar($summer.byId('header'));

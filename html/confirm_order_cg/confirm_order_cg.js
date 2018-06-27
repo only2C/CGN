@@ -64,20 +64,7 @@ summerready = function(){
     //获取收货地址列表
     initAddress();
     
-    //获取订单列表
-	function query_action(){
-	    var cartType = viewModel.cartType();
-	    if(cartType == 1){
-	    	var p_conditions = {"buyStoreSwitch":"0"};
-	    }else{
-	    	var p_conditions = {"buyStoreSwitch":"1"};
-	    }
-	    var page_params={"pageIndex":1,"pageSize":1000};  //
-	    var sortItem = {};
-	    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-	    p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/queryorderpage', enc_conditions,'queryorderpage');
-	    
-	}
+    
 	
 	$('.scroller-date').scroller('destroy').scroller({
         preset: 'date',
@@ -86,6 +73,20 @@ summerready = function(){
         display: "bottom",
         animate: ""
     });
+}
+//获取订单列表
+function query_action(){
+    var cartType = viewModel.cartType();
+    if(cartType == 1){
+    	var p_conditions = {"buyStoreSwitch":"0"};
+    }else{
+    	var p_conditions = {"buyStoreSwitch":"1"};
+    }
+    var page_params={"pageIndex":1,"pageSize":1000};  //
+    var sortItem = {};
+    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
+    p_async_post(ip+'/ieop_base_mobile/mfrontsumallusercarts/queryorderpage', enc_conditions,'queryorderpage');
+    
 }
 function valiCarts(res){
 	if(res.status!=1){
