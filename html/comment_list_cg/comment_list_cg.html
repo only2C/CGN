@@ -46,9 +46,9 @@
 										<!--<span data-bind="text:orderEvaluationLv" id="mainStar"></span>-->
 									</span>
 								</div>
-								<div class="item-inner">
+								<div class="item-inner" data-bind="click:$root.openPageDetail">
 									<div style="width:80px;position: relative;">
-			                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" data-bind="attr:{src:evaluationUrls?evaluationUrls:'../../img/default_small.png'}"/>
+			                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" data-bind="attr:{src:evaluationUrls?evaluationUrls:'../static/mall/images/default_img.png'}"/>
 			                		</div>
 			                		<div style="float: left;margin-left:8px;;max-width:70%;">
 			                			<div class="rite-item">商品名称：<span data-bind="text:suMaterialName"></span></div>
@@ -96,7 +96,7 @@
 								</div>
 								<div class="item-inner" data-bind="click:$root.openPageDetail">
 									<div style="width:80px;position: relative;">
-			                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" data-bind="attr:{src:evaluationUrls?evaluationUrls:'../../img/default_small.png'}"/>
+			                			<img onerror="nofind(this,1)" id="mImg" style="width: 80px;height: 80px;background-size: 100% 100%;float:left;" data-bind="attr:{src:evaluationUrls?evaluationUrls:'../static/mall/images/default_img.png'}"/>
 			                		</div>
 			                		<div style="float: left;margin-left:8px;max-width:70%;">
 			                			<div class="rite-item">商品名称：<span data-bind="text:suMaterialName"></span></div>
