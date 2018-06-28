@@ -348,7 +348,7 @@ function addToCarts (data){
 		}
 	}else{
 		summer.toast({
-            "msg" : "网络错误" 
+            "msg" : data.msg
         })
 	}
 }

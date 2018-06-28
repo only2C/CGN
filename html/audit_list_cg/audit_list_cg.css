@@ -4,6 +4,9 @@ body{
 button{
     outline: none;
 }
+.no-data {
+	display:none;
+}
 .um-header{
     background: #ff9500;
     padding-top:22px;

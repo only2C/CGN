@@ -345,7 +345,7 @@ function queryCarts (data){
 		    var page_params={"pageIndex":1,"pageSize":20};  //分页
 		    var sortItem = {};
 		    var data1 = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
-		    p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', data1,'getpriceandstock');
+		    p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes2', data1,'getpriceandstock');
 	    	
 	    }else {
 	    	summer.toast({
@@ -364,15 +364,31 @@ function getpriceandstock(ret){
 	var ents = viewModel.ents();
 	var num = 0;
 	var mds = {};
+	var refObj = {};
 	for(var i=0;i<retData.length;i++){
-	    var key = retData[i].cgnFCode+','+retData[i].cgnMCode;
-		mds[key] = retData[i];
+		var ent = retData[i]
+	    var key = ent.cgnFCode+','+ent.cgnMCode;
+	    var key2 = ent.suMCode+"#"+ent.suStoreCode+"#"+ent.ieopEnterpriseCode;
+		mds[key] = ent;
+		refObj[key2] = ent;
 	}
 	var tmpArr = [];
 	var totalPrice=0;
 	for(var i=0;i<ents.length;i++){
 	   //ents[i].materialImgUrl = summer.getStorage("imgBaseUrl") + ents[i].materialImgUrl; 		
 	   //if(ents[i].borrowFactoryName==viewModel.defaultOrg()){
+	   	  var ent = ents[i];
+	   	  var trueKey = ent.materialCode+"#"+ent.suStoreCode+"#"+ent.ieopEnterpriseCode;
+	   	  var refm = refObj[trueKey];
+	   	  if(refm!=undefined){
+                if(refm.suMarSta==0 || refm.suMarSta==2){
+                    ents[i].isInvalid = true;
+                }else {
+                	ents[i].isInvalid = false;
+                }
+          }else {
+          		ents[i].isInvalid = false;
+          }
 	      var choose = ents[i].buyStoreStatus ==1?true:false;
 		  //var key = ents[i].supplyFactoryCode+','+ents[i].materialCode;
 		  ents[i].suPrice = Number(ents[i].sumallTPrice).toFixed(3);

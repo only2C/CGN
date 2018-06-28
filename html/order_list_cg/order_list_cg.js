@@ -1,8 +1,5 @@
 function closeWin (){
-    summer.openWin({
-    	"id":"my",
-    	"url":"html/my/my.html",
-    });
+    summer.closeWin();
 }
 function nofind(_this, type) {
     src = "../static/mall/images/default_img.png"
