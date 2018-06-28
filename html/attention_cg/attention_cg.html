@@ -36,24 +36,6 @@
                 </div>-->
 			</div>
 			<div class="um-content">
-<<<<<<< HEAD
-				<ul data-bind="foreach:attentionList" class="attention-list">
-					<li data-bind="click:$root.openWin2.bind($data,{ieopEnterpriseCode:ieopEnterpriseCode,suMCode:materialCode,suStoreCode:suStoreCode})">
-						<div class="img-wp">
-							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
-						</div>
-						<div class="fl">
-							<div data-bind="text:materialName" class="item-title"></div>
-							<div class="location">供应商：<span data-bind="text:ieopEnterpriseName"></span><span data-bind="visible:!showAdd" class="fr red">失效</span></div>
-							<div class="left-num">品牌：<span data-bind="text:brandName"></span></div>
-							<div data-bind="click:$root.addToCg.bind($data,$data),css:{'no-left':!showAdd}" class="join-in">加入采购库</div>
-							<div id="nelsonATCAContainer" class="nelsonATCAContainer">1</div>
-						</div>
-					</li>
-				</ul>
-				<div data-bind="visible:attentionList().length<=0" class="no-data"><img style="width: 100%;height: 100%;"  src="../../img/staus/icon_noAttention.png" /></div>
-=======
->>>>>>> ea439346d2d70cd33b856e152a2106fd33eb2e3c
 				<div id="swrapper">
 					<div class="scroller">
 						<ul data-bind="foreach:attentionList" class="attention-list">
@@ -70,11 +52,7 @@
 								</div>
 							</li>
 						</ul>
-<<<<<<< HEAD
 						<div data-bind="visible:attentionList().length<=0" class="no-data" style="text-align: center;vertical-align:middle;"><img style="width: 50%;height: 50%;vertical-align: middle;" src="../../img/status/icon_noAttention.png" /></div>
-=======
-						<div data-bind="visible:attentionList().length<=0" class="no-data"><img src="../../img/staus/icon_noAttention.png" /></div>
->>>>>>> ea439346d2d70cd33b856e152a2106fd33eb2e3c
 						<div data-bind="visible:attentionList().length>0" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
 					</div>
 				</div>
