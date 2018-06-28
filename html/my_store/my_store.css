@@ -3,12 +3,44 @@ body{
     font-weight: normal;
     font-size:14px;
 }
+.um-header {
+	position:relative;
+	padding-top:22px;
+	background:url(../../img/storeBackground.png) no-repeat;
+	background-size:100% 100%;
+	height:25%;
+}
+.um-back{
+	line-height:35px;
+	position: absoulte;
+	top: inherit;
+	left: 15px;
+}
+.um-back:before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-left: 1.5px solid #ffffff;
+  border-bottom: 1.5px solid #ffffff;
+}
+.bars {
+	position: absolute;
+    background-color: #fff;
+    margin-top:25%;
+	left: 41%;
+    box-shadow: 1px 4px 7px 1px rgba(0,0,0,0.5);
+}
+.um-content{
+	padding: 30px 20px 0;
+	font-size:14px;
+	background: #fff;
+}
 .mb2{
     margin-bottom: 2%;
 }
 .row{
     font-weight: normal;
-    padding: 0 5%;
     border-bottom:1px solid #cfcfcf;
     height: 50px;
     line-height:50px;
@@ -72,10 +104,6 @@ body{
     background:url(../../img/back.png) no-repeat;
     background-size:10px;
     background-position: 15px 11px;
-}
-.um-header{
-    background:#ff8000;
-    color:#fff;
 }
 .um-box{
     height:40px;

@@ -362,3 +362,12 @@ button{
 	top:272px !important;
 	bottom:0;
 }
+.no-data{
+	text-align: center;
+	vertical-align:middle;
+}
+.no-data>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
+}

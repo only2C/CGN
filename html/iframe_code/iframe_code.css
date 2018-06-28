@@ -63,7 +63,6 @@ body{
 .col-md-1 {
     width: 8.33333333%;
 }
-
 .my-um-label {
     font-weight: normal;
     background-color: #FFFFFF;
@@ -103,7 +102,7 @@ body{
     background-size:80%;
 }
 .iframe-info{
-    width:80%;
+    width:100%;
 }
 
 .iframe-title , .iframe-detail ,.iframe-time{
@@ -114,20 +113,31 @@ body{
 .iframe-detail{
 	padding-top:5px; 
 }
+.iframe-title{
+	text-align:right;
+	width:5%;
+}
 .iframe-title span{
     font-weight:bold;
+}
+.iframe-title>i{
+	display:block;
 }
 .iframe-list{
     font-size:12px;
     overflow: hidden;
     position:relative;
+    width: 80%;
 }
 .iframe-go{
-	margin:40px 5px 0 0;
+	display: block;
 	float: right;
 }
 .fl{
 	float: left;
+}
+.fr{
+	float: right;
 }
 
 .iframe-list div label{
@@ -136,7 +146,7 @@ body{
 }
 
 .iframe-img{
-    width:18%;
+    width:15%;
     overflow: hidden;
     padding: 15px 0 0 5px;
 }

@@ -221,3 +221,12 @@ i.arrow-right {
     background-size: 7px 14px;
     margin-top: 28px;
 }
+.no-data{
+	text-align: center;
+	vertical-align:middle;
+}
+.no-data>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
+}

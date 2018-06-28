@@ -230,9 +230,15 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
-.no-data {
-	text-align:center;
+.no-data{
+	text-align: center;
+	vertical-align:middle;
 	margin-top:20px;
+}
+.no-data>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
 }
 /*
  ä¸‹æ‹‰åŠ è½½

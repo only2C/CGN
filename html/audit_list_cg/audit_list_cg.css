@@ -4,6 +4,28 @@ body{
 button{
     outline: none;
 }
+/*底部*/
+.scroller {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+}
+#swrapper {
+	position:fixed !important;
+	width:100%;
+	top:202px !important;
+	bottom:0;
+}
+.no-data{
+	text-align: center;
+	vertical-align:middle;
+}
+.no-data>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
+}
+/*头部*/
 .um-header{
     padding-top:22px;
 	position:relative;
@@ -18,9 +40,9 @@ button{
 .fr{
     float: right;
 }
-.um-content{
+/*.um-content{
 	padding-top:93px;
-}
+}*/
 .order-status{
 	position:fixed;
 	top:109px;
@@ -336,15 +358,4 @@ button{
     to {
         -webkit-transform: rotate(360deg) translateZ(0);
     }
-}
-.scroller {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-}
-#swrapper {
-	position:fixed !important;
-	width:100%;
-	top:202px !important;
-	bottom:0;
 }

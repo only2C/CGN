@@ -23,6 +23,12 @@ color:#ee9430;
 .no-results {
 	text-align:center;
 	margin-top:20px;
+	vertical-align:middle;
+}
+.no-results>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
 }
 .icon-attention {
 background-image: url(../../img/icon-attention.png);

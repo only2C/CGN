@@ -9,7 +9,7 @@ button{
 	overflow:hidden;
 	zoom:1;
 	color:#333;
-	padding:20px 8px;
+	padding: 20px 10px;
 }
 .img-line {
 	height:3px;
@@ -21,6 +21,7 @@ button{
 }
 .order-list {
 	background-color:#fff;
+	padding:0 10px;
 }
 .order-list .fl {
 	max-width:60%;
@@ -171,6 +172,7 @@ button{
 .flexDiv {
 	display:flex;
 	display:-webkit-flex;
+	padding:0 10px;
 }
 .flex1 {
 	flex:1;

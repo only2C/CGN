@@ -21,52 +21,50 @@
 
 <div class="um-win" id="my_store">
 		<div class="um-header" id="header">
+			<div>
 				<a onClick="closeWin()" class="um-back"></a>
 				<h3>商铺管理</h3>
+			</div>
+			<div class="bars" data-bind="foreach:storeData">
+				<img data-bind="attr:{src:ieopSuLogo?ieopSuLogo:'../../img/storeLogo.png'}" width="70" height="70">
+			</div>
 		</div>
 		
 	    <div class="um-content" data-bind="foreach:storeData">
-			    <div class="store-info">
-			        <div class="store-pic col-md-3">
-			            <img data-bind="attr:{src:ieopSuLogo?ieopSuLogo:'../../img/person.png'}" width="70" height="70">
-			        </div>
-					<div class="store-detail col-md-9">
-			            <div>
-			                <label>供应商名称：</label>
-								<span data-bind="text:ieopEnterpriseName"></span>
+						<div class="row">
+			                <div class="col-md-5 tl">店铺地址：</div>
+			                <div class="col-md-6 tr" data-bind="text:ieopSuProvince"></div>
 			            </div>
-			            <div>
-			                <label>供应商编码：</label>
-			                <span data-bind="text:ieopEnterpriseCode"></span>
+			            <div class="row">
+			                <div class="col-md-5 tl">供应商名称：</div>
+								<div class="col-md-6 tr" data-bind="text:ieopEnterpriseName"></div>
 			            </div>
-			            <div>
-			                <label>店铺地址：</label>
-			                <span data-bind="text:ieopSuProvince"></span>
+			            <div class="row">
+			                <div class="col-md-5 tl">供应商编码：</div>
+			                <div class="col-md-6 tr" data-bind="text:ieopEnterpriseCode"></div>
 			            </div>
-			        </div>
-			    </div>
 
 			    <div class="row">
 			        <div class="col-md-5 tl">详细地址：</div>
-			        <div class="col-md-6 tl" data-bind="text:address"></div>
+			        <div class="col-md-6 tr" data-bind="text:address"></div>
 			    </div>
 			
 			    <div class="row">
 			        <div class="col-md-5 tl">邮编：</div>
-			        <div class="col-md-6 tl" data-bind="text:ieopSuPostcode"></div>
+			        <div class="col-md-6 tr" data-bind="text:ieopSuPostcode"></div>
 			    </div>
+			    
+			    <div class="row">
+					<div class="col-md-5 tl">联系人：</div>
+					<div class="col-md-6 tr" data-bind="text:ieopSuContact"></div>
+				</div>
 
 				<div class="row">
 					<div class="col-md-5 tl">电话：</div>
-					<div class="col-md-6 tl" data-bind="text:ieopSuTel"></div>
+					<div class="col-md-6 tr" data-bind="text:ieopSuTel"></div>
 				</div>
 
-				<div class="row">
-					<div class="col-md-5 tl">联系人：</div>
-					<div class="col-md-6 tl" data-bind="text:ieopSuContact"></div>
-				</div>
-
-			</div>	
-		</div>		
+		</div>	
+</div>		
 </body>
 </html>
