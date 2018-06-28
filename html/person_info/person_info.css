@@ -1,14 +1,27 @@
-.um-header-light .um-back:before {
-    border-left: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+.um-win{
+	background:#f0f0f0;
 }
-
+.um-content{
+	background:#f0f0f0;
+}
+.um-back:before {
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    margin-left:5px;
+}
 .um-header{
-    background:#ee9531;
-    color:#fff;
+	background:#f0f0f0;
+    color: #000000;
+}
+.um-header h3{
+    color: #000000;
 }
 .um-content{
     font-size:14px;
+}
+.um-list>li{
+	padding:0 15px;
+	line-height: 30px;
 }
 .phone_icon{
     width: 30px;
@@ -20,5 +33,5 @@
 }
 .save-info{
     float: right;
-    margin: -35px 5px 0 0;
+    margin: -35px 10px 0 0;
 }

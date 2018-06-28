@@ -5,8 +5,12 @@ button{
     outline: none;
 }
 .um-header{
-    background: #ff9500;
     padding-top:22px;
+	position:relative;
+	background:url("../../img/dingbu.png") no-repeat;
+	text-align:center;
+	color:#fff;
+	background-size:100% 100%;
 }
 .mb1{
     margin-bottom: 1px;
@@ -250,21 +254,24 @@ button{
   display: box;
   -webkit-box-align: center;
   box-align: center;
-  width:90%;
+  width:100%;
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
   padding: 9px 0;
   background-color: #ffffff;
+  position:absolute;
+  margin:auto;
 }
 .um-input-search input {
 	background-color:#f1f1f2 !important;
 	-webkit-appearance: none;
 }
 .um-input-search form {
+	margin:auto;
 	display:block;
-	width:100%;
+	width:80%;
 }
 .um-input-search .form-control:focus {
   width: 100%;
@@ -281,7 +288,7 @@ button{
     margin-right: 2%;
 }
 .search-wp {
-	padding: 0 10px;
+	/*padding: 0 10px;*/
     position: relative;
     top:0 !important;
     background-color:#fff;

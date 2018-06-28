@@ -27,7 +27,7 @@
 			<div id="searchBtn" class="pr um-input-search">
                  <form action="javascript:return true;"><input type="search" id="searchInput" class="form-control" placeholder="请输入商品标题或订单号"></form>
             </div>
-            <div class="cancel">取消</div>
+            <!--<div class="cancel">取消</div>-->
 		</div>
     </div>
 
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-bind="visible:orderList().length<=0,"><img style="background: no-repeat;" src="../../img/status/icon_noOrder.png"/></div>
+                <div data-bind="visible:orderList().length<=0," style="text-align: center;vertical-align:middle;"><img style="width: 50%;height: 50%;vertical-align: middle;" src="../../img/status/icon_noOrder.png"/></div>
                 <div data-bind="visible:orderList().length>0" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
             </div>
         </div>
