@@ -200,6 +200,10 @@ i.cart span {
 .detail-container>div.comments {
 	margin-top:6px;
 	padding: 0;
+	min-height: 300px;
+}
+.nolimit {
+	min-height:unset !important;
 }
 .detail-container>div.comments>div {
 	padding: 0 5%;
