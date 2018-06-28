@@ -369,3 +369,12 @@ button{
     margin: 10px 0;
     background: #fff;
 }
+.no-data{
+	text-align: center;
+	vertical-align:middle;
+}
+.no-data>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
+}

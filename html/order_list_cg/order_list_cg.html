@@ -160,8 +160,8 @@
 			            </div>
 			        </div>
 		        </div>
-		        <div data-bind="visible:orderList().length<=0&&status()!=20" style="text-align: center;vertical-align:middle;"><img style="width: 50%;height: 50%;vertical-align: middle;" src="../../img/status/icon_noOrder.png"/></div>
-		        <div data-bind="visible:status()==20&&childOrders().length<=0" style="text-align: center;vertical-align:middle;"><img style="width: 50%;height: 50%;vertical-align: middle;" src="../../img/status/icon_noOrder.png"/></div>
+		        <div data-bind="visible:orderList().length<=0&&status()!=20" class="no-data"><img src="../../img/status/icon_noOrder.png"/></div>
+		        <div data-bind="visible:status()==20&&childOrders().length<=0" class="no-data"><img src="../../img/status/icon_noOrder.png"/></div>
 		        <div data-bind="visible:!(orderList().length<=0&&status()!=20 || status()==20&&childOrders().length<=0)" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
         	</div>
         </div>
