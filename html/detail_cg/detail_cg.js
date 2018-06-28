@@ -341,10 +341,16 @@ function favoritesSave1 (data){
 }
 function addToCarts (data){
 	if(data.status==1){
-		if(viewModel.type()=="gotocg"){
+		if(viewModel.type()=="gotocg"){ //区分立即采购和加入购物车
 		   openWin1('cart_cg');
+		}else if(viewModel.type()=="yy"){
+		   summer.toast({
+                "msg" : '添加预约库成功'
+           })
 		}else{
-		   openWin1('cart_cg');
+			summer.toast({
+                "msg" : '添加采购库成功'
+           })
 		}
 	}else{
 		summer.toast({
