@@ -5,7 +5,12 @@ button{
     outline: none;
 }
 .um-header{
-    background: #ff9500;
+    padding-top:22px;
+	position:relative;
+	background:url("../../img/dingbu.png") no-repeat;
+	text-align:center;
+	color:#fff;
+	background-size:100% 100%;
 }
 .fl{
     float: left;
