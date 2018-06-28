@@ -49,12 +49,17 @@ summerready = function(){
 }
 
 function sendExpressCallback(res){
+
     if(res.status ==1 ){
         summer.toast({
             "msg":"发货成功！",
             "duration":"short"
         });
         closeWin();
+        summer.execScript({
+            winId: 'supplier',
+            script: 'getData()'
+        })
     }else{
         summer.toast({
             "msg":res.msg,

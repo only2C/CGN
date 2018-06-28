@@ -78,7 +78,7 @@ summerready = function(){
                 }, function(args){
                 })
             } else {
-                var xlsxFile = url.split(".");
+               /* var xlsxFile = url.split(".");
                 if (url && xlsxFile[xlsxFile.length-1] == 'xlsx') {   //iphone 手机浏览器不支持xlsx格式
                     UM.confirm({
                         title: '提示：',
@@ -93,11 +93,11 @@ summerready = function(){
                         cancle: function () {
                         }
                     });
-                }else{
+                }else{*/
                     summer.openWebView({
                         url: url
                     })
-                }
+                // }
 
 
             }

@@ -319,7 +319,9 @@ function addToCarts (data){
         if(viewModel.type()=="goConfirm"){
             openWin1('confirm_order');
         }else{
-            openWin1('cart');
+            summer.toast({
+                 "msg" : "已添加至仓库" 
+            })
         }
     }else{
         summer.toast({

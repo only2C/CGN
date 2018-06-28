@@ -50,11 +50,11 @@
                             <span class="um-icon-checkbox um-css3-vc"></span>
                         </label>
 
-						<div class="img-wp" data-bind="click:$root.openPageDetail"> <!-- data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
+						<div class="img-wp" data-bind="click:$root.openPageDetail"> 
 							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
 						</div>
 						<div class="fl">
-							<div data-bind="text:materialName" class="item-title"></div> <!-- data-bind="text:materialName,click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:supplyFactoryCode?supplyFactoryCode:'',cgnFName:supplyFactoryName?supplyFactoryName:'',fromPage:'cart'})"-->
+							<div data-bind="text:materialName" class="item-title"></div> 
 							<div class="location">仓库：<span data-bind="text:suStoreName"></span></div>
 							<!--<div class="left-num">库存：<span data-bind="text:stock"></span></div>-->
 							<div class="left-num">价格：<span data-bind="text:mallTPrice"></span></div>
@@ -64,6 +64,7 @@
 								<span data-bind="click:$root.addNum.bind($data,$data)" class="add"></span>
 							</div>
 						</div>
+						<div data-bind="visible:isInvalid" class="invalid">失效</div>
 					</li>
 				</ul>
 				<div data-bind="visible:cartList().length==0" class="no-results" style="text-align: center;vertical-align:middle;"><img style="width: 50%;height: 50%;vertical-align: middle;" src="../../img/status/icon_noCategroy.png"/></div>

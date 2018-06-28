@@ -17,6 +17,7 @@ button{
 	bottom:0;
 }
 .no-data{
+	display:none;
 	text-align: center;
 	vertical-align:middle;
 }
@@ -25,7 +26,6 @@ button{
 	height: 50%;
 	vertical-align: middle;
 }
-/*头部*/
 .um-header{
     padding-top:22px;
 	position:relative;
@@ -50,6 +50,7 @@ button{
     overflow: hidden;
     margin: 10px 0;
     background: #fff;
+    z-index:9;
 }
 .order-status-icon{
     width: 20%;
@@ -270,7 +271,6 @@ button{
   align-items: center;
   padding: 9px 0;
   background-color: #ffffff;
-  position:absolute;
   margin:auto;
 }
 .um-input-search input {
@@ -297,7 +297,7 @@ button{
     margin-right: 2%;
 }
 .search-wp {
-	/*padding: 0 10px;8?
+	/*padding: 0 10px;*/
     position: relative;
     top:0 !important;
     background-color:#fff;

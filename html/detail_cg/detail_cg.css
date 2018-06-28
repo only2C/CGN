@@ -157,7 +157,7 @@ html,body {
 }
  .detail-container>div{
 	margin:0 auto;
-	font-size:12px;
+	font-size:13px;
 	color:#333;
 	background-color: #fff;
 }
@@ -167,14 +167,12 @@ html,body {
 	color:#ee9430;
 	background-color: #fff;
 }
-.mcode {
-	line-height: 25px;
-}
 .send-service {
 	padding: 13px 5% !important;
 }
 .mcode {
-	height: 25px;
+	height: 32px;
+	line-height: 32px;
 }
 .mcode span,.send-service span {
 	color:#666;

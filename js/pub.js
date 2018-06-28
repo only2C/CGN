@@ -165,6 +165,7 @@ function ret_response_infos(responseJSON,return_fun){
         summer.openWin({
         	"id" :'login',
     		"url" : "html/login.html",
+    		"isKeep":false
         })
         
         //$(".unset").click()
@@ -462,9 +463,9 @@ function page_file_upload_imgs(option,ele_id){
             var fileData = e.target.result;
 
             var fileSize = fileData.length / 1024 / 1024 ;
-            if(fileSize>10){
+            if(fileSize>1){
             	summer.toast({
-            		"msg":"上传文件过大，文件大小不能超过10MB！"
+            		"msg":"上传文件过大，文件大小不能超过1MB！"
             	});
                 input.value = '';
                 return ;

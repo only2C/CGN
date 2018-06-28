@@ -271,7 +271,6 @@ button{
   align-items: center;
   padding: 9px 0;
   background-color: #ffffff;
-  position:absolute;
   margin:auto;
 }
 .um-input-search input {
