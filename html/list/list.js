@@ -23,6 +23,7 @@ summerready = function () {
 
     var viewModel = {
         listArr: ko.observableArray([]),
+        cgnBName: ko.observableArray([]),
         cgnFName: ko.observableArray([]),
         cgnMApplyModelName: ko.observableArray([]),
         cgnMApplyPositionName: ko.observableArray([]),
@@ -199,6 +200,7 @@ var myScrollMenu;
 function getcgnmaterial(responseJSON) {
     window.data = responseJSON.retData.data;
     var navigation = responseJSON.retData.navigation;
+    viewModel.cgnBName(navigation.cgnBName);
     viewModel.cgnFName(navigation.cgnFName);
     viewModel.cgnMApplyModelName(navigation.cgnMApplyModelName);
     viewModel.cgnMApplyPositionName(navigation.cgnMApplyPositionName);
