@@ -342,6 +342,7 @@ function favoritesSave1 (data){
 function addToCarts (data){
 	if(data.status==1){
 		if(viewModel.type()=="gotocg"){ //区分立即采购和加入购物车
+			closeWin();
 		   openWin1('cart_cg');
 		}else if(viewModel.type()=="yy"){
 		   summer.toast({

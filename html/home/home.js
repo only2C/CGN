@@ -143,6 +143,15 @@ summerready = function () {
             summer.setStorage('stype',item.code);
             $('.system-list').slideUp();
             $('.drop2').hide();
+        },
+        openSearch:function () {
+            summer.openWin({
+                id: 'search'+new Date().getTime(),
+                url: 'html/search/search.html',
+                "pageParam":{
+                    flag:viewModel.systemFlag()
+                }
+            })
         }
     }
     window.viewModel = viewModel;
