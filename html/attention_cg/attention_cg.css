@@ -81,14 +81,13 @@
     bottom: 10px;
     background-color: #fff;
     font-size: 12px;
-    width: 68px;
     text-align: center;
     color: #666;
     border: 1px solid #c4c4c4;
 }
 .um-circle{
 	border-radius: 5px;
-	padding:5px 10px;
+	padding:3px 5px;
 }
 .join-in.no-left {
 	background-color:#c4c4c4;
