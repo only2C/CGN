@@ -41,13 +41,30 @@
 					</div>
 				</div>
 				<div class="filter um-border-top solid">
-					<div class="flex1 on"><!--综合排序<i class="arrow"></i>--></div>
+					<div class="flex1 on">
+
+						<!--综合排序<i class="arrow"></i>-->
+						<div class="filter-zero">
+							<label class="um-check-inline">
+								<input name="um-checkbox-inline" type="checkbox" value="过滤零库存" data-bind='event:{change:refresh},valueUpdate:"keyup",checked:isZeroF'>
+								<span class="um-icon-checkbox um-css3-vc"></span>
+								<span class="um-black ml5">过滤零库存</span>
+							</label>
+						</div>
+
+					</div>
 					<!--<div class="flex1">距离优先<i class="arrow"></i></div>-->
 					<div data-bind="click:toggleF" class="flex1 um-border-left">备件筛选<i class="fliter-btn"></i></div>
 				</div>
 			</div>
 			<div class="filter-wp">
 				<div class="fixedbar"></div>
+				<div data-bind="visible:cgnBName().length" class="filter-item">
+					<div class="title">分公司<span class="fr">全部<i class="arrow-down"></i></span></div>
+					<ul class="filter-list" data-bind="foreach:cgnBName">
+						<li data-bind="text:$data,click:$root.changeFilters.bind($data,{cgnBName:$data})"></li>
+					</ul>
+				</div>
 				<div data-bind="visible:cgnFName().length" class="filter-item">
 					<div class="title">工厂<span class="fr">全部<i class="arrow-down"></i></span></div>
 					<ul class="filter-list" data-bind="foreach:cgnFName">
@@ -103,7 +120,7 @@
 			</div>
 			<div class="drop"></div>
 			<div class="um-content">
-				<div id="swrapper">
+				<div id="swrapper" data-bind="css:{nocat:mgCName().length<=0}">
 					<div class="scroller">
 						<ul id="smallPic" data-bind="foreach:listArr" class="list noshow little-pic um-border-top">
 							<li data-bind="click:$root.openWin.bind($data,{cgnMCode:cgnMCode,cgnFCode:cgnFCode?cgnFCode:'',cgnFName:cgnFName?cgnFName:''})">

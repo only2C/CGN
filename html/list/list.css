@@ -270,7 +270,9 @@
     width: 100%;
     bottom: 0;
 }
-
+#swrapper.nocat {
+	top:105px;
+}
 .more {
     height: 4rem;
     display: flex;

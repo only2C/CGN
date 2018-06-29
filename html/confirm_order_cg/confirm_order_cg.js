@@ -149,7 +149,7 @@ function queryorderpage(data){
 	        //}
 	    }
 	    ents = tmpArr;
-	    viewModel.totalPrice(totalPrice);
+	    viewModel.totalPrice(totalPrice.toFixed(3));
 	    viewModel.mList(ents);
 	}else{
 	    summer.toast({
