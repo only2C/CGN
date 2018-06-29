@@ -103,7 +103,21 @@ function getDocumentListCallback(data) {
     if(data.status==1){
         result =data.retData.ents;
         result.forEach(function(val){
-            val.suMoaFileAddr = summer.getStorage("imgBaseUrl")+ val.suMoaFileAddr;
+            if(val.suMoaFileAddr){
+                var xlsxFile = val.suMoaFileAddr.split("."),file = xlsxFile[xlsxFile.length-1].toLowerCase() ;
+                var className = 'iframe-doc';
+                if( file == 'xlsx' || file == 'xls') {
+                    className = 'iframe-xls'
+                }
+                if( file == 'doc' || file == 'docx') {
+                    className = 'iframe-doc'
+                }
+                if( file == 'pdf'){
+                    className = 'iframe-pdf'
+                }
+                val.className = className;
+                val.suMoaFileAddr = summer.getStorage("imgBaseUrl")+ val.suMoaFileAddr ;
+            }
         })
     }
     viewModel.viewList(result);

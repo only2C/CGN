@@ -111,9 +111,7 @@
         <!--管理文档-->
         <div class="iframe-item hide" data-bind="foreach:docArr">
             <div class="row">
-                <div class="iframe-img fl">
-                    <img src="../../img/file-icon.png" width="30">
-                </div>
+                <div class="iframe-img fl iframe-doc" data-bind="css:className"></div>
                 <div class="iframe-info fl">
                     <div class="iframe-list" data-bind="click:$root.downFile.bind($data,suFaaFileAddr)">
                         <div class="iframe-detail">

@@ -31,9 +31,7 @@
         <div data-bind="visible:viewList().length == 0">暂无数据</div>
         <div data-bind="foreach:viewList,visible:viewList().length != 0">
             <div class="row" data-bind="click:$root.downFile.bind($data,suMoaFileAddr)">
-                <div class="iframe-img fl">
-                    <img src="../../img/file-icon.png" width="30">
-                </div>
+                <div class="iframe-img fl iframe-doc" data-bind="css:className"></div>
                 <div class="iframe-info fl">
                     <div class="iframe-list">
                         <div class="iframe-detail">

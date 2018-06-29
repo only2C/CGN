@@ -151,7 +151,23 @@ function queryRangCallback(res){
 function queryDocCallback(res){
     var ents = res.retData.ents;
     ents.forEach(function(val){
-        val.suFaaFileAddr = summer.getStorage("imgBaseUrl")+ val.suFaaFileAddr  ;
+        if(val.suFaaFileAddr){
+            var xlsxFile = val.suFaaFileAddr.split("."),file = xlsxFile[xlsxFile.length-1].toLowerCase() ;
+            var className = 'iframe-doc';
+            if( file == 'xlsx' || file == 'xls') {
+                className = 'iframe-xls'
+            }
+            if( file == 'doc' || file == 'docx') {
+                className = 'iframe-doc'
+            }
+            if( file == 'pdf'){
+                className = 'iframe-pdf'
+            }
+            val.className = className;
+            val.suFaaFileAddr = summer.getStorage("imgBaseUrl")+ val.suFaaFileAddr ;
+        }
+
+
     })
     viewModel.docArr(ents);
 }

@@ -118,10 +118,28 @@ body{
 }
 
 .iframe-img{
-    width:18%;
+    width:50px;
+    height:50px;
     overflow: hidden;
-    padding: 15px 0 0 5px;
+    margin-top:10px;
 }
+
+.iframe-doc{
+    background: url("../../img/word_img.png") no-repeat;
+    background-size:80%;
+}
+
+.iframe-pdf{
+    background: url("../../img/pdf_img.png") no-repeat;
+    background-size:80%;
+}
+
+.iframe-xls{
+    background: url("../../img/xlsx_img.png") no-repeat;
+    background-size:80%;
+}
+
+
 .iframe-button-start .iframe-button-stop{
     width:60px
 }
