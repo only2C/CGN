@@ -41,7 +41,18 @@
 					</div>
 				</div>
 				<div class="filter um-border-top solid">
-					<div class="flex1 on"><!--综合排序<i class="arrow"></i>--></div>
+					<div class="flex1 on">
+
+						<!--综合排序<i class="arrow"></i>-->
+						<div class="filter-zero">
+							<label class="um-check-inline">
+								<input name="um-checkbox-inline" type="checkbox" value="过滤零库存" data-bind='event:{change:refresh},valueUpdate:"keyup",checked:isZeroF'>
+								<span class="um-icon-checkbox um-css3-vc"></span>
+								<span class="um-black ml5">过滤零库存</span>
+							</label>
+						</div>
+
+					</div>
 					<!--<div class="flex1">距离优先<i class="arrow"></i></div>-->
 					<div data-bind="click:toggleF" class="flex1 um-border-left">备件筛选<i class="fliter-btn"></i></div>
 				</div>

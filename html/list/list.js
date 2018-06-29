@@ -30,6 +30,7 @@ summerready = function () {
         cgnMBrandName: ko.observableArray([]),
         cgnMFieldsName: ko.observableArray([]),
         cgnMProductName: ko.observableArray([]),
+        isZeroF:ko.observable(false),
         mgCName: ko.observableArray([]),
         cgnSuName: ko.observableArray([]),
         cgnFNameItem: ko.observable(''),
@@ -52,6 +53,14 @@ summerready = function () {
                 "url": "html/search/search.html"
             });
         },
+        refresh:function(){
+            //alert(viewModel.isZeroF());
+            setTimeout(function(){
+                queryPage(1);
+            },200)
+            return true;
+        },
+
         filterSearch: function () {
             queryPage(1);
             $('.filter-wp').hide();
@@ -162,7 +171,11 @@ summerready = function () {
 
         var callback = 'getcgnmaterial';
         var url = '/ieop_base_mobile/mfrontmallcgnsolr/getcgnmaterial';
-
+        if(viewModel.isZeroF()){
+            summer.pageParam.options['isCgnStockStatus'] = '1';
+        }else {
+            delete summer.pageParam.options['isCgnStockStatus']
+        }
 
         var enc_conditions = p_page_params_con_dataj_enc(summer.pageParam.options, {
             "pageIndex": pageSize,
