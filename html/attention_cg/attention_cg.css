@@ -86,6 +86,10 @@
     color: #666;
     border: 1px solid #c4c4c4;
 }
+.um-circle{
+	border-radius: 5px;
+	padding:5px 10px;
+}
 .join-in.no-left {
 	background-color:#c4c4c4;
 	color:#fff;

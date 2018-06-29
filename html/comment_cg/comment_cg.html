@@ -17,8 +17,8 @@
 		    border-bottom: 2px solid #000000;
 		}
 		.um-header {
-			background-color:#fff;
-			color:#333;
+			background:url("../../img/comment_background.png") no-repeat;
+			background-size:100% 130%;
 		}
 		.um-header h3 {
 			font-size:15px;
@@ -32,6 +32,9 @@
 		    border-bottom: 2px solid #333;
 		    position: relative;
 		    left:10px;
+		}
+		.um-content{
+			padding-top:10px;
 		}
 		.form-control {
 			font-size:14px;	
@@ -51,7 +54,8 @@
 		    font-size: 50px;
 		    text-align: center;
 		    line-height: 80px;
-		    background-color: #ebebeb;
+		    background:url("../../img/comment_add.png") no-repeat;
+		    background-size:100% 100%;
 		    color: #666;
 		    margin:0 1% 10px;
 		    overflow: hidden;
@@ -72,9 +76,12 @@
 			font-size:12px;
 			line-height: 51px;
 		}
-		.main-order .fl {
+		.main-order .fl .fr{
 			font-size:10px;
-			line-height: 55px;
+			line-height: 45px;
+		}
+		.um-circle{
+			border-radius:10%;
 		}
 		</style>
 		<script src="../../js/summer.js" ></script>	
@@ -87,7 +94,7 @@
 	</head>
 	<body>
 		<div class="um-win" id="index">
-			<div class="um-header" id="header" style="background-color: #FAFAFA">
+			<div class="um-header" id="header">
                 <a onClick="closeWin()" class="um-back"></a>
 				<h3>评价</h3>
 				<a style="color: #EC8A22" onClick="evaluateConfirm()" href="#" class="um-header-right ">提交</a>
@@ -100,11 +107,11 @@
                 <div class="um-panel um-row " >
                 	<div class="um-panel-row" style="width: 100%">
                 		<div style="width:100px;position: relative;">
-                			<img onerror="nofind(this,1)" id="mImg" style="width: 100px;position: relative;height: 100px;background-size: 100% 100%;" src="../../img/default_img.png"/>
+                			<img onerror="nofind(this,1)" id="mImg" class="um-circle" style="width: 65px;position: relative;height: 65px;background-size: 100% 100%;" src="../../img/comment_default.png"/>
                 		</div>
-                		<div style="float: left;bottom: 84px;position: relative;width: 173px;left: 36%;">
+                		<div style="float: left;bottom: 60px;position: relative;width: 173px;left: 25%;">
                 			<label>产品评分</label>
-                			<div style="width: 243px;top: 30px;position: relative;">
+                			<div style="width: 243px;top: 10px;position: relative;">
                 				<ul id="star" style="display: -webkit-inline-box;">
 							    </ul>
                 			</div>
@@ -121,7 +128,6 @@
                 			<div class="item"><img data-bind="attr:{src:$data}" alt="" /></div>
                 		</span>
                 		<div class="item">
-                			+
                 			<input type="file" id="uploadInput"  />
                 		</div>
                 	</div>
@@ -167,7 +173,7 @@
 				}
 				ko.applyBindings(viewModel);
 				var options = summer.pageParam;
-				var materialImgUrl = options.materialImgUrl?options.materialImgUrl:'../../img/default_img.png';
+				var materialImgUrl = options.materialImgUrl?options.materialImgUrl:'../../img/comment_default.png';
 				$('#mImg').attr({src:materialImgUrl});
 				var info = {};
 			    info['suMallorderTid'] = options.mainId;
@@ -222,7 +228,7 @@
 					var mainScore = data.retData.ent.orderEvaluationLv;
 					$('#mainStar').score({
 					    number      : 5,
-					    size        : 20,
+					    size        : 14,
 					    color       : '#ffac38',
 					    score       : mainScore?mainScore:5,
 					    vertical    : false,
