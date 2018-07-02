@@ -292,9 +292,11 @@ function querybyids(res){
 	                "msg": "暂无内容"
 	            })
 	        }
-	
 	        $('#smallPic').removeClass('noshow');
-	
+			if(pageSize==viewModel.totalPage()){  
+	        	$('.more i').hide();
+	            $('.more span').text('没有更多了');//显示没有更多了
+	        }
 	    } else {
 	        viewModel.listArr(viewModel.listArr().concat(data));
 	        myScroll.refresh();
