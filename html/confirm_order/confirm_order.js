@@ -42,9 +42,6 @@ summerready = function(){
 			}
 			var receiveId = viewModel.addressList()[0].id;
 			var p_conditions = {};
-			for(var i =0;i<viewModel.mList().length;i++){
-				user_carts_materials_ids = user_carts_materials_ids+viewModel.mList()[i].id+'#';
-			}
 			p_conditions['userCartIds'] = user_carts_materials_ids;
 			p_conditions['receiveId'] = receiveId;
 			p_conditions['urgent'] = viewModel.pLevel();
@@ -80,7 +77,6 @@ summerready = function(){
 }
 //获取订单列表
 function query_action(){
-	alert('query')
     var p_conditions = {};
     var page_params={"pageIndex":1,"pageSize":1000};  //
     var sortItem = {};
