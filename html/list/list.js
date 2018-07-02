@@ -164,6 +164,9 @@ summerready = function () {
         if (pageSize) {
             window.pageSize = pageSize;
         }
+        if(pageSize==1&&myScroll){
+        	myScroll.scrollTo(0, 0, 200, 'easing');
+        }
         if (category) {
             summer.pageParam.options['mgCName'] = category.mgCName;
             viewModel.cgnFNameItem(category.mgCName);
@@ -356,6 +359,10 @@ function getpriceandstock(ret) {
         }
 
         $('#smallPic').removeClass('noshow');
+        if(pageSize==viewModel.totalPage()){  
+        	$('.more i').hide();
+            $('.more span').text('没有更多了');//显示没有更多了
+        }
 
     } else {
         viewModel.listArr(viewModel.listArr().concat(data));
