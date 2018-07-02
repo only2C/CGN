@@ -35,6 +35,9 @@
 						</div>
 					</li>
 				</ul>
+				<div data-bind="foreach:retLogistData" class="tab">
+					<div data-bind="css:{on:$root.tabIndex()==($index()+1)},click:$root.changeLog.bind($data,($index()+1))" class="flex1">包裹<span data-bind="text:$index()+1"></span></div>
+				</div>
 				<!--<div class="status-bar">
 					<div class="status-text">
 						<div data-bind="css:{on:evaluation_status()==1}" class="status-item">
@@ -63,8 +66,8 @@
 						<div class="clear"></div>
 					</div>
 				</div>-->
-				<div data-bind="visible:logisticsList()<=0">暂无物流信息~</div>
-				<div data-bind="foreach:logisticsList" class="progress-bar">
+				<div data-bind="visible:logisticsList().length<=0">暂无物流信息~</div>
+				<div data-bind="foreach:logisticsList,visible:logisticsList().length>0" class="progress-bar">
 					<div data-bind="css:{first:$index()==0}" class="item">
 						<div data-bind="text:mallLChildDt"></div>
 						<div data-bind="text:mallLChildSite" class="l-text"></div>

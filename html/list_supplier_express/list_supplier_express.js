@@ -7,8 +7,10 @@ summerready = function(){
     window.ip = summer.getStorage("ip");
     var viewModel = {
         tabIndex:ko.observable(0),
+        status:ko.observable(summer.pageParam.status),
         mallLCompanyCode:ko.observable(),
         mallLCompany:ko.observable(),
+        remark:ko.observable(),
         changeTab:function (index,data) {
             viewModel.tabIndex(index);
         },
@@ -17,13 +19,14 @@ summerready = function(){
             var param ={};
 
 
-            if(tabIndex == 1){
+            if(tabIndex == 1 || summer.pageParam.status==9){
                 param ={
-                    mallLCode:$("#expressId").val(),
-                    mallLCompanyCode:viewModel.mallLCompanyCode()?viewModel.mallLCompanyCode():'youzhengguonei',
-                    mallLCompany:viewModel.mallLCompany()?viewModel.mallLCompany():'邮政包裹/平邮',
-                    mallLCost:$("#expressCost").val(),
-                    mallLCostType:  $("input[name='expressCost']:checked").val() ?   $("input[name='expressCost']:checked").val() :4,
+                    mallLCodes:$("#expressId").val(),
+                    mallLCompanyCodes:viewModel.mallLCompanyCode()?viewModel.mallLCompanyCode():'youzhengguonei',
+                    mallLCompanys:viewModel.mallLCompany()?viewModel.mallLCompany():'邮政包裹/平邮',
+                    mallLCosts:$("#expressCost").val(),
+                    mallLCostTypes:  $("input[name='expressCost']:checked").val() ?   $("input[name='expressCost']:checked").val() :4,
+                    mallLContents:$('#remark').val(),
                     status:'9',
                     id:summer.pageParam.expressObj.id
                 }
@@ -34,8 +37,8 @@ summerready = function(){
                     'id':summer.pageParam.expressObj.id
                 }
             }
-
-            p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/uswfreceipt', p_params_con_dataj_enc(param),'sendExpressCallback');
+			var postUrl = summer.pageParam.status == 9?'/ieop_base_mobile/mfrontsumallorder/uswfreceiptmutiple':'/ieop_base_mobile/mfrontsumallorder/uswfreceipt';
+            p_async_post(ip+postUrl, p_params_con_dataj_enc(param),'sendExpressCallback');
         },
         selectChange:function (data,el) {
           var index = el.target.selectedIndex;

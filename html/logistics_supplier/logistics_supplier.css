@@ -24,6 +24,22 @@ body{
 .order-list .fl {
 	max-width:60%;
 }
+.tab {
+	display:flex;
+	display:-webkit-flex;
+}
+.flex1 {
+	flex:1;
+}
+.tab .flex1 {
+	line-height: 40px;
+	text-align:center;
+	border:2px solid rgba(238, 148, 48, 1);
+}
+.tab .flex1.on {
+	background-color:rgba(238, 148, 48, 1);
+	color:#fff;
+}
 .order-list .item-title {
 	text-overflow:ellipsis;
 	white-space:nowrap;

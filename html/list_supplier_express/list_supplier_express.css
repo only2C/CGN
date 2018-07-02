@@ -4,6 +4,10 @@ body{
 .um-header{
     background: #ff9500;
 }
+#remark {
+	width:100%;
+	padding:12px;
+}
 .fl{
     float: left;
 }

@@ -27,7 +27,6 @@
 			<div id="searchBtn" class="pr um-input-search">
                  <form action="javascript:;"><input type="search" id="searchInput" class="form-control" placeholder="请输入商品标题或订单号"></form>
             </div>
-            <div class="cancel">取消</div>
 		</div>
     </div>
 
@@ -94,7 +93,7 @@
 		                    </div>
 		
 		                    <div class="order-button-list mt10">
-		                        <button class="btn-1" data-bind="click:$root.sendExpress,visible:mainEnt.allStatus==1">发货</button>
+		                        <button class="btn-1" data-bind="click:$root.sendExpress,visible:mainEnt.allStatus==1 || $root.tabIndex()==9">发货</button>
 		                        <button class="btn-1" data-bind="click:$root.payBill,visible:mainEnt.allStatus==10&&mainEnt.valiOrderCode">确认支付</button>
 		                        <button class="btn-1" data-bind="visible:mainEnt.sellEvaluationSta==0,click:$root.openComment.bind($data,mainEnt.id)">评价</button>
 		                        <button class="btn-2" data-bind="click:$root.getPageDetail">查看详情</button>

@@ -172,7 +172,7 @@ button{
 .flexDiv {
 	display:flex;
 	display:-webkit-flex;
-	padding:0 10px;
+	padding-left:10px;
 }
 .flex1 {
 	flex:1;

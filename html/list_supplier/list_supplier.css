@@ -195,7 +195,7 @@ body{
   display: box;
   -webkit-box-align: center;
   box-align: center;
-  width:90%;
+  width:100%;
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;

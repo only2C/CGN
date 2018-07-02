@@ -28,11 +28,11 @@
     </div>
 
     <div class="um-content">
-        <div class="express-header">
+        <div data-bind="visible:status()!=9" class="express-header">
             <div data-bind="click:changeTab.bind($data,0),css:{ 'active':tabIndex()==0 }">线下发货</div>
             <div data-bind="click:changeTab.bind($data,1),css:{ 'active':tabIndex()==1 }">物流发货</div>
         </div>
-        <div data-bind="visible:tabIndex()==1">
+        <div data-bind="visible:tabIndex()==1 || status()==9">
             <select class="mt15 form-control" id="expressSelect" data-bind=" event:{change:selectChange}">
                 <option value="youzhengguonei">邮政包裹/平邮</option>
                 <option value="youzhengguoji">国际包裹</option>
@@ -863,6 +863,7 @@
 
             </div>
             <input type="text" value="" placeholder="运费" class="form-control mt15" id="expressCost">
+            <textarea class="mt15" name="remark" id="remark" data-bind="value:remark" cols="30" rows="4" placeholder="描述"></textarea>
         </div>
 
     </div>

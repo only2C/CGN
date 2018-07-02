@@ -20,6 +20,7 @@ summerready = function () {
     var mainId = summer.pageParam.mainId||summer.pageParam.orderId;
     var viewModel = {
         mainOrder: ko.observableArray([]),
+        retLogistData: ko.observableArray([]),
         billStatus: ko.observable(),
         mainId: ko.observable(),
         progressPic: ko.observable(),
@@ -73,12 +74,13 @@ summerready = function () {
                 }
             });
         },
-        goLogistics: function (mainOrder) {
+        goLogistics: function (mainOrder,retLogistData) {
             summer.openWin({
                 "id": "logistics",
                 "url": "html/logistics_supplier/logistics_supplier.html",
                 "pageParam": {
-                    mainOrder: mainOrder()
+                    mainOrder: mainOrder(),
+                    retLogistData:retLogistData()
                 }
             });
         },
@@ -283,6 +285,7 @@ function queryaggsingle(res) {
         viewModel.nullDataTips(true);
         return ;
     }
+    viewModel.retLogistData(res.retLogistData);
     var childOrder = res.retData.aggEnt.children.su_mall_order_infos;
     if (summer.pageParam.type == 'send_back') {
         childOrder = res.retData.aggEnt.children.mall_transfer_order_ret;
