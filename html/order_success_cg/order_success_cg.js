@@ -1,6 +1,6 @@
 function closeWin(){
 	summer.execScript({
-	    winId: 'confirm_order',
+	    winId: 'confirm_order_cg',
 	    script: 'query_action();'
 	});
 	summer.closeWin();
