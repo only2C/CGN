@@ -1,7 +1,7 @@
 //var ip =   "http://192.168.10.156:8170" ;   //GYQ
 //var ip = "http://192.168.8.104:8170"
-var ip = "http://123.207.175.212:8170";  //TX
-//var ip = "http://parts.cgnne.com:8091" //正式
+//var ip = "http://123.207.175.212:8170";  //TX
+var ip = "http://parts.cgnne.com:8091" //正式
 var pub_key ="";
 var flag = true;
 summerready = function(){

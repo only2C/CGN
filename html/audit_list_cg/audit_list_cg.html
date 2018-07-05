@@ -79,9 +79,9 @@
                         <div class="order-footer">
                             <div data-bind="style:{marginBottom:mainEnt.allStatus==0?'10px':'0px'}" class="order-total">
                                     共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
-                                <div data-bind="visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
+                                <!--<div data-bind="visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过',click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>-->
                             </div>
-                            <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+                            <div data-bind="attr:{id:'switchWp'+$index()},visible:mainEnt.auditStatus=='审核通过'||mainEnt.auditStatus=='审核未通过'" class="audit-wp">
                                 审核意见：<span class="audit-content" data-bind="text:mainEnt.auditedContent==null?'无':mainEnt.auditedContent"></span>
                                 <div>
                                     <span class="fl">审核人：<span data-bind="text:mainEnt.auditorName"></span></span>

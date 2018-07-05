@@ -49,7 +49,7 @@ summerready = function(){
 function logout(data){
 	if(data.status==1){
 		summer.setStorage("userInfo", "");
-		summer.closeWin({id:'home'});
+		var a = summer.closeWin({id:'home'});
 		summer.openWin({
 	        "id" : "login",
 	        "url" : "html/login.html",

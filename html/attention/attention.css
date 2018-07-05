@@ -23,6 +23,7 @@
 }
 .no-data.show {
 	display:block;
+	margin-top:100px;
 }
 .um-input-search {
     display: -webkit-box;

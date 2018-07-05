@@ -13,6 +13,7 @@
 }
 .no-data.show {
 	display:block;
+	margin-top:100px;
 }
 .um-input-search {
     display: -webkit-box;
@@ -318,6 +319,8 @@
 	bottom:45px;
 }
 .no-valid {
-	color:red;
+	color:#ff6161;
 	font-size:12px;
+	margin-right:4px;
+	margin-top:2px;
 }

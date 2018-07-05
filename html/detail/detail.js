@@ -233,23 +233,6 @@ function querysingle (ret){
     var sortItem = {};
     var paramData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
     p_async_post(ip+'/ieop_base_mobile/mfrontmallmaterialevaluation/querymalevallist', paramData,'querymalevallist');
-
-
-    $('#star').score({
-        number      : 5,
-        size        : 23,
-        color       : '#ffac38',
-        score       : 5,
-        vertical    : false,
-        hints       : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
-        click       : function(score, event){
-            score = score;
-            //alert('Class Name: '+this.className+'\n' + 'Score: '+score+'\n' + 'Event Type: '+event.type+'\n');
-        },
-        readOnly    : false,
-        fontAwesome : true,
-        debug       : true
-    });
 }
 function getsinglepriceandstock(storeRet){
     if(storeRet.status==0){

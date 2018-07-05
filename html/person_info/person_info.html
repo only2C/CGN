@@ -30,7 +30,7 @@
             <p class="tc pt15">
                 <img class="um-circle" height=60 width=60 src="../../img/user.png" alt="...">
             </p>
-            <p style="color: #989898;position: relative;top: 13px;" class="tc um-white">点击修改头像</p>
+            <div data-bind="foreach:userInfo"><p data-bind="text:ieopUserName" style="color: #989898;position: relative;top: 13px;" class="tc um-white"></p></div>
         </div>
 
         <div data-bind="foreach:userInfo">

@@ -2,7 +2,7 @@ function closeWin (){
     summer.closeWin()
 }
 window.ip = summer.getStorage("ip");
-
+var pageSize = 1;
 function keyBack() {
     turn++;
     if (turn == 2) {
@@ -45,6 +45,7 @@ summerready = function(){
         isAndriod:ko.observable($summer.os=='android'),
         iframeList:ko.observableArray([]),
         isSupplier:ko.observable(isSuppliers),
+        totalPage: ko.observable(''),
         openDetailWin:function(suFaCode){
             summer.openWin({
                 "id" : "iframeDetail",
@@ -63,7 +64,7 @@ summerready = function(){
 
 //查询框架列表
 function queryIframe(){
-    var param = p_page_params_con_dataj_enc({ "pageIndex":1,"pageSize":100});
+    var param = p_page_params_con_dataj_enc({ "pageIndex":pageSize,"pageSize":5});
     var url = 'mfrontsuframeworkagreement/querypage';
     if(summer.getStorage("isSupplier") == "01"){
         url = 'mfrontsuframeworkagreement/querysupage' ;
@@ -73,10 +74,100 @@ function queryIframe(){
 }
 function iframeCallback(res) {
     var ents = res.retData.ents;
+    viewModel.totalPage(res.pageParams.totalCount);
     var isSupplier =  viewModel.isSupplier() != "01" ;
     ents.forEach(function(v){
         v.isSupplier =  isSupplier;
     })
-    viewModel.iframeList(ents);
+    if (pageSize == 1) {
+        viewModel.iframeList(ents);
+        if (myScroll) {
+            myScroll.refresh();
+        }
+        if (ents.length <= 0) {
+        	$('.more').hide();
+            summer.toast({
+                "msg": "暂无内容"
+            })
+        }
 
+        $('#smallPic').removeClass('noshow');
+        if(pageSize==viewModel.totalPage()){  
+        	$('.more i').hide();
+            $('.more span').text('没有更多了');//显示没有更多了
+        }
+
+    } else {
+    	viewModel.iframeList(viewModel.iframeList().concat(ents));
+        myScroll.refresh();
+    }
+    if (!myScroll) {
+        mycall();
+    }
 }
+$('.pull_icon').addClass('loading');
+$('.more span').text('加载中...');
+window.myScroll = undefined;
+window.mycall = function () {
+    window.myScroll = new JRoll('#swrapper', {
+        preventDefault: false,
+        mouseWheel: true,
+        momentum: true,
+        fadeScrollbars: true,
+        useTransform: true,
+        useTransition: true,
+        click: true,
+        tap: true
+    })
+    myScroll.on('scrollStart', function () {
+        console.log('scrollStart');
+    })
+    myScroll.on('scroll', function () {
+        console.log('scroll');
+        if (this.y < (this.maxScrollY)) {
+            $('.pull_icon').addClass('flip');
+            $('.pull_icon').removeClass('loading');
+            $('.more span').text('释放加载...');
+        } else {
+            $('.pull_icon').removeClass('flip loading');
+            $('.more span').text('上拉加载...')
+        }
+    })
+    myScroll.on('scrollEnd', function () {
+        console.log('scrollEnd');
+        if (pageSize >= viewModel.totalPage()) {
+            $('.more i').hide();
+            $('.more span').text('没有更多了');
+            return;
+        }
+        if ($('.pull_icon').hasClass('flip')) {
+            $('.pull_icon').addClass('loading');
+            $('.more span').text('加载中...');
+            console.log('pullupA')
+            pullUpAction();
+        }
+    })
+    myScroll.on('refresh', function () {
+        if ($('.scroller').height() < $('#swrapper').height()) {
+            $('.more').hide();
+        }
+        $('.more').removeClass('flip loading');
+        $('.more span').text('上拉加载...');
+    })
+
+    function pullUpAction() {
+        console.log('请求')
+        pageSize++;
+        if (pageSize < viewModel.totalPage()) {
+            queryIframe(pageSize);
+        } else {
+
+        }
+    }
+
+    if ($('.scroller').height() < $('#swrapper').height()) {
+        $('.more').hide();
+    }
+}
+$('.pull_icon').addClass('flip').addClass('loading');
+$('.more span').text('加载中...');

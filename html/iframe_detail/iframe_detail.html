@@ -13,6 +13,7 @@
     <script src="../../js/pub1.js"></script>
     <script src="../../js/base64.js"></script>
     <script src="../../js/knockout.js"></script>
+    <script src="../../js/jroll.min.js"></script>
     <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
     <script src="./iframe_detail.js"></script>
     <link rel="stylesheet" href="./iframe_detail.css"/>
@@ -33,101 +34,109 @@
                 <li class="iframe-nav-li active" data-bind="click:changeItem.bind($data,0)">
                     <div class="iframe-ul-detail"></div>
                     <p>框架明细</p>
+                    <div class="mid-box"></div>
                 </li>
                 <li class="iframe-nav-li" data-bind="click:changeItem.bind($data,1)">
                     <div class="iframe-ul-range"></div>
                     <p>适用范围</p>
+                    <div class="mid-box"></div>
                 </li>
                 <li class="iframe-nav-li" data-bind="click:changeItem.bind($data,2)">
                     <div class="iframe-ul-doc"></div>
                     <p>管理文档</p>
+                    <div class="mid-box"></div>
                 </li>
             </ul>
         </div>
         <!--默认-->
-        <div data-bind="visible:nullDataVisible">没有数据了~</div>
+        <div data-bind="visible:(tabIndex()==0&&detailArr().length<=0 || tabIndex()==1&&rangArr().length<=0 || tabIndex()==2&&docArr().length<=0)">没有数据了~</div>
 
-        <!--框架明细-->
-        <div data-bind="foreach:detailArr" class="iframe-item">
-            <div class="row">
-                <div class="iframe-img fl">
-                    <img src="../../img/file-icon.png" width="30">
-                </div>
-                <div class="iframe-info fl">
-                    <div class="iframe-title">
-                        <span data-bind="text:suFamName"></span>
+        <div id="swrapper" data-bind="css:{nobottom:!isSupplier}">
+            <div class="scroller">
+                <!--框架明细-->
+                <div data-bind="foreach:detailArr" class="iframe-item">
+                    <div class="row">
+                        <div class="iframe-img fl">
+                            <img src="../../img/file-icon.png" width="30">
+                        </div>
+                        <div class="iframe-info fl">
+                            <div class="iframe-title">
+                                <span data-bind="text:suFamName"></span>
+                            </div>
+                            <div class="iframe-list">
+                                <div class="iframe-detail">
+                                    <label>采购方物料编码：</label>
+                                    <span data-bind="text:suFamRefCode"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>供应商物料编码：</label>
+                                    <span data-bind="text:suFamCode"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>最小备货量：</label>
+                                    <span data-bind="text:suFamMinStockup"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>框架协议价格：</label>
+                                    <span data-bind="text:suFamAgreementPrice"></span>
+                                </div>
+                            </div>
+                        </div>
                         <i class="fr"
-                           data-bind="css:{'iframe-button-start':suFamSta == 1,'iframe-button-stop':suFamSta==0}"></i>
-                    </div>
-                    <div class="iframe-list">
-                        <div class="iframe-detail">
-                            <label>采购商供应编码：</label>
-                            <span data-bind="text:suFamCode"></span>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>供应商物料编码：</label>
-                            <span data-bind="text:suFamRefCode"></span>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>最小备货量：</label>
-                            <span data-bind="text:suFamMinStockup"></span>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>框架协议价格：</label>
-                            <span data-bind="text:suFamAgreementPrice"></span>
-                        </div>
+                                   data-bind="css:{'iframe-button-start':suFamSta == 1,'iframe-button-stop':suFamSta==0}"></i>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!--适用范围-->
-        <div data-bind="foreach:rangArr" class="iframe-item hide">
-            <div class="row">
-                <div class="iframe-img fl">
-                    <img src="../../img/file-icon.png" width="30">
-                </div>
-                <div class="iframe-info fl">
-                    <div class="iframe-list">
-                        <div class="iframe-detail">
-                            <label>适用公司编码：</label>
-                            <span data-bind="text:cgnCCode"></span>
+                <!--适用范围-->
+                <div data-bind="foreach:rangArr" class="iframe-item hide">
+                    <div class="row">
+                        <div class="iframe-img fl">
+                            <img src="../../img/file-icon.png" width="30">
                         </div>
-                        <div class="iframe-detail">
-                            <label>适用公司：</label>
-                            <span data-bind="text:cgnCName"></span>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>上级公司编码：</label>
-                            <span data-bind="text:supperCCode"></span>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>上级公司：</label>
-                            <span data-bind="text:supperCName"></span>
+                        <div class="iframe-info fl">
+                            <div class="iframe-list">
+                                <div class="iframe-detail">
+                                    <label>适用公司编码：</label>
+                                    <span data-bind="text:cgnCCode"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>适用公司：</label>
+                                    <span data-bind="text:cgnCName"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>上级公司编码：</label>
+                                    <span data-bind="text:supperCCode"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>上级公司：</label>
+                                    <span data-bind="text:supperCName"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!--管理文档-->
-        <div class="iframe-item hide" data-bind="foreach:docArr">
-            <div class="row">
-                <div class="iframe-img fl iframe-doc" data-bind="css:className"></div>
-                <div class="iframe-info fl">
-                    <div class="iframe-list" data-bind="click:$root.downFile.bind($data,suFaaFileAddr)">
-                        <div class="iframe-detail">
-                            <label>文档名称：</label>
-                            <a data-bind="text:suFaaFileName"></a>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>上传人：</label>
-                            <span data-bind="text:suFaaUpusername"></span>
-                        </div>
-                        <div class="iframe-detail">
-                            <label>上传日期：</label>
-                            <span data-bind="text:suFaaDate"></span>
+                <!--管理文档-->
+                <div class="iframe-item hide" data-bind="foreach:docArr">
+                    <div class="row">
+                        <div class="iframe-img fl iframe-doc" data-bind="css:className"></div>
+                        <div class="iframe-info fl">
+                            <div class="iframe-list" data-bind="click:$root.downFile.bind($data,suFaaFileAddr)">
+                                <div class="iframe-detail">
+                                    <label>文档名称：</label>
+                                    <a data-bind="text:suFaaFileName"></a>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>上传人：</label>
+                                    <span data-bind="text:suFaaUpusername"></span>
+                                </div>
+                                <div class="iframe-detail">
+                                    <label>上传日期：</label>
+                                    <span data-bind="text:suFaaDate"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
             </div>
         </div>
 

@@ -81,9 +81,9 @@
                         <div class="order-footer">
                             <div class="order-total">
                                     共计：<span data-bind="text:mainEnt.sumallTTotal"></span>
-                                <div data-bind="visible:mainEnt.valiOrderCode,click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>
+                                <!--<div data-bind="visible:mainEnt.valiOrderCode,click:$root.changeShow.bind($data,$index)" class="switch-btn"></div>-->
                             </div>
-                            <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+                            <div data-bind="attr:{id:'switchWp'+$index()},visible:mainEnt.valiOrderCode" class="audit-wp">
                                 支付单号：<span class="audit-content" data-bind="text:mainEnt.valiOrderCode==null?'无':mainEnt.valiOrderCode"></span>
                             </div>
                             <div class="order-button-list">

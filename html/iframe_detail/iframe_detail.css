@@ -17,6 +17,7 @@ body{
     margin-top: 2%;
     float:left;
     width: 100%;
+    position:relative;
 }
 .tl{
     text-align: left;
@@ -89,6 +90,9 @@ body{
     height: 30px;
     background: url("../../img/icon_enable.png") no-repeat;
     background-size:80%;
+    position:absolute;
+    top:0;
+    right:-6px;
 }
 .iframe-button-stop{
     width: 30px;
@@ -161,8 +165,8 @@ body{
 .iframe-nav{
     background:#fff;
     overflow:hidden;
-    margin:10px 0 ;
-    padding:10px ;
+    margin:10px 0 0;
+    padding:14px 10px 4px;
 }
 .iframe-nav ul{
 
@@ -171,8 +175,14 @@ body{
     float: left;
     width: 33%;
 }
-.iframe-nav ul li.active{
-    border-bottom: 2px solid #ff8000;
+.mid-box {
+    width:40px;
+    margin:0 auto ;
+    position:relative;
+    bottom:-4px
+}
+.iframe-nav ul li.active .mid-box{
+    border-bottom: 3px solid #ff8000;
 }
 
 .iframe-nav ul li p{
@@ -230,4 +240,72 @@ body{
 }
 .um-footerbar-item.active .icon-my {
     background-image: url(../../img/icon-my-active.png);
+}
+#swrapper {
+    position: fixed;
+    top: 174px;
+    width: 100%;
+    bottom:0;
+}
+#swrapper.nobottom {
+	bottom: 45px;
+}
+#swrapper.nocat {
+	top:105px;
+}
+.more {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.noshow {
+    opacity: 0;
+}
+
+.pull_icon {
+    width: 25px;
+    height: 25px;
+    background-image: url('../../img/pull.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+    transition: all .5s;
+}
+
+.more span {
+    padding-left: .5rem;
+}
+
+.more .flip {
+    transform: rotate(180deg);
+}
+
+.loading {
+    background-image: url('../../img/loading.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+}
+.iframe-item {
+	overflow:hidden;
+}
+.more .loading {
+    -webkit-transform: rotate(0deg) translateZ(0);
+    -webkit-transition-duration: 0;
+    -webkit-animation-name: loading;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes loading {
+    from {
+        -webkit-transform: rotate(0deg) translateZ(0);
+    }
+    to {
+        -webkit-transform: rotate(360deg) translateZ(0);
+    }
 }

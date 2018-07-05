@@ -196,6 +196,7 @@ button{
 }
 .order-button-list button{
     float: right;
+    width:66px;
     margin-left: 10px;
     padding: 3px 5px;
     background: #fff;
@@ -254,7 +255,6 @@ button{
 	transform: rotate(0deg);
 }
 .audit-wp {
-	display:none;
 	padding: 5px 10px;
     font-size: 13px;
     color: #666;

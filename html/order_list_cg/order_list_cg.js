@@ -119,19 +119,12 @@ summerready = function(){
 				    	})
 				        return
 				    }else{
-				    	/*暂时不校验验证码
 				        var info = {};
 				        info['ieopVsmBillId'] = id;
 				        info['ieopVsmValiCode'] = ver;
 				        info['ieopVsmPurpose'] = '1';
 				        var bb = p_page_params_con_dataj_enc(info,{},{});
-				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'accessVal');*/
-				        var info = {};
-				        info['id'] = viewModel.id();
-				        info['status'] = '10';
-				        var bb = p_page_params_con_dataj_enc(info,{},{});
-				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/ussettlement', bb , 'ussettlement');
-				        
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'accessVal');
 				    }
 			    },
 			    cancle: function () {
@@ -142,19 +135,11 @@ summerready = function(){
 				    	})
 				        return
 				    }else{
-				    	/* 暂时不校验验证码
 				        var info = {};
 				        info['ieopVsmBillId'] = viewModel.id();
 				        info['ieopVsmValiCode'] = ver;
 				        var bb = p_page_params_con_dataj_enc(info,{},{});
-				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'noAccessBack');*/
-				        var info = {};
-				        info['id'] = viewModel.id();
-				        info['status'] = '12';
-				        info['checkContent'] = '验收不通过原因'
-				        var bb = p_page_params_con_dataj_enc(info,{},{});
-				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/usunchecked', bb ,'usunchecked');
-				        
+				        var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/valcodesms', bb ,'noAccessBack');
 				    }
 			    }
 			});

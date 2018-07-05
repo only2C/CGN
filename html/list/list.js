@@ -145,7 +145,7 @@ summerready = function () {
         function pullUpAction() {
             console.log('请求')
             pageSize++;
-            if (pageSize < viewModel.totalPage()) {
+            if (pageSize <= viewModel.totalPage()) {
                 queryPage(pageSize);
             } else {
 

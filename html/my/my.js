@@ -88,7 +88,7 @@ summerready = function(){
         isAndriod:ko.observable($summer.os=='android'),
         systemType: ko.observable(stypeText),
         stype:ko.observable(summer.getStorage("stype")),
-        systemArr: ko.observableArray([]),
+        systemArr: ko.observableArray(systemList),
         systemFlag:ko.observable(stype),
         isCG:ko.observable(true),    //采购
         isDB:ko.observable(false),  // 调拨
@@ -214,11 +214,12 @@ summerready = function(){
                 },
             });
         },
-        chooseSystem:function(){
-            viewModel.systemArr(systemList);
-           	$('.system-list').fadeToggle();
-        },
-        chooseSystemArr:function (item) {
+        //chooseSystem:function(){
+            //viewModel.systemArr(systemList);
+           	//$('.system-list').fadeToggle();
+        //},
+        chooseSystemArr:function () {
+        	var item = viewModel.systemFlag()==1?systemList[0]:systemList[1];
         	var chooseText = item.code==1?'欢迎调拨':'欢迎采购';
         	UM.confirm({
         		title: '',
