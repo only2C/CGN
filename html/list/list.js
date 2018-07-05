@@ -3,7 +3,7 @@ function closeWin() {
 }
 
 function nofind(_this, type) {
-    src = "../static/mall/images/default_small.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror = null;
 }
@@ -11,7 +11,7 @@ function nofind(_this, type) {
 function cloneObjectFn(obj) { // 对象复制
     return JSON.parse(JSON.stringify(obj))
 }
-
+var firstFlag = true;
 summerready = function () {
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
@@ -169,9 +169,8 @@ summerready = function () {
         }
         if (category) {
             summer.pageParam.options['mgCName'] = category.mgCName;
-            viewModel.cgnFNameItem(category.mgCName);
         }
-
+		viewModel.cgnFNameItem(summer.pageParam.options['mgCName']);
         var callback = 'getcgnmaterial';
         var url = '/ieop_base_mobile/mfrontmallcgnsolr/getcgnmaterial';
         if(viewModel.isZeroF()){
@@ -198,9 +197,9 @@ summerready = function () {
     })
     $('#thirdMenu').on('click', '.item', function () {
         var $this = $(this);
-        queryPage(1, {mgCName: $this.html()});
+        queryPage(1, {mgCName: $this.text()});
         myScroll.scrollTo(0, 0, 200, true);
-        $this.addClass('on').siblings().removeClass('on');
+        //$this.addClass('on').siblings().removeClass('on');
     })
     $('.drop').on('click', function () {
         $('.filter-wp').hide();
@@ -208,6 +207,7 @@ summerready = function () {
     })
     $('.filter-item .fr').on('click', function () {
         var $this = $(this);
+        $this.find('i').toggleClass('rotate-180');
         $this.parent().next().toggleClass('limith');
     })
 }
@@ -215,23 +215,30 @@ var myScrollMenu;
 
 function getcgnmaterial(responseJSON) {
     window.data = responseJSON.retData.data;
-    var navigation = responseJSON.retData.navigation;
-    viewModel.cgnBName(navigation.cgnBName);
-    viewModel.cgnFName(navigation.cgnFName);
-    viewModel.cgnMApplyModelName(navigation.cgnMApplyModelName);
-    viewModel.cgnMApplyPositionName(navigation.cgnMApplyPositionName);
-    viewModel.cgnMBrandName(navigation.cgnMBrandName);
-    viewModel.cgnMFieldsName(navigation.cgnMFieldsName);
-    viewModel.cgnMProductName(navigation.cgnMProductName);
-    viewModel.mgCName(navigation.mgCName);
-    var tmpArr = [];
-    for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
-        if (navigation.mgCName[i] != '') {
-            tmpArr.push({mgCName: navigation.mgCName[i]});
-        }
+    if(firstFlag){
+    	var navigation = responseJSON.retData.navigation;
+    	var tmpArr = [];
+	    for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
+	        if (navigation.mgCName[i] != '') {
+	        	navigation.mgCName[i] =  $.trim(navigation.mgCName[i]);
+	            tmpArr.push({mgCName: $.trim(navigation.mgCName[i])});
+	        }
+	    }
+	    viewModel.thirdMenu(tmpArr);
+    	function notNull(item){
+	    	return item != '';
+	    }
+	    viewModel.cgnBName(navigation.cgnBName.filter(notNull));
+	    viewModel.cgnFName(navigation.cgnFName.filter(notNull));
+	    viewModel.cgnMApplyModelName(navigation.cgnMApplyModelName.filter(notNull));
+	    viewModel.cgnMApplyPositionName(navigation.cgnMApplyPositionName.filter(notNull));
+	    viewModel.cgnMBrandName(navigation.cgnMBrandName.filter(notNull));
+	    viewModel.cgnMFieldsName(navigation.cgnMFieldsName.filter(notNull));
+	    viewModel.cgnMProductName(navigation.cgnMProductName.filter(notNull));
+	    viewModel.mgCName(navigation.mgCName.filter(notNull));
+	    viewModel.cgnSuName(navigation.cgnSuName.filter(notNull));
+	    firstFlag = false;
     }
-    viewModel.thirdMenu(tmpArr);
-    viewModel.cgnSuName(navigation.cgnSuName);
     if (!myScrollMenu) {
         myScrollMenu = new JRoll('#menu', {
             scrollX: true,

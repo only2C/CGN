@@ -64,7 +64,7 @@ function openWin1(winId) {
                 duration: 0 //动画过渡时间，默认300毫秒
             },
             //show:$summer.os=='ios'?false:true,
-            isKeep: true,
+            isKeep: false,
             statusBarStyle: statusBarStyle,
             "addBackListener": "true"
         });
@@ -123,7 +123,7 @@ summerready = function () {
 		        winId = 'list_cg'
 		    }
 		    summer.openWin({
-		        "id": winId,
+		        "id": winId+new Date().getTime(),
 		        "url": "html/" + winId + "/" + winId + ".html",
 		        "pageParam": {
 		            "count": 1,

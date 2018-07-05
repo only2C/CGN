@@ -2,7 +2,12 @@ body{
     font-size: 14px;
 }
 .um-header{
-    background: #ff9500;
+    padding-top:22px;
+	position:relative;
+	background:url("../../img/dingbu.png") no-repeat;
+	text-align:center;
+	color:#fff;
+	background-size:100% 100%;
 }
 .fl{
     float: left;
@@ -91,6 +96,7 @@ body{
 .order-icon-8{
     background: url("../../img/icon-categroy.png") no-repeat 7px 2px;
     background-size: 70%;
+    background-position:5px 3px;
 }
 
 .order-status-icon.active .order-icon-8{
@@ -202,6 +208,7 @@ body{
   align-items: center;
   padding: 9px 0;
   background-color: #ffffff;
+  position:absolute;
 }
 .um-input-search input {
 	background-color:#f1f1f2 !important;

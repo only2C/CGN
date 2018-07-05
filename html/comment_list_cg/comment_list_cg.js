@@ -16,7 +16,7 @@ function closeWin(){
 	summer.closeWin();
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror=null;
 }
@@ -263,7 +263,7 @@ function giveList(){
                 myScroll.refresh();
             },100)
         }
-        if(viewModel.tmpArr().length<=0){
+        if(viewModel.tmpArr().length<=0 || viewModel.totalPage()==1){
             $('.more').hide();
         }
     }else{
@@ -284,7 +284,7 @@ function fromList(){
                 myScroll.refresh();
             },100)
         }
-        if(viewModel.tmpArr().length<=0){
+        if(viewModel.tmpArr().length<=0 || viewModel.totalPage()==1){
             $('.more').hide();
         }
     }else{

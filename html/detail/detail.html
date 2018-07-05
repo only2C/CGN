@@ -29,7 +29,7 @@
 <body>
 <div class="um-win" id="detail">
 	<div class="um-header solid" id="header">
-		<a href="#" onClick="closeWin();" class="um-back"></a>
+		<a href="#" style="top:22px;" onClick="closeWin();" class="um-back"></a>
 		<div id="changeOrgBtn" class="factory"><span data-bind="text:defaultOrg"></span><i class="arrow-down"></i></div>
 		<ul data-bind="foreach:organizationArr" class="org-list">
 			<li data-bind="css:{'on':cgnFName==$root.defaultOrg()},click:$root.chooseOrg.bind($data,$data)">
@@ -37,7 +37,7 @@
 				<div data-bind="attr:{cgnFCode:cgnFCode}" class="org-name"><span data-bind="text:cgnFName"></span><span class="has-choosen"></span></div>
 			</li>
 		</ul>
-		<div data-bind="click:toggleAttention,css:{on:materialFSta()=='1'}" class="um-header-right"></div>
+		<div data-bind="click:toggleAttention,css:{on:materialFSta()=='1'}" style="top:22px;" class="um-header-right"></div>
 	</div>
 
 	<div class="um-content">

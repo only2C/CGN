@@ -4,6 +4,19 @@ body{
 button{
     outline: none;
 }
+.title {
+	position:relative;
+	background:url(../../img/dingbu.png) no-repeat;
+	text-align:center;
+	color:#fff;
+	background-size:100% 100%;
+	height:46px;
+	line-height:46px;
+	font-size:16px;
+}
+.title h3 {
+	padding:0 !important;
+}
 /*底部*/
 .scroller {
     transform: translate3d(0, 0, 0);
@@ -20,6 +33,10 @@ button{
 	display:none;
 	text-align: center;
 	vertical-align:middle;
+}
+.no-data.show {
+	display:block;
+    margin-top:80px;
 }
 .no-data>img{
 	width: 50%;
@@ -272,6 +289,7 @@ button{
   padding: 9px 0;
   background-color: #ffffff;
   margin:auto;
+  position:absolute;
 }
 .um-input-search input {
 	background-color:#f1f1f2 !important;

@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-bind="visible:orderList().length<=0," class="no-data"><img src="../../img/status/icon_noOrder.png"/></div>
+                <div data-bind="css:{show:orderList().length<=0}" class="no-data"><img src="../../img/status/icon_noOrder.png"/></div>
                 <div data-bind="visible:orderList().length>0" class="more"><i class="pull_icon loading"></i><span>加载中...</span></div>
             </div>
         </div>

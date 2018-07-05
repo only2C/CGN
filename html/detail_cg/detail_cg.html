@@ -80,9 +80,12 @@
 			</div>
 
 			<div class="um-footer um-border-top">
-				<div data-bind="click:addToCart.bind($data,1,'gotocg')" class="item2">立即采购</div>
-				<div data-bind="click:addToCart.bind($data,0,'yy')" class="item3">加入预约库</div>
-				<div data-bind="click:addToCart.bind($data,1,'addcg')" class="item4">加入采购库</div>
+				<div onclick="openWin1('cart_cg')" class="item1 um-border-right"><i class="cart"><span>11</span></i></div>
+				<div class="right-wp">
+					<div data-bind="click:addToCart.bind($data,0,'yy')" class="my-btn">加入预约库</div>
+					<div data-bind="click:addToCart.bind($data,1,'addcg')" class="my-btn">加入采购库</div>
+					<div data-bind="click:addToCart.bind($data,1,'gotocg')" class="my-btn">立即采购</div>
+				</div>
 			</div>
 			<div class="drop"></div>
 		</div>

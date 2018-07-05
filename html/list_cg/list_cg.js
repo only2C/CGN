@@ -3,7 +3,7 @@ function closeWin() {
 }
 
 function nofind(_this, type) {
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror = null;
 }
@@ -11,7 +11,7 @@ function nofind(_this, type) {
 function cloneObjectFn(obj) { // 对象复制
     return JSON.parse(JSON.stringify(obj))
 }
-
+var firstFlag = true;
 summerready = function () {
     $summer.fixStatusBar($summer.byId('header'));
     var platform = $summer.os;
@@ -159,9 +159,8 @@ summerready = function () {
         }
         if (category) {
             summer.pageParam.options['mgCName'] = category.mgCName;
-            viewModel.cgnFNameItem(category.mgCName);
         }
-
+		viewModel.cgnFNameItem(summer.pageParam.options['mgCName']);
         url = '/ieop_base_mobile/mfrontsusolr/getsumaterial';
         callback  = 'getsumaterial';
 		if(viewModel.isZeroF()){
@@ -189,7 +188,7 @@ summerready = function () {
         var $this = $(this);
         queryPage(1, {mgCName: $this.text()});
         myScroll.scrollTo(0, 0, 200, true);
-        $this.addClass('on').siblings().removeClass('on');
+        //$this.addClass('on').siblings().removeClass('on');
     })
     $('.drop').on('click', function () {
         $('.filter-wp').hide();
@@ -197,6 +196,7 @@ summerready = function () {
     })
     $('.filter-item .fr').on('click', function () {
         var $this = $(this);
+        $this.find('i').toggleClass('rotate-180');
         $this.parent().next().toggleClass('limith');
     })
 }
@@ -220,29 +220,33 @@ function getsumaterial(responseJSON) {
     	viewModel.listArr(data);
         return;
     }
-    var navigation = responseJSON.retData.navigation;
+    if(firstFlag){
+    	var navigation = responseJSON.retData.navigation;
+	    var tmpArr = [];
+	    for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
+	        if (navigation.mgCName[i] != '') {
+	        	navigation.mgCName[i] =  $.trim(navigation.mgCName[i]);
+	        	tmpArr.push({mgCName: $.trim(navigation.mgCName[i])});
+	        }
+	    }
+	    function notNull(item){
+	    	return item != '';
+	    }
+	    if(summer.pageParam.options['mgCName']){
+	    	viewModel.thirdMenu([{mgCName:summer.pageParam.options['mgCName']}]);
+	    }else {
+	    	viewModel.thirdMenu(tmpArr);
+	    }
+	    viewModel.cgnFName(navigation.ieopEnterpriseName.filter(notNull));
+	    viewModel.cgnMApplyModelName(navigation.suMApplyModelName.filter(notNull));
+	    viewModel.cgnMApplyPositionName(navigation.suMApplyPositionName.filter(notNull));
+	    viewModel.cgnMBrandName(navigation.suMBrandName.filter(notNull));
+	    viewModel.cgnMFieldsName(navigation.suMFieldsName.filter(notNull));
+	    viewModel.cgnMProductName(navigation.suMProductName.filter(notNull));
+	    viewModel.mgCName(navigation.mgCName.filter(notNull));
+	    firstFlag = false;
+    }
     
-    var tmpArr = [];
-    for (var i = 0, len = navigation.mgCName.length; i < len; i++) {
-        if (navigation.mgCName[i] != '') {
-        	tmpArr.push({mgCName: $.trim(navigation.mgCName[i])});
-        }
-    }
-    function notNull(item){
-    	return item != '';
-    }
-    if(summer.pageParam.options['mgCName']){
-    	viewModel.thirdMenu([{mgCName:summer.pageParam.options['mgCName']}]);
-    }else {
-    	viewModel.thirdMenu(tmpArr);
-    }
-    viewModel.cgnFName(navigation.ieopEnterpriseName.filter(notNull));
-    viewModel.cgnMApplyModelName(navigation.suMApplyModelName.filter(notNull));
-    viewModel.cgnMApplyPositionName(navigation.suMApplyPositionName.filter(notNull));
-    viewModel.cgnMBrandName(navigation.suMBrandName.filter(notNull));
-    viewModel.cgnMFieldsName(navigation.suMFieldsName.filter(notNull));
-    viewModel.cgnMProductName(navigation.suMProductName.filter(notNull));
-    viewModel.mgCName(navigation.mgCName.filter(notNull));
     //viewModel.cgnSuName(navigation.mgCName);
     if (!myScrollMenu) {
         myScrollMenu = new JRoll('#menu', {
@@ -251,7 +255,7 @@ function getsumaterial(responseJSON) {
         });
     } else {
         //myScrollMenu.refresh();
-        $('#thirdMenu').css('transform', 'translate(0, 0)')
+        //$('#thirdMenu').css('transform', 'translate(0, 0)')
     }
     //window.updateFilter = false;
     viewModel.totalPage(responseJSON.pageParams.totalCount);

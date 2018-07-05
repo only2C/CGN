@@ -141,7 +141,7 @@ html,body {
 .detail-container {
 	font-size: 14px;
 	background-color: #f3f3f4;
-	min-height:1000px;
+	min-height:640px;
 }
 .detail-container>div.title {
 	font-size: 18px;
@@ -201,7 +201,7 @@ i.cart span {
 .detail-container>div.comments {
 	margin-top:6px;
 	padding: 0;
-	min-height: 500px;
+	/*min-height: 500px;  去掉测试ios*/ 
 }
 .nolimit {
 	min-height:unset !important;

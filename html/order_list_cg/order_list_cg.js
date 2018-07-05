@@ -2,7 +2,7 @@ function closeWin (){
     summer.closeWin();
 }
 function nofind(_this, type) {
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror = null;
 }
@@ -368,6 +368,9 @@ function queryBack(res){
 		        setTimeout(function(){
             		myScroll.refresh();
             	},100)
+		    }
+		    if(viewModel.totalPage()==1){
+		    	$('.more').hide();
 		    }
         }else{
         	viewModel.orderList(viewModel.orderList().concat(orderList));

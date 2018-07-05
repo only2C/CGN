@@ -1,8 +1,8 @@
 function closeWin (){
-	if(fromPage=='attention'){
+	if(summer.pageParam.fromPage=='attention_cg'){
 		var initPage = 'initPage()';
 		summer.execScript({
-		    winId: 'attention',
+		    winId: 'attention_cg',
 		    script: initPage
 		});
 	}
@@ -12,7 +12,7 @@ function keyBack(){
 	closeWin();
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror=null;
 }
@@ -20,7 +20,7 @@ function openWin1 (winId){
     //var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
     var statusBarStyle = 'dark';
     summer.openWin({
-        "id" :winId,
+        "id" :winId+new Date().getTime(),
         "url" : "html/"+winId+"/"+winId+".html",
         "pageParam" : {
             "count" : 1
@@ -342,7 +342,6 @@ function favoritesSave1 (data){
 function addToCarts (data){
 	if(data.status==1){
 		if(viewModel.type()=="gotocg"){ //区分立即采购和加入购物车
-			closeWin();
 		   openWin1('cart_cg');
 		}else if(viewModel.type()=="yy"){
 		   summer.toast({

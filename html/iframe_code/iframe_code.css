@@ -3,6 +3,9 @@ body{
     font-weight: normal;
     font-size:14px;
 }
+.um-content {
+	padding:0 8px;
+}
 .mb2{
     margin-bottom: 2%;
 }

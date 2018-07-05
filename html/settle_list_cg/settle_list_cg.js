@@ -2,7 +2,7 @@ function closeWin (){
     summer.closeWin()
 }
 function nofind(_this, type) {
-    src = "../static/mall/images/default_small.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror = null;
 }
@@ -238,7 +238,12 @@ function savevaliordercode(data){
     }
 }
 function queryBack(res){
-	console.log(res);
+	if(res.status!=1){
+		summer.toast({
+             "msg" : res.msg
+        })
+		return;
+	}
 	var orderList = res.retData.aggEnts;
 	viewModel.totalPage(res.pageParams.totalPage);
 	var tmpArr = []; 
@@ -263,7 +268,7 @@ function queryBack(res){
             		myScroll.refresh();
             	},100)
             }
-            if(orderList.length<=0){
+            if(orderList.length<=0 || viewModel.totalPage()==1){
             	$('.more').hide();
             }
         }else{

@@ -1,5 +1,6 @@
 html,body {
 	font-family: 'microsoft yahei Light' !important;
+	overflow-x:hidden;
 }
 .um-header {
 	z-index:999 !important;
@@ -119,7 +120,28 @@ html,body {
 }
 .um-footer .item1 {
 	flex:1;
+	box-sizing:border-box;
 	
+}
+.right-wp {
+	flex:3;
+	text-align:right;
+}
+.my-btn {
+	display:inline;
+	padding: 8px 8px;
+    background: #fff;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    color:#666;
+    line-height:1;
+    font-size:12px;
+}
+.my-btn:last-of-type{
+	background-color:#ee9430;
+	color:#fff;
+	border:1px solid #ee9430;
+	margin-right:10px;
 }
 .item1 i {
 	background-size:16px;
@@ -181,10 +203,10 @@ html,body {
 	background:url(../../img/share.png) no-repeat;
 }
 .item1 i.cart {	
-	width:20px;
-	height:20px;
+	width:23px;
+	height:23px;
 	background:url(../../img/cart.png) no-repeat;
-	background-size:20px;
+	background-size:23px;
 	background-position: 0px 1px;
 }
 i.cart span {

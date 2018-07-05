@@ -9,6 +9,19 @@ body{
 	color:#fff;
 	background-size:100% 100%;
 }
+.title {
+	position:relative;
+	background:url(../../img/dingbu.png) no-repeat;
+	text-align:center;
+	color:#fff;
+	background-size:100% 100%;
+	height:46px;
+	line-height:46px;
+	font-size:16px;
+}
+.title h3 {
+	padding:0 !important;
+}
 button{
     outline: none;
 }
@@ -26,11 +39,11 @@ button{
 }
 .order-status{
 	position:fixed;
-	top:106px;
+	top:112px;
 	width:100%;
 	background-color:#efeff4;
     overflow: hidden;
-    padding: 10px 0 0;
+    padding: 6px 0 0;
     z-index:99;
 }
 .status-wp {
@@ -87,6 +100,7 @@ button{
 .order-icon-5{
     background: url("../../img/my_daiqianshou.png") no-repeat;
     background-size: 70%;
+    background-position:6px 0;
 }
 .order-status-icon.active .order-icon-5{
     background: url("../../img/my_icon-5.png") no-repeat;
@@ -113,11 +127,13 @@ button{
 .order-icon-8{
     background: url("../../img/icon-categroy.png") no-repeat 7px 2px;
     background-size: 70%;
+    background-position:5px 2px;
 }
 
 .order-status-icon.active .order-icon-8{
     background: url("../../img/icon-categroy-active.png") no-repeat 7px 2px;
     background-size: 70%;
+    background-position:5px 2px;
 }
 .order-list {
     background: #fff;
@@ -258,7 +274,7 @@ button{
     text-overflow: ellipsis;
     font-size: 12px;
 }
-/*搜索框*/
+/*Ã¦ÂÅ“Ã§Â´Â¢Ã¦Â¡â€ */
 .um-input-search {
   display: -webkit-box;
   display: box;
@@ -272,6 +288,7 @@ button{
   padding: 9px 0;
   background-color: #ffffff;
   margin:auto;
+  position: absolute;
 }
 .um-input-search input {
 	background-color:#f1f1f2 !important;
@@ -292,9 +309,10 @@ button{
     position: relative;
     top:0 !important;
     background-color:#fff;
+        background-color: #ffffff;
 }
 /*
- ä¸‹æ‹‰åŠ è½½
+ ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â°ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½
  * */
 .more {
     height: 4rem;
@@ -361,9 +379,14 @@ button{
 	top:272px !important;
 	bottom:0;
 }
-.no-data{
+.no-data {
+	display:none;
 	text-align: center;
 	vertical-align:middle;
+}
+.no-data.show{
+	display:block;
+    margin-top: 80px;	
 }
 .no-data>img{
 	width: 50%;

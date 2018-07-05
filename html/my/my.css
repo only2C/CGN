@@ -27,11 +27,19 @@
 }
 
 .my-header-systype {
+    width:28%;
+    height:30px;
     float:right;
     font-size: 12px;
     overflow:hidden;
     margin-right:10px;
-    margin-top:20px;
+    margin-top:44px;
+    background:url(../../img/cg.png) no-repeat;
+    background-size:100%;
+}
+.my-header-systype.db {
+	background:url(../../img/db.png) no-repeat;
+	background-size:100%;
 }
 #zhuanhuan{
 	color:#fff;
@@ -43,6 +51,7 @@
 }
 .my-header-user{
     color:#fff;
+    max-width:140px;
 }
 .my-header-userName{
     margin:15px 0 3px 0;
@@ -123,7 +132,7 @@
 .um-content>div.um-gray {
     background-color:#f4f4f4
 }
-/* è®¾ç½®èƒŒæ™¯å›¾ç‰‡ */
+/* Ã¨Â®Â¾Ã§Â½Â®Ã¨Æ’Å’Ã¦â„¢Â¯Ã¥â€ºÂ¾Ã§â€°â€¡ */
 .icon-home, .icon-attention, .icon-categroy, .icon-warehouse, .icon-my {
     height: 19px;
     background: url(../../img/icon-home.png) center no-repeat;
@@ -144,7 +153,7 @@
 .icon-my {
     background-image: url(../../img/icon-my.png);
 }
-/* è®¾ç½®æ¿€æ´»çŠ¶æ€ */
+/* Ã¨Â®Â¾Ã§Â½Â®Ã¦Â¿â‚¬Ã¦Â´Â»Ã§Å Â¶Ã¦â‚¬Â */
 .um-footerbar-item.active .icon-home {
     background-image: url(../../img/icon-home-active.png);
 }
@@ -173,4 +182,7 @@
 
 #userChoose li{
 	border: 1px solid #f0f0f0;
+}
+.um-modal .um-modal-content {
+	padding:22px 15px !important;
 }

@@ -266,7 +266,7 @@
 
 #swrapper {
     position: fixed;
-    top: 146px;
+    top: 148px;
     width: 100%;
     bottom: 0;
 }
@@ -406,6 +406,10 @@ i.arrow {
     background-size: 10px;
     margin-left: 4px;
     vertical-align: middle;
+    transition:all 0.5s;
+}
+.rotate-180 {
+	transform:rotate(180deg);
 }
 
 .filter-list {

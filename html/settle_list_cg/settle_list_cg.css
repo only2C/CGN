@@ -370,8 +370,13 @@ button{
     background: #fff;
 }
 .no-data{
+	display:none;
 	text-align: center;
 	vertical-align:middle;
+}
+.no-data.show {
+	display:block;
+    margin-top:80px;
 }
 .no-data>img{
 	width: 50%;

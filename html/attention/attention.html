@@ -35,7 +35,7 @@
                 </div>
 			</div>
 			<div class="um-content">
-				<ul data-bind="foreach:attentionList" class="attention-list">
+				<ul data-bind="foreach:attentionList,visible:attentionList().length>0" class="attention-list">
 					<li data-bind="click:$root.openWin2.bind($data,{cgnMCode:materialCode,cgnFCode:factoryCode?factoryCode:'',cgnFName:factoryName?factoryName:'',fromPage:'attention'})">
 						<div class="img-wp">
 							<img onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}" alt="" />
@@ -49,6 +49,7 @@
 						</div>
 					</li>
 				</ul>
+				<div data-bind="css:{show:attentionList().length<=0}" class="no-data"><img src="../../img/status/icon_noAttention.png" /></div>
 			</div>
 			<div class="um-footer"  id='footer'>
 				<div class="um-footerbar h45"  id='nav'>

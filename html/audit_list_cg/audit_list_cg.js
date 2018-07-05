@@ -2,7 +2,7 @@ function closeWin (){
     summer.closeWin()
 }
 function nofind(_this, type) {
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror = null;
 }
@@ -123,7 +123,8 @@ summerready = function(){
 }
 function usorderedsta(data){
 	if(data.status==1){
-		queryOrder(viewModel.status());
+		curPage =1;
+		queryOrder(viewModel.status(),viewModel.kwd(),1);
     	summer.toast({
              "msg" : "预约成功！" 
         })
@@ -135,7 +136,8 @@ function usorderedsta(data){
 }
 function usaudited(data){
 	if(data.status==1){
-        queryOrder(viewModel.status()); 
+		curPage =1;
+        queryOrder(viewModel.status(),viewModel.kwd(),1); 
         summer.toast({
              "msg" : "审核通过！" 
         })
@@ -250,7 +252,8 @@ $('.pull_icon').addClass('flip').addClass('loading');
 $('.more span').text('加载中...');
 function usunaudited(data){
 	if(data.status==1){
-        queryOrder(viewModel.status()); 
+		curPage =1;
+        queryOrder(viewModel.status(),viewModel.kwd(),1); 
         summer.toast({
              "msg" : "审核未通过！" 
         })
@@ -286,8 +289,9 @@ function queryBack(res){
                setTimeout(function(){
 	            	myScroll.refresh();
 	           },100)
+	           myScroll.scrollTo(0, 0, 200, 'easing');
             }
-            if(orderList.length<=0){
+            if(orderList.length<=0 || viewModel.totalPage()==1){
             	$('.more').hide();
             }
         }else{

@@ -8,6 +8,22 @@
 	line-height:46px;
 	font-size:16px;
 }
+.no-data{
+	display:none;
+}
+.no-data{
+	text-align: center;
+	vertical-align:middle;
+	margin-top:20px;
+}
+.no-data>img{
+	width: 50%;
+	height: 50%;
+	vertical-align: middle;
+}
+.no-data.show {
+	display:block;
+}
 .um-input-search {
     display: -webkit-box;
     display: box;

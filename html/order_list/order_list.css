@@ -4,6 +4,7 @@ button{
 .um-header {
     background-color: #fff;
     color: #333;
+    padding-top:22px;
 }
 .um-back::before {
 	position:relative;
@@ -222,8 +223,13 @@ i.arrow-right {
     margin-top: 28px;
 }
 .no-data{
+	display: none;
 	text-align: center;
 	vertical-align:middle;
+}
+.no-data.show {
+	display: block;
+	margin-top:80px;
 }
 .no-data>img{
 	width: 50%;

@@ -33,6 +33,22 @@ function openWin (winId,status){
         pageParam:params
     });
 }
+function openAddress (winId){
+    summer.openWin({
+        "id" :winId,
+        "url" : "html/"+winId+"/"+winId+".html",
+        "animation":{
+            type:"none", //动画类型（详见动画类型常量）
+            subType:"from_right", //动画子类型（详见动画子类型常量）
+            duration:0 //动画过渡时间，默认300毫秒
+        },
+        statusBarStyle:'dark',
+        "addBackListener":"true",
+        pageParam:{
+        	"fromPage":"my"
+        }
+    });
+}
 function openWin1 (winId){
     //var statusBarStyle = winId=='attention'||winId=='cart'||winId=='my'?'light':'dark';
     var statusBarStyle = 'dark';
@@ -200,23 +216,33 @@ summerready = function(){
         },
         chooseSystem:function(){
             viewModel.systemArr(systemList);
-           $('.system-list').fadeIn();
-        	$drop2.fadeToggle();
+           	$('.system-list').fadeToggle();
         },
         chooseSystemArr:function (item) {
         	var chooseText = item.code==1?'欢迎调拨':'欢迎采购';
-            viewModel.systemType(chooseText);
-            viewModel.systemFlag(item.code);
-            viewModel.stype(item.code);
-            summer.setStorage('stype',item.code);
-            $('.system-list').fadeOut();
-            if(item.code == 0){
-                viewModel.isCG(true);
-                viewModel.isDB(false);
-            }else{
-                viewModel.isCG(false);
-                viewModel.isDB(true);
-            }
+        	UM.confirm({
+        		title: '',
+			    text: '您的系统状态切换为'+(item.code==1?'调拨':'采购')+'状态,确认切换?',
+			    btnText: ["关闭", "确认切换"],
+			    overlay: true,
+			    ok: function () {
+			        viewModel.systemType(chooseText);
+		            viewModel.systemFlag(item.code);
+		            viewModel.stype(item.code);
+		            summer.setStorage('stype',item.code);
+		            $('.system-list').fadeOut();
+		            if(item.code == 0){
+		                viewModel.isCG(true);
+		                viewModel.isDB(false);
+		            }else{
+		                viewModel.isCG(false);
+		                viewModel.isDB(true);
+		            }
+			    },
+			    cancle: function () {
+			    }
+        	})
+            
             /*if($summer.os=='android'){
                 $drop2.fadeToggle();
             }*/
@@ -241,9 +267,9 @@ summerready = function(){
 
 
 	
-    var  $drop2 = $(".drop2");
-    $drop2.on('click', function () {
-        $('.system-list').slideToggle();
-        $drop2.fadeToggle();
-    })
+    //var  $drop2 = $(".drop2");
+    //$drop2.on('click', function () {
+        //$('.system-list').slideToggle();
+        //$drop2.fadeToggle();
+    //})
 }

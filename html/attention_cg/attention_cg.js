@@ -14,7 +14,7 @@ function keyBack(){
     }, 3000);
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror=null;
 }
@@ -66,10 +66,11 @@ summerready = function(){
 		},
 		openWin2:function(options,data){
 			summer.openWin({
-                "id" : "detail",
+                "id" : "detail_cg",
                 "url" : "html/detail_cg/detail_cg.html",
                 "pageParam" : {
-                    options:options
+                    options:options,
+                    fromPage:"attention_cg"
                 },
                 "addBackListener":"true"
             });
@@ -131,7 +132,7 @@ function initPage (keyW,curPage){
 		var p_conditions = {};
 	}
 	
-    var page_params={"pageIndex":curPage,"pageSize":10};  //分页
+    var page_params={"pageIndex":curPage?curPage:1,"pageSize":10};  //分页
     var sortItem = {};
     var paramData = p_page_params_con_dataj_enc(p_conditions,page_params,sortItem);
     p_async_post(ip+'/ieop_base_mobile/mfrontsumallmaterialfavorites/querypage', paramData,'querypage');
@@ -259,7 +260,7 @@ function querypage(res){
         var bb = p_params_con_dataj_enc(info);
         console.log(res.retData.ents)
 		viewModel.attentionListTmp(orderData);
-        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes', bb ,'querybymescodes');
+        var data = p_async_post(ip+'/ieop_base_mobile/mfrontsustorematerial/querybymescodes2', bb ,'querybymescodes');
     }else {
         summer.toast({
             "msg":res.msg
@@ -295,7 +296,7 @@ function querybymescodes(data){
             		myScroll.refresh();
             	},100)
             }
-            if(attentionList.length<=0){
+            if(attentionList.length<=0 || viewModel.totalPage()==1){
             	$('.more').hide();
             }
         }else{

@@ -13,7 +13,7 @@ function keyBack(){
     }, 3000);
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_img.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror=null;
 }
@@ -381,13 +381,9 @@ function getpriceandstock(ret){
 	   	  var trueKey = ent.materialCode+"#"+ent.suStoreCode+"#"+ent.ieopEnterpriseCode;
 	   	  var refm = refObj[trueKey];
 	   	  if(refm!=undefined){
-                if(refm.suMarSta==0 || refm.suMarSta==2){
-                    ents[i].isInvalid = true;
-                }else {
-                	ents[i].isInvalid = false;
-                }
+                ents[i].isInvalid = false;
           }else {
-          		ents[i].isInvalid = false;
+          		ents[i].isInvalid = true;
           }
 	      var choose = ents[i].buyStoreStatus ==1?true:false;
 		  //var key = ents[i].supplyFactoryCode+','+ents[i].materialCode;

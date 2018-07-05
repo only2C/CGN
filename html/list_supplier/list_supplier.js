@@ -1,6 +1,11 @@
 function closeWin (){
     summer.closeWin()
 }
+function nofind(_this, type) {
+    src = "../../img/default_img.png"
+    _this.src = src
+    _this.onerror = null;
+}
 var billStatus = {
     0:'待审核',  //显示审核按钮 买方
     1:'待发货',
@@ -191,6 +196,9 @@ function  getDataCallback(res) {
             	myScroll.refresh();
            },100)
         //}
+       	if(viewModel.supplierList().length<=0 || viewModel.totalPage()==1){
+            $('.more').hide();
+        }
     }else{
     	viewModel.supplierList(viewModel.supplierList().concat(data));
         setTimeout(function(){

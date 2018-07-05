@@ -69,7 +69,7 @@
 		                <div data-bind="foreach:children.su_mall_order_infos">
 		                    <div class="order-content">
 		                        <div class="order-content-img fl">
-		                            <img data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}"/>
+		                            <img  onerror="nofind(this,1)" data-bind="attr:{src:materialImgUrl?materialImgUrl:'../../img/default_img.png'}"/>
 		                        </div>
 		                        <div class="order-content-detail fl">
 		                            <h4 data-bind="text:materialName"></h4>

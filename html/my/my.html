@@ -16,20 +16,18 @@
 <body bgcolor="#ffffff">
 <div class="um-win my" id="my">
     <div class="um-content">
-
         <div id="header" class="my-header">
             <div class="my-header-sys">
-                <div class="my-header-systype" data-bind="visible:isSupplier">
-                    <div data-bind="text:systemType,click:chooseSystem" class="system-title"></div>
+                <div class="my-header-systype" data-bind="visible:isSupplier,css:{db:systemFlag()==1},click:chooseSystem">
+                    <div class="system-title"></div>
                     <ul data-bind="foreach:systemArr" class="system-list" id="userChoose">
                         <li data-bind="visible:$root.systemFlag()!=code,click:$root.chooseSystemArr.bind($data,$data)">
                            <i class="org"></i>
 							<div class="org-name"><span data-bind="text:name"></span><span class="has-choosen"></span></div>
                         </li>
                     </ul>
-                    <i class="ti-reload ml5" id="zhuanhuan"></i>
+                    <!--<i class="ti-reload ml5" id="zhuanhuan"></i>-->
                 </div>
-
             </div>
             <div class="my-header-content">
                 <div data-bind="click:toPersonInfo" class="my-header-img fl">
@@ -117,8 +115,6 @@
                 </div>
             </div>
 
-
-            <div class="h10 w um-gray"></div>
             <div class="my-um-label  um-box-justify mt10">
                 <div class="f15" style="color: #666666">
                     订单管理
@@ -326,7 +322,7 @@
         <div class=" w um-gray " style="height: 1px;"></div>
         <div class="um-grid um-row mt10" style="background-color: #FFFFFF">
             <div class="um-grid-row tc">
-                <div onClick="openWin('address')">
+                <div onClick="openAddress('address')">
                     <a href="#"> <img src="../../img/my_loc.png" height="24" alt="">
                         <p class="f14 mt10 " style="color: #666666">
                             地址

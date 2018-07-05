@@ -32,7 +32,7 @@
 				</div>
                 <div class="menu" id="menu" data-bind="visible:thirdMenu().length>0">
 					<div id="thirdMenu" data-bind="foreach:thirdMenu" class="menu-wrapper">
-						<div data-bind="css:{on:$index()==0}" class="item"><div data-bind="text:mgCName"></div></div>
+						<div data-bind="css:{on:$root.cgnFNameItem()==mgCName}" class="item"><div data-bind="text:mgCName"></div></div> <!--data-bind="css:{on:$index()==0}"-->
 					</div>
 					<div data-bind="visible:thirdMenu().length>5" class="more-btn">
 						<i class="arrow-bottom"></i>

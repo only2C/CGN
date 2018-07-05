@@ -376,7 +376,7 @@ $("textarea.form-control").elastic();
           type = this.type,
           html;
 
-      html = '<div class="um-modal"><div class="um-modal-content um-border-bottom">';
+      html = '<div class="um-modal"><div class="um-modal-content">';
 
       if (settings.title) {
         html += '<div class="um-modal-title">' + settings.title + '</div>';

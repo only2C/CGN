@@ -2,7 +2,7 @@ function closeWin(){
 	summer.closeWin();
 }
 function nofind(_this,type){  
-    src = "../static/mall/images/default_small.png"
+    src = "../../img/default_img.png"
     _this.src = src
     _this.onerror=null;
 }

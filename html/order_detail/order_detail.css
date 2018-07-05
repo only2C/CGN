@@ -127,7 +127,7 @@ width:70%;
 	margin: 5px 0 10px;
 }
 .left-num {
-	font-size:13px;
+	font-size:11px;
 }
 .img-wp {
 	float: left;
@@ -235,10 +235,11 @@ width:70%;
 	position: absolute;
 	bottom:10px;
 	right:10px;
-	padding:4px 6px;
+	padding:4px 12px;
 	color:#fff;
 	background-color:#3d85ff;
-	font-size:13px;
+	font-size:10px;
+	border-radius:3px;
 }
 .box .title {
 	line-height: 40px;
