@@ -285,6 +285,9 @@ function querybyids(res){
     		data[i]['suPrice'] = data[i]['suPrice']?data[i]['suPrice']:'';
     		data[i]['suMarStock'] = parseInt(data[i]['suMarStock']?data[i]['suMarStock']:'');
     	}
+        if (!myScroll) {
+            mycall();
+        }
     	if (pageSize == 1) {
 	        viewModel.listArr(data);
 	        if (myScroll) {
@@ -304,9 +307,6 @@ function querybyids(res){
 	    } else {
 	        viewModel.listArr(viewModel.listArr().concat(data));
 	        myScroll.refresh();
-	    }
-	    if (!myScroll) {
-	        mycall();
 	    }
     }else{
         summer.toast({

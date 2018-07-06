@@ -82,7 +82,7 @@ button{
     background-size: 100%;
 }
 .order-icon-3{
-    background: url("../../img/my_daiyanshou.png") no-repeat;
+    background: url("../../img/daiyanshou.png") no-repeat;
     background-size: 80%;
 }
 .order-status-icon.active .order-icon-3{

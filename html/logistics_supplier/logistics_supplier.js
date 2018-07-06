@@ -56,6 +56,7 @@ function queryLog(mallLCode){
     p_async_post(ip+'/ieop_base_mobile/mfrontmalllogisticsinfos/querylogisticsInfos', enc_conditions,'querylogisticsInfos');
 }
 function querylogisticsInfos(data){
+	UM.hideLoadingBar();
 	if(data.status==1){
 		var logisticsList = data.retData.ents;
 		for(var i=0;i<logisticsList.length;i++){
@@ -90,6 +91,7 @@ function inqueryLogistics(data){
 		for(var i=0;i<logisticsList.length;i++){
 			logisticsList[i].date = logisticsList[i].mallLChildDt.split(" ")[0];
 			logisticsList[i].hour = logisticsList[i].mallLChildDt.split(" ")[1];
+			logisticsList[i].mallLChildSite = $.trim(logisticsList[i].mallLChildSite);
 		}
 		viewModel.logisticsList(logisticsList);
 		var evaluation_status = data.retData.evaluation_status;

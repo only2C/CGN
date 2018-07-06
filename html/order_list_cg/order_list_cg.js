@@ -345,7 +345,9 @@ function queryBack(res){
             })
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];
-
+        }
+        if (!myScroll) {
+            mycall();
         }
         if(curPage==1){
         	viewModel.orderList(orderList);
@@ -363,9 +365,6 @@ function queryBack(res){
             	myScroll.refresh();
             },200)
         }
-        if (!myScroll) {
-	        mycall();
-	    }
         return;
 	}else{
 		viewModel.orderList(orderList);

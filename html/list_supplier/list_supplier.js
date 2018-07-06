@@ -84,7 +84,8 @@ summerready = function(){
                 "url" : "html/list_supplier_express/list_supplier_express.html",
                 "pageParam" : {
                     'expressObj':data.mainEnt,
-                    'status':viewModel.tabIndex()
+                    'status':viewModel.tabIndex(),
+                    'kwd':viewModel.kwd()
                 },
                 "animation":{
                     type:"none", //动画类型（详见动画类型常量）
@@ -150,6 +151,9 @@ function evaluationBack(){
 function getData(status,kwd,curPage){
 	viewModel.status(status);
 	viewModel.kwd(kwd);
+	if(curPage){
+		this.curPage = curPage;
+	}
     var param ={
 
     }
@@ -194,6 +198,7 @@ function  getDataCallback(res) {
         //if (myScroll) {
            setTimeout(function(){
             	myScroll.refresh();
+            	myScroll.scrollTo(0, 0, 200, 'easing');
            },100)
         //}
        	if(viewModel.supplierList().length<=0 || viewModel.totalPage()==1){

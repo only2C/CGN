@@ -261,6 +261,9 @@ function queryBack(res){
                 val.materialImgUrl = summer.getStorage("imgBaseUrl") + val.materialImgUrl;
             })
         }
+        if (!myScroll) {
+            mycall();
+        }
         if(curPage==1){
             viewModel.orderList(orderList);
             if (myScroll) {
@@ -276,9 +279,6 @@ function queryBack(res){
             setTimeout(function(){
             	myScroll.refresh();
             },200)
-        }
-        if (!myScroll) {
-            mycall();
         }
         return;
 	}else{

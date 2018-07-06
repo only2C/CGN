@@ -283,10 +283,14 @@ function queryBack(res){
             mainEnt.auditStatus = auditStatus[mainEnt.auditStatus];
             mainEnt.billStatus = billStatus[mainEnt.allStatus];
         }
+        if (!myScroll) {
+            mycall();
+        }
         if(curPage==1){
             viewModel.orderList(orderList);
             if (myScroll) {
                setTimeout(function(){
+               		console.log('refresh')
 	            	myScroll.refresh();
 	           },200)
 	           myScroll.scrollTo(0, 0, 200, 'easing');
@@ -300,9 +304,7 @@ function queryBack(res){
             	myScroll.refresh();
             },200)
         }
-        if (!myScroll) {
-            mycall();
-        }
+        
 	}else{
 		viewModel.orderList(orderList);
 	}

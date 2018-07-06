@@ -60,7 +60,7 @@ body{
     background-size: 100%;
 }
 .order-icon-4{
-    background: url("../../img/my_daiyanshou.png") no-repeat;
+    background: url("../../img/daiyanshou.png") no-repeat;
     background-size: 80%;
 }
 .order-status-icon.active .order-icon-4{
@@ -206,7 +206,7 @@ body{
   display: flex;
   -webkit-align-items: center;
   align-items: center;
-  padding: 9px 0;
+  padding: 9px 10px;
   background-color: #ffffff;
   position:absolute;
 }
@@ -233,7 +233,6 @@ body{
     margin-right: 2%;
 }
 .search-wp {
-	padding: 0 10px;
     position: relative;
     top:0 !important;
     background-color:#fff;

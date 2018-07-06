@@ -256,6 +256,9 @@ function querybymescodesBack(data){
     }
 }
 function giveList(){
+    if (!myScroll) {
+        mycall();
+    }
     if(curPage==1){
         viewModel.giveList(viewModel.tmpArr());
         if (myScroll) {
@@ -272,11 +275,11 @@ function giveList(){
             myScroll.refresh();
         },100)
     }
+}
+function fromList(){
     if (!myScroll) {
         mycall();
     }
-}
-function fromList(){
     if(curPage==1){
         viewModel.fromList(viewModel.tmpArr());
         if (myScroll) {
@@ -292,8 +295,5 @@ function fromList(){
         setTimeout(function(){
             myScroll.refresh();
         },100)
-    }
-    if (!myScroll) {
-        mycall();
     }
 }

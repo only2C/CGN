@@ -353,6 +353,9 @@ function getpriceandstock(ret) {
             data[i]['cgnMIcon'] = summer.getStorage("imgBaseUrl") + data[i]['cgnMIcon'];
         }
     }
+    if (!myScroll) {
+        mycall();
+    }
     if (pageSize == 1) {
         viewModel.listArr(data);
         if (myScroll) {
@@ -374,8 +377,5 @@ function getpriceandstock(ret) {
     } else {
         viewModel.listArr(viewModel.listArr().concat(data));
         myScroll.refresh();
-    }
-    if (!myScroll) {
-        mycall();
     }
 }

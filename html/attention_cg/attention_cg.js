@@ -289,6 +289,9 @@ function querybymescodes(data){
                 attentionList[i].showAdd = true;
             }
         }
+        if (!myScroll) {
+            mycall();
+        }
         if(curPage==1){
             viewModel.attentionList(attentionList);
             if (myScroll) {
@@ -304,9 +307,6 @@ function querybymescodes(data){
             setTimeout(function(){
             	myScroll.refresh();
             },100)
-        }
-        if (!myScroll) {
-            mycall();
         }
     }else{
         summer.toast({

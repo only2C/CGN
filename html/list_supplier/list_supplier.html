@@ -85,10 +85,10 @@
 		
 		
 		                <div class="order-footer">
-		                    <div class="order-total">
+		                    <!--<div class="order-total">
 		                       <div class="switch-btn" data-bind="click:$root.changeShow.bind($data,$index)"></div>
-		                    </div>
-		                    <div data-bind="attr:{id:'switchWp'+$index()}" class="audit-wp">
+		                    </div>-->
+		                    <div data-bind="attr:{id:'switchWp'+$index()},visible:mainEnt.valiOrderCode" class="audit-wp">
 		                        <p>支付单号：<span data-bind="text:mainEnt.valiOrderCode"></span></p>
 		                    </div>
 		

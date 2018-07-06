@@ -147,6 +147,9 @@ function queryDetailCallback(res) {
 	}
 	viewModel.totalPage(res.pageParams.totalPage);
     var ents = res.retData.ents;
+    if (!myScroll) {
+        mycall();
+    }
     if (pageSize == 1) {
         viewModel.detailArr(ents);
         if (myScroll) {
@@ -167,9 +170,6 @@ function queryDetailCallback(res) {
     	viewModel.detailArr(viewModel.detailArr().concat(ents));
         myScroll.refresh();
     }
-    if (!myScroll) {
-        mycall();
-    }
 }
 function queryRangCallback(res){
 	if(res.status!=1){
@@ -179,6 +179,9 @@ function queryRangCallback(res){
 	}
     var ents = res.retData.ents;
     viewModel.totalPage(res.pageParams.totalPage);
+    if (!myScroll) {
+        mycall();
+    }
     if (pageSize == 1) {
         viewModel.rangArr(ents);
         if (myScroll) {
@@ -199,9 +202,6 @@ function queryRangCallback(res){
     } else {
     	viewModel.rangArr(viewModel.rangArr().concat(ents));
         myScroll.refresh();
-    }
-    if (!myScroll) {
-        mycall();
     }
 }
 function queryDocCallback(res){
@@ -229,6 +229,9 @@ function queryDocCallback(res){
             val.suFaaFileAddr = summer.getStorage("imgBaseUrl")+ val.suFaaFileAddr ;
         }
     })
+    if (!myScroll) {
+        mycall();
+    }
     if (pageSize == 1) {
         viewModel.docArr(ents);
         if (myScroll) {
@@ -249,9 +252,6 @@ function queryDocCallback(res){
     } else {
     	viewModel.docArr(viewModel.docArr().concat(ents));
         myScroll.refresh();
-    }
-    if (!myScroll) {
-        mycall();
     }
 }
 $('.pull_icon').addClass('loading');

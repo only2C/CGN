@@ -109,7 +109,6 @@ summerready = function(){
 		            duration:0 //动画过渡时间，默认300毫秒
 		        },
 		        statusBarStyle:'dark',
-		        "addBackListener":"true",
 		        pageParam:params
 		    });
 		},

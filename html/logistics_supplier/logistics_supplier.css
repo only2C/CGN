@@ -34,7 +34,9 @@ body{
 .tab .flex1 {
 	line-height: 40px;
 	text-align:center;
-	border:2px solid rgba(238, 148, 48, 1);
+	border:1px solid #cfcfcf;
+	border-right:none;
+	background-color:#fff;
 }
 .tab .flex1.on {
 	background-color:rgba(238, 148, 48, 1);
@@ -73,11 +75,9 @@ body{
 	text-align:center;
 }
 .l-text {
-
 	color:#7a7a7a;
 	font-size:14px;
 	display: flex;
-    align-items: center;
     justify-content: space-around;
     flex-direction: column;
 }
@@ -203,4 +203,8 @@ body{
 }
 .order-list li:last-of-type {
 	margin-bottom:0;
+}
+.no-data {
+	text-align:center;
+	margin-top:80px;
 }

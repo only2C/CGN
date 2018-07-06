@@ -59,9 +59,10 @@ function sendExpressCallback(res){
             "duration":"short"
         });
         closeWin();
+        var getDataStr = 'getData('+summer.pageParam.status+','+summer.pageParam.kwd+',1)';
         summer.execScript({
             winId: 'supplier',
-            script: 'getData()'
+            script: getDataStr
         })
     }else{
         summer.toast({

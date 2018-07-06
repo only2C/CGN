@@ -79,6 +79,9 @@ function iframeCallback(res) {
     ents.forEach(function(v){
         v.isSupplier =  isSupplier;
     })
+    if (!myScroll) {
+        mycall();
+    }
     if (pageSize == 1) {
         viewModel.iframeList(ents);
         if (myScroll) {
@@ -98,9 +101,6 @@ function iframeCallback(res) {
     } else {
     	viewModel.iframeList(viewModel.iframeList().concat(ents));
         myScroll.refresh();
-    }
-    if (!myScroll) {
-        mycall();
     }
 }
 $('.pull_icon').addClass('loading');
