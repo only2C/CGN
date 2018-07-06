@@ -352,7 +352,7 @@ function queryBack(res){
 	        if (myScroll) {
 		        setTimeout(function(){
             		myScroll.refresh();
-            	},100)
+            	},200)
 		    }
 		    if(viewModel.totalPage()==1){
 		    	$('.more').hide();
@@ -361,7 +361,7 @@ function queryBack(res){
         	viewModel.orderList(viewModel.orderList().concat(orderList));
         	setTimeout(function(){
             	myScroll.refresh();
-            },100)
+            },200)
         }
         if (!myScroll) {
 	        mycall();

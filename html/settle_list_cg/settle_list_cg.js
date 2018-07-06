@@ -266,7 +266,7 @@ function queryBack(res){
             if (myScroll) {
             	setTimeout(function(){
             		myScroll.refresh();
-            	},100)
+            	},200)
             }
             if(orderList.length<=0 || viewModel.totalPage()==1){
             	$('.more').hide();
@@ -275,7 +275,7 @@ function queryBack(res){
             viewModel.orderList(viewModel.orderList().concat(orderList));
             setTimeout(function(){
             	myScroll.refresh();
-            },100)
+            },200)
         }
         if (!myScroll) {
             mycall();

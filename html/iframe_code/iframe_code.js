@@ -64,7 +64,7 @@ summerready = function(){
 
 //查询框架列表
 function queryIframe(){
-    var param = p_page_params_con_dataj_enc({ "pageIndex":pageSize,"pageSize":5});
+    var param = p_page_params_con_dataj_enc({ "pageIndex":pageSize,"pageSize":10});
     var url = 'mfrontsuframeworkagreement/querypage';
     if(summer.getStorage("isSupplier") == "01"){
         url = 'mfrontsuframeworkagreement/querysupage' ;
@@ -74,7 +74,7 @@ function queryIframe(){
 }
 function iframeCallback(res) {
     var ents = res.retData.ents;
-    viewModel.totalPage(res.pageParams.totalCount);
+    viewModel.totalPage(res.pageParams.totalPage);
     var isSupplier =  viewModel.isSupplier() != "01" ;
     ents.forEach(function(v){
         v.isSupplier =  isSupplier;
@@ -90,9 +90,7 @@ function iframeCallback(res) {
                 "msg": "暂无内容"
             })
         }
-
-        $('#smallPic').removeClass('noshow');
-        if(pageSize==viewModel.totalPage()){  
+        if(1==viewModel.totalPage()){  
         	$('.more i').hide();
             $('.more span').text('没有更多了');//显示没有更多了
         }
@@ -158,7 +156,7 @@ window.mycall = function () {
     function pullUpAction() {
         console.log('请求')
         pageSize++;
-        if (pageSize < viewModel.totalPage()) {
+        if (pageSize <= viewModel.totalPage()) {
             queryIframe(pageSize);
         } else {
 

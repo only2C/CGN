@@ -138,7 +138,7 @@ summerready = function () {
 
         function pullUpAction() {
             pageSize++;
-            if (pageSize < viewModel.totalPage()) {
+            if (pageSize <= viewModel.totalPage()) {
                 queryPage(pageSize);
             } else {
 

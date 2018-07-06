@@ -2,7 +2,7 @@
 
 <application> 
   <app_start>html/login.html</app_start>  
-  <app_name>备件通</app_name>  
+  <app_name>备件通(测试版)</app_name>  
   <project_name>cgnspare</project_name>  
   <package_name>com.mobile.cgnspare</package_name>  
   <frame_name>summer-um</frame_name>  

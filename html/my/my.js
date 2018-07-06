@@ -180,13 +180,13 @@ summerready = function(){
         },
         openIframeCode:function(){
             summer.openWin({
-                "id" : "iframeCode",
+                "id" : "iframeCode"+new Date().getTime(),
                 "url" : "html/iframe_code/iframe_code.html",
                 "animation":{
-                type:"none", //动画类型（详见动画类型常量）
+                	type:"none", //动画类型（详见动画类型常量）
                     subType:"from_right", //动画子类型（详见动画子类型常量）
                     duration:0 //动画过渡时间，默认300毫秒
-            }
+            	}
             });
         },
         toPersonInfo:function(){

@@ -162,7 +162,7 @@ function ret_response_infos(responseJSON,return_fun){
 		summer.toast(
 			{"msg":"重新登录"}
 		)
-		var aa = summer.closeWin('home');
+		var aa = summer.closeWin({id:'home'});
         summer.openWin({
         	"id" :'login',
     		"url" : "html/login.html",

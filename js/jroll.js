@@ -470,7 +470,7 @@
       me.minScrollX = me.options.minX === null ? 0 : me.options.minX
       me.maxScrollX = me.options.maxX === null ? me.wrapperWidth - me.scrollerWidth - paddingX - marginX : me.options.maxX
       me.minScrollY = me.options.minY === null ? 0 : me.options.minY
-      me.maxScrollY = me.options.maxY === null ? me.wrapperHeight - me.scrollerHeight - paddingY - marginY : me.options.maxY
+      me.maxScrollY = me.options.maxY === null ? me.wrapperHeight - me.scrollerHeight - paddingY - marginY-10 : me.options.maxY
 		console.log(me.maxScrollY)
       if (me.minScrollX < 0) {
         me.minScrollX = 0
