@@ -34,19 +34,25 @@
     <div class="um-content">
 
         <!--采购订单审核-->
-        <div class="order-status">
-        	<div class="order-status-icon" data-bind="click:queryByStatus.bind($data,undefined),css:{active:status()===undefined}">
-                <div class="order-icon-8"></div>
-                <p>全部</p >
-            </div>
-            <div data-bind="click:queryByStatus.bind($data,0),css:{active:status()==0}" class="order-status-icon">
-                <div class="order-icon-1"></div>
-                <p>待审核</p>
-            </div>
-            <div data-bind="click:queryByStatus.bind($data,1),css:{active:status()==1}" class="order-status-icon">
-                <div class="order-icon-6"></div>
-                <p>已审核</p>
-            </div>
+        <div class="order-status status-bar">
+            <div  data-bind="click:queryByStatus.bind($data,undefined),css:{on:status()===undefined}" class="flex1">
+				<i class="all"></i>
+				<div>全部</div>
+				<div class="line"></div>
+				<div class="active-line"></div>
+			</div>
+            <div data-bind="click:queryByStatus.bind($data,0),css:{on:status()==0}" class="flex1">
+				<i class="prev-shenhe"></i>
+				<div>待审核</div>
+				<div class="line"></div>
+				<div class="active-line"></div>
+			</div>
+            <div data-bind="click:queryByStatus.bind($data,1),css:{on:status()==1}" class="flex1">
+				<i class="has-shenhe"></i>
+				<div>已审核</div>
+				<div class="line"></div>
+				<div class="active-line"></div>
+			</div>
         </div>
         <div id="swrapper">
             <div class="scroller">

@@ -48,11 +48,11 @@
     padding: 2px;
 }
 
-.scorejs > .score-item:hover:before,
+/*.scorejs > .score-item:hover:before,
 .scorejs > .score-item:hover ~ .score-item:before {
-    content: "\2605"; /* ★ */
-    _content: "\273f";
-}
+    content: "\2605"; 
+    _content: "\273f";  暂时注掉
+}*/
 
 .scorejs > .score-item.active:before,
 .scorejs > .score-item.active ~ .score-item:before {
@@ -73,11 +73,11 @@
 .scorejs.fontawesome > .score-item-static:before {
     content: "\f006";
 }
-
+/*
 .scorejs.fontawesome > .score-item:hover:before,
 .scorejs.fontawesome > .score-item:hover ~ .score-item:before {
     content: "\f005";
-}
+}*/
 
 .scorejs.fontawesome > .score-item.active:before,
 .scorejs.fontawesome > .score-item.active ~ .score-item:before {

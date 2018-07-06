@@ -34,21 +34,25 @@
     <div class="um-content">
 
         <!--采购订单结算-->
-        <div class="order-status">
-        	<div class="status-wp">
-        		<div class="order-status-icon" data-bind="click:queryByStatus.bind($data,undefined),css:{active:status()===undefined}">
-	                <div class="order-icon-8"></div>
-	                <p>全部</p >
-	            </div>
-	            <div data-bind="click:queryByStatus.bind($data,0),css:{active:status()==0}" class="order-status-icon">
-	                <div class="order-icon-5"></div>
-	                <p>待结算</p>
-	            </div>
-	            <div data-bind="click:queryByStatus.bind($data,1),css:{active:status()==1}" class="order-status-icon">
-	                <div class="order-icon-7"></div>
-	                <p>已结算</p>
-	            </div>
-        	</div>
+        <div class="order-status status-bar">
+	            <div data-bind="click:queryByStatus.bind($data,undefined),css:{on:status()===undefined}" class="flex1">
+					<i class="all"></i>
+					<div>全部</div>
+					<div class="line"></div>
+					<div class="active-line"></div>
+				</div>
+	            <div data-bind="click:queryByStatus.bind($data,0),css:{on:status()==0}" class="flex1">
+					<i class="daijiesuan"></i>
+					<div>待结算</div>
+					<div class="line"></div>
+					<div class="active-line"></div>
+				</div>
+	            <div data-bind="click:queryByStatus.bind($data,1),css:{on:status()==1}" class="flex1">
+					<i class="yijiesuan"></i>
+					<div>已结算</div>
+					<div class="line"></div>
+					<div class="active-line"></div>
+				</div>
         </div>
         <div id="swrapper">
             <div class="scroller">

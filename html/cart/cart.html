@@ -29,7 +29,7 @@
 				</div>
 				<ul data-bind="foreach:organizationArr" class="org-list">
 					<li data-bind="css:{'on':cgnFName==$root.defaultOrg()},click:$root.chooseOrg.bind($data,$data)">
-						<i class="org"></i>
+						<i class="org-icon"></i>
 						<div data-bind="attr:{cgnFCode:cgnFCode}" class="org-name"><span data-bind="text:cgnFName"></span><span class="has-choosen"></span></div>
 					</li>
 				</ul>

@@ -358,7 +358,7 @@ button{
 #swrapper {
 	position:fixed !important;
 	width:100%;
-	top:202px !important;
+	top:222px !important;
 	bottom:0;
 }
 .order-status{
@@ -382,4 +382,58 @@ button{
 	width: 50%;
 	height: 50%;
 	vertical-align: middle;
+}
+.status-bar {
+	background-color:#fff;
+	display:flex;
+	display:-webkit-flex;
+}
+.yijiesuan {
+	background:url(../../img/z-yijiesuan.png) no-repeat;
+	background-size:30px;
+}
+.daijiesuan {
+	background:url(../../img/z-daijiesuan.png) no-repeat;
+	background-size:30px;
+}
+.flex1.on .active-line {
+	position:absolute;
+	bottom:0;
+	left:50%;
+	transform:translate(-50%,0);
+	width:30px;
+	height:3px;
+	background-color:#ee9430;
+}
+.line {
+	width:1px;
+	height:24px;
+	position:absolute;
+	top:50%;
+	right:0;
+	transform: translate(0,-50%);
+	background-color: #e7e7e7;
+}
+.flex1:last-of-type .line {
+	display:none;
+}
+.flex1 {
+	position:relative;
+	flex:1;
+	text-align:center;
+	font-size:12px;
+	padding: 18px 0;
+}
+.flex1.on {
+	color:#ee9430;
+}
+.flex1 i {
+	display:block;
+	width:30px;
+	height:40px;
+	margin:0 auto;
+}
+.all {
+	background:url(../../img/all.png) no-repeat;
+	background-size:30px;
 }

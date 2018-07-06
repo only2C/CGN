@@ -43,7 +43,7 @@ button{
 	width:100%;
 	background-color:#efeff4;
     overflow: hidden;
-    padding: 6px 0 0;
+    padding: 6px 0 0px;
     z-index:99;
 }
 .status-wp {
@@ -51,8 +51,15 @@ button{
 	background-color:#fff;
 }
 .order-status-icon{
-    width: 20%;
+    width: 16.66666%;
     float: left;
+    padding-bottom:2px;
+}
+.order-status-icon.active .active-bottom {
+	display:block;
+	width:50%;
+	margin:0 auto;
+	border-bottom:3px solid #ee9430;
 }
 .order-status-icon div{
     width: 35px;
@@ -66,45 +73,25 @@ button{
     margin-bottom: 5px;
 }
 .order-icon-1{
-    background: url("../../img/my_daishenhe.png") no-repeat 5px 0px;
-    background-size: 70%;
-}
-.order-status-icon.active .order-icon-1{
-    background: url("../../img/my_icon-1.png") no-repeat 5px 0px;
-    background-size: 70%;
-}
-.order-icon-2{
-    background: url("../../img/my_daifahuo.png") no-repeat;
-    background-size: 100%;
-}
-.order-status-icon.active .order-icon-2{
-    background: url("../../img/my_icon-2.png") no-repeat ;
-    background-size: 100%;
-}
-.order-icon-3{
-    background: url("../../img/daiyanshou.png") no-repeat;
+    background: url("../../img/sta2.png") no-repeat 3px 0px;
     background-size: 80%;
 }
-.order-status-icon.active .order-icon-3{
-    background: url("../../img/my_icon-6.png") no-repeat;
+.order-icon-2{
+    background: url("../../img/sta3.png") no-repeat 3px 0;
+    background-size: 80%;
+}
+.order-icon-3{
+    background: url("../../img/sta4.png") no-repeat 3px 0;
     background-size: 80%;
 }
 .order-icon-4{
-    background: url("../../img/my_daipingjia.png") no-repeat 0px 2px;
-    background-size: 100%;
-}
-.order-status-icon.active .order-icon-4{
-    background: url("../../img/my_icon-4.png") no-repeat  0px 2px;
-    background-size: 100%;
+    background: url("../../img/sta5.png") no-repeat 3px 0px;
+    background-size: 80%;
 }
 .order-icon-5{
-    background: url("../../img/my_daiqianshou.png") no-repeat;
-    background-size: 70%;
-    background-position:6px 0;
-}
-.order-status-icon.active .order-icon-5{
-    background: url("../../img/my_icon-5.png") no-repeat;
-    background-size: 70%;
+    background: url("../../img/sta6.png") no-repeat;
+    background-size: 80%;
+    background-position:3px 0;
 }
 .order-icon-6{
     background: url("../../img/my_yishenhe.png") no-repeat 2px 0px;
@@ -125,15 +112,9 @@ button{
     background-size: 70%;
 }
 .order-icon-8{
-    background: url("../../img/icon-categroy.png") no-repeat 7px 2px;
-    background-size: 70%;
-    background-position:5px 2px;
-}
-
-.order-status-icon.active .order-icon-8{
-    background: url("../../img/icon-categroy-active.png") no-repeat 7px 2px;
-    background-size: 70%;
-    background-position:5px 2px;
+    background: url("../../img/sta1.png") no-repeat 7px 2px;
+    background-size: 80%;
+    background-position:4px 2px;
 }
 .order-list {
     background: #fff;
@@ -274,7 +255,7 @@ button{
     text-overflow: ellipsis;
     font-size: 12px;
 }
-/*Ã¦ÂÅ“Ã§Â´Â¢Ã¦Â¡â€ */
+/*ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚ÂÃƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â§Ãƒâ€šÃ‚Â´Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¦Ãƒâ€šÃ‚Â¡ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â */
 .um-input-search {
   display: -webkit-box;
   display: box;
@@ -312,7 +293,7 @@ button{
         background-color: #ffffff;
 }
 /*
- ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â°ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½
+ ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¦ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¥ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½
  * */
 .more {
     height: 4rem;
@@ -368,6 +349,10 @@ button{
         -webkit-transform: rotate(360deg) translateZ(0);
     }
 }
+.um-header h3 {
+	font-size:15px;
+	font-weight:normal;
+}
 #scroller {
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
@@ -376,7 +361,7 @@ button{
 #swrapper {
 	position:fixed !important;
 	width:100%;
-	top:272px !important;
+	top:202px !important;
 	bottom:0;
 }
 .no-data {

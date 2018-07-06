@@ -10,7 +10,7 @@
   <icon relativePath="css/themes/default/app">app</icon>  
   <versionCode>1</versionCode>  
   <versionBuild>1</versionBuild>  
-  <versionName>1.01</versionName>  
+  <versionName>1.02</versionName>  
   <orientation>unspecified</orientation>  
   <permission id="android.permission.INTERNET"></permission>  
   <statusBarStyle>dark</statusBarStyle>  

@@ -36,44 +36,25 @@ body{
     margin-bottom: 5px;
 }
 .order-icon-1{
-    background: url("../../img/my_daishenhe.png") no-repeat 5px 0px;
-    background-size: 70%;
-}
-.order-status-icon.active .order-icon-1{
-    background: url("../../img/my_icon-1.png") no-repeat 5px 0px;
-    background-size: 70%;
-}
-.order-icon-2{
-    background: url("../../img/my_daifahuo.png") no-repeat;
-    background-size: 100%;
-}
-.order-status-icon.active .order-icon-2{
-    background: url("../../img/my_icon-2.png") no-repeat ;
-    background-size: 100%;
-}
-.order-icon-3{
-    background: url("../../img/my_daipingjia.png") no-repeat 0px 2px;
-    background-size: 100%;
-}
-.order-status-icon.active .order-icon-3{
-    background: url("../../img/my_icon-4.png") no-repeat  0px 2px;
-    background-size: 100%;
-}
-.order-icon-4{
-    background: url("../../img/daiyanshou.png") no-repeat;
+    background: url("../../img/sta2.png") no-repeat 3px 0px;
     background-size: 80%;
 }
-.order-status-icon.active .order-icon-4{
-    background: url("../../img/my_icon-6.png") no-repeat;
+.order-icon-2{
+    background: url("../../img/sta3.png") no-repeat 3px 0;
+    background-size: 80%;
+}
+.order-icon-3{
+    background: url("../../img/sta4.png") no-repeat 3px 0;
+    background-size: 80%;
+}
+.order-icon-4{
+    background: url("../../img/sta5.png") no-repeat 3px 0px;
     background-size: 80%;
 }
 .order-icon-5{
-    background: url("../../img/my_daiqianshou.png") no-repeat;
-    background-size: 70%;
-}
-.order-status-icon.active .order-icon-5{
-    background: url("../../img/my_icon-5.png") no-repeat;
-    background-size: 70%;
+    background: url("../../img/sta6.png") no-repeat;
+    background-size: 80%;
+    background-position:3px 0;
 }
 .order-icon-6{
     background: url("../../img/my_yishenhe.png") no-repeat 2px 0px;
@@ -94,14 +75,15 @@ body{
     background-size: 70%;
 }
 .order-icon-8{
-    background: url("../../img/icon-categroy.png") no-repeat 7px 2px;
-    background-size: 70%;
-    background-position:5px 3px;
+    background: url("../../img/sta1.png") no-repeat 7px 2px;
+    background-size: 80%;
+    background-position:4px 2px;
 }
-
-.order-status-icon.active .order-icon-8{
-    background: url("../../img/icon-categroy-active.png") no-repeat 7px 2px;
-    background-size: 70%;
+.order-status-icon.active .active-bottom {
+	display:block;
+	width:50%;
+	margin:0 auto;
+	border-bottom:3px solid #ee9430;
 }
 
 .order-list {

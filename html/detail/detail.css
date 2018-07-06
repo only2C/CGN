@@ -266,38 +266,45 @@ i.left {
 	vertical-align:middle;
 	margin:0 10px;
 }
-.org-list {
-	display:none;
-	position:absolute;
-	top:66px !important;
-	left:0;
-	width:100%;
-	background-color:#f7f7f7;
-	padding:2px 0;
-	z-index:9999;
-	overflow-y:scroll;
+.org-list, .system-list {
+    display: none;
+    position: absolute;
+    top: 67px !important;
+    left: 0;
+    width: 100%;
+    background-color: #f7f7f7;
+    z-index: 99999;
 }
-.org-list li {
-	line-height: 40px;
+
+.org-list li{
+	border-bottom:1px solid #f0f0f0;
 }
-.org-list li.on {
-	color:#ee9430;
+
+.org-list li, .system-list li {
+    line-height: 50px;
 }
-.org-list li .has-choosen {
-	display:none;
-	width:35px;
-	height:16px;
-	background:url(../../img/has-choosen.png) no-repeat;
-	background-size:30px auto;
-	vertical-align:middle;
-	margin-left:5px;
+
+.org-list li.on, .system-list li.on {
+    color: #ee9430;
 }
-.org-list li.on .has-choosen {
-	display:inline-block;
+
+.org-list li .has-choosen, .system-list li .has-choosen {
+    display: none;
+    width: 35px;
+    height: 16px;
+    background: url(../../img/has-choosen.png) no-repeat;
+    background-size: 30px auto;
+    vertical-align: middle;
+    margin-left: 5px;
 }
+
+.org-list li.on .has-choosen,.system-list li.on .has-choosen {
+    display: inline-block;
+}
+
 .org-name {
-	display:inline-block;
-	font-size:14px;
+    display: inline-block;
+    font-size: 14px;
 }
 .drop {
 	display:none;
