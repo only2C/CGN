@@ -1,4 +1,4 @@
-/* 设置背景图片 */
+/* è®¾ç½®èƒŒæ™¯å›¾ç‰‡ */
 .icon-home, .icon-attention, .icon-categroy, .icon-warehouse, .icon-my {
 height: 19px;
 background: url(../../img/icon-home.png) center no-repeat;
@@ -47,7 +47,7 @@ background-image: url(../../img/icon-warehouse.png);
 .icon-my {
 background-image: url(../../img/icon-my.png);
 }
-/* 设置激活状态 */
+/* è®¾ç½®æ¿€æ´»çŠ¶æ€ */
 .um-footerbar-item.active .icon-home {
 background-image: url(../../img/icon-home-active.png);
 }
@@ -72,6 +72,9 @@ background-image: url(../../img/icon-my-active.png);
 	height:46px;
 	line-height:46px;
 	font-size:16px;
+}
+.title .um-header-left {
+	font-size:15px
 }
 .um-input-search {
     display: -webkit-box;
@@ -293,9 +296,11 @@ background-image: url(../../img/icon-my-active.png);
 }
 .org-list, .system-list {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 108px !important;
     left: 0;
+    bottom:45px;
+    overflow-y:scroll;
     width: 100%;
     background-color: #f7f7f7;
     z-index: 99999;

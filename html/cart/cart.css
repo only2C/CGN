@@ -288,9 +288,11 @@ background-image: url(../../img/icon-my-active.png);
 }
 .org-list, .system-list {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 108px !important;
     left: 0;
+    bottom:45px;
+    overflow-y:scroll;
     width: 100%;
     background-color: #f7f7f7;
     z-index: 99999;

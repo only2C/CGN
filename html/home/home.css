@@ -281,17 +281,17 @@ div.um-label {
     vertical-align: middle;
     margin: 0 10px;
 }
-
 .org-list, .system-list {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 70px;
     left: 0;
+    bottom:45px;
     width: 100%;
     background-color: #f7f7f7;
     z-index: 99999;
+    overflow-y:scroll;
 }
-
 .org-list li{
 	border-bottom:1px solid #f0f0f0;
 }
