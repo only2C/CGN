@@ -71,3 +71,6 @@ function sendExpressCallback(res){
         });
     }
 }
+$(function () {
+    $("#expressSelect").select2();
+});

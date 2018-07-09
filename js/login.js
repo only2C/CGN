@@ -47,8 +47,6 @@ summerready = function(){
             summer.setStorage('pwd',pwd);
 
             get_enc_key(username);
-            
-
         })
         $('#changePassType').on('click',function(){
             var $this = $(this);
@@ -67,7 +65,7 @@ function logon_after_process(data){
         summer.setStorage("userInfo", userInfo);
         summer.setStorage("ufn",data.ufn);
 		summer.setStorage("ufcn",data.ufcn);
-       if(ent.ieopUserIsInner=="0"&&ent.ieopUserIsSu=="1"){
+        if(ent.ieopUserIsInner=="0"&&ent.ieopUserIsSu=="1"){
             summer.setStorage("isSupplier","01");
             summer.openWin({
                 id : 'home',
@@ -76,7 +74,6 @@ function logon_after_process(data){
                 "addBackListener":"true",
             });
         }else{
-
            summer.setStorage("isSupplier","");
             summer.openWin({
                 id : 'home',
@@ -85,8 +82,6 @@ function logon_after_process(data){
                 "addBackListener":"true"
             });
         }
-
-
     }else{
         summer.toast({
             "msg" : data.msg
@@ -98,10 +93,8 @@ function get_enc_key(usercode){
     var info = {};
     info['usercode']=usercode;
     info['language_type']='0';
-
     var bb = p_params_con_dataj_enc(info);
     p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/getenc', bb ,'get_enc_key_callback');
-
 }
 function  get_enc_key_callback (data ){
 	pub_key = data.retData["pub_key"] ;
@@ -115,7 +108,5 @@ function  get_enc_key_callback (data ){
     info['pwd']=encrypt.encrypt(pwd)
     info['language_type']='0';
     var bb = p_params_con_dataj_enc(info);
-    
     p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/login', bb,'logon_after_process');
-
 }

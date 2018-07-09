@@ -221,10 +221,76 @@ function querysingle (ret){
 	    isLooping: true,
 	    animateType: 'default',
 	    isAutoplay: true,
-	    animateTime: 800
+	    animateTime: 800,
+	    fixPage:false
 	});
 	islider.addDot();
-
+	setTimeout(function(){
+		//添加图片预览功能
+		var $_ = {};
+	    /**
+	     * get multiple elements
+	     * @public
+	     */
+	    $_.all = function(selector, contextElement) {
+	      var nodeList,
+	        list = [];
+	      if (contextElement) {
+	        nodeList = contextElement.querySelectorAll(selector);
+	      } else {
+	        nodeList = document.querySelectorAll(selector);
+	      }
+	      if (nodeList && nodeList.length > 0) {
+	        list = Array.prototype.slice.call(nodeList);
+	      }
+	      return list;
+	    }
+	    /**
+	     * delegate an event to a parent element
+	     * @public
+	     * @param  array     $el        parent element
+	     * @param  string    eventType  name of the event
+	     * @param  string    selector   target's selector
+	     * @param  function  fn
+	     */
+	    $_.delegate = function($el, eventType, selector, fn) {
+	      if (!$el) { return; }
+	      $el.addEventListener(eventType, function(e) {
+	        var targets = $_.all(selector, $el);
+	        if (!targets) {
+	          return;
+	        }
+	        // findTarget:
+	        for (var i=0; i<targets.length; i++) {
+	          var $node = e.target;
+	          while ($node) {
+	            if ($node == targets[i]) {
+	              fn.call($node, e);
+	              break; //findTarget;
+	            }
+	            $node = $node.parentNode;
+	            if ($node == $el) {
+	              break;
+	            }
+	          }
+	        }
+	      }, false);
+	    };
+	    var urls = [];
+	    var imgs = $_.all('img',$_.all('#iSlider-wrapper')[0]);
+	    imgs.forEach(function(v,i){
+	        urls.push(v.src);
+	    })
+	    
+	    $_.delegate(document.querySelector('#iSlider-wrapper'), 'click','img',function(){
+	        var current = this.src;
+	        var obj = {
+	            urls : urls,
+	            current : current
+	        };
+	        previewImage.start(obj);
+	    });
+	},800)
     //获取库存和价格   价格暂时去掉
     var p_conditions = {"suMCode":params.suMCode,"suStoreCode":params.suStoreCode,"ieopEnterpriseCode":params.ieopEnterpriseCode};
     set_context_info("p_material_factory_info",{'fcode':cgnFCodes,'mcode':cgnMCodes});
