@@ -3547,7 +3547,7 @@ html.um-frame {
 
 /*********gct dev**********************/
 .um-header-title, .um-header h3 {
-  font-size: 1em;
+  font-size: 15px;
   text-align: center;
   display: block;
   margin: 0;

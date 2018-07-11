@@ -855,7 +855,10 @@
                 <option value="lishi">丽狮物流</option>
 
             </select>
-            <input type="text" value="" placeholder="输入订单号" class="form-control mt15" id="expressId">
+            <div class="order-id-wp">
+            	<input type="text" value="" placeholder="输入订单号" class="form-control mt15" id="expressId">
+            	<button onClick="scan()">扫描</button>
+            </div>
             <div class="form-control mt15">
                 <span>运费类型：</span>
                 <input type="radio" class="" value="4" name="expressCost" checked/>包邮

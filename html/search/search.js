@@ -60,6 +60,7 @@ summerready = function(){
 		summer.openWin({
            "id" : "list",
            "url" : linkUrl,
+           isKeep:false,
            "pageParam" : {
                 "options" : {
                 	kwords:kwords

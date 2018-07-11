@@ -48,3 +48,25 @@ body{
 .form-control{
     font-size: 14px;
 }
+.order-id-wp {
+	position:relative;
+	overflow:hidden;
+}
+.order-id-wp .form-control {
+	width:100%;
+	float:left;
+}
+.order-id-wp button {
+	position:absolute;
+	right:0;
+	float:right;
+	width:18%;
+	background-color:#ff9500;
+	color:#fff;
+	outline:none;
+	border:0;
+	height:38px;	
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+	margin-top:16px
+}

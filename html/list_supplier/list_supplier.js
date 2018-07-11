@@ -92,7 +92,6 @@ summerready = function(){
                     duration:0 //动画过渡时间，默认300毫秒
                 },
                 isKeep:true,
-                "addBackListener":"true"
             });
         },
         getPageDetail:function (data) {
@@ -286,7 +285,7 @@ function payBillCallback(data){
             title: '结算成功',
             duration: 3000
         });
-        getData();
+        getData(viewModel.status(),viewModel.kwd(),1);
     }else{
         UM.toast({
             title: data.msg,

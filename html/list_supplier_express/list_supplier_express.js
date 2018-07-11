@@ -74,3 +74,17 @@ function sendExpressCallback(res){
 $(function () {
     $("#expressSelect").select2();
 });
+function scan(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+      	  if(result.cancelled==true){
+      	  	  
+      	  }else {
+      	  	  $('#expressId').val(result.text);
+      	  }
+      }, 
+      function (error) {
+          alert("扫描失败: " + error);
+      }
+   );
+}
