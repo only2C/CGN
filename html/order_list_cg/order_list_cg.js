@@ -108,7 +108,7 @@ summerready = function(){
 			viewModel.id(id);
 			UM.confirm({
 			    title: '验收',
-			    text: '<span><button onClick="sendcodesms('+id+','+receivePhone+',\''+receiveName+'\')">获取验证码</button><input id="acceptanceVal" stype="text"/></span><div class="clearfix"></div>',
+			    text: '<span><button id="sendMBtn" onClick="sendcodesms('+id+','+receivePhone+',\''+receiveName+'\')">获取验证码</button><input id="acceptanceVal" stype="text"/><button onClick="scanVlid()">扫描</button></span><div class="clearfix"></div>',
 			    btnText: ["不通过", "通过"],
 			    overlay: true,
 			    ok: function () {
@@ -266,8 +266,8 @@ function accessVal(data){
         
     }else{
         summer.toast({
-            	"mag":data.msg
-            }) 
+            "msg":data.msg
+        }) 
     }
 }
 //未通过校验回调
@@ -302,11 +302,11 @@ function ussettlement(data){
 	if(data.status==1){
         queryOrder(viewModel.status()); 
         summer.toast({
-        	"mag":"验收通过！"
+        	"msg":"验收通过！"
         }) 
     }else{
     	summer.toast({
-        	"mag":data.msg
+        	"msg":data.msg
         }) 
     }
 }
@@ -404,14 +404,40 @@ function evaluationQueryBack(res){
 	    mycall();
 	}
 }
-function sendcodesms(id,receivePhone,receiveName){
+function sendcodesms(mid,receivePhone,receiveName){
 	var info = {};
-    info['ieopVsmBillId'] = id;
-    info['ieopVsmPhoneNum'] = receivePhone;
-    info['ieopUserName'] = receiveName;
-    info['ieopVsmPurpose '] = '1';
+    info['ieopVsmBillId'] = String(viewModel.id()); //不知道mid为啥传过来就变了，只能用这个了
+    info['ieopVsmPhoneNum'] = String(receivePhone);
+    info['ieopUserName'] = String(receiveName);
+    info['ieopVsmPurpose'] = '1';
     var bb = p_page_params_con_dataj_enc(info,{},{});
     var data = p_async_post(ip+'/ieop_base_mobile/mfrontieopvalisortmsg/sendcodesms', bb,'sendcodesmsBack');
+}
+function scanVlid(){
+	cordova.plugins.barcodeScanner.scan(
+      function (result) {
+      	  if(result.cancelled==true){
+      	  	  
+      	  }else {
+      	  	  var info = {};
+		      info['code'] = result.text;
+		      var bb = p_page_params_con_dataj_enc(info,{},{});
+		      var data = p_async_post(ip+'/ieop_base_mobile/mfrontsumallorder/valisecuritycode', bb,'scanValidBack');
+      	  }
+      }, 
+      function (error) {
+          alert("扫描失败: " + error);
+      }
+   );
+}
+function scanValidBack(res){
+	if(res.status==1){
+		$('#sendMBtn').click();
+	}else{
+		summer.toast({
+             "msg" : res.msg
+        })
+	}
 }
 function sendcodesmsBack(res){
 	if(res.status==1){

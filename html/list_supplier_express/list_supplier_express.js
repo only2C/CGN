@@ -24,9 +24,9 @@ summerready = function(){
                     mallLCodes:$("#expressId").val(),
                     mallLCompanyCodes:viewModel.mallLCompanyCode()?viewModel.mallLCompanyCode():'youzhengguonei',
                     mallLCompanys:viewModel.mallLCompany()?viewModel.mallLCompany():'邮政包裹/平邮',
-                    mallLCosts:$("#expressCost").val(),
+                    mallLCosts:$("#expressCost").val()?$("#expressCost").val():0,
                     mallLCostTypes:  $("input[name='expressCost']:checked").val() ?   $("input[name='expressCost']:checked").val() :4,
-                    mallLContents:$('#remark').val(),
+                    mallLContents:$('#remark').val()?$('#remark').val():'null',
                     status:'9',
                     id:summer.pageParam.expressObj.id
                 }
