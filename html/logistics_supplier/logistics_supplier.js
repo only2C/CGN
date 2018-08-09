@@ -16,9 +16,10 @@ summerready = function(){
 	})
 	window.ip = summer.getStorage("ip");
 	$summer.fixStatusBar($summer.byId('header'));
+	
 	window.viewModel = {
     	logisticsList:ko.observableArray([]),
-    	retLogistData:ko.observableArray(summer.pageParam.retLogistData.ents),
+    	retLogistData:summer.pageParam.retLogistData==undefined?function(){return[]}:ko.observableArray(summer.pageParam.retLogistData.ents),
     	evaluation_status:ko.observable(),
     	tabIndex:ko.observable(1),
     	evaluationText:ko.observable(' '),
@@ -30,12 +31,16 @@ summerready = function(){
     		queryLog(curItem.mallLCode);
     	}
     }
+    var xx = summer.pageParam.retLogistData;
     window.viewModel = viewModel;
     ko.applyBindings(viewModel);
-	
-    var curItem = viewModel.retLogistData()[0];
-    //queryStatus(curItem.mallLCompanyCode,curItem.mallLCode); 
-    queryLog(curItem.mallLCode);
+	if(viewModel.retLogistData().length!=0){
+		var curItem = viewModel.retLogistData()[0];
+	    //queryStatus(curItem.mallLCompanyCode,curItem.mallLCode); 
+	    queryLog(curItem.mallLCode);
+	}else{
+		UM.hideLoadingBar();
+	}
 }
 
 function queryStatus(mallLCompanyCode,mallLCode){

@@ -1,5 +1,5 @@
 //var ip =   "http://192.168.10.156:8170" ;   //GYQ
-//var ip = "http://192.168.8.104:8170"
+//var ip = "http://192.168.10.60:8170"
 var ip = "http://123.207.175.212:8170";  //TX
 //var ip = "http://parts.cgnne.com:8091" //正式
 var pub_key ="";
@@ -96,7 +96,7 @@ function get_enc_key(usercode){
     var bb = p_params_con_dataj_enc(info);
     p_async_post(ip+'/ieop_base_mobile/mfrontmalluserlogin/getenc', bb ,'get_enc_key_callback');
 }
-function  get_enc_key_callback (data ){
+function  get_enc_key_callback (data){
 	pub_key = data.retData["pub_key"] ;
 	var encrypt = new JSEncrypt();
     encrypt.setPublicKey(pub_key);

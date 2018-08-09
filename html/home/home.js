@@ -86,9 +86,10 @@ function scan() {
 }
 
 summerready = function () {
+	
     var platform = $summer.os,
         ip = summer.getStorage("ip");
-
+	get_version(ip);
     if (platform == 'ios') {
         $('#iSlider-wrapper').css('height', '215px');
     }
@@ -216,7 +217,7 @@ summerready = function () {
         if($("#img1").hasClass("arrow-up"))
         	$("#img1").removeClass("arrow-up").addClass("arrow-down")
         else
-       		 $("#img1").removeClass("arrow-down").addClass("arrow-up")
+       		$("#img1").removeClass("arrow-down").addClass("arrow-up")
        	
     })
     $drop2.on('click', function () {
@@ -247,4 +248,41 @@ function queryuserfactories(res) {
             "msg": '查询失败'
         })
     }
+}
+function get_version(ip) {
+	var c_condition_info = {};
+    var page_params={};
+    page_params["pageIndex"]=1;
+    page_params["pageSize"]=10000;
+    var data = p_page_params_con_dataj_enc(c_condition_info,page_params);
+    p_async_post(ip+'/ieop_base_mobile/mfrontmallieopversion/queryversion', data,'get_version_back');
+}
+function get_version_back(data){
+	if(data.status==1){
+		var ent = data.retData;
+		var ieopVersionCode = ent.ieopVersionCode;
+		var appVersion = JSON.parse(summer.getAppVersion()).versionCode;
+		if(ieopVersionCode!=appVersion){
+			UM.confirm({
+			    title: '发现新版本',
+			    text: '是否立即下载？',
+			    btnText: ["取消", "确定"],
+			    overlay: true,
+			    ok: function () {
+				    if($summer.os=='ios'){
+				        summer.openWebView({
+						    url : "https://fir.im/w5d3"
+						});
+				    }else{
+				    	summer.openWebView({
+						    url : "https://fir.im/ysxv"
+						});
+				    }
+			    },
+			    cancle: function () {
+			    
+			    }
+			});
+		}
+	}
 }

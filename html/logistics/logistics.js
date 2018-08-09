@@ -26,17 +26,20 @@ summerready = function(){
     ko.applyBindings(viewModel);
 	var url = ip+'/ieop_base_mobile/mfrontmalllogisticsprocess/inqueryLogistics';
 	var mainOrder = summer.pageParam.mainOrder;
-	var p_conditions = {};
-    p_conditions['mallCompanyCode'] = mainOrder[0].mallLCompanyCode;
-    p_conditions['mallLCode'] = mainOrder[0].mallLCode;
-    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
-    p_async_post(url, enc_conditions,'inqueryLogistics');
-    //查询物流信息
-    var p_conditions = {};
-    p_conditions['mallLCode'] = mainOrder[0].mallLCode;
-    var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
-    p_async_post(ip+'/ieop_base_mobile/mfrontmalllogisticsinfos/querylogisticsInfos', enc_conditions,'querylogisticsInfos');
-    
+	if(mainOrder.length!=0){
+		var p_conditions = {};
+		p_conditions['mallCompanyCode'] = mainOrder[0].mallLCompanyCode;
+		p_conditions['mallLCode'] = mainOrder[0].mallLCode;
+		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
+		p_async_post(url, enc_conditions,'inqueryLogistics');
+		//查询物流信息
+		var p_conditions = {};
+		p_conditions['mallLCode'] = mainOrder[0].mallLCode;
+		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
+		p_async_post(ip+'/ieop_base_mobile/mfrontmalllogisticsinfos/querylogisticsInfos', enc_conditions,'querylogisticsInfos');
+    }else{
+    	UM.hideLoadingBar();
+    }
 }
 function querylogisticsInfos(data){
 	if(data.status==1){

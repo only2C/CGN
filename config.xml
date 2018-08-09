@@ -2,7 +2,7 @@
 
 <application> 
   <app_start>html/login.html</app_start>  
-  <app_name>备件通( 测试版)</app_name>  
+  <app_name>备件通</app_name>  
   <project_name>cgnspare</project_name>  
   <package_name>com.mobile.cgnspare</package_name>  
   <frame_name>summer-um</frame_name>  
@@ -10,7 +10,7 @@
   <icon relativePath="css/themes/default/app">app</icon>  
   <versionCode>1</versionCode>  
   <versionBuild>1</versionBuild>  
-  <versionName>1.03</versionName>  
+  <versionName>3.5</versionName>  
   <orientation>unspecified</orientation>  
   <permission id="android.permission.INTERNET"></permission>  
   <statusBarStyle>light</statusBarStyle>  

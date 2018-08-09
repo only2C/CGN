@@ -95,6 +95,7 @@ function valiCarts(res){
         })
 		return;
 	}
+	var orderContent = $(".um-content .container .note input").val();
 	var user_carts_materials_ids= '';
 	var receiveId = viewModel.addressList()[0].id;
 	var p_conditions = {};
@@ -103,6 +104,7 @@ function valiCarts(res){
 	}
 	p_conditions['userCartIds'] = user_carts_materials_ids;
 	p_conditions['receiveId'] = receiveId;
+	p_conditions['orderContent'] = orderContent;
 	if(viewModel.cartType()=="1"){
        	p_conditions['buyStoreSwitch'] = '0'; 
     }else{

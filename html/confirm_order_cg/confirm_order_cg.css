@@ -233,3 +233,12 @@ button{
 .order-total-num span{
 	color: #ee9430;
 }
+.um-content .container .note{
+	background: #fff;
+    margin-top: 10px;
+    padding-left: 11px;
+}
+.um-content .container .note input{
+	font-size:14px;
+	padding-top:6px;
+}
