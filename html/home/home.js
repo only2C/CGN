@@ -258,10 +258,10 @@ function get_version(ip) {
     p_async_post(ip+'/ieop_base_mobile/mfrontmallieopversion/queryversion', data,'get_version_back');
 }
 function get_version_back(data){
-	if(data.status==1){
+	if(data.status==1){ 
 		var ent = data.retData;
-		var ieopVersionCode = ent.ieopVersionCode;
-		var appVersion = JSON.parse(summer.getAppVersion()).versionCode;
+		var ieopVersionCode = ent.ents[0].ieopVersionCode;
+		var appVersion = JSON.parse(summer.getAppVersion()).versionName;
 		if(ieopVersionCode!=appVersion){
 			UM.confirm({
 			    title: '发现新版本',
@@ -271,11 +271,13 @@ function get_version_back(data){
 			    ok: function () {
 				    if($summer.os=='ios'){
 				        summer.openWebView({
-						    url : "https://fir.im/w5d3"
+						    //url : "https://fir.im/w5d3"
+						    url : "https://fir.im/n1le"
 						});
 				    }else{
 				    	summer.openWebView({
-						    url : "https://fir.im/ysxv"
+						    //url : "https://fir.im/ysxv"
+						    url : "https://fir.im/vul1"
 						});
 				    }
 			    },

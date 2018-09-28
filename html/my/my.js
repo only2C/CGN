@@ -79,6 +79,9 @@ var stype = summer.getStorage("stype")?summer.getStorage("stype"):0;
 var stypeText = stype==1?'欢迎调拨':'欢迎采购';
 
 summerready = function(){
+	var platform = $summer.os,
+        ip = summer.getStorage("ip");
+	get_version(ip);
     $summer.fixStatusBar($summer.byId('header'));
     var userInfo = JSON.parse(summer.getStorage("userInfo"));
     var isSuppliers = summer.getStorage("isSupplier") == "01" ? false : true ;
@@ -272,4 +275,43 @@ summerready = function(){
         //$('.system-list').slideToggle();
         //$drop2.fadeToggle();
     //})
+}
+function get_version(ip) {
+	var c_condition_info = {};
+    var page_params={};
+    page_params["pageIndex"]=1;
+    page_params["pageSize"]=10000;
+    var data = p_page_params_con_dataj_enc(c_condition_info,page_params);
+    p_async_post(ip+'/ieop_base_mobile/mfrontmallieopversion/queryversion', data,'get_version_back');
+}
+function get_version_back(data){
+	if(data.status==1){ 
+		var ent = data.retData;
+		var ieopVersionCode = ent.ents[0].ieopVersionCode;
+		var appVersion = JSON.parse(summer.getAppVersion()).versionName;
+		if(ieopVersionCode!=appVersion){
+			UM.confirm({
+			    title: '发现新版本',
+			    text: '是否立即下载？',
+			    btnText: ["取消", "确定"],
+			    overlay: true,
+			    ok: function () {
+				    if($summer.os=='ios'){
+				        summer.openWebView({
+						    //url : "https://fir.im/w5d3"
+						    url : "https://fir.im/n1le"
+						});
+				    }else{
+				    	summer.openWebView({
+						    //url : "https://fir.im/ysxv"
+						    url : "https://fir.im/vul1"
+						});
+				    }
+			    },
+			    cancle: function () {
+			    
+			    }
+			});
+		}
+	}
 }
