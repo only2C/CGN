@@ -27,11 +27,11 @@ summerready = function(){
 	var url = ip+'/ieop_base_mobile/mfrontmalllogisticsprocess/inqueryLogistics';
 	var mainOrder = summer.pageParam.mainOrder;
 	if(mainOrder.length!=0){
-		var p_conditions = {};
-		p_conditions['mallCompanyCode'] = mainOrder[0].mallLCompanyCode;
-		p_conditions['mallLCode'] = mainOrder[0].mallLCode;
-		var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
-		p_async_post(url, enc_conditions,'inqueryLogistics');
+		//var p_conditions = {};
+		//p_conditions['mallCompanyCode'] = mainOrder[0].mallLCompanyCode;
+		//p_conditions['mallLCode'] = mainOrder[0].mallLCode;
+		//var enc_conditions = p_page_params_con_dataj_enc(p_conditions,{},{});
+		//p_async_post(url, enc_conditions,'inqueryLogistics');
 		//查询物流信息
 		var p_conditions = {};
 		p_conditions['mallLCode'] = mainOrder[0].mallLCode;
@@ -43,6 +43,30 @@ summerready = function(){
 }
 function querylogisticsInfos(data){
 	if(data.status==1){
+		var logisticsList = data.retData.ents;
+		for(var i=0;i<logisticsList.length;i++){
+			logisticsList[i].date = logisticsList[i].mallLChildDt.split(" ")[0];
+			logisticsList[i].hour = logisticsList[i].mallLChildDt.split(" ")[1];
+			//不一定有啊
+			logisticsList[i].mallLChildSite = $.trim(logisticsList[i].mallLChildSite);
+		}
+		viewModel.logisticsList(logisticsList);
+		var evaluation_status = data.retData.evaluation_status;
+		viewModel.evaluation_status(evaluation_status);
+		if(evaluation_status==3){
+			viewModel.evaluationText('已签收');
+		}
+		if(evaluation_status==2){
+			viewModel.evaluationText('疑难');
+		}
+		if(evaluation_status==4){
+			viewModel.evaluationText('退签');
+		}
+		if(evaluation_status==6){
+			viewModel.evaluationText('退回');
+		}
+		
+		UM.hideLoadingBar();
 		
 	}else{
 		summer.toast({
